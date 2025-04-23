@@ -17,7 +17,7 @@ public class Entity : MonoBehaviour
     }
     
 
-    public virtual void Death()
+    protected virtual void Death()
     {
         Debug.Log($"{gameObject.name} has died.");
         //애니메이션 or 오브젝트 사망

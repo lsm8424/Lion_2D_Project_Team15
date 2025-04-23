@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Monster
+  - NPC
+  - Item
   layers:
   - Default
   - TransparentFX
