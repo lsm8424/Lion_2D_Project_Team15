@@ -1,45 +1,45 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-/// ¾À ÀÌµ¿ ¹× Æ÷Å» À§Ä¡ ÀÌµ¿À» Ã³¸®ÇÏ´Â ½Ì±ÛÅæ ¸Å´ÏÀú
+/// ì”¬ ì´ë™ ë° í¬íƒˆ ìœ„ì¹˜ ì´ë™ì„ ì²˜ë¦¬í•˜ëŠ” ì‹±ê¸€í†¤ ë§¤ë‹ˆì €
 /// </summary>
-public class StageManager : MonoBehaviour
+public class StageManager : Singleton<GameManager>
 {
     #region singleton
     public static StageManager Instance { get; private set; }
 
     private void Awake()
     {
-        // ÀÎ½ºÅÏ½º°¡ ¾øÀ» °æ¿ì ÀÚ±â ÀÚ½ÅÀ» ¼³Á¤
+        // ì¸ìŠ¤í„´ìŠ¤ê°€ ì—†ì„ ê²½ìš° ìê¸° ìì‹ ì„ ì„¤ì •
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // ¾À º¯°æ ½Ã À¯Áö
+            DontDestroyOnLoad(gameObject); // ì”¬ ë³€ê²½ ì‹œ ìœ ì§€
         }
         else
         {
-            Destroy(gameObject); // Áßº¹ Á¦°Å
+            Destroy(gameObject); // ì¤‘ë³µ ì œê±°
         }
 
         player = GameObject.FindGameObjectWithTag("Player");
     }
     #endregion
 
-    // Player Ä³½Ì¿ë ÇÁ·ÎÆÛÆ¼
+    // Player ìºì‹±ìš© í”„ë¡œí¼í‹°
     private GameObject player;
     private GameObject Player => player ??= GameObject.FindGameObjectWithTag("Player");
 
-    // Æ÷Å» ÀÎµ¦½º ¡æ Æ÷Å» °´Ã¼ ¸ÅÇÎ µñ¼Å³Ê¸®
+    // í¬íƒˆ ì¸ë±ìŠ¤ â†’ í¬íƒˆ ê°ì²´ ë§¤í•‘ ë”•ì…”ë„ˆë¦¬
     private Dictionary<int, Portal> portalDict = new();
-    // ¾À ÀüÈ¯ ½Ã Æ÷Å» µî·ÏÀ» À§ÇÑ µñ¼Å³Ê¸® ÃÊ±âÈ­
+    // ì”¬ ì „í™˜ ì‹œ í¬íƒˆ ë“±ë¡ì„ ìœ„í•œ ë”•ì…”ë„ˆë¦¬ ì´ˆê¸°í™”
 
 
 
     /// <summary>
-    /// ¾À ³» Æ÷Å»ÀÌ ÀÚ½ÅÀ» µî·ÏÇÒ ¼ö ÀÖµµ·Ï Á¦°ø
+    /// ì”¬ ë‚´ í¬íƒˆì´ ìì‹ ì„ ë“±ë¡í•  ìˆ˜ ìˆë„ë¡ ì œê³µ
     /// </summary>
     public void RegisterPortal(Portal portal)
     {
@@ -49,81 +49,108 @@ public class StageManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"[StageManager] Æ÷Å» ÀÎµ¦½º Áßº¹ µî·Ï ½Ãµµ: {portal.portalIndex}");
+            Debug.LogWarning($"[StageManager] í¬íƒˆ ì¸ë±ìŠ¤ ì¤‘ë³µ ë“±ë¡ ì‹œë„: {portal.portalIndex}");
         }
     }
 
     /// <summary>
-    /// °°Àº ¾À ³» Æ÷Å»·Î ÀÌµ¿
+    /// ê°™ì€ ì”¬ ë‚´ í¬íƒˆë¡œ ì´ë™
     /// </summary>
     public void TeleportToPortal(int targetIndex)
     {
         if (!portalDict.TryGetValue(targetIndex, out Portal targetPortal))
         {
-            Debug.LogError($"[StageManager] ÀÌµ¿ ½ÇÆĞ: ÀÎµ¦½º {targetIndex}ÀÇ Æ÷Å»À» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError($"[StageManager] ì´ë™ ì‹¤íŒ¨: ì¸ë±ìŠ¤ {targetIndex}ì˜ í¬íƒˆì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
         if (Player == null)
         {
-            Debug.LogError("[StageManager] Player ¿ÀºêÁ§Æ®¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError("[StageManager] Player ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
+
+        //í˜ì´ë“œ ì¸ì•„ì›ƒ + í”Œë ˆì´ì–´ ì´ë™
+        StartCoroutine(FadeAndTeleport(targetPortal));
+    }
+
+    private IEnumerator FadeAndTeleport(Portal targetPortal)
+    {
+        yield return SceneController.Instance.FadeIn(0.5f); // í˜ì´ë“œ ì¸
+
         Player.transform.position = targetPortal.targetPortal.position;
 
-        #region ³ªÁß¿¡ Áö¿ö¾ßÇÒ °Í
-        player.GetComponent<move>().currentMap = targetPortal.MapIndex; // ÀÌµ¿ÇÒ ¸ÊÀÇ ÀÎµ¦½º·Î
-        Camera.main.GetComponent<followcam>().transCam(targetPortal.MapIndex); // Ä«¸Ş¶ó ÀÌµ¿
+        #region ë‚˜ì¤‘ì— ì§€ì›Œì•¼í•  ê²ƒ
+        player.GetComponent<move>().currentMap = targetPortal.MapIndex;
+        Camera.main.GetComponent<followcam>().transCam(targetPortal.MapIndex);
         #endregion
+
+        yield return SceneController.Instance.FadeOut(0.5f); // í˜ì´ë“œ ì•„ì›ƒ
+
     }
 
     /// <summary>
-    /// ´Ù¸¥ ¾ÀÀ¸·Î ÀÌµ¿ÇÏ°í, ÇØ´ç ¾À ³» Æ÷Å» ÀÎµ¦½º À§Ä¡·Î ÀÌµ¿
+    /// ë‹¤ë¥¸ ì”¬ìœ¼ë¡œ ì´ë™í•˜ê³ , í•´ë‹¹ ì”¬ ë‚´ í¬íƒˆ ì¸ë±ìŠ¤ ìœ„ì¹˜ë¡œ ì´ë™
     /// </summary>
     public void TeleportScene(string sceneName, int spawnPortalIndex = 0)
     {
         if (!Application.CanStreamedLevelBeLoaded(sceneName))
         {
-            Debug.LogError($"[StageManager] ¾À '{sceneName}' À»(¸¦) ·ÎµåÇÒ ¼ö ¾ø½À´Ï´Ù. Build Settings¿¡ µî·ÏµÇ¾î ÀÖ´ÂÁö È®ÀÎÇÏ¼¼¿ä.");
+            Debug.LogError($"[StageManager] ì”¬ '{sceneName}' ì„(ë¥¼) ë¡œë“œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. Build Settingsì— ë“±ë¡ë˜ì–´ ìˆëŠ”ì§€ í™•ì¸í•˜ì„¸ìš”.");
             return;
         }
 
-        StartCoroutine(LoadSceneAndTeleport(sceneName, spawnPortalIndex));
-
-
+        // ì”¬ ì „í™˜ ì „ í˜ì´ë“œ ì•„ì›ƒ ì¶”ê°€
+        StartCoroutine(FadeOutThenLoad(sceneName, spawnPortalIndex));
     }
 
+    private IEnumerator FadeOutThenLoad(string sceneName, int spawnPortalIndex)
+    {
+        yield return SceneController.Instance.FadeIn(0.5f); //í˜ì´ë“œ ì¸ ë¨¼ì € ì‹¤í–‰
+
+        // ì´ì œ ê¸°ì¡´ ë¡œë”© ì½”ë£¨í‹´ ì‹¤í–‰
+        yield return LoadSceneAndTeleport(sceneName, spawnPortalIndex);
+    }
+
+
     /// <summary>
-    /// ¾À ºñµ¿±â ·Îµù + µµÂø Æ÷Å» À§Ä¡·Î ÀÌµ¿ Ã³¸®
+    /// ì”¬ ë¹„ë™ê¸° ë¡œë”© + ë„ì°© í¬íƒˆ ìœ„ì¹˜ë¡œ ì´ë™ ì²˜ë¦¬
     /// </summary>
     private IEnumerator LoadSceneAndTeleport(string sceneName, int spawnPortalIndex)
     {
-        portalDict.Clear(); // ÀÌÀü ¾À Æ÷Å» µ¥ÀÌÅÍ ÃÊ±âÈ­
+        portalDict.Clear(); // ì´ì „ ì”¬ í¬íƒˆ ë°ì´í„° ì´ˆê¸°í™”
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         while (!asyncLoad.isDone)
             yield return null;
 
-        // ¾À ÀüÈ¯ ÈÄ Æ÷Å» µî·Ï ´ë±â (1ÇÁ·¹ÀÓ)
-        yield return new WaitForEndOfFrame();
+        // ì”¬ ì „í™˜ í›„ í¬íƒˆ ë“±ë¡ ëŒ€ê¸° (0.3ì´ˆëŒ€ê¸°)
+        yield return new WaitForSeconds(0.3f);
 
-        player = GameObject.FindGameObjectWithTag("Player"); // »õ ¾À¿¡¼­ ÇÃ·¹ÀÌ¾î ÀçÅ½»ö
+        player = GameObject.FindGameObjectWithTag("Player"); // ìƒˆ ì”¬ì—ì„œ í”Œë ˆì´ì–´ ì¬íƒìƒ‰
 
         if (!portalDict.TryGetValue(spawnPortalIndex, out Portal spawnPortal))
         {
-            Debug.LogWarning($"[StageManager] µµÂø Æ÷Å» ÀÎµ¦½º {spawnPortalIndex}¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogWarning($"[StageManager] ë„ì°© í¬íƒˆ ì¸ë±ìŠ¤ {spawnPortalIndex}ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             yield break;
         }
+
+
 
         if (Player != null)
         {
             Player.transform.position = spawnPortal.targetPortal.position;
 
-            #region ³ªÁß¿¡ Áö¿ö¾ßÇÒ °Í
-            player.GetComponent<move>().currentMap = spawnPortal.MapIndex; // ÀÌµ¿ÇÒ ¸ÊÀÇ ÀÎµ¦½º·Î
-            Camera.main.GetComponent<followcam>().transCam(spawnPortal.MapIndex); // Ä«¸Ş¶ó ÀÌµ¿
+            #region ë‚˜ì¤‘ì— ì§€ì›Œì•¼í•  ê²ƒ
+            player.GetComponent<move>().currentMap = spawnPortal.MapIndex; // ì´ë™í•  ë§µì˜ ì¸ë±ìŠ¤ë¡œ
+            Camera.main.GetComponent<followcam>().transCam(spawnPortal.MapIndex); // ì¹´ë©”ë¼ ì´ë™
             #endregion
+
+            //í˜ì´ë“œ ì•„ì›ƒ
+            yield return SceneController.Instance.FadeOut(0.5f);  // í˜ì´ë“œ ì•„ì›ƒ
         }
+
+        
     }
 }
