@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,14 +8,13 @@ public class SceneController  : Singleton<SceneController>
 {
     #region Resource
     [SerializeField] GameObject _sceneCanvasPrefab;
+    GameObject _sceneCanvas;
     Image _fadePanel;
     #endregion
 
-    #region Flag
-    [HideInInspector] public bool IsSceneLoaded { get; private set; }
-    bool _isFadeInComplete;
-    [HideInInspector] public bool IsFadeOutComplete { get; private set; }
-    #endregion
+    AsyncOperation _currentOperation;
+    string _sceneName;
+    bool _hasStarted;
 
     protected override void Awake()
     {
@@ -22,22 +22,12 @@ public class SceneController  : Singleton<SceneController>
 
         // 만약 Prefab이 없다면 Resources/SceneCanvas를 Load하여 사용
         if (_sceneCanvasPrefab == null)
-        {
-            _sceneCanvasPrefab = Resources.Load<GameObject>("SceneCanvas");
-        }
-        GameObject spawnedCanvas = Instantiate(_sceneCanvasPrefab);
-        DontDestroyOnLoad(spawnedCanvas);
-        _fadePanel = spawnedCanvas.GetComponentInChildren<Image>();
-    }
+            _sceneCanvasPrefab = Resources.Load<GameObject>("UI/SceneCanvas");
 
-    /// <summary>
-    /// d
-    /// </summary>
-    /// <param name="sceneName"></param>
-    /// <param name="fadeDuration"></param>
-    public void LoadSceneAsync(string sceneName, float fadeDuration)
-    {
-        StartCoroutine(LoadSceneAsyncWithFadeInOut(sceneName, fadeDuration));
+        if (_sceneCanvas == null)
+            _sceneCanvas = Instantiate(_sceneCanvasPrefab, transform);
+
+        _fadePanel = _sceneCanvas.GetComponentInChildren<Image>();
     }
 
     /// <summary>
@@ -45,88 +35,61 @@ public class SceneController  : Singleton<SceneController>
     /// </summary>
     /// <param name="sceneName"></param>
     /// <param name="fadeDuration"></param>
+    public void LoadSceneWithFadeInOut(string sceneName, float fadeDuration)
+    {
+        var fadeIn = new Fade(_fadePanel, Color.clear, Color.black, fadeDuration);
+        var fadeOut = new Fade(_fadePanel, Color.black, Color.clear, fadeDuration);
+
+        LoadSceneWithEffect(sceneName, fadeIn, fadeOut);
+    }
+
+
+    /// <summary>
+    /// 이펙트 효과를 적용하여 씬 전환
+    /// </summary>
+    /// <param name="sceneName"></param>
+    /// <param name="startEffect"></param>
+    /// <param name="endEffect"></param>
+    public void LoadSceneWithEffect(string sceneName, IScreenEffect startEffect, IScreenEffect endEffect)
+    {
+        if (_hasStarted)
+            return;
+
+        _hasStarted = true;
+        _sceneName = sceneName;
+
+        StartCoroutine(ScreenEffectController.InOutEffect(
+            startEffect,
+            endEffect,
+            LoadSceneAsync,
+            () => GetProgress() >= 1f,
+            SwitchScene
+        ));
+    }
+
+    /// <summary>
+    /// Scene 로드 준비
+    /// </summary>
+    public void LoadSceneAsync()
+    {
+        _currentOperation = SceneManager.LoadSceneAsync(_sceneName);
+        _currentOperation.allowSceneActivation = false;
+        _hasStarted = true;
+    }
+
+    /// <summary>
+    /// 0.9f - 다음 씬이 준비된 상태
+    /// 1f - 로드가 완료된 상태
+    /// </summary>
     /// <returns></returns>
-    IEnumerator LoadSceneAsyncWithFadeInOut(string sceneName, float fadeDuration)
+    public float GetProgress() => Mathf.Clamp01(_currentOperation.progress / 0.9f);
+
+    /// <summary>
+    /// Scene 전환
+    /// </summary>
+    public void SwitchScene()
     {
-        // Set Flag
-        _isFadeInComplete = false;
-        IsFadeOutComplete = false;
-        IsSceneLoaded = false;
-
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-        operation.allowSceneActivation = false;
-
-        StartCoroutine(FadeIn(fadeDuration));
-
-        while (!operation.isDone)
-        {
-            float progress = Mathf.Clamp01(operation.progress / 0.9f);
-
-            // 만약 씬 전환이 일어나도록 만드려면
-            if (progress >= 1 && _isFadeInComplete)
-            {
-                operation.allowSceneActivation = true;
-                StartCoroutine(FadeOut(fadeDuration));
-            }
-
-            yield return null;
-        }
-
-        IsSceneLoaded = true;
+        _currentOperation.allowSceneActivation = true;
+        _hasStarted = false;
     }
-
-    #region Fade In/Out
-    public IEnumerator FadeIn(float duration)
-    {
-        _isFadeInComplete = false;
-        float percent = 0;
-        float elapsedTime = 0;
-
-        Color panelColor = _fadePanel.color;
-        panelColor.a = 0;
-        _fadePanel.color = panelColor;
-
-        while (percent < 1)
-        {
-            elapsedTime += Time.deltaTime;
-            percent = elapsedTime / duration;
-
-            panelColor.a = percent;
-            _fadePanel.color = panelColor;
-
-            yield return null;
-        }
-
-        panelColor.a = 1;
-        _fadePanel.color = panelColor;
-
-        _isFadeInComplete = true;
-    }
-
-    public IEnumerator FadeOut(float duration)
-    {
-        _isFadeInComplete = false;
-        float percent = 0;
-        float elapsedTime = 0;
-
-        Color panelColor = _fadePanel.color;
-        panelColor.a = 1;
-        _fadePanel.color = panelColor;
-
-        while (percent < 1)
-        {
-            elapsedTime += Time.deltaTime;
-            percent = elapsedTime / duration;
-
-            panelColor.a = 1 - percent;
-            _fadePanel.color = panelColor;
-
-            yield return null;
-        }
-
-        panelColor.a = 0;
-        _fadePanel.color = panelColor;
-        _isFadeInComplete = true;
-    }
-    #endregion
 }
