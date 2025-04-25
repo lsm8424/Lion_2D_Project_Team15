@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -5,14 +6,16 @@ public class GameManager : Singleton<GameManager>
     public float EntityTimeScale { get; private set; } = 1f;    // Entity, NPC TimeScale
     public float DialogueTimeScale { get; private set; } = 1f;  // 대화창 관련 TimeScale
 
+    public ETimeCase prevTimeCase = ETimeCase.Normal;
+
     /// <summary>
     /// 상황에 맞는 TimeScale을 적용시키기 위한 Case
     /// </summary>
     public enum ETimeCase
     {
         Normal,
-        OnDialogue,
-        OnSetting,
+        Dialogue,
+        Pause,
     }
 
     /// <summary>
@@ -27,14 +30,20 @@ public class GameManager : Singleton<GameManager>
                 EntityTimeScale = 1f;
                 DialogueTimeScale = 1f;
                 break;
-            case ETimeCase.OnDialogue:
+            case ETimeCase.Dialogue:
                 EntityTimeScale = 0f;
                 DialogueTimeScale = 1f;
                 break;
-            case ETimeCase.OnSetting:
+            case ETimeCase.Pause:
                 EntityTimeScale = 0f;
                 DialogueTimeScale = 0f;
                 break;
         }
+
+        if (timeCase != ETimeCase.Pause)
+            prevTimeCase = timeCase;
     }
+
+    public void PauseGame() => SetTimeScale(ETimeCase.Pause);
+    public void ResumeGame() => SetTimeScale(prevTimeCase);
 }
