@@ -70,25 +70,26 @@ public class StageManager : Singleton<GameManager>
             return;
         }
 
-
-        //페이드 인아웃 + 플레이어 이동
-        StartCoroutine(FadeAndTeleport(targetPortal));
-    }
-
-    private IEnumerator FadeAndTeleport(Portal targetPortal)
-    {
-        yield return SceneController.Instance.FadeIn(0.5f); // 페이드 인
-
         Player.transform.position = targetPortal.targetPortal.position;
-
-        #region 나중에 지워야할 것
-        player.GetComponent<move>().currentMap = targetPortal.MapIndex;
-        Camera.main.GetComponent<followcam>().transCam(targetPortal.MapIndex);
-        #endregion
-
-        yield return SceneController.Instance.FadeOut(0.5f); // 페이드 아웃
-
     }
+    //    //페이드 인아웃 + 플레이어 이동
+    //    StartCoroutine(FadeAndTeleport(targetPortal));
+    //}
+
+    //private IEnumerator FadeAndTeleport(Portal targetPortal)
+    //{
+    //    //yield return SceneController.Instance.FadeIn(0.5f); // 페이드 인
+
+    //    Player.transform.position = targetPortal.targetPortal.position;
+
+    //    #region 나중에 지워야할 것
+    //    player.GetComponent<move>().currentMap = targetPortal.MapIndex;
+    //    Camera.main.GetComponent<followcam>().transCam(targetPortal.MapIndex);
+    //    #endregion
+
+    //    //yield return SceneController.Instance.FadeOut(0.5f); // 페이드 아웃
+
+    //}
 
     /// <summary>
     /// 다른 씬으로 이동하고, 해당 씬 내 포탈 인덱스 위치로 이동
@@ -107,7 +108,7 @@ public class StageManager : Singleton<GameManager>
 
     private IEnumerator FadeOutThenLoad(string sceneName, int spawnPortalIndex)
     {
-        yield return SceneController.Instance.FadeIn(0.5f); //페이드 인 먼저 실행
+        //yield return SceneController.Instance.FadeIn(0.5f); //페이드 인 먼저 실행
 
         // 이제 기존 로딩 코루틴 실행
         yield return LoadSceneAndTeleport(sceneName, spawnPortalIndex);
@@ -148,7 +149,7 @@ public class StageManager : Singleton<GameManager>
             #endregion
 
             //페이드 아웃
-            yield return SceneController.Instance.FadeOut(0.5f);  // 페이드 아웃
+            //yield return SceneController.Instance.FadeOut(0.5f);  // 페이드 아웃
         }
 
         
