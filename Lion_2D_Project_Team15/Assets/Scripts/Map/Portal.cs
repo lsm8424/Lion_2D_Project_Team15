@@ -1,33 +1,33 @@
 using UnityEngine;
 
 /// <summary>
-/// Æ÷Å»ÀÇ µ¿ÀÛ ¹æ½ÄÀ» Á¤ÀÇÇÏ´Â ¿­°ÅÇü
+/// í¬íƒˆì˜ ë™ì‘ ë°©ì‹ì„ ì •ì˜í•˜ëŠ” ì—´ê±°í˜•
 /// </summary>
 public enum PortalType
 {
-    SceneChange,     // ´Ù¸¥ ¾ÀÀ¸·Î ÀÌµ¿
-    PositionChange   // °°Àº ¾À ³» Æ÷Å» À§Ä¡·Î ÀÌµ¿
+    SceneChange, // ë‹¤ë¥¸ ì”¬ìœ¼ë¡œ ì´ë™
+    PositionChange // ê°™ì€ ì”¬ ë‚´ í¬íƒˆ ìœ„ì¹˜ë¡œ ì´ë™
 }
 
 /// <summary>
-/// Æ÷Å» µ¿ÀÛÀ» Á¦¾îÇÏ´Â ÄÄÆ÷³ÍÆ®
+/// í¬íƒˆ ë™ì‘ì„ ì œì–´í•˜ëŠ” ì»´í¬ë„ŒíŠ¸
 /// </summary>
 public class Portal : MonoBehaviour
 {
-    public PortalType portalType;        // Æ÷Å» µ¿ÀÛ Å¸ÀÔ ¼±ÅÃ
+    public PortalType portalType; // í¬íƒˆ ë™ì‘ íƒ€ì… ì„ íƒ
 
-    [Header("Æ÷Å» ÀÎµ¦½º Á¤º¸")]
-    public int MapIndex;              // ÇöÀç Æ÷Å»ÀÌ ¼ÓÇÑ ¾ÀÀÇ ÀÎµ¦½º (¾À ÀÌµ¿ ½Ã »ç¿ë)
-    public int portalIndex;              // ÇöÀç Æ÷Å»ÀÇ °íÀ¯ ÀÎµ¦½º
+    [Header("í¬íƒˆ ì¸ë±ìŠ¤ ì •ë³´")]
+    public int MapIndex; // í˜„ì¬ í¬íƒˆì´ ì†í•œ ì”¬ì˜ ì¸ë±ìŠ¤ (ì”¬ ì´ë™ ì‹œ ì‚¬ìš©)
+    public int portalIndex; // í˜„ì¬ í¬íƒˆì˜ ê³ ìœ  ì¸ë±ìŠ¤
 
-    [Header("À§Ä¡ ÀÌµ¿¿ë")]
-    public int targetPortalIndex;        // ÀÌµ¿ÇÒ Æ÷Å» ÀÎµ¦½º
+    [Header("ìœ„ì¹˜ ì´ë™ìš©")]
+    public int targetPortalIndex; // ì´ë™í•  í¬íƒˆ ì¸ë±ìŠ¤
 
-    [Header("¾À ÀÌµ¿¿ë")]
-    public string targetSceneName;       // ÀÌµ¿ÇÒ ¾À ÀÌ¸§
+    [Header("ì”¬ ì´ë™ìš©")]
+    public string targetSceneName; // ì´ë™í•  ì”¬ ì´ë¦„
 
-    [Header("°øÅë")]
-    public Transform targetPortal;       // µµÂøÇÒ Æ÷Å» Transform (¿ÀÇÁ¼Â Á¶Á¤¿ë)
+    [Header("ê³µí†µ")]
+    public Transform targetPortal; // ë„ì°©í•  í¬íƒˆ Transform (ì˜¤í”„ì…‹ ì¡°ì •ìš©)
 
     private void Start()
     {
@@ -39,22 +39,23 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Player")) return;
+        if (!collision.CompareTag("Player"))
+            return;
 
         switch (portalType)
         {
             case PortalType.SceneChange:
                 if (string.IsNullOrEmpty(targetSceneName))
                 {
-                    Debug.LogError($"[Portal] TargetSceneNameÀÌ ºñ¾î ÀÖ½À´Ï´Ù. ({gameObject.name})");
+                    Debug.LogError($"[Portal] TargetSceneNameì´ ë¹„ì–´ ìˆìŠµë‹ˆë‹¤. ({gameObject.name})");
                     return;
                 }
-                // ¾À ÀÌµ¿ ¿äÃ» (¸ñÇ¥ Æ÷Å» ÀÎµ¦½º Æ÷ÇÔ)
+                // ì”¬ ì´ë™ ìš”ì²­ (ëª©í‘œ í¬íƒˆ ì¸ë±ìŠ¤ í¬í•¨)
                 StageManager.Instance.TeleportScene(targetSceneName);
                 break;
 
             case PortalType.PositionChange:
-                // °°Àº ¾À ³» Æ÷Å» ÀÌµ¿
+                // ê°™ì€ ì”¬ ë‚´ í¬íƒˆ ì´ë™
                 StageManager.Instance.TeleportToPortal(targetPortalIndex);
                 break;
         }
