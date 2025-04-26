@@ -145,12 +145,12 @@ TextureImporter:
       name: player29_0
       rect:
         serializedVersion: 2
-        x: 127
+        x: 107
         y: 87
-        width: 110
-        height: 162
+        width: 302
+        height: 198
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -163,33 +163,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: player29_1
-      rect:
-        serializedVersion: 2
-        x: 223
-        y: 91
-        width: 142
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b19a45697a1b624a0800000000000000
-      internalID: -6618407269034579685
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 551414a76b9fb3b45880db81cb4737fc
     internalID: 0
     vertices: []
     indices: 

@@ -142,12 +142,12 @@ TextureImporter:
       name: player23_0
       rect:
         serializedVersion: 2
-        x: 135
-        y: 111
-        width: 158
-        height: 210
+        x: 119
+        y: 87
+        width: 242
+        height: 270
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1f21a2744d092524d8da4fdba5dc2651
     internalID: 0
     vertices: []
     indices: 
