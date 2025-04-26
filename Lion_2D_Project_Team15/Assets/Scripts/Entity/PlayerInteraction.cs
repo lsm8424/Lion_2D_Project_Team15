@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("»óÈ£ÀÛ¿ë ¼³Á¤")]
-    public float interactRange; // »óÈ£ÀÛ¿ë °Å¸®
+    [Header("ìƒí˜¸ì‘ìš© ì„¤ì •")]
+    public float interactRange; // ìƒí˜¸ì‘ìš© ê±°ë¦¬
 
-    private NPC currentNPC = null;       // ÇöÀç ´ëÈ­ ÁßÀÎ NPC
-    private bool isTalking = false;      // ´ëÈ­ ÁßÀÎÁö ¿©ºÎ
+    private NPC currentNPC = null; // í˜„ì¬ ëŒ€í™” ì¤‘ì¸ NPC
+    private bool isTalking = false; // ëŒ€í™” ì¤‘ì¸ì§€ ì—¬ë¶€
 
-    private Ladder currentLadder = null; // ÇöÀç ¿Ã¶óÅº »ç´Ù¸®
-    private bool isOnLadder = false;     // »ç´Ù¸® »óÅÂ ¿©ºÎ
+    private Ladder currentLadder = null; // í˜„ì¬ ì˜¬ë¼íƒ„ ì‚¬ë‹¤ë¦¬
+    private bool isOnLadder = false; // ì‚¬ë‹¤ë¦¬ ìƒíƒœ ì—¬ë¶€
 
-    private Rigidbody2D rb;              // 2D Rigidbody
-    private Animator anim;               // ¾Ö´Ï¸ŞÀÌ¼Ç
+    private Rigidbody2D rb; // 2D Rigidbody
+    private Animator anim; // ì• ë‹ˆë©”ì´ì…˜
 
-    public LayerMask interactLayerMask; // Inspector¿¡¼­ ¼³Á¤ÇÒ ¼ö ÀÖ°Ô ¸¸µê
+    public LayerMask interactLayerMask; // Inspectorì—ì„œ ì„¤ì •í•  ìˆ˜ ìˆê²Œ ë§Œë“¦
 
     private void Start()
     {
@@ -26,39 +26,43 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("F Å° ´­¸²! »óÈ£ÀÛ¿ë ½Ãµµ Áß");
+            Debug.Log("F í‚¤ ëˆŒë¦¼! ìƒí˜¸ì‘ìš© ì‹œë„ ì¤‘");
 
             if (isTalking)
             {
-                currentNPC?.AdvanceDialogue(); // ´ëÈ­ ³Ñ±â±â
+                currentNPC?.AdvanceDialogue(); // ëŒ€í™” ë„˜ê¸°ê¸°
                 return;
             }
 
             if (isOnLadder)
             {
-                ExitLadder(); // »ç´Ù¸® ³»·Á¿À±â
+                ExitLadder(); // ì‚¬ë‹¤ë¦¬ ë‚´ë ¤ì˜¤ê¸°
                 return;
             }
 
-            // ¦¡¦¡¦¡ NPC ¶Ç´Â Ladder Å½Áö¿ë Raycast (2D Àü¿ë) ¦¡¦¡¦¡
+            // â”€â”€â”€ NPC ë˜ëŠ” Ladder íƒì§€ìš© Raycast (2D ì „ìš©) â”€â”€â”€
             Vector2 direction = transform.right;
             Vector2 origin = (Vector2)transform.position + direction * 0.1f;
 
-            RaycastHit2D hit = Physics2D.Raycast(origin, direction, interactRange, interactLayerMask);
+            RaycastHit2D hit = Physics2D.Raycast(
+                origin,
+                direction,
+                interactRange,
+                interactLayerMask
+            );
             Debug.DrawRay(origin, direction * interactRange, Color.red, 1f);
-
 
             if (hit.collider != null)
             {
                 GameObject target = hit.collider.gameObject;
-                Debug.Log("Ray°¡ ¹º°¡¸¦ ¸ÂÃè½À´Ï´Ù: " + hit.collider.name);
+                Debug.Log("Rayê°€ ë­”ê°€ë¥¼ ë§ì·„ìŠµë‹ˆë‹¤: " + hit.collider.name);
 
                 if (target.CompareTag("NPC"))
                 {
                     currentNPC = target.GetComponent<NPC>();
                     if (currentNPC != null)
                     {
-                        currentNPC.Interact(); // ´ëÈ­ ½ÃÀÛ
+                        currentNPC.Interact(); // ëŒ€í™” ì‹œì‘
                         isTalking = true;
                     }
                 }
@@ -74,14 +78,14 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    // ´ëÈ­ Á¾·á ½Ã È£ÃâµÊ
+    // ëŒ€í™” ì¢…ë£Œ ì‹œ í˜¸ì¶œë¨
     public void EndDialogue()
     {
         isTalking = false;
         currentNPC = null;
     }
 
-    // »ç´Ù¸® Å¾½Â Ã³¸®
+    // ì‚¬ë‹¤ë¦¬ íƒ‘ìŠ¹ ì²˜ë¦¬
     private void EnterLadder()
     {
         isOnLadder = true;
@@ -91,10 +95,10 @@ public class PlayerInteraction : MonoBehaviour
         if (anim != null)
             anim.SetTrigger("ClimbStart");
 
-        Debug.Log("»ç´Ù¸®¿¡ ¿Ã¶óÅ½");
+        Debug.Log("ì‚¬ë‹¤ë¦¬ì— ì˜¬ë¼íƒ");
     }
 
-    // »ç´Ù¸® Å»Ãâ Ã³¸®
+    // ì‚¬ë‹¤ë¦¬ íƒˆì¶œ ì²˜ë¦¬
     private void ExitLadder()
     {
         isOnLadder = false;
@@ -105,11 +109,13 @@ public class PlayerInteraction : MonoBehaviour
         if (anim != null)
             anim.SetTrigger("ClimbEnd");
 
-        Debug.Log("»ç´Ù¸®¿¡¼­ ³»·Á¿È");
+        Debug.Log("ì‚¬ë‹¤ë¦¬ì—ì„œ ë‚´ë ¤ì˜´");
     }
 
-    // ¿ÜºÎ Á¢±Ù¿ë: ÇöÀç »ç´Ù¸® »óÅÂ
+    // ì™¸ë¶€ ì ‘ê·¼ìš©: í˜„ì¬ ì‚¬ë‹¤ë¦¬ ìƒíƒœ
     public bool IsOnLadder() => isOnLadder;
+
     public Ladder GetCurrentLadder() => currentLadder;
+
     public void ForceExitLadder() => ExitLadder();
 }
