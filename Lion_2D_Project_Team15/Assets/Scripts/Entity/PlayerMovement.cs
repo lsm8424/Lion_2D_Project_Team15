@@ -2,50 +2,88 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed; // ÀÌµ¿¼Óµµ
-    public float jumpForce; // Á¡ÇÁ Èû
-    public bool isGrounded; // ¶¥¿¡ ´ê¾Æ ÀÖ´ÂÁö ¿©ºÎ
+    public float moveSpeed; // ì´ë™ì†ë„
+    public float jumpForce; // ì í”„ í˜
+    public bool isGrounded; // ë•…ì— ë‹¿ì•„ ìˆëŠ”ì§€ ì—¬ë¶€
 
-    private Rigidbody rb;
+    private Animator anim;
+
+    private Rigidbody2D rb;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     public void HandleMove()
     {
-        // WASD ¶Ç´Â ¹æÇâÅ° ÀÔ·Â ¹Ş±â
-        float h = Input.GetAxisRaw("Horizontal"); // A,D ¶Ç´Â ¡ç, ¡æ
-        float v = Input.GetAxisRaw("Vertical"); // W,S ¶Ç´Â ¡è,¡é
+        // WASD ë˜ëŠ” ë°©í–¥í‚¤ ì…ë ¥ ë°›ê¸°
+        float h = Input.GetAxisRaw("Horizontal"); // A,D ë˜ëŠ” â†, â†’
+        float v = Input.GetAxisRaw("Vertical"); // W,S ë˜ëŠ” â†‘,â†“
 
-        // ÀÔ·Â ¹æÇâÀ¸·ÎÀÇ º¤ÅÍ °è»ê (YÃàÀº Á¦¿ÜÇÏ°í Æò¸é ÀÌµ¿)
+        // ì…ë ¥ ë°©í–¥ìœ¼ë¡œì˜ ë²¡í„° ê³„ì‚° (Yì¶•ì€ ì œì™¸í•˜ê³  í‰ë©´ ì´ë™)
         Vector3 moveDir = new Vector3(h, 0, v).normalized;
         Vector3 move = moveDir * moveSpeed * Time.deltaTime;
 
+        // ì´ë™ ì• ë‹ˆë©”ì´ì…˜ ì œì–´
+        bool isMoving = moveDir != Vector3.zero;
+        anim.SetBool("Run", isMoving);
+
         transform.Translate(move, Space.World);
 
-        if (moveDir != Vector3.zero)
+        if (h != 0)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+            Vector3 scale = transform.localScale;
+            scale.x = h > 0 ? 1 : -1; // ì˜¤ë¥¸ìª½ í‚¤: 1, ì™¼ìª½ í‚¤: -1
+            transform.localScale = scale;
         }
+
+
+
+
+        /*
+                if (isMoving)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+                }
+        */
+
     }
 
     public void HandleJump()
     {
-        // ½ºÆäÀÌ½º Å° ÀÔ·Â && ¶¥¿¡ ÀÖ´Â »óÅÂÀÏ °æ¿ì¸¸ Á¡ÇÁ °¡´É
+        // ìŠ¤í˜ì´ìŠ¤ í‚¤ ì…ë ¥ && ë•…ì— ìˆëŠ” ìƒíƒœì¼ ê²½ìš°ë§Œ ì í”„ ê°€ëŠ¥
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // À§ÂÊÀ¸·Î ÈûÀ» °¡ÇÔ
-            isGrounded = false; // °øÁß »óÅÂ·Î ÀüÈ¯
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // ìœ„ìª½ìœ¼ë¡œ í˜ì„ ê°€í•¨
+            isGrounded = false; // ê³µì¤‘ ìƒíƒœë¡œ ì „í™˜
+
+            // ì í”„ ì‹œì‘ ì• ë‹ˆë©”ì´ì…˜
+            anim.SetBool("Jump1", true);
+            anim.SetBool("Jump2", false); // ì•„ì§ ì°©ì§€ ì•„ë‹˜
+        }
+
+        if(!isGrounded && rb.linearVelocity.y < 0.1f)
+        {
+            anim.SetBool("Jump1", false); // ê³µì¤‘ ë–  ìˆëŠ” ê±´ ë
+            anim.SetBool("Jump2", true); // ì°©ì§€ ëª¨ì…˜ ì‹œì‘
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Ãæµ¹ÇÑ ´ë»óÀÌ Ground ÅÂ±×¸¦ °¡Áö°í ÀÖ´Ù¸é ÂøÁö Ã³¸®
+        Debug.Log("ì¶©ëŒí•œ ë¬¼ì²´: " + collision.gameObject.name);
+
+        // ì¶©ëŒí•œ ëŒ€ìƒì´ Ground íƒœê·¸ë¥¼ ê°€ì§€ê³  ìˆë‹¤ë©´ ì°©ì§€ ì²˜ë¦¬
         if (collision.gameObject.CompareTag("Ground"))
-            isGrounded = true; // ´Ù½Ã Á¡ÇÁ °¡´É »óÅÂ·Î ¼³Á¤
+        {
+            isGrounded = true; // ë‹¤ì‹œ ì í”„ ê°€ëŠ¥ ìƒíƒœë¡œ ì„¤ì •
+            
+            // ì í”„ ì• ë‹ˆë©”ì´ì…˜ ë¦¬ì…‹
+            anim.SetBool("Jump1", false);
+            anim.SetBool("Jump2", false);
+        }
     }
 }
