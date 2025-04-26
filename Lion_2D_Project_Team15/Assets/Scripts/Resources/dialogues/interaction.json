@@ -1,0 +1,20 @@
+[
+  {
+    "id": "librarian_001",
+    "text": "뭔가 용건이 있는가?",
+    "choices": "질문하기:librarian_002|작별인사:librarian_003",
+    "condition": ""
+  },
+  {
+    "id": "librarian_002",
+    "text": "허허 뭐든지 물어보게나",
+    "choices": "",
+    "condition": ""
+  },
+  {
+    "id": "librarian_003",
+    "text": "그대에게 행운이 있길",
+    "choices": "",
+    "condition": ""
+  }
+]

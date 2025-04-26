@@ -1,0 +1,1300 @@
+fileFormatVersion: 2
+guid: 81937cb69a052274c98d61de92e51d3d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2245691404555352217
+    second: Library sprite sheet-00_0
+  - first:
+      213: 1629116483296714654
+    second: Library sprite sheet-00_1
+  - first:
+      213: 1425917876048093852
+    second: Library sprite sheet-00_2
+  - first:
+      213: 8928039421497632156
+    second: Library sprite sheet-00_3
+  - first:
+      213: -5849370318308070224
+    second: Library sprite sheet-00_4
+  - first:
+      213: 8970082227589657455
+    second: Library sprite sheet-00_5
+  - first:
+      213: -3843547086814360969
+    second: Library sprite sheet-00_6
+  - first:
+      213: -1874887580692880119
+    second: Library sprite sheet-00_7
+  - first:
+      213: 4056923602974981040
+    second: Library sprite sheet-00_8
+  - first:
+      213: 451209197860252010
+    second: Library sprite sheet-00_9
+  - first:
+      213: -3265768842479578968
+    second: Library sprite sheet-00_10
+  - first:
+      213: 2632289347988915717
+    second: Library sprite sheet-00_11
+  - first:
+      213: -2032945246124585084
+    second: Library sprite sheet-00_12
+  - first:
+      213: 5907286368309736421
+    second: Library sprite sheet-00_13
+  - first:
+      213: -7590485223282477093
+    second: Library sprite sheet-00_14
+  - first:
+      213: -1269292648962487163
+    second: Library sprite sheet-00_15
+  - first:
+      213: 4283244495711953771
+    second: Library sprite sheet-00_16
+  - first:
+      213: 122400741722046598
+    second: Library sprite sheet-00_17
+  - first:
+      213: -1017035814145258054
+    second: Library sprite sheet-00_18
+  - first:
+      213: 2347920619697943602
+    second: Library sprite sheet-00_19
+  - first:
+      213: -8290942408906960525
+    second: Library sprite sheet-00_20
+  - first:
+      213: 8450254510573346378
+    second: Library sprite sheet-00_21
+  - first:
+      213: -3926096808122777331
+    second: Library sprite sheet-00_22
+  - first:
+      213: -6427084869302721572
+    second: Library sprite sheet-00_23
+  - first:
+      213: 2084007219804990054
+    second: Library sprite sheet-00_24
+  - first:
+      213: -4474132371623988888
+    second: Library sprite sheet-00_25
+  - first:
+      213: -692745435321579512
+    second: Library sprite sheet-00_26
+  - first:
+      213: -9056743594071472989
+    second: Library sprite sheet-00_27
+  - first:
+      213: 7808912429039166610
+    second: Library sprite sheet-00_28
+  - first:
+      213: -8259894242761648066
+    second: Library sprite sheet-00_29
+  - first:
+      213: -2796568229270263460
+    second: Library sprite sheet-00_30
+  - first:
+      213: -1473193018809604758
+    second: Library sprite sheet-00_31
+  - first:
+      213: -4150601662063412488
+    second: Library sprite sheet-00_32
+  - first:
+      213: 5944520411939024139
+    second: Library sprite sheet-00_33
+  - first:
+      213: -7706434871684944348
+    second: Library sprite sheet-00_34
+  - first:
+      213: 7698555985709433878
+    second: Library sprite sheet-00_35
+  - first:
+      213: -4975769996853351145
+    second: Library sprite sheet-00_36
+  - first:
+      213: 4021140108710361280
+    second: Library sprite sheet-00_37
+  - first:
+      213: 4168492780527209498
+    second: Library sprite sheet-00_38
+  - first:
+      213: 6961280600467757460
+    second: Library sprite sheet-00_39
+  - first:
+      213: -8196427521196744277
+    second: Library sprite sheet-00_40
+  - first:
+      213: 3711815486546824155
+    second: Library sprite sheet-00_41
+  - first:
+      213: -5944140391789632061
+    second: Library sprite sheet-00_42
+  - first:
+      213: -3922106493477236154
+    second: Library sprite sheet-00_43
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Library sprite sheet-00_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 468
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9987bab2f6c4a2f10800000000000000
+      internalID: 2245691404555352217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_1
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 468
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9f52a46fc8cb9610800000000000000
+      internalID: 1629116483296714654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_2
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 468
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c92e9b0e0c0e9c310800000000000000
+      internalID: 1425917876048093852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_3
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 468
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c95ec031d84c6eb70800000000000000
+      internalID: 8928039421497632156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 468
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bca881dfacd2dea0800000000000000
+      internalID: -5849370318308070224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_5
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 468
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f63b68da2422c7c70800000000000000
+      internalID: 8970082227589657455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_6
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 468
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77a41fcd94af8aac0800000000000000
+      internalID: -3843547086814360969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_7
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 468
+        width: 72
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 905620fcdaf0bf5e0800000000000000
+      internalID: -1874887580692880119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_8
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 452
+        width: 27
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bbb83cb5861d4830800000000000000
+      internalID: 4056923602974981040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_9
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 452
+        width: 20
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6969d5ff54034600800000000000000
+      internalID: 451209197860252010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_10
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 452
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a057716a88ada2d0800000000000000
+      internalID: -3265768842479578968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_11
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 452
+        width: 33
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5068cec2735c78420800000000000000
+      internalID: 2632289347988915717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_12
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 452
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48fcce4d11789c3e0800000000000000
+      internalID: -2032945246124585084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_13
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 452
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e3fb9167a5eaf150800000000000000
+      internalID: 5907286368309736421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_14
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 452
+        width: 72
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd77561d7ed29a690800000000000000
+      internalID: -7590485223282477093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_15
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 435
+        width: 72
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58c839e8f01926ee0800000000000000
+      internalID: -1269292648962487163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_16
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 403
+        width: 62
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b63ee0ddc24217b30800000000000000
+      internalID: 4283244495711953771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 436
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 680469a73dad2b100800000000000000
+      internalID: 122400741722046598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_18
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 436
+        width: 20
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abd8506c053c2e1f0800000000000000
+      internalID: -1017035814145258054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_19
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 436
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23439e12d5d759020800000000000000
+      internalID: 2347920619697943602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_20
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 436
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37111ef6ec7a0fc80800000000000000
+      internalID: -8290942408906960525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_21
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 436
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4edd5cb4b5554570800000000000000
+      internalID: 8450254510573346378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_22
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 403
+        width: 65
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d010c0e11c3b389c0800000000000000
+      internalID: -3926096808122777331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_23
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 419
+        width: 72
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd36cef0d586ec6a0800000000000000
+      internalID: -6427084869302721572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_24
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 323
+        width: 62
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66a63dd5681ebec10800000000000000
+      internalID: 2084007219804990054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_25
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 307
+        width: 62
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 861b64f1050b8e1c0800000000000000
+      internalID: -4474132371623988888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_26
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 291
+        width: 22
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80842e762bfd266f0800000000000000
+      internalID: -692745435321579512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_27
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 291
+        width: 76
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a443959fabff4280800000000000000
+      internalID: -9056743594071472989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_28
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 291
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29423071b74de5c60800000000000000
+      internalID: 7808912429039166610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 211
+        width: 33
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e38d5e1f2f5fe5d80800000000000000
+      internalID: -8259894242761648066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 228
+        width: 31
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c59e33823089039d0800000000000000
+      internalID: -2796568229270263460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_31
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 179
+        width: 29
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a65a44431ca2e8be0800000000000000
+      internalID: -1473193018809604758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_32
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 179
+        width: 27
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fa709877c91666c0800000000000000
+      internalID: -4150601662063412488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_33
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 163
+        width: 88
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0d2fa9b1dd2f7250800000000000000
+      internalID: 5944520411939024139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_34
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 162
+        width: 116
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42e298c805e3d0590800000000000000
+      internalID: -7706434871684944348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_35
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 163
+        width: 101
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6140bab51e3c6da60800000000000000
+      internalID: 7698555985709433878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_36
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 83
+        width: 116
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71d6285fc8382fab0800000000000000
+      internalID: -4975769996853351145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_37
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 83
+        width: 116
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c8b1cbbf95fdc730800000000000000
+      internalID: 4021140108710361280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_38
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 83
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1cca18291679d930800000000000000
+      internalID: 4168492780527209498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_39
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 83
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 499d2bcd2df6b9060800000000000000
+      internalID: 6961280600467757460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_40
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 3
+        width: 116
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba125d39890704e80800000000000000
+      internalID: -8196427521196744277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_41
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 3
+        width: 116
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdbca6bd484038330800000000000000
+      internalID: 3711815486546824155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_42
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 3
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c5e35c9ecb228da0800000000000000
+      internalID: -5944140391789632061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Library sprite sheet-00_43
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 3
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6425905ace0e199c0800000000000000
+      internalID: -3922106493477236154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Library sprite sheet-00_0: 2245691404555352217
+      Library sprite sheet-00_1: 1629116483296714654
+      Library sprite sheet-00_10: -3265768842479578968
+      Library sprite sheet-00_11: 2632289347988915717
+      Library sprite sheet-00_12: -2032945246124585084
+      Library sprite sheet-00_13: 5907286368309736421
+      Library sprite sheet-00_14: -7590485223282477093
+      Library sprite sheet-00_15: -1269292648962487163
+      Library sprite sheet-00_16: 4283244495711953771
+      Library sprite sheet-00_17: 122400741722046598
+      Library sprite sheet-00_18: -1017035814145258054
+      Library sprite sheet-00_19: 2347920619697943602
+      Library sprite sheet-00_2: 1425917876048093852
+      Library sprite sheet-00_20: -8290942408906960525
+      Library sprite sheet-00_21: 8450254510573346378
+      Library sprite sheet-00_22: -3926096808122777331
+      Library sprite sheet-00_23: -6427084869302721572
+      Library sprite sheet-00_24: 2084007219804990054
+      Library sprite sheet-00_25: -4474132371623988888
+      Library sprite sheet-00_26: -692745435321579512
+      Library sprite sheet-00_27: -9056743594071472989
+      Library sprite sheet-00_28: 7808912429039166610
+      Library sprite sheet-00_29: -8259894242761648066
+      Library sprite sheet-00_3: 8928039421497632156
+      Library sprite sheet-00_30: -2796568229270263460
+      Library sprite sheet-00_31: -1473193018809604758
+      Library sprite sheet-00_32: -4150601662063412488
+      Library sprite sheet-00_33: 5944520411939024139
+      Library sprite sheet-00_34: -7706434871684944348
+      Library sprite sheet-00_35: 7698555985709433878
+      Library sprite sheet-00_36: -4975769996853351145
+      Library sprite sheet-00_37: 4021140108710361280
+      Library sprite sheet-00_38: 4168492780527209498
+      Library sprite sheet-00_39: 6961280600467757460
+      Library sprite sheet-00_4: -5849370318308070224
+      Library sprite sheet-00_40: -8196427521196744277
+      Library sprite sheet-00_41: 3711815486546824155
+      Library sprite sheet-00_42: -5944140391789632061
+      Library sprite sheet-00_43: -3922106493477236154
+      Library sprite sheet-00_5: 8970082227589657455
+      Library sprite sheet-00_6: -3843547086814360969
+      Library sprite sheet-00_7: -1874887580692880119
+      Library sprite sheet-00_8: 4056923602974981040
+      Library sprite sheet-00_9: 451209197860252010
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
