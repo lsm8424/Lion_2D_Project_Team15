@@ -9,7 +9,7 @@ public class SceneController  : Singleton<SceneController>
     #region Resource
     [SerializeField] GameObject _sceneCanvasPrefab;
     GameObject _sceneCanvas;
-    Image _fadePanel;
+    public Image FadePanel { get; private set; }
     #endregion
 
     AsyncOperation _currentOperation;
@@ -27,7 +27,7 @@ public class SceneController  : Singleton<SceneController>
         if (_sceneCanvas == null)
             _sceneCanvas = Instantiate(_sceneCanvasPrefab, transform);
 
-        _fadePanel = _sceneCanvas.GetComponentInChildren<Image>();
+        FadePanel = _sceneCanvas.GetComponentInChildren<Image>();
     }
 
     /// <summary>
@@ -37,8 +37,8 @@ public class SceneController  : Singleton<SceneController>
     /// <param name="fadeDuration"></param>
     public void LoadSceneWithFadeInOut(string sceneName, float fadeDuration)
     {
-        var fadeIn = new Fade(_fadePanel, Color.clear, Color.black, fadeDuration);
-        var fadeOut = new Fade(_fadePanel, Color.black, Color.clear, fadeDuration);
+        var fadeIn = new Fade(Color.clear, Color.black, fadeDuration);
+        var fadeOut = new Fade(Color.black, Color.clear, fadeDuration);
 
         LoadSceneWithEffect(sceneName, fadeIn, fadeOut);
     }
@@ -68,7 +68,7 @@ public class SceneController  : Singleton<SceneController>
     }
 
     /// <summary>
-    /// Scene 로드 준비
+    /// Scene 준비
     /// </summary>
     public void LoadSceneAsync()
     {
