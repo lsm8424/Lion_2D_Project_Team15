@@ -6,8 +6,7 @@ public class MusicBox : NPC
 
     protected override void OnDialogueEnd()
     {
-        Debug.Log(" ");
+        Debug.Log("음악이 재생됩니다");
         AudioSource.PlayClipAtPoint(melody, transform.position);
-        
     }
 }

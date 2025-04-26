@@ -46,6 +46,6 @@ public class PlayerMovement : MonoBehaviour
     {
         // 충돌한 대상이 Ground 태그를 가지고 있다면 착지 처리
         if (collision.gameObject.CompareTag("Ground"))
-            isGrounded = true; // 다시 점프 간으 상태로 설정
+            isGrounded = true; // 다시 점프 가능 상태로 설정
     }
 }

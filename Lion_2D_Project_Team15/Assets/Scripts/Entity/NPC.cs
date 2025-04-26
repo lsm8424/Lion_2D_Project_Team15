@@ -1,9 +1,18 @@
 using UnityEngine;
 
+public enum SpeakerType { Player, NPC }
+
+[System.Serializable]
+public class DalogueLine
+{
+    public SpeakerType speaker; // 말하는 주체
+    public string text; // 대사 내용
+}
 public class NPC : MonoBehaviour
 {
-    public string npcName; // NPC 이름
-    public string[] dialogues; // 대화 내용 배열
+    
+    public string NPCName; // NPC 이름
+    public DalogueLine[] dialogueLines;
     private int dialogueIndex = 0; // 현재 몇번째 대사인지 추적
 
 
@@ -20,7 +29,7 @@ public class NPC : MonoBehaviour
     {
         dialogueIndex++; // 다음 대사로 이동
 
-        if (dialogueIndex >= dialogues.Length) 
+        if (dialogueIndex >= dialogueLines.Length) 
         {
             OnDialogueEnd(); // 대사가 끝났을 경우 처리
         }
@@ -32,18 +41,21 @@ public class NPC : MonoBehaviour
 
     private void ShowDialogue()
     {
-        // 현재 인덱스에 해당하는 대사 출력
-        Debug.Log($"{npcName}: {dialogues[dialogueIndex]}");
+        var line = dialogueLines[dialogueIndex];
+
+        if (line.speaker == SpeakerType.NPC)
+        {
+            Debug.Log($"{NPCName}: {line.text}");
+        }
+        else
+        {
+            Debug.Log($"Player: {line.text}");
+        }
     }
 
-    // 대화가 끝났을 때 호출됨
     protected virtual void OnDialogueEnd()
     {
         Debug.Log("대화 종료");
-
-        //플레이어에게 대화 종료 알림
-        GameObject.FindGameObjectWithTag("Player")
-            .GetComponent<PlayerInteraction>()
-            .EndDialogue();
+        Player.Instance.interaction.EndDialogue();
     }
 }
