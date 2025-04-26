@@ -10,6 +10,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public Transform groundCheck; // 플레이어 발 밑 위치
+    public float groundCheckDistance = 0.2f; // 땅 감지 거리
+    public LayerMask groundLayer; // Ground 레이어 설정
+    private RaycastHit2D groundHit;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -39,51 +44,54 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = scale;
         }
 
-
-
-
-        /*
+            /*
                 if (isMoving)
                 {
                     Quaternion targetRotation = Quaternion.LookRotation(moveDir);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
                 }
-        */
-
+            */
     }
 
     public void HandleJump()
     {
+        // Raycast 결과를 여기서 판정
+        isGrounded = groundHit.collider != null;
+
         // 스페이스 키 입력 && 땅에 있는 상태일 경우만 점프 가능
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // 위쪽으로 힘을 가함
-            isGrounded = false; // 공중 상태로 전환
 
-            // 점프 시작 애니메이션
-            anim.SetBool("Jump1", true);
-            anim.SetBool("Jump2", false); // 아직 착지 아님
-        }
-
-        if(!isGrounded && rb.linearVelocity.y < 0.1f)
-        {
-            anim.SetBool("Jump1", false); // 공중 떠 있는 건 끝
-            anim.SetBool("Jump2", true); // 착지 모션 시작
+            anim.SetBool("Jump", true);  // 점프 애니메이션 시작
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void CheckGround()
     {
-        Debug.Log("충돌한 물체: " + collision.gameObject.name);
+        groundHit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
+        Debug.DrawRay(groundCheck.position, Vector2.down * groundCheckDistance, Color.green);
 
-        // 충돌한 대상이 Ground 태그를 가지고 있다면 착지 처리
-        if (collision.gameObject.CompareTag("Ground"))
+        bool wasGrounded = isGrounded;
+        isGrounded = groundHit.collider != null;
+
+        // 착지 "순간"에만 Jump 애니메이션 끄기
+        if (isGrounded && !wasGrounded)
         {
-            isGrounded = true; // 다시 점프 가능 상태로 설정
-            
-            // 점프 애니메이션 리셋
-            anim.SetBool("Jump1", false);
-            anim.SetBool("Jump2", false);
+            anim.SetBool("Jump", false);
         }
     }
 }
+
+/*
+private void OnCollisionEnter(Collision collision)
+{
+    Debug.Log("충돌한 물체: " + collision.gameObject.name);
+
+    // 충돌한 대상이 Ground 태그를 가지고 있다면 착지 처리
+    if (collision.gameObject.CompareTag("Ground"))
+    {
+        isGrounded = true; // 다시 점프 가능 상태로 설정
+    }
+}*/
+
