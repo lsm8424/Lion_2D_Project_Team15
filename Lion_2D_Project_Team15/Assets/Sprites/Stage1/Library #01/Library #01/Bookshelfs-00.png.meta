@@ -1,0 +1,676 @@
+fileFormatVersion: 2
+guid: ee333cd1e9012404898a166fab877423
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4721578987005885429
+    second: Bookshelfs-00_0
+  - first:
+      213: -4483333625362595540
+    second: Bookshelfs-00_1
+  - first:
+      213: 2211557140847230314
+    second: Bookshelfs-00_2
+  - first:
+      213: -2543927852874879683
+    second: Bookshelfs-00_3
+  - first:
+      213: 3523041678811233974
+    second: Bookshelfs-00_4
+  - first:
+      213: 7850894644924495621
+    second: Bookshelfs-00_5
+  - first:
+      213: -5273143271964570896
+    second: Bookshelfs-00_6
+  - first:
+      213: 3358494747565476992
+    second: Bookshelfs-00_7
+  - first:
+      213: 8384847379119295849
+    second: Bookshelfs-00_8
+  - first:
+      213: 3248051533103977864
+    second: Bookshelfs-00_9
+  - first:
+      213: -8790276028931806549
+    second: Bookshelfs-00_10
+  - first:
+      213: 6458445434870037742
+    second: Bookshelfs-00_11
+  - first:
+      213: 2664029462133672940
+    second: Bookshelfs-00_12
+  - first:
+      213: -5187180424153057838
+    second: Bookshelfs-00_13
+  - first:
+      213: 6072409121076901547
+    second: Bookshelfs-00_14
+  - first:
+      213: -834757107404849089
+    second: Bookshelfs-00_15
+  - first:
+      213: 3968234186964846036
+    second: Bookshelfs-00_16
+  - first:
+      213: 5247654573462105114
+    second: Bookshelfs-00_17
+  - first:
+      213: 1623196516152714608
+    second: Bookshelfs-00_18
+  - first:
+      213: -5271822445584306567
+    second: Bookshelfs-00_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bookshelfs-00_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 383
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b04c0946de4997eb0800000000000000
+      internalID: -4721578987005885429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_1
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 383
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c21c2ba42dff7c1c0800000000000000
+      internalID: -4483333625362595540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_2
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 383
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6d7da4908701be10800000000000000
+      internalID: 2211557140847230314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_3
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 383
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3dab2b981722bcd0800000000000000
+      internalID: -2543927852874879683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_4
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 383
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6be7072bdbb54e030800000000000000
+      internalID: 3523041678811233974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_5
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 255
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 507bdbf651bf3fc60800000000000000
+      internalID: 7850894644924495621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_6
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 255
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fa8fc8e12802d6b0800000000000000
+      internalID: -5273143271964570896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_7
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 255
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08cc7a8cd25cb9e20800000000000000
+      internalID: 3358494747565476992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_8
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 255
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96d45483446fc5470800000000000000
+      internalID: 8384847379119295849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_9
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 255
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88553d219a5631d20800000000000000
+      internalID: 3248051533103977864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_10
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 127
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baa63e9468aa20680800000000000000
+      internalID: -8790276028931806549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_11
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 127
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eecfbaa97e101a950800000000000000
+      internalID: 6458445434870037742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_12
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 127
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ceb07a16ea888f420800000000000000
+      internalID: 2664029462133672940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_13
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 127
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d53f7813ee6308b0800000000000000
+      internalID: -5187180424153057838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_14
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 127
+        width: 116
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba671a03ce7854450800000000000000
+      internalID: 6072409121076901547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_15
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 116
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f30c66365d85a64f0800000000000000
+      internalID: -834757107404849089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_16
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 0
+        width: 116
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d5c99be7fff11730800000000000000
+      internalID: 3968234186964846036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_17
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 0
+        width: 116
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1ca923080a63d840800000000000000
+      internalID: 5247654573462105114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_18
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 0
+        width: 116
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0752fe1a1a0c68610800000000000000
+      internalID: 1623196516152714608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookshelfs-00_19
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 0
+        width: 116
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97e2404ca69b6d6b0800000000000000
+      internalID: -5271822445584306567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Bookshelfs-00_0: -4721578987005885429
+      Bookshelfs-00_1: -4483333625362595540
+      Bookshelfs-00_10: -8790276028931806549
+      Bookshelfs-00_11: 6458445434870037742
+      Bookshelfs-00_12: 2664029462133672940
+      Bookshelfs-00_13: -5187180424153057838
+      Bookshelfs-00_14: 6072409121076901547
+      Bookshelfs-00_15: -834757107404849089
+      Bookshelfs-00_16: 3968234186964846036
+      Bookshelfs-00_17: 5247654573462105114
+      Bookshelfs-00_18: 1623196516152714608
+      Bookshelfs-00_19: -5271822445584306567
+      Bookshelfs-00_2: 2211557140847230314
+      Bookshelfs-00_3: -2543927852874879683
+      Bookshelfs-00_4: 3523041678811233974
+      Bookshelfs-00_5: 7850894644924495621
+      Bookshelfs-00_6: -5273143271964570896
+      Bookshelfs-00_7: 3358494747565476992
+      Bookshelfs-00_8: 8384847379119295849
+      Bookshelfs-00_9: 3248051533103977864
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
