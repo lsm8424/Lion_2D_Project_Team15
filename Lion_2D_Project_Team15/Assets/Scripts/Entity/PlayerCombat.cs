@@ -2,51 +2,51 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public float attackPower; // ±âº» °ø°İÀÇ µ¥¹ÌÁö
-    public float attackCooldown; // ±âº» °ø°İ ÄğÅ¸ÀÓ
-    public float skillCooldown; // ½ºÅ³ ÄğÅ¸ÀÓ
+    public float attackPower; // ê¸°ë³¸ ê³µê²©ì˜ ë°ë¯¸ì§€
+    public float attackCooldown; // ê¸°ë³¸ ê³µê²© ì¿¨íƒ€ì„
+    public float skillCooldown; // ìŠ¤í‚¬ ì¿¨íƒ€ì„
 
-    public float attackRange = 1.5f; // °ø°İ ¹üÀ§
+    public float attackRange = 1.5f; // ê³µê²© ë²”ìœ„
 
-    private float lastAttackTime = -999f; // ¸¶Áö¸· °ø°İ ½Ã°£ (Ã³À½ºÎÅÍ °ø°İ °¡´ÉÇÏ°Ô ÃÊ±âÈ­)
-    private float lastSkillTime = -999f; // ¸¶Áö¸· ½ºÅ³ »ç¿ë ½Ã°£
+    private float lastAttackTime = -999f; // ë§ˆì§€ë§‰ ê³µê²© ì‹œê°„ (ì²˜ìŒë¶€í„° ê³µê²© ê°€ëŠ¥í•˜ê²Œ ì´ˆê¸°í™”)
+    private float lastSkillTime = -999f; // ë§ˆì§€ë§‰ ìŠ¤í‚¬ ì‚¬ìš© ì‹œê°„
 
-    private Animator anim; // ¾Ö´Ï¸ŞÀÌÅÍ ÄÄÆ÷³ÍÆ®
+    private Animator anim; // ì• ë‹ˆë©”ì´í„° ì»´í¬ë„ŒíŠ¸
 
     private void Start()
     {
-        anim = GetComponent<Animator>(); // ÀÌ ¿ÀºêÁ§Æ®ÀÇ Animator °¡Á®¿À±â
+        anim = GetComponent<Animator>(); // ì´ ì˜¤ë¸Œì íŠ¸ì˜ Animator ê°€ì ¸ì˜¤ê¸°
     }
 
     public void HandleAttack()
     {
-        // ¸¶¿ì½º ÁÂÅ¬¸¯ & ÄğÅ¸ÀÓ Ã¼Å©
+        // ë§ˆìš°ìŠ¤ ì¢Œí´ë¦­ & ì¿¨íƒ€ì„ ì²´í¬
         if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime + attackCooldown)
         {
-            lastAttackTime = Time.time; // °ø°İ ½Ã°£ °»½Å
+            lastAttackTime = Time.time; // ê³µê²© ì‹œê°„ ê°±ì‹ 
             if (anim != null)
-                anim.SetTrigger("Attack"); // ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà
+                anim.SetTrigger("Attack"); // ì• ë‹ˆë©”ì´ì…˜ ì‹¤í–‰
 
-            Debug.Log("±âº» °ø°İ! °ø°İ·Â: " + attackPower); 
+            Debug.Log("ê¸°ë³¸ ê³µê²©! ê³µê²©ë ¥: " + attackPower);
         }
     }
 
     public void HandleSkill()
     {
-        // ¸¶¿ì½º ¿ìÅ¬¸¯ & ÄğÅ¸ÀÓ Ã¼Å©
+        // ë§ˆìš°ìŠ¤ ìš°í´ë¦­ & ì¿¨íƒ€ì„ ì²´í¬
         if (Input.GetMouseButtonDown(1) && Time.time >= lastSkillTime + skillCooldown)
         {
-            lastSkillTime = Time.time; // ½ºÅ³ ½Ã°£ °»½Å
+            lastSkillTime = Time.time; // ìŠ¤í‚¬ ì‹œê°„ ê°±ì‹ 
             if (anim != null)
                 anim.SetTrigger("Skill");
 
-            Debug.Log("½ºÅ³ »ç¿ë!");
+            Debug.Log("ìŠ¤í‚¬ ì‚¬ìš©!");
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        // Scence ºä¿¡¼­ ¼±ÅÃÇßÀ» ¶§ »¡°£ ¿øÀ¸·Î °ø°İ ¹üÀ§ Ç¥½Ã
+        // Scence ë·°ì—ì„œ ì„ íƒí–ˆì„ ë•Œ ë¹¨ê°„ ì›ìœ¼ë¡œ ê³µê²© ë²”ìœ„ í‘œì‹œ
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }

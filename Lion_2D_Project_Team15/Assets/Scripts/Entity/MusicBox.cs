@@ -6,7 +6,7 @@ public class MusicBox : NPC
 
     protected override void OnDialogueEnd()
     {
-        Debug.Log("À½¾ÇÀÌ Àç»ıµË´Ï´Ù");
+        Debug.Log("ìŒì•…ì´ ì¬ìƒë©ë‹ˆë‹¤");
         AudioSource.PlayClipAtPoint(melody, transform.position);
     }
 }
