@@ -142,10 +142,10 @@ TextureImporter:
       name: player28_0
       rect:
         serializedVersion: 2
-        x: 107
-        y: 87
-        width: 302
-        height: 198
+        x: 0
+        y: 0
+        width: 331
+        height: 319
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 216bdec3d329e7644b6b008e04f0e768
+    spriteID: cd4938a70f670bd4c8594821d7fb9b70
     internalID: 0
     vertices: []
     indices: 

@@ -178,10 +178,10 @@ TextureImporter:
       name: player7_5
       rect:
         serializedVersion: 2
-        x: 111
-        y: 87
-        width: 288
-        height: 288
+        x: 0
+        y: 0
+        width: 331
+        height: 319
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: bdd4d0b89eefa954da634e6d2bbc8690
+    spriteID: f6732389479750e478df53e7313531f3
     internalID: 0
     vertices: []
     indices: 
@@ -215,7 +215,6 @@ TextureImporter:
       player7_10: -6082652238034283523
       player7_11: -3789352513718448556
       player7_12: 5034689919998339022
-      player7_13: 1889452723
       player7_2: 5464542415696312443
       player7_3: -2454025180988418737
       player7_4: -5954592966846067375
