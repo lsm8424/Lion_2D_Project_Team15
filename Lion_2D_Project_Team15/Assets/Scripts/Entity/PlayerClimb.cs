@@ -2,25 +2,25 @@ using UnityEngine;
 
 public class PlayerClimb : MonoBehaviour
 {
-    public float climbSpeed; // »ç´Ù¸® ¿À¸£³»¸®´Â ¼Óµµ
+    public float climbSpeed; // ì‚¬ë‹¤ë¦¬ ì˜¤ë¥´ë‚´ë¦¬ëŠ” ì†ë„
 
     private void Update()
     {
-        // ÇÃ·¹ÀÌ¾î°¡ ÇöÀç »ç´Ù¸® »óÅÂÀÏ °æ¿ì¿¡¸¸ ½ÇÇà
+        // í”Œë ˆì´ì–´ê°€ í˜„ìž¬ ì‚¬ë‹¤ë¦¬ ìƒíƒœì¼ ê²½ìš°ì—ë§Œ ì‹¤í–‰
         if (Player.Instance.interaction.IsOnLadder())
         {
-            // W/S Å° ÀÔ·Â ¹Þ±â
-            float v = Input.GetAxisRaw("Vertical"); // W/S ÀÔ·Â
-            // ÀÔ·Â ¹æÇâÀ¸·Î À§/¾Æ·¡ ÀÌµ¿ º¤ÅÍ °è»ê
+            // W/S í‚¤ ìž…ë ¥ ë°›ê¸°
+            float v = Input.GetAxisRaw("Vertical"); // W/S ìž…ë ¥
+            // ìž…ë ¥ ë°©í–¥ìœ¼ë¡œ ìœ„/ì•„ëž˜ ì´ë™ ë²¡í„° ê³„ì‚°
             Vector3 climbDir = new Vector3(0, v, 0);
-            // ÇØ´ç ¹æÇâÀ¸·Î ÀÌµ¿ (Áß·Â ¾øÀÌ Á÷¼± ÀÌµ¿)
+            // í•´ë‹¹ ë°©í–¥ìœ¼ë¡œ ì´ë™ (ì¤‘ë ¥ ì—†ì´ ì§ì„  ì´ë™)
             transform.Translate(climbDir * climbSpeed * Time.deltaTime);
-            // ÇöÀç ¿Ã¶óÅº »ç´Ù¸® Á¤º¸ °¡Á®¿À±â
+            // í˜„ìž¬ ì˜¬ë¼íƒ„ ì‚¬ë‹¤ë¦¬ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
             Ladder ladder = Player.Instance.interaction.GetCurrentLadder();
-            // »ç´Ù¸® °´Ã¼°¡ ÀÖ°í, ÇÃ·¹ÀÌ¾î°¡ ÁöÁ¤µÈ ³ôÀÌ ÀÌ»ó ¿Ã¶ó°¡¸é ÀÚµ¿ Å»Ãâ
+            // ì‚¬ë‹¤ë¦¬ ê°ì²´ê°€ ìžˆê³ , í”Œë ˆì´ì–´ê°€ ì§€ì •ëœ ë†’ì´ ì´ìƒ ì˜¬ë¼ê°€ë©´ ìžë™ íƒˆì¶œ
             if (ladder != null & transform.position.y >= ladder.topExitY)
             {
-                Player.Instance.interaction.ForceExitLadder(); // »ç´Ù¸® Å»Ãâ Ã³¸®
+                Player.Instance.interaction.ForceExitLadder(); // ì‚¬ë‹¤ë¦¬ íƒˆì¶œ ì²˜ë¦¬
             }
         }
     }

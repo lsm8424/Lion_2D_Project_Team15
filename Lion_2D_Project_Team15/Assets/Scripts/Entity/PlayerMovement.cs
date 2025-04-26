@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed; // ÀÌµ¿¼Óµµ
-    public float jumpForce; // Á¡ÇÁ Èû
-    public bool isGrounded; // ¶¥¿¡ ´ê¾Æ ÀÖ´ÂÁö ¿©ºÎ
+    public float moveSpeed; // ì´ë™ì†ë„
+    public float jumpForce; // ì í”„ í˜
+    public bool isGrounded; // ë•…ì— ë‹¿ì•„ ìˆëŠ”ì§€ ì—¬ë¶€
 
     private Rigidbody rb;
 
@@ -15,11 +15,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleMove()
     {
-        // WASD ¶Ç´Â ¹æÇâÅ° ÀÔ·Â ¹Ş±â
-        float h = Input.GetAxisRaw("Horizontal"); // A,D ¶Ç´Â ¡ç, ¡æ
-        float v = Input.GetAxisRaw("Vertical"); // W,S ¶Ç´Â ¡è,¡é
+        // WASD ë˜ëŠ” ë°©í–¥í‚¤ ì…ë ¥ ë°›ê¸°
+        float h = Input.GetAxisRaw("Horizontal"); // A,D ë˜ëŠ” â†, â†’
+        float v = Input.GetAxisRaw("Vertical"); // W,S ë˜ëŠ” â†‘,â†“
 
-        // ÀÔ·Â ¹æÇâÀ¸·ÎÀÇ º¤ÅÍ °è»ê (YÃàÀº Á¦¿ÜÇÏ°í Æò¸é ÀÌµ¿)
+        // ì…ë ¥ ë°©í–¥ìœ¼ë¡œì˜ ë²¡í„° ê³„ì‚° (Yì¶•ì€ ì œì™¸í•˜ê³  í‰ë©´ ì´ë™)
         Vector3 moveDir = new Vector3(h, 0, v).normalized;
         Vector3 move = moveDir * moveSpeed * Time.deltaTime;
 
@@ -28,24 +28,28 @@ public class PlayerMovement : MonoBehaviour
         if (moveDir != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                10f * Time.deltaTime
+            );
         }
     }
 
     public void HandleJump()
     {
-        // ½ºÆäÀÌ½º Å° ÀÔ·Â && ¶¥¿¡ ÀÖ´Â »óÅÂÀÏ °æ¿ì¸¸ Á¡ÇÁ °¡´É
+        // ìŠ¤í˜ì´ìŠ¤ í‚¤ ì…ë ¥ && ë•…ì— ìˆëŠ” ìƒíƒœì¼ ê²½ìš°ë§Œ ì í”„ ê°€ëŠ¥
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // À§ÂÊÀ¸·Î ÈûÀ» °¡ÇÔ
-            isGrounded = false; // °øÁß »óÅÂ·Î ÀüÈ¯
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // ìœ„ìª½ìœ¼ë¡œ í˜ì„ ê°€í•¨
+            isGrounded = false; // ê³µì¤‘ ìƒíƒœë¡œ ì „í™˜
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Ãæµ¹ÇÑ ´ë»óÀÌ Ground ÅÂ±×¸¦ °¡Áö°í ÀÖ´Ù¸é ÂøÁö Ã³¸®
+        // ì¶©ëŒí•œ ëŒ€ìƒì´ Ground íƒœê·¸ë¥¼ ê°€ì§€ê³  ìˆë‹¤ë©´ ì°©ì§€ ì²˜ë¦¬
         if (collision.gameObject.CompareTag("Ground"))
-            isGrounded = true; // ´Ù½Ã Á¡ÇÁ °¡´É »óÅÂ·Î ¼³Á¤
+            isGrounded = true; // ë‹¤ì‹œ ì í”„ ê°€ëŠ¥ ìƒíƒœë¡œ ì„¤ì •
     }
 }
