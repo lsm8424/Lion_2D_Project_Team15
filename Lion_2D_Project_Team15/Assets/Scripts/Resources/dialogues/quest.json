@@ -1,0 +1,26 @@
+[
+  {
+    "id": "librarian_Q1_start_001",
+    "text": "도서관을 돌아다니다 보면 뭔가 생각나는게 있을걸세.\n겸사겸사 도서관도 정리해주고.\n그럼 부탁하겠네.",
+    "choices": "",
+    "condition": ""
+  },
+  {
+    "id": "librarian_Q1_during_001",
+    "text": "아직 변한게 없어 보이는군",
+    "choices": "",
+    "condition": "[Q1진행중이며 완료 불가 상태]"
+  },
+  {
+    "id": "librarian_Q1_during_002",
+    "text": "좀 더 찾아보게나",
+    "choices": "",
+    "condition": "[Q1진행중이며 완료 불가 상태]"
+  },
+  {
+    "id": "librarian_Q1_finish_001",
+    "text": "왔는가.\n표정을 보아하니 뭔가 깨달은게 있는 것 같군.\n어떤가.",
+    "choices": "",
+    "condition": "[Q1진행중이며 완료 가능 상태]"
+  }
+]
