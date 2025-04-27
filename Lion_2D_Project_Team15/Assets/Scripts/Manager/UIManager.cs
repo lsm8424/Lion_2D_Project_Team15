@@ -9,7 +9,7 @@ public class UIManager : Singleton<UIManager>
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // 테스트용
-            //SceneController.Instance.LoadSceneWithFadeInOut("Main", 3f);
+            //SceneController.Instance.LoadSceneWithFadeInOut("JYH_1", 3f);
             //ToggleSettings();
         }
     }
