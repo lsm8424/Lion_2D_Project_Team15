@@ -5,7 +5,7 @@ public class Player : Entity
     // ────────────── Singleton ──────────────
 
     // Player 인스턴스를 전역에서 접근 가능하도록 static으로 선언
-    public static Player Instance { get; private set; }
+    public static Player Instance { get; private set; } 
 
     private void Awake()
     {
@@ -21,14 +21,9 @@ public class Player : Entity
     }
 
     // 기능별 모듈 스크립트 참조 (외부에서 Player.Instance.movement 처럼 사용 가능)
-    [HideInInspector]
-    public PlayerMovement movement;
-
-    [HideInInspector]
-    public PlayerCombat combat;
-
-    [HideInInspector]
-    public PlayerInteraction interaction;
+    [HideInInspector] public PlayerMovement movement;
+    [HideInInspector] public PlayerCombat combat;
+    [HideInInspector] public PlayerInteraction interaction;
 
     private void Start()
     {
@@ -41,6 +36,7 @@ public class Player : Entity
     private void Update()
     {
         // 각 기능 모듈의 매서드 실행
+        movement.CheckGround(); // 매 프레임 땅 체크
         movement.HandleMove(); // 이동
         movement.HandleJump(); // 점프
         combat.HandleAttack(); // 기본 공격 (좌클릭)
