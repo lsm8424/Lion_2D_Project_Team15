@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections;
 using System.Reflection;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SimpleEventFunction", menuName = "Scriptable Objects/SimpleEventFunction")]
 public class SimpleEventFunction : EventFunctionSO
 {
-
     public SimpleEventStruct[] SimpleEvents;
     Action[] Process;
 
     [Serializable]
     public struct SimpleEventStruct
     {
-        public string TargetId;
+        public string TargetId; // 멤버변수 이름, 메소드 이름, 프로퍼티 이름
         public string ComponentName;
         public EProcessType ProcessType;
-        public string NameToProcess;
+        public string ProcessName;
 
-        public EFieldType FieldType;
+        public EValueType ValueType;
         public bool BoolValue;
         public int IntValue;
         public float FloatValue;
@@ -36,7 +34,7 @@ public class SimpleEventFunction : EventFunctionSO
         Property,
         Method
     }
-    public enum EFieldType
+    public enum EValueType
     {
         Bool,
         Int,
@@ -44,7 +42,6 @@ public class SimpleEventFunction : EventFunctionSO
         String,
         Vector3,
     }
-
 
     public SimpleEventFunction()
     {
@@ -55,7 +52,7 @@ public class SimpleEventFunction : EventFunctionSO
         GameManager.Instance.StartCoroutine(RunEventsCoroutine(SimpleEvents));
     }
 
-    private IEnumerator RunEventsCoroutine(SimpleEventStruct[] events)
+    IEnumerator RunEventsCoroutine(SimpleEventStruct[] events)
     {
         for (int i = 0; i < events.Length; ++i)
         {
@@ -66,10 +63,13 @@ public class SimpleEventFunction : EventFunctionSO
         }
     }
 
+    /// <summary>
+    /// 리플렉션을 이용한 세팅
+    /// </summary>
     public override void Initialize()
     {
         Process = new Action[SimpleEvents.Length];
-        var warehouse = StageWarehouse.Instance.Warehouse;
+        var warehouse = IDManager.Instance.Identifiers;
 
         for (int i = 0; i < Process.Length; ++i)
         {
@@ -81,7 +81,7 @@ public class SimpleEventFunction : EventFunctionSO
                 return;
             }
 
-            GameObject go = warehouse[simpleEvent.TargetId];
+            GameObject go = warehouse[simpleEvent.TargetId].gameObject;
             var componentType = Type.GetType(simpleEvent.ComponentName);
 
             if (componentType == null)
@@ -112,12 +112,12 @@ public class SimpleEventFunction : EventFunctionSO
         }
     }
 
-    private void SetFieldValue(object component, Type componentType, SimpleEventStruct simpleEvent)
+    void SetFieldValue(object component, Type componentType, SimpleEventStruct simpleEvent)
     {
-        FieldInfo fieldInfo = componentType.GetField(simpleEvent.NameToProcess, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        FieldInfo fieldInfo = componentType.GetField(simpleEvent.ProcessName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         if (fieldInfo == null)
         {
-            Debug.LogError($"[SimpleEventFunction] Field를 찾지 못했습니다: {simpleEvent.NameToProcess}");
+            Debug.LogError($"[SimpleEventFunction] Field를 찾지 못했습니다: {simpleEvent.ProcessName}");
             return;
         }
 
@@ -125,12 +125,12 @@ public class SimpleEventFunction : EventFunctionSO
         fieldInfo.SetValue(component, value);
     }
 
-    private void SetPropertyValue(object component, Type componentType, SimpleEventStruct simpleEvent)
+    void SetPropertyValue(object component, Type componentType, SimpleEventStruct simpleEvent)
     {
-        PropertyInfo propInfo = componentType.GetProperty(simpleEvent.NameToProcess, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        PropertyInfo propInfo = componentType.GetProperty(simpleEvent.ProcessName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         if (propInfo == null)
         {
-            Debug.LogError($"[SimpleEventFunction] Property를 찾지 못했습니다: {simpleEvent.NameToProcess}");
+            Debug.LogError($"[SimpleEventFunction] Property를 찾지 못했습니다: {simpleEvent.ProcessName}");
             return;
         }
 
@@ -138,27 +138,27 @@ public class SimpleEventFunction : EventFunctionSO
         propInfo.SetValue(component, value);
     }
 
-    private void InvokeMethod(object component, Type componentType, SimpleEventStruct simpleEvent)
+    void InvokeMethod(object component, Type componentType, SimpleEventStruct simpleEvent)
     {
-        MethodInfo methodInfo = componentType.GetMethod(simpleEvent.NameToProcess, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        MethodInfo methodInfo = componentType.GetMethod(simpleEvent.ProcessName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         if (methodInfo == null)
         {
-            Debug.LogError($"[SimpleEventFunction] Method를 찾지 못했습니다: {simpleEvent.NameToProcess}");
+            Debug.LogError($"[SimpleEventFunction] Method를 찾지 못했습니다: {simpleEvent.ProcessName}");
             return;
         }
 
         methodInfo.Invoke(component, null);
     }
 
-    private object GetValueByFieldType(SimpleEventStruct simpleEvent)
+    object GetValueByFieldType(SimpleEventStruct simpleEvent)
     {
-        return simpleEvent.FieldType switch
+        return simpleEvent.ValueType switch
         {
-            EFieldType.Bool => simpleEvent.BoolValue,
-            EFieldType.Int => simpleEvent.IntValue,
-            EFieldType.Float => simpleEvent.FloatValue,
-            EFieldType.String => simpleEvent.StringValue,
-            EFieldType.Vector3 => simpleEvent.Vector3Value,
+            EValueType.Bool => simpleEvent.BoolValue,
+            EValueType.Int => simpleEvent.IntValue,
+            EValueType.Float => simpleEvent.FloatValue,
+            EValueType.String => simpleEvent.StringValue,
+            EValueType.Vector3 => simpleEvent.Vector3Value,
             _ => null
         };
     }

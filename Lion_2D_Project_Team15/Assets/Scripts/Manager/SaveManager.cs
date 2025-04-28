@@ -4,12 +4,6 @@ public class SaveManager : Singleton<SaveManager>
 {
     [SerializeField] string _savePath;
 
-    public enum EEventType
-    {
-        Dialogue,
-        
-    }
-
     public void Save()
     {
         // 5

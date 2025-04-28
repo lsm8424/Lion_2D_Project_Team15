@@ -28,6 +28,17 @@ public class SceneController  : Singleton<SceneController>
             _sceneCanvas = Instantiate(_sceneCanvasPrefab, transform);
 
         FadePanel = _sceneCanvas.GetComponentInChildren<Image>();
+
+        // 추후작성 필요
+        //SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        // int stageNumber = ???
+        IDManager.Instance.SetUpIdentifiers();
+        EventManager.Instance.SetupEvents(1);
+        // SaveManager.Instance.Save();
     }
 
     /// <summary>
