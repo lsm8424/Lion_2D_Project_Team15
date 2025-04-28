@@ -1,8 +1,5 @@
 using UnityEditor;
 using UnityEngine;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
 
 [CustomEditor(typeof(SimpleEventFunction))]
 public class SimpleEventFunctionEditor : Editor
@@ -30,36 +27,24 @@ public class SimpleEventFunctionEditor : Editor
             EditorGUILayout.PropertyField(element.FindPropertyRelative("DelaySeconds"));
 
             SerializedProperty componentNameProp = element.FindPropertyRelative("ComponentName");
-            SerializedProperty NameToProcessProp = element.FindPropertyRelative("NameToProcess");
+            SerializedProperty processNameProp = element.FindPropertyRelative("ProcessName");
             SerializedProperty processTypeProp = element.FindPropertyRelative("ProcessType");
-            SerializedProperty fieldTypeProp = element.FindPropertyRelative("FieldType");
+            SerializedProperty valueTypeProp = element.FindPropertyRelative("ValueType");
 
             EditorGUILayout.PropertyField(componentNameProp);
             EditorGUILayout.PropertyField(processTypeProp);
-            EditorGUILayout.PropertyField(NameToProcessProp);
+            EditorGUILayout.PropertyField(processNameProp);
 
-            EditorGUILayout.PropertyField(fieldTypeProp);
+            SimpleEventFunction.EProcessType processType = (SimpleEventFunction.EProcessType)processTypeProp.enumValueIndex;
 
-            // --- FieldType에 따라 Value 입력창 제어 ---
-            SimpleEventFunction.EFieldType fieldType = (SimpleEventFunction.EFieldType)fieldTypeProp.enumValueIndex;
-
-            switch (fieldType)
+            // 처리타입이 멤버변수, 프로퍼티 라면 타입과 그에 해당하는 입력칸 표시
+            if (processType == SimpleEventFunction.EProcessType.Field || processType == SimpleEventFunction.EProcessType.Property)
             {
-                case SimpleEventFunction.EFieldType.Bool:
-                    EditorGUILayout.PropertyField(element.FindPropertyRelative("BoolValue"), new GUIContent("Bool Value"));
-                    break;
-                case SimpleEventFunction.EFieldType.Int:
-                    EditorGUILayout.PropertyField(element.FindPropertyRelative("IntValue"), new GUIContent("Int Value"));
-                    break;
-                case SimpleEventFunction.EFieldType.Float:
-                    EditorGUILayout.PropertyField(element.FindPropertyRelative("FloatValue"), new GUIContent("Float Value"));
-                    break;
-                case SimpleEventFunction.EFieldType.String:
-                    EditorGUILayout.PropertyField(element.FindPropertyRelative("StringValue"), new GUIContent("String Value"));
-                    break;
-                case SimpleEventFunction.EFieldType.Vector3:
-                    EditorGUILayout.PropertyField(element.FindPropertyRelative("Vector3Value"), new GUIContent("Vector3 Value"));
-                    break;
+                EditorGUILayout.PropertyField(valueTypeProp);
+
+                // --- ValueType에 따라 Value 입력창 제어 ---
+                SimpleEventFunction.EValueType fieldType = (SimpleEventFunction.EValueType)valueTypeProp.enumValueIndex;
+                SetFieldMember(fieldType, element);
             }
 
             if (GUILayout.Button("삭제"))
@@ -76,5 +61,27 @@ public class SimpleEventFunctionEditor : Editor
         }
 
         serializedObject.ApplyModifiedProperties();
+    }
+
+    public void SetFieldMember(SimpleEventFunction.EValueType fieldType, SerializedProperty element)
+    {
+        switch (fieldType)
+        {
+            case SimpleEventFunction.EValueType.Bool:
+                EditorGUILayout.PropertyField(element.FindPropertyRelative("BoolValue"), new GUIContent("Bool Value"));
+                break;
+            case SimpleEventFunction.EValueType.Int:
+                EditorGUILayout.PropertyField(element.FindPropertyRelative("IntValue"), new GUIContent("Int Value"));
+                break;
+            case SimpleEventFunction.EValueType.Float:
+                EditorGUILayout.PropertyField(element.FindPropertyRelative("FloatValue"), new GUIContent("Float Value"));
+                break;
+            case SimpleEventFunction.EValueType.String:
+                EditorGUILayout.PropertyField(element.FindPropertyRelative("StringValue"), new GUIContent("String Value"));
+                break;
+            case SimpleEventFunction.EValueType.Vector3:
+                EditorGUILayout.PropertyField(element.FindPropertyRelative("Vector3Value"), new GUIContent("Vector3 Value"));
+                break;
+        }
     }
 }
