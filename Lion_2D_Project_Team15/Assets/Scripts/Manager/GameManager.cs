@@ -1,40 +1,49 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public Dictionary<string, GameEventSO> EventDictionary { get; private set; } = new();
+    public float EntityTimeScale { get; private set; } = 1f;    // Entity, NPC TimeScale
+    public float DialogueTimeScale { get; private set; } = 1f;  // 대화창 관련 TimeScale
+    public ETimeCase CurrentTime;
 
-    protected override void Awake()
+
+    /// <summary>
+    /// 전체적인 GameObject를 제어하기 위해 게임 상태를 정의
+    /// </summary>
+    public enum ETimeCase
     {
-        base.Awake();
-
-        InitializeEventDictionary();
+        Default,
+        Dialogue,
+        Loading,
+        Setting,
     }
 
-    public void LoadEvent(string eventId)
+    /// <summary>
+    /// 상황애 맞는 GameObject 관리
+    /// </summary>
+    /// <param name="timeCase"></param>
+    public void SetTimeScale(ETimeCase timeCase)
     {
-        if (!EventDictionary.ContainsKey(eventId))
+        switch (timeCase)
         {
-            Debug.LogError($"유효한 Event ID가 아닙니다. EventID: {eventId}");
-            return;
+            case ETimeCase.Default:
+                EntityTimeScale = 1f;
+                DialogueTimeScale = 1f;
+                break;
+            case ETimeCase.Dialogue:
+                EntityTimeScale = 0f;
+                DialogueTimeScale = 1f;
+                break;
+            case ETimeCase.Loading:
+                EntityTimeScale = 0f;
+                DialogueTimeScale = 0f;
+                break;
+            case ETimeCase.Setting:
+                EntityTimeScale = 0f;
+                DialogueTimeScale = 0f;
+                break;
         }
 
-        var functions = EventDictionary[eventId].EventFunctions;
-
-        for (int i = 0; i < functions.Length; ++i)
-            functions[i].Execute();
-    }
-
-    void InitializeEventDictionary()
-    {
-        GameEventSO[] gameEvents = Resources.LoadAll<GameEventSO>("GameEvent/.");
-
-        for (int i = 0; i < gameEvents.Length; ++i)
-        {
-            string id = gameEvents[i].EventId;
-            EventDictionary.Add(id, gameEvents[i]);
-        }
+        CurrentTime = timeCase;
     }
 }
