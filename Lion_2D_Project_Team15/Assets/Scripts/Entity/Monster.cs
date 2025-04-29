@@ -3,12 +3,11 @@ using UnityEngine;
 public class Monster : Entity
 {
     [Header("Monster Stats")]
-    public float moveSpeed;
+    public float moveSpeed; 
     public float attackPower;
-    public float attackCooldown; //ê³µê²©ì†ë„
-    private float lastAttackTime = -999f; //ê³µê²© ì¿¨íƒ€ì„ì´ ë°”ë¡œ ê°€ëŠ¥í•˜ë„ë¡ í•˜ê¸° ìœ„í•¨.ê²Œì„ì´ ì‹œì‘ë˜ìë§ˆì í”Œë ˆì´ì–´ê°€ ë°”ë¡œ ê³µê²©í•  ìˆ˜ ìˆë„ë¡ í•˜ê¸° ìœ„í•´
-
-    //"ë§ˆì§€ë§‰ ê³µê²© ì‹œê°„"ì„ ì¼ë¶€ëŸ¬ ì•„ì£¼ ì˜¤ë˜ ì „ ì‹œê°„ìœ¼ë¡œ ì„¤ì •
+    public float attackCooldown; //°ø°İ¼Óµµ
+    private float lastAttackTime = -999f; //°ø°İ ÄğÅ¸ÀÓÀÌ ¹Ù·Î °¡´ÉÇÏµµ·Ï ÇÏ±â À§ÇÔ.°ÔÀÓÀÌ ½ÃÀÛµÇÀÚ¸¶ÀÚ ÇÃ·¹ÀÌ¾î°¡ ¹Ù·Î °ø°İÇÒ ¼ö ÀÖµµ·Ï ÇÏ±â À§ÇØ
+                                          //"¸¶Áö¸· °ø°İ ½Ã°£"À» ÀÏºÎ·¯ ¾ÆÁÖ ¿À·¡ Àü ½Ã°£À¸·Î ¼³Á¤
 
     [Header("Attack Settings")]
     public float attackRange;
@@ -17,7 +16,7 @@ public class Monster : Entity
 
     public void Start()
     {
-        // 'Player' íƒœê·¸ê°€ ë¶™ì€ ì˜¤ë¸Œì íŠ¸ ìë™ ì°¾ê¸°
+        // 'Player' ÅÂ±×°¡ ºÙÀº ¿ÀºêÁ§Æ® ÀÚµ¿ Ã£±â
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
@@ -27,46 +26,42 @@ public class Monster : Entity
 
     public void Update()
     {
-        if (player == null)
-            return; //í”Œë ˆì´ì–´ê°€ ì—†ìœ¼ë©´ í–‰ë™ X
+        if (player == null) return; //ÇÃ·¹ÀÌ¾î°¡ ¾øÀ¸¸é Çàµ¿ X
 
-        float distance = Vector3.Distance(transform.position, player.position); //ëª¬ìŠ¤í„°ì™€ í”Œë ˆì´ì–´ ì‚¬ì´ì˜ ê±°ë¦¬ ê³„ì‚°
+        float distance = Vector3.Distance(transform.position, player.position); //¸ó½ºÅÍ¿Í ÇÃ·¹ÀÌ¾î »çÀÌÀÇ °Å¸® °è»ê
 
         if (distance > attackRange)
         {
-            Move(); //ì‚¬ê±°ë¦¬ ë°–ì´ë©´ í”Œë ˆì´ì–´ë¥¼ í–¥í•´ ì´ë™
+            Move(); //»ç°Å¸® ¹ÛÀÌ¸é ÇÃ·¹ÀÌ¾î¸¦ ÇâÇØ ÀÌµ¿
         }
         else
         {
-            Attack(); //ì‚¬ê±°ë¦¬ ì´ë‚´ë©´ ê³µê²© ì‹œë„
+            Attack(); //»ç°Å¸® ÀÌ³»¸é °ø°İ ½Ãµµ
         }
+
     }
 
     public override void Move()
     {
-        // í”Œë ˆì´ì–´ë¥¼ í–¥í•´ ì´ë™
+        // ÇÃ·¹ÀÌ¾î¸¦ ÇâÇØ ÀÌµ¿
         Vector3 direction = (player.position - transform.position).normalized;
         transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
 
-        // í”Œë ˆì´ì–´ ë°”ë¼ë³´ê²Œ íšŒì „
+        // ÇÃ·¹ÀÌ¾î ¹Ù¶óº¸°Ô È¸Àü
         Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            targetRotation,
-            10f * Time.deltaTime
-        );
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
     }
 
     public void Attack()
     {
-        if (Time.time >= lastAttackTime + attackCooldown) // ë§ˆì§€ë§‰ ê³µê²© ì´í›„ ì¿¨íƒ€ì„ì´ ì§€ë‚¬ì„ ë•Œë§Œ ê³µê²© ê°€ëŠ¥
+        if (Time.time >= lastAttackTime + attackCooldown) // ¸¶Áö¸· °ø°İ ÀÌÈÄ ÄğÅ¸ÀÓÀÌ Áö³µÀ» ¶§¸¸ °ø°İ °¡´É
         {
             lastAttackTime = Time.time;
 
             if (anim != null)
                 anim.SetTrigger("Attack");
 
-            Debug.Log($"ëª¬ìŠ¤í„°ê°€ í”Œë ˆì´ì–´ë¥¼ ê³µê²©! ê³µê²©ë ¥: {attackPower}");
+            Debug.Log($"¸ó½ºÅÍ°¡ ÇÃ·¹ÀÌ¾î¸¦ °ø°İ! °ø°İ·Â: {attackPower}");
         }
     }
 

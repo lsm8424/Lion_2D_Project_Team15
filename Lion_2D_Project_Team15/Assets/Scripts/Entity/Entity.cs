@@ -8,15 +8,18 @@ public class Entity : MonoBehaviour
     public virtual void TakeDamgae(float value)
     {
         HP -= value;
-        if (HP <= 0)
-            Death();
+        if (HP <= 0) Death();
     }
 
-    public virtual void Move() { }
+    public virtual void Move()
+    {
+
+    }
+    
 
     protected virtual void Death()
     {
         Debug.Log($"{gameObject.name} has died.");
-        //ì• ë‹ˆë©”ì´ì…˜ or ì˜¤ë¸Œì íŠ¸ ì‚¬ë§
+        //¾Ö´Ï¸ÞÀÌ¼Ç or ¿ÀºêÁ§Æ® »ç¸Á
     }
 }
