@@ -1,11 +1,20 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class followcam : MonoBehaviour
 {
-    public GameObject[] Maps;
+    public CinemachineCamera[] cinemachineCamera;
 
     public void transCam(int index)
     {
-        this.transform.position = Maps[index].transform.position + new Vector3(0,0,-10);
+        cinemachineCamera[index].gameObject.SetActive(true);
+
+        for (int i = 0; i < cinemachineCamera.Length; i++)
+        {
+            if (i != index)
+            {
+                cinemachineCamera[i].gameObject.SetActive(false);
+            }
+        }
     }
 }
