@@ -1,20 +1,20 @@
 using UnityEngine;
 
+
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("상호작용 설정")]
     public float interactRange; // 상호작용 거리
+    public LayerMask interactLayerMask; // 상호작용 레이어
 
-    private NPC currentNPC = null; // 현재 대화 중인 NPC
-    private bool isTalking = false; // 대화 중인지 여부
+    private NPC currentNPC = null;
+    private bool isTalking = false;
 
-    private Ladder currentLadder = null; // 현재 올라탄 사다리
-    private bool isOnLadder = false; // 사다리 상태 여부
+    private Ladder currentLadder = null;
+    private bool isOnLadder = false;
 
-    private Rigidbody2D rb; // 2D Rigidbody
-    private Animator anim; // 애니메이션
-
-    public LayerMask interactLayerMask; // Inspector에서 설정할 수 있게 만듦
+    private Rigidbody2D rb;
+    private Animator anim;
 
     private void Start()
     {
@@ -26,45 +26,59 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("F 키 눌림! 상호작용 시도 중");
-
             if (isTalking)
             {
-                currentNPC?.AdvanceDialogue(); // 대화 넘기기
+                currentNPC?.AdvanceDialogue();
                 return;
             }
 
             if (isOnLadder)
             {
-                ExitLadder(); // 사다리 내려오기
+                ExitLadder();
                 return;
             }
 
-            // ─── NPC 또는 Ladder 탐지용 Raycast (2D 전용) ───
+            // ─── Ray 쏴서 상호작용 감지 ───
             Vector2 direction = transform.right;
             Vector2 origin = (Vector2)transform.position + direction * 0.1f;
 
-            RaycastHit2D hit = Physics2D.Raycast(
-                origin,
-                direction,
-                interactRange,
-                interactLayerMask
-            );
+            RaycastHit2D hit = Physics2D.Raycast(origin, direction, interactRange, interactLayerMask);
             Debug.DrawRay(origin, direction * interactRange, Color.red, 1f);
 
             if (hit.collider != null)
             {
                 GameObject target = hit.collider.gameObject;
-                Debug.Log("Ray가 뭔가를 맞췄습니다: " + hit.collider.name);
+                Debug.Log("Ray가 맞춘 오브젝트: " + hit.collider.name);
 
                 if (target.CompareTag("NPC"))
                 {
                     currentNPC = target.GetComponent<NPC>();
                     if (currentNPC != null)
                     {
-                        currentNPC.Interact(); // 대화 시작
+                        currentNPC.Interact();
                         isTalking = true;
                     }
+                }
+                else if (target.GetComponent<ParentDolphin>() != null) // 태그와 상관없이 컴포넌트로 감지
+                {
+                    currentNPC = target.GetComponent<ParentDolphin>();
+                    if (currentNPC != null)
+                    {
+                        currentNPC.Interact();
+                        isTalking = true;
+                    }
+                }
+                else if (target.CompareTag("Episode2_babydolphin_1"))
+                {
+                    babydolphin baby = target.GetComponent<babydolphin>();
+                    if (baby != null)
+                    {
+                        baby.Select();
+                    }
+                }
+                else if (target.CompareTag("Item")) // 아이템 줍기
+                {
+                    PickupItem(target);
                 }
                 else if (target.CompareTag("Ladder"))
                 {
@@ -74,18 +88,31 @@ public class PlayerInteraction : MonoBehaviour
                         EnterLadder();
                     }
                 }
+
             }
         }
     }
 
-    // 대화 종료 시 호출됨
+    // 아이템 습득 처리
+    private void PickupItem(GameObject item)
+    {
+        
+        if (Time.timeSinceLevelLoad < 1.0f)
+            return;
+
+
+        Debug.Log("아이템을 획득했습니다: " + item.name);
+
+        Destroy(item);
+
+    }
+
     public void EndDialogue()
     {
         isTalking = false;
         currentNPC = null;
     }
 
-    // 사다리 탑승 처리
     private void EnterLadder()
     {
         isOnLadder = true;
@@ -98,7 +125,6 @@ public class PlayerInteraction : MonoBehaviour
         Debug.Log("사다리에 올라탐");
     }
 
-    // 사다리 탈출 처리
     private void ExitLadder()
     {
         isOnLadder = false;
@@ -112,10 +138,7 @@ public class PlayerInteraction : MonoBehaviour
         Debug.Log("사다리에서 내려옴");
     }
 
-    // 외부 접근용: 현재 사다리 상태
     public bool IsOnLadder() => isOnLadder;
-
     public Ladder GetCurrentLadder() => currentLadder;
-
     public void ForceExitLadder() => ExitLadder();
 }

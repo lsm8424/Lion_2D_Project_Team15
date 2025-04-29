@@ -36,7 +36,6 @@ public class Player : Entity
     private void Update()
     {
         // 각 기능 모듈의 매서드 실행
-        movement.CheckGround(); // 매 프레임 땅 체크
         movement.HandleMove(); // 이동
         movement.HandleJump(); // 점프
         combat.HandleAttack(); // 기본 공격 (좌클릭)
