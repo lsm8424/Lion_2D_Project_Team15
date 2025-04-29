@@ -3,40 +3,41 @@ using UnityEngine;
 public enum SpeakerType { Player, NPC }
 
 [System.Serializable]
-public class DalogueLine
+public class DialogueLine
 {
-    public SpeakerType speaker; // ¸»ÇÏ´Â ÁÖÃ¼
-    public string text; // ´ë»ç ³»¿ë
+    public SpeakerType speaker; // ë§í•˜ëŠ” ì£¼ì²´
+    public string text; // ëŒ€ì‚¬ ë‚´ìš©
 }
 public class NPC : MonoBehaviour
 {
     
-    public string NPCName; // NPC ÀÌ¸§
-    public DalogueLine[] dialogueLines;
-    private int dialogueIndex = 0; // ÇöÀç ¸î¹øÂ° ´ë»çÀÎÁö ÃßÀû
+    public string NPCName; // NPC ì´ë¦„
+    public DialogueLine[] dialogueLines;
+    private int dialogueIndex = 0; // í˜„ì¬ ëª‡ë²ˆì§¸ ëŒ€ì‚¬ì¸ì§€ ì¶”ì 
 
 
-    // ÇÃ·¹ÀÌ¾î°¡ F Å°·Î »óÈ£ÀÛ¿ë ½Ã È£ÃâµÊ
+    // í”Œë ˆì´ì–´ê°€ F í‚¤ë¡œ ìƒí˜¸ì‘ìš© ì‹œ í˜¸ì¶œë¨
     public void Interact()
     {
-        dialogueIndex = 0; // ´ë»ç ÀÎµ¦½º ÃÊ±âÈ­
-        ShowDialogue(); // Ã¹ ¹øÂ° ´ë»ç Ãâ·Â
+        dialogueIndex = 0; // ëŒ€ì‚¬ ì¸ë±ìŠ¤ ì´ˆê¸°í™”
+        ShowDialogue(); // ì²« ë²ˆì§¸ ëŒ€ì‚¬ ì¶œë ¥
     }
 
 
-    // ÇÃ·¹ÀÌ¾î°¡ F Å°¸¦ ´Ù½Ã ´©¸£¸é È£ÃâµÊ
+    // í”Œë ˆì´ì–´ê°€ F í‚¤ë¥¼ ë‹¤ì‹œ ëˆ„ë¥´ë©´ í˜¸ì¶œë¨
     public void AdvanceDialogue()
     {
-        dialogueIndex++; // ´ÙÀ½ ´ë»ç·Î ÀÌµ¿
+        dialogueIndex++; // ë‹¤ìŒ ëŒ€ì‚¬ë¡œ ì´ë™
 
         if (dialogueIndex >= dialogueLines.Length) 
         {
-            OnDialogueEnd(); // ´ë»ç°¡ ³¡³µÀ» °æ¿ì Ã³¸®
+            OnDialogueEnd(); // ëŒ€ì‚¬ê°€ ëë‚¬ì„ ê²½ìš° ì²˜ë¦¬
         }
         else
         {
-            ShowDialogue(); // ´ÙÀ½ ´ë»ç Ãâ·Â
+            ShowDialogue(); // ë‹¤ìŒ ëŒ€ì‚¬ ì¶œë ¥
         }
+
     }
 
     private void ShowDialogue()
@@ -55,7 +56,7 @@ public class NPC : MonoBehaviour
 
     protected virtual void OnDialogueEnd()
     {
-        Debug.Log("´ëÈ­ Á¾·á");
+        Debug.Log("ëŒ€í™” ì¢…ë£Œ");
         Player.Instance.interaction.EndDialogue();
     }
 }

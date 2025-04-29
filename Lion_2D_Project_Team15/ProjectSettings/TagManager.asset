@@ -9,6 +9,9 @@ TagManager:
   - NPC
   - Item
   - Ladder
+  - Episode2_parentdolphin_1
+  - Episode2_babydolphin_1
+  - Potal
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Episode2_babydolphin_1
   - 
   - Player
   - 

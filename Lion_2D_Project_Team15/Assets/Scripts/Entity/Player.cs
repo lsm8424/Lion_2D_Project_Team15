@@ -2,32 +2,32 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    // ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡ Singleton ¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Singleton â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-    // Player ÀÎ½ºÅÏ½º¸¦ Àü¿ª¿¡¼­ Á¢±Ù °¡´ÉÇÏµµ·Ï staticÀ¸·Î ¼±¾ğ
+    // Player ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì „ì—­ì—ì„œ ì ‘ê·¼ ê°€ëŠ¥í•˜ë„ë¡ staticìœ¼ë¡œ ì„ ì–¸
     public static Player Instance { get; private set; } 
 
     private void Awake()
     {
-        // ¾À¿¡ Player°¡ ÀÌ¹Ì Á¸ÀçÇÑ´Ù¸é ÇöÀç ¿ÀºêÁ§Æ®¸¦ Á¦°Å
+        // ì”¬ì— Playerê°€ ì´ë¯¸ ì¡´ì¬í•œë‹¤ë©´ í˜„ì¬ ì˜¤ë¸Œì íŠ¸ë¥¼ ì œê±°
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            Instance = this; // ÀÎ½ºÅÏ½º µî·Ï
+            Instance = this; // ì¸ìŠ¤í„´ìŠ¤ ë“±ë¡
         }
     }
 
-    // ±â´Éº° ¸ğµâ ½ºÅ©¸³Æ® ÂüÁ¶ (¿ÜºÎ¿¡¼­ Player.Instance.movement Ã³·³ »ç¿ë °¡´É)
+    // ê¸°ëŠ¥ë³„ ëª¨ë“ˆ ìŠ¤í¬ë¦½íŠ¸ ì°¸ì¡° (ì™¸ë¶€ì—ì„œ Player.Instance.movement ì²˜ëŸ¼ ì‚¬ìš© ê°€ëŠ¥)
     [HideInInspector] public PlayerMovement movement;
     [HideInInspector] public PlayerCombat combat;
     [HideInInspector] public PlayerInteraction interaction;
 
     private void Start()
     {
-        // Player¿¡ ºÙ¾îÀÖ´Â ±â´Éº° ½ºÅ©¸³Æ®¸¦ °¡Á®¿È
+        // Playerì— ë¶™ì–´ìˆëŠ” ê¸°ëŠ¥ë³„ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ê°€ì ¸ì˜´
         movement = GetComponent<PlayerMovement>();
         combat = GetComponent<PlayerCombat>();
         interaction = GetComponent<PlayerInteraction>();
@@ -35,11 +35,11 @@ public class Player : Entity
 
     private void Update()
     {
-        // °¢ ±â´É ¸ğµâÀÇ ¸Å¼­µå ½ÇÇà
-        movement.HandleMove(); // ÀÌµ¿
-        movement.HandleJump(); // Á¡ÇÁ
-        combat.HandleAttack(); // ±âº» °ø°İ (ÁÂÅ¬¸¯)
-        combat.HandleSkill(); // ½ºÅ³ °ø°İ (¿ìÅ¬¸¯)
-        interaction.HandleInteraction(); // F Å° »óÈ£ÀÛ¿ë (NPC, ¾ÆÀÌÅÛ µî)
+        // ê° ê¸°ëŠ¥ ëª¨ë“ˆì˜ ë§¤ì„œë“œ ì‹¤í–‰
+        movement.HandleMove(); // ì´ë™
+        movement.HandleJump(); // ì í”„
+        combat.HandleAttack(); // ê¸°ë³¸ ê³µê²© (ì¢Œí´ë¦­)
+        combat.HandleSkill(); // ìŠ¤í‚¬ ê³µê²© (ìš°í´ë¦­)
+        interaction.HandleInteraction(); // F í‚¤ ìƒí˜¸ì‘ìš© (NPC, ì•„ì´í…œ ë“±)
     }
 }
