@@ -77,10 +77,10 @@ public class StageManager : Singleton<GameManager>
 
         if (Player != null)
         {
-            Player.transform.position = targetPortal.targetPortal.position;
-
             //카메라 임시 설정
             Camera.main.GetComponent<followcam>().transCam(targetPortal.MapIndex);
+
+            Player.transform.position = targetPortal.targetPortal.position;
         }
 
         var fadeOut = new Fade(Color.black, Color.clear, 0.5f); // 💡 페이드 아웃
