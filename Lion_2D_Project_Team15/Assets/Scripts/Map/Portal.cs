@@ -28,6 +28,9 @@ public class Portal : MonoBehaviour
 
     [Header("공통")]
     public Transform targetPortal; // 도착할 포탈 Transform (오프셋 조정용)
+    public Sprite closeSprite; // 포탈 닫힘 상태 스프라이트
+    public Sprite openSprite; // 포탈 열림 상태 스프라이트
+
 
     private void Start()
     {
@@ -35,6 +38,7 @@ public class Portal : MonoBehaviour
         {
             StageManager.Instance.RegisterPortal(this);
         }
+        ClosePortal();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -59,5 +63,22 @@ public class Portal : MonoBehaviour
                 StageManager.Instance.TeleportToPortal(targetPortalIndex);
                 break;
         }
+
+        OpenDoor(); // 포탈 열기
+        Invoke("ClosePortal", 1f); // 1초 후 포탈 닫기
+    }
+
+    void OpenDoor()
+    {
+        // 포탈을 여는 로직 (예: 스프라이트 변경)
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = openSprite; // 포탈 열림 상태로 변경
+    }
+
+    void ClosePortal()
+    {
+        // 포탈을 닫는 로직 (예: 스프라이트 변경)
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = closeSprite; // 포탈 열림 상태로 변경
     }
 }
