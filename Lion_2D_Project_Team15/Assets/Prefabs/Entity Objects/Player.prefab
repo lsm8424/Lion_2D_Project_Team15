@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7964036916281449432}
   - component: {fileID: 6893071250137010048}
   - component: {fileID: 3030963656551737506}
+  - component: {fileID: 8674346861112251133}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: d4a1388a0d4ee9c44bcaa86e463a7b39, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -220,7 +221,7 @@ MonoBehaviour:
   interactRange: 1
   interactLayerMask:
     serializedVersion: 2
-    m_Bits: 127
+    m_Bits: 639
 --- !u!114 &3030963656551737506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +238,19 @@ MonoBehaviour:
   jumpForce: 8
   isGrounded: 1
   facingRight: 1
+--- !u!114 &8674346861112251133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027990156700906640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc03ed2a6140b64da7d3dc568124d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbSpeed: 3
 --- !u!1 &2909702954279485176
 GameObject:
   m_ObjectHideFlags: 0

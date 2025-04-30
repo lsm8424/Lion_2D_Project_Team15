@@ -2,26 +2,21 @@ using UnityEngine;
 
 public class PlayerClimb : MonoBehaviour
 {
-    public float climbSpeed; // »ç´Ù¸® ¿À¸£³»¸®´Â ¼Óµµ
+    public float climbSpeed = 3f;
+
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
-        // ÇÃ·¹ÀÌ¾î°¡ ÇöÀç »ç´Ù¸® »óÅÂÀÏ °æ¿ì¿¡¸¸ ½ÇÇà
         if (Player.Instance.interaction.IsOnLadder())
         {
-            // W/S Å° ÀÔ·Â ¹Þ±â
-            float v = Input.GetAxisRaw("Vertical"); // W/S ÀÔ·Â
-            // ÀÔ·Â ¹æÇâÀ¸·Î À§/¾Æ·¡ ÀÌµ¿ º¤ÅÍ °è»ê
-            Vector3 climbDir = new Vector3(0, v, 0);
-            // ÇØ´ç ¹æÇâÀ¸·Î ÀÌµ¿ (Áß·Â ¾øÀÌ Á÷¼± ÀÌµ¿)
-            transform.Translate(climbDir * climbSpeed * Time.deltaTime);
-            // ÇöÀç ¿Ã¶óÅº »ç´Ù¸® Á¤º¸ °¡Á®¿À±â
-            Ladder ladder = Player.Instance.interaction.GetCurrentLadder();
-            // »ç´Ù¸® °´Ã¼°¡ ÀÖ°í, ÇÃ·¹ÀÌ¾î°¡ ÁöÁ¤µÈ ³ôÀÌ ÀÌ»ó ¿Ã¶ó°¡¸é ÀÚµ¿ Å»Ãâ
-            if (ladder != null & transform.position.y >= ladder.topExitY)
-            {
-                Player.Instance.interaction.ForceExitLadder(); // »ç´Ù¸® Å»Ãâ Ã³¸®
-            }
+            float vertical = Input.GetAxisRaw("Vertical"); // W/S í‚¤
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, vertical * climbSpeed);
         }
     }
 }
