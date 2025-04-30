@@ -20,6 +20,8 @@ public class PlayerInteraction : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+
     }
 
     public void HandleInteraction()
@@ -39,11 +41,13 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             // ─── Ray 쏴서 상호작용 감지 ───
-            Vector2 direction = transform.right;
+            // Player가 바라보는 방향에 따라 Ray 발사
+            Vector2 direction = Player.Instance.movement.facingRight ? Vector2.right : Vector2.left;
             Vector2 origin = (Vector2)transform.position + direction * 0.1f;
 
             RaycastHit2D hit = Physics2D.Raycast(origin, direction, interactRange, interactLayerMask);
             Debug.DrawRay(origin, direction * interactRange, Color.red, 1f);
+
 
             if (hit.collider != null)
             {
@@ -96,16 +100,23 @@ public class PlayerInteraction : MonoBehaviour
     // 아이템 습득 처리
     private void PickupItem(GameObject item)
     {
-        
         if (Time.timeSinceLevelLoad < 1.0f)
             return;
 
-
         Debug.Log("아이템을 획득했습니다: " + item.name);
 
-        Destroy(item);
+        // ⭐ CoralStaff를 얻은 경우
+        if (item.name.Contains("CoralStaff"))
+        {
+            Player.Instance.combat.hasCoralStaff = true;
+            Player.Instance.combat.coralStaffInHand.SetActive(true);
 
+            Debug.Log("Coral Staff를 획득했습니다! 이제 원거리 공격이 가능합니다!");
+        }
+
+        Destroy(item);
     }
+
 
     public void EndDialogue()
     {
