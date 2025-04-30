@@ -5,8 +5,12 @@ public class move : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] float speed;
-    public int currentMap = 0;
-    public Text text;
+    [SerializeField] float jumpForce;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
@@ -19,21 +23,10 @@ public class move : MonoBehaviour
 
         rb.linearVelocity = new Vector2(xInput * speed, rb.linearVelocityY);
 
-        text.text = "ÇöÀç ¸Ê : " + GetCurrentMapName(currentMap);
-    }
-
-    private string GetCurrentMapName(int currentmap)
-    {
-        switch (currentmap)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            case 0:
-                return "Ã³À½ ±ú¾î³µÀ» ¶§";
-            case 1:
-                return "µµ¼­°ü";
-            case 2:
-                return "È£¼ö°ø¿ø°°Àº ´À³¦";
-            default:
-                return "Unknown Map";
+            rb.linearVelocityY = jumpForce;
         }
     }
+
 }

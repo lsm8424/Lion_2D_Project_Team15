@@ -27,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7856005245475112785}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.5, y: -4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1420819655945790888}
@@ -78,13 +78,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
-  m_Color: {r: 0.3443396, g: 0.8710267, b: 1, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 5213229242370633579, guid: eeb0e047033d70343a3592176e0df3b3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8828125, y: 1}
+  m_Size: {x: 0.32, y: 0.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -144,6 +144,8 @@ MonoBehaviour:
   targetPortalIndex: 1
   targetSceneName: 
   targetPortal: {fileID: 1420819655945790888}
+  closeSprite: {fileID: 5213229242370633579, guid: eeb0e047033d70343a3592176e0df3b3, type: 3}
+  openSprite: {fileID: 436563815456543028, guid: eeb0e047033d70343a3592176e0df3b3, type: 3}
 --- !u!1 &8566218415433840514
 GameObject:
   m_ObjectHideFlags: 0

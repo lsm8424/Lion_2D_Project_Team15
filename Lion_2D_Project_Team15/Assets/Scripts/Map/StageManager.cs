@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
@@ -77,11 +77,10 @@ public class StageManager : Singleton<GameManager>
 
         if (Player != null)
         {
-            Player.transform.position = targetPortal.targetPortal.position;
-
-            // 💡 추가적인 맵 정보 동기화
-            Player.GetComponent<move>().currentMap = targetPortal.MapIndex;
+            //카메라 임시 설정
             Camera.main.GetComponent<followcam>().transCam(targetPortal.MapIndex);
+
+            Player.transform.position = targetPortal.targetPortal.position;
         }
 
         var fadeOut = new Fade(Color.black, Color.clear, 0.5f); // 💡 페이드 아웃
@@ -131,7 +130,7 @@ public class StageManager : Singleton<GameManager>
         if (Player != null)
         {
             Player.transform.position = spawnPortal.targetPortal.position;
-            player.GetComponent<move>().currentMap = spawnPortal.MapIndex;
+            //카메라 임시 설정
             Camera.main.GetComponent<followcam>().transCam(spawnPortal.MapIndex);
         }
     }
