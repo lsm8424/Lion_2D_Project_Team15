@@ -4,18 +4,24 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Potal
   - Ground
+  - Monster
+  - NPC
+  - Item
+  - Ladder
+  - Episode2_parentdolphin_1
+  - Episode2_babydolphin_1
+  - Potal
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - Ground
+  - Episode2_babydolphin_1
   - 
-  - 
+  - Player
   - 
   - 
   - 

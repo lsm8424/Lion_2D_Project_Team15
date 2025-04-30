@@ -2,96 +2,50 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed; // ì´ë™ì†ë„
-    public float jumpForce; // ì í”„ í˜
-    public bool isGrounded; // ë•…ì— ë‹¿ì•„ ìˆëŠ”ì§€ ì—¬ë¶€
+    public float moveSpeed; // ÀÌµ¿¼Óµµ
+    public float jumpForce; // Á¡ÇÁ Èû
+    public bool isGrounded; // ¶¥¿¡ ´ê¾Æ ÀÖ´ÂÁö ¿©ºÎ
 
-    private Animator anim;
-
-    private Rigidbody2D rb;
-
-    public Transform groundCheck; // í”Œë ˆì´ì–´ ë°œ ë°‘ ìœ„ì¹˜
-    public float groundCheckDistance = 0.2f; // ë•… ê°ì§€ ê±°ë¦¬
-    public LayerMask groundLayer; // Ground ë ˆì´ì–´ ì„¤ì •
-    private RaycastHit2D groundHit;
+    private Rigidbody rb;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     public void HandleMove()
     {
-        // WASD ë˜ëŠ” ë°©í–¥í‚¤ ì…ë ¥ ë°›ê¸°
-        float h = Input.GetAxisRaw("Horizontal"); // A,D ë˜ëŠ” â†, â†’
-        float v = Input.GetAxisRaw("Vertical"); // W,S ë˜ëŠ” â†‘,â†“
+        // WASD ¶Ç´Â ¹æÇâÅ° ÀÔ·Â ¹Ş±â
+        float h = Input.GetAxisRaw("Horizontal"); // A,D ¶Ç´Â ¡ç, ¡æ
+        float v = Input.GetAxisRaw("Vertical"); // W,S ¶Ç´Â ¡è,¡é
 
-        // ì…ë ¥ ë°©í–¥ìœ¼ë¡œì˜ ë²¡í„° ê³„ì‚° (Yì¶•ì€ ì œì™¸í•˜ê³  í‰ë©´ ì´ë™)
+        // ÀÔ·Â ¹æÇâÀ¸·ÎÀÇ º¤ÅÍ °è»ê (YÃàÀº Á¦¿ÜÇÏ°í Æò¸é ÀÌµ¿)
         Vector3 moveDir = new Vector3(h, 0, v).normalized;
         Vector3 move = moveDir * moveSpeed * Time.deltaTime;
 
-        // ì´ë™ ì• ë‹ˆë©”ì´ì…˜ ì œì–´
-        bool isMoving = moveDir != Vector3.zero;
-        anim.SetBool("Run", isMoving);
-
         transform.Translate(move, Space.World);
 
-        if (h != 0)
+        if (moveDir != Vector3.zero)
         {
-            Vector3 scale = transform.localScale;
-            scale.x = h > 0 ? 1 : -1; // ì˜¤ë¥¸ìª½ í‚¤: 1, ì™¼ìª½ í‚¤: -1
-            transform.localScale = scale;
+            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
         }
-
-            /*
-                if (isMoving)
-                {
-                    Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
-                }
-            */
     }
 
     public void HandleJump()
     {
-        // Raycast ê²°ê³¼ë¥¼ ì—¬ê¸°ì„œ íŒì •
-        isGrounded = groundHit.collider != null;
-
-        // ìŠ¤í˜ì´ìŠ¤ í‚¤ ì…ë ¥ && ë•…ì— ìˆëŠ” ìƒíƒœì¼ ê²½ìš°ë§Œ ì í”„ ê°€ëŠ¥
+        // ½ºÆäÀÌ½º Å° ÀÔ·Â && ¶¥¿¡ ÀÖ´Â »óÅÂÀÏ °æ¿ì¸¸ Á¡ÇÁ °¡´É
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // ìœ„ìª½ìœ¼ë¡œ í˜ì„ ê°€í•¨
-
-            anim.SetBool("Jump", true);  // ì í”„ ì• ë‹ˆë©”ì´ì…˜ ì‹œì‘
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // À§ÂÊÀ¸·Î ÈûÀ» °¡ÇÔ
+            isGrounded = false; // °øÁß »óÅÂ·Î ÀüÈ¯
         }
     }
 
-    public void CheckGround()
+    private void OnCollisionEnter(Collision collision)
     {
-        groundHit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
-        Debug.DrawRay(groundCheck.position, Vector2.down * groundCheckDistance, Color.green);
-
-        bool wasGrounded = isGrounded;
-        isGrounded = groundHit.collider != null;
-
-        // ì°©ì§€ "ìˆœê°„"ì—ë§Œ Jump ì• ë‹ˆë©”ì´ì…˜ ë„ê¸°
-        if (isGrounded && !wasGrounded)
-        {
-            anim.SetBool("Jump", false);
-        }
+        // Ãæµ¹ÇÑ ´ë»óÀÌ Ground ÅÂ±×¸¦ °¡Áö°í ÀÖ´Ù¸é ÂøÁö Ã³¸®
+        if (collision.gameObject.CompareTag("Ground"))
+            isGrounded = true; // ´Ù½Ã Á¡ÇÁ °¡´É »óÅÂ·Î ¼³Á¤
     }
 }
-
-/*
-private void OnCollisionEnter(Collision collision)
-{
-    Debug.Log("ì¶©ëŒí•œ ë¬¼ì²´: " + collision.gameObject.name);
-
-    // ì¶©ëŒí•œ ëŒ€ìƒì´ Ground íƒœê·¸ë¥¼ ê°€ì§€ê³  ìˆë‹¤ë©´ ì°©ì§€ ì²˜ë¦¬
-    if (collision.gameObject.CompareTag("Ground"))
-    {
-        isGrounded = true; // ë‹¤ì‹œ ì í”„ ê°€ëŠ¥ ìƒíƒœë¡œ ì„¤ì •
-    }
-}*/
-
