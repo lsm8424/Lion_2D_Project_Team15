@@ -7,6 +7,11 @@ public class move : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
