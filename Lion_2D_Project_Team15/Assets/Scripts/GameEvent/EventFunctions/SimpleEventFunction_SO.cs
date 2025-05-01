@@ -1,20 +1,20 @@
 using System;
 using System.Collections;
 using System.Reflection;
-using UnityEditor.PackageManager;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 [CreateAssetMenu(fileName = "SimpleEventFunction_SO", menuName = "Scriptable Objects/EventFunction/SimpleEventFunction_SO")]
 public class SimpleEventFunction_SO : EventFunction_SO
 {
     public SimpleEventStruct[] SimpleEvents;
-    Action[] Process;
+    IEnumerator[] Coroutines;
 
     [Serializable]
     public struct SimpleEventStruct
     {
-        public string TargetId; // 멤버변수 이름, 메소드 이름, 프로퍼티 이름
-        public string ComponentName;
+        public string ObjectId; // ObjectId
+        public string ComponentName; // 멤버변수 이름, 메소드 이름, 프로퍼티 이름
         public EProcessType ProcessType;
         public string ProcessName;
 
@@ -25,6 +25,8 @@ public class SimpleEventFunction_SO : EventFunction_SO
         public string StringValue;
         public Vector3 Vector3Value;
 
+        public ParameterInfo[] Parameters;
+
         [Range(0, 100)]
         public float DelaySeconds;
     }
@@ -33,12 +35,33 @@ public class SimpleEventFunction_SO : EventFunction_SO
     {
         Field,
         Property,
-        Method
+        Method,
     }
     public enum EValueType
     {
         Bool,
         Int,
+        Float,
+        String,
+        Vector3,
+    }
+
+    [Serializable]
+    public struct ParameterInfo
+    {
+        public ParameterType Type;
+        public string Name;
+        public int IntValue;
+        public float FloatValue;
+        public bool BoolValue;
+        public string StringValue;
+        public Vector3 Vector3Value;
+    }
+
+    public enum ParameterType
+    {
+        Int,
+        Bool,
         Float,
         String,
         Vector3,
@@ -57,7 +80,7 @@ public class SimpleEventFunction_SO : EventFunction_SO
             if (events[i].DelaySeconds > 0f)
                 yield return new WaitForSeconds(events[i].DelaySeconds);
 
-            Process[i]();
+            yield return Coroutines[i];
         }
     }
 
@@ -66,86 +89,145 @@ public class SimpleEventFunction_SO : EventFunction_SO
     /// </summary>
     public override void Setup()
     {
-        Process = new Action[SimpleEvents.Length];
-        var warehouse = IDManager.Instance.Identifiers;
+        Coroutines = new IEnumerator[SimpleEvents.Length];
+        var idManager = IDManager.Instance.Identifiers;
 
-        for (int i = 0; i < Process.Length; ++i)
+        for (int i = 0; i < SimpleEvents.Length; ++i)
         {
             var simpleEvent = SimpleEvents[i];
 
-            if (!warehouse.ContainsKey(simpleEvent.TargetId))
+            if (!idManager.TryGetValue(simpleEvent.ObjectId, out var objRef))
             {
-                Debug.LogError($"[SimpleEventFunction] 잘못된 TargetId입니다: {simpleEvent.TargetId}");
-                return;
+                Debug.LogError($"[SimpleEventFunction] 잘못된 TargetId입니다: {simpleEvent.ObjectId}");
+                continue;
             }
 
-            GameObject go = warehouse[simpleEvent.TargetId].gameObject;
+            var go = objRef.gameObject;
             var componentType = Type.GetType(simpleEvent.ComponentName);
-
             if (componentType == null)
             {
                 Debug.LogError($"[SimpleEventFunction] 잘못된 ComponentType입니다: {simpleEvent.ComponentName}");
-                return;
+                continue;
             }
 
             var component = go.GetComponent(componentType);
             if (component == null)
             {
                 Debug.LogError($"[SimpleEventFunction] Component를 찾을 수 없습니다. Type: {simpleEvent.ComponentName} in {go.name}");
-                return;
+                continue;
             }
 
-            switch (simpleEvent.ProcessType)
-            {
-                case EProcessType.Field:
-                    Process[i] += () => SetFieldValue(component, componentType, simpleEvent);
-                    break;
-                case EProcessType.Property:
-                    Process[i] += () => SetPropertyValue(component, componentType, simpleEvent);
-                    break;
-                case EProcessType.Method:
-                    Process[i] += () => InvokeMethod(component, componentType, simpleEvent);
-                    break;
-            }
+            GenerateCoroutine(simpleEvent, component, componentType, out Coroutines[i]);
         }
     }
 
-    void SetFieldValue(object component, Type componentType, SimpleEventStruct simpleEvent)
+    void GenerateCoroutine(SimpleEventStruct evt, object component, Type componentType, out IEnumerator coroutine)
     {
-        FieldInfo fieldInfo = componentType.GetField(simpleEvent.ProcessName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-        if (fieldInfo == null)
+        coroutine = null;
+
+        switch (evt.ProcessType)
         {
-            Debug.LogError($"[SimpleEventFunction] Field를 찾지 못했습니다: {simpleEvent.ProcessName}");
-            return;
+            case EProcessType.Field:
+                var fieldInfo = componentType.GetField(evt.ProcessName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (fieldInfo == null)
+                {
+                    Debug.LogError($"[SimpleEventFunction] Field 미발견: {evt.ProcessName}");
+                    return;
+                }
+                var value = GetValueByFieldType(evt);
+                coroutine = FieldSetterCoroutine(fieldInfo, component, value);
+                break;
+            case EProcessType.Property:
+                var propInfo = componentType.GetProperty(evt.ProcessName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (propInfo == null)
+                {
+                    Debug.LogError($"[SimpleEventFunction] Property 미발견: {evt.ProcessName}");
+                    return ;
+                }
+
+                value = GetValueByFieldType(evt);
+                coroutine = PropertySetterCoroutine(propInfo, component, value);
+                break;
+            case EProcessType.Method:
+                var methodInfo = componentType.GetMethod(evt.ProcessName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (methodInfo == null)
+                {
+                    Debug.LogError($"[SimpleEventFunction] Method 미발견: {evt.ProcessName}");
+                    return;
+                }
+
+                var parameters = ConvertParameter(evt.Parameters);
+                coroutine = MethodInvokerCoroutine(methodInfo, component, parameters);
+                break;
+            default:
+                Debug.LogError($"유효한 타입이 아닙니다. {evt.ProcessType}");
+                break;
         }
 
-        object value = GetValueByFieldType(simpleEvent);
+        if (coroutine == null)
+            Debug.LogError("Coroutine이 실행되지 않았습니다.");
+    }
+    IEnumerator FieldSetterCoroutine(FieldInfo fieldInfo, object component, object value)
+    {
+        if (component == null || fieldInfo == null || value == null)
+        {
+            Debug.LogError("FieldSetter 오류");
+            yield break;
+        }    
         fieldInfo.SetValue(component, value);
     }
 
-    void SetPropertyValue(object component, Type componentType, SimpleEventStruct simpleEvent)
+    IEnumerator PropertySetterCoroutine(PropertyInfo propInfo, object component, object value)
     {
-        PropertyInfo propInfo = componentType.GetProperty(simpleEvent.ProcessName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-        if (propInfo == null)
+        if (propInfo == null || component == null || value == null)
         {
-            Debug.LogError($"[SimpleEventFunction] Property를 찾지 못했습니다: {simpleEvent.ProcessName}");
-            return;
+            Debug.LogError("PropertySetter 오류");
+            yield break;
         }
-
-        object value = GetValueByFieldType(simpleEvent);
         propInfo.SetValue(component, value);
     }
 
-    void InvokeMethod(object component, Type componentType, SimpleEventStruct simpleEvent)
+    IEnumerator MethodInvokerCoroutine(MethodInfo methodInfo, object component, object[] parameters)
     {
-        MethodInfo methodInfo = componentType.GetMethod(simpleEvent.ProcessName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-        if (methodInfo == null)
+        if (methodInfo == null || component == null)
         {
-            Debug.LogError($"[SimpleEventFunction] Method를 찾지 못했습니다: {simpleEvent.ProcessName}");
-            return;
+            Debug.LogError("MethodInvoker 오류");
+            yield break;
         }
 
-        methodInfo.Invoke(component, null);
+        if (parameters.Length == 0 || parameters == null)
+            methodInfo.Invoke(component, null);
+        else
+            methodInfo.Invoke(component, parameters);
+    }
+
+
+    object[] ConvertParameter(ParameterInfo[] parameters)
+    {
+        if (parameters.Length == 0)
+            return null;
+
+        object[] convertedParameters = new object[parameters.Length];
+        for (int i = 0; i < parameters.Length; ++i)
+        {
+            try
+            {
+                convertedParameters[i] = parameters[i].Type switch
+                {
+                    ParameterType.Int => parameters[i].IntValue,
+                    ParameterType.Bool => parameters[i].BoolValue,
+                    ParameterType.Float => parameters[i].FloatValue,
+                    ParameterType.String => parameters[i].StringValue,
+                    ParameterType.Vector3 => parameters[i].Vector3Value,
+                };
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"타입변환 에러 발생 {parameters[i].Name} {e.Message}");
+            }
+        }
+
+        return convertedParameters;
     }
 
     object GetValueByFieldType(SimpleEventStruct simpleEvent)
