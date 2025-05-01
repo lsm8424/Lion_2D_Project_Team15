@@ -16,8 +16,6 @@ public class Dialogue_UI : MonoBehaviour
     public bool IsPrintComplete = false;
     [SerializeField] float _timer = 0f;
 
-    DialogueCategory _category;
-    DialogueLineData _currentDialogueData;
     DialogueManager _dialogueManager;
 
     void Start()
@@ -27,13 +25,7 @@ public class Dialogue_UI : MonoBehaviour
 
     public void OnClickTouchPanel()
     {
-        if (!IsPrintComplete)
-        {
-            DoSkip = true;
-            return;
-        }
-
-        _dialogueManager.MoveNext();
+        _dialogueManager.ProcessPlayerInput();
     }
 
     public void ShowDialogue(DialogueLineData lineData)
@@ -47,7 +39,7 @@ public class Dialogue_UI : MonoBehaviour
         IsPrintComplete = false;
         DoSkip = false;
 
-        string[] split = _currentDialogueData.id.Split("_");
+        string[] split = lineData.id.Split('_');
 
         scriptIdPrefix = split[0];
         scriptIdNumber = split[1];
@@ -85,10 +77,10 @@ public class Dialogue_UI : MonoBehaviour
         }
 
         // 선택지가 존재한다면 출력 후 대기
-        if (_currentDialogueData.options != null)
+        if (lineData.options.Length > 0)
         {
             _dialogueOptionPanel.gameObject.SetActive(true);
-            _dialogueOptionPanel.CreateOptions(_currentDialogueData.options);
+            _dialogueOptionPanel.CreateOptions(lineData.options);
             yield break;
         }
 

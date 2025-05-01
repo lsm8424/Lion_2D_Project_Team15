@@ -17,6 +17,17 @@ public class NPC : MonoBehaviour
 
     public string DialogueID;
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+            Interact();
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            AdvanceDialogue();
+        }
+    }
+
     // 플레이어가 F 키로 상호작용 시 호출됨
     public void Interact()
     {
@@ -27,21 +38,7 @@ public class NPC : MonoBehaviour
     // 플레이어가 F 키를 다시 누르면 호출됨
     public void AdvanceDialogue()
     {
-        DialogueManager.Instance.Dialogue_UI.OnClickTouchPanel();
-    }
-
-    private void ShowDialogue()
-    {
-        var line = dialogueLines[dialogueIndex];
-
-        if (line.speaker == SpeakerType.NPC)
-        {
-            Debug.Log($"{NPCName}: {line.text}");
-        }
-        else
-        {
-            Debug.Log($"Player: {line.text}");
-        }
+        DialogueManager.Instance.ProcessPlayerInput();
     }
 
     protected virtual void OnDialogueEnd()
