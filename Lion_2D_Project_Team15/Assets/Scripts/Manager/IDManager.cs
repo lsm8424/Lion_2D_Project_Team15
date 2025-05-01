@@ -16,19 +16,32 @@ public class IDManager : Singleton<IDManager>
     {
         if (!Identifiers.ContainsKey(key))
         {
-            Debug.LogError($"[IDManager] À¯È¿ÇÑ ObjectId¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù. {key}");
+            Debug.LogError($"[IDManager] ìœ íš¨í•œ ObjectIdë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. {key}");
             return null;
         }
 
         return Identifiers[key];
     }
 
+    public bool TryGet(string key, out IdentifiableMonoBehavior obj)
+    {
+        if (!Identifiers.ContainsKey(key))
+        {
+            Debug.LogError($"[IDManager] ìœ íš¨í•œ ObjectIdë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. {key}");
+            obj = null;
+            return false;
+        }
+
+        obj = Identifiers[key];
+        return true;
+    }
+
     public void Set(string key, IdentifiableMonoBehavior obj)
     {
-        if (Identifiers.ContainsKey(obj.ObjectId))
-            Debug.LogError($"[IDManager] ObjectId°¡ µ¿ÀÏÇÕ´Ï´Ù. {obj.ObjectId}");
+        if (Identifiers.ContainsKey(obj.ObjectID))
+            Debug.LogError($"[IDManager] ObjectIdê°€ ë™ì¼í•©ë‹ˆë‹¤. {obj.ObjectID}");
 
-        Identifiers.Add(obj.ObjectId, obj);
+        Identifiers.Add(obj.ObjectID, obj);
     }
 
     public void SetUpIdentifiers()
@@ -38,6 +51,6 @@ public class IDManager : Singleton<IDManager>
         IdentifiableMonoBehavior[] foundObjects = FindObjectsByType<IdentifiableMonoBehavior>(FindObjectsSortMode.None);
 
         foreach (var obj in foundObjects)
-            Set(obj.ObjectId, obj);
+            Set(obj.ObjectID, obj);
     }
 }
