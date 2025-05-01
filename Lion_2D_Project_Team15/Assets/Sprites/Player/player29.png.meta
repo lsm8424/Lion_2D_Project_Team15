@@ -5,9 +5,6 @@ TextureImporter:
   - first:
       213: -5760299435661160279
     second: player29_0
-  - first:
-      213: -6618407269034579685
-    second: player29_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -145,12 +142,12 @@ TextureImporter:
       name: player29_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 27
         y: 0
-        width: 331
-        height: 319
+        width: 110
+        height: 161
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f8c63c486d0fcba4fafdd6c619c0dc6d
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -178,7 +175,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       player29_0: -5760299435661160279
-      player29_1: -6618407269034579685
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

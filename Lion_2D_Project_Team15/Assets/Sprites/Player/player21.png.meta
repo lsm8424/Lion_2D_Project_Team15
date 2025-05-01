@@ -142,12 +142,12 @@ TextureImporter:
       name: player21_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 19
         y: 0
-        width: 331
-        height: 319
+        width: 110
+        height: 209
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 88886e4962d379a49a531ff59a6495e3
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -175,7 +175,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       player21_0: 695140024223578767
-      player21_1: -521978503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,42 +5,6 @@ TextureImporter:
   - first:
       213: -490385494632515767
     second: player7_0
-  - first:
-      213: 8149788024293121767
-    second: player7_1
-  - first:
-      213: 5464542415696312443
-    second: player7_2
-  - first:
-      213: -2454025180988418737
-    second: player7_3
-  - first:
-      213: -5954592966846067375
-    second: player7_4
-  - first:
-      213: 6112974521106617787
-    second: player7_5
-  - first:
-      213: 3995819506895773336
-    second: player7_6
-  - first:
-      213: -2313724838289045004
-    second: player7_7
-  - first:
-      213: -7004119316722718481
-    second: player7_8
-  - first:
-      213: -8052335802043910520
-    second: player7_9
-  - first:
-      213: -6082652238034283523
-    second: player7_10
-  - first:
-      213: -3789352513718448556
-    second: player7_11
-  - first:
-      213: 5034689919998339022
-    second: player7_12
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -175,23 +139,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player7_5
+      name: player7_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 27
         y: 0
-        width: 331
-        height: 319
+        width: 102
+        height: 213
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bb5d29360f5a5d450800000000000000
-      internalID: 6112974521106617787
+      spriteID: 947bc65adfcc139f0800000000000000
+      internalID: -490385494632515767
       vertices: []
       indices: 
       edges: []
@@ -200,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f6732389479750e478df53e7313531f3
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -211,18 +175,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       player7_0: -490385494632515767
-      player7_1: 8149788024293121767
-      player7_10: -6082652238034283523
-      player7_11: -3789352513718448556
-      player7_12: 5034689919998339022
-      player7_2: 5464542415696312443
-      player7_3: -2454025180988418737
-      player7_4: -5954592966846067375
-      player7_5: 6112974521106617787
-      player7_6: 3995819506895773336
-      player7_7: -2313724838289045004
-      player7_8: -7004119316722718481
-      player7_9: -8052335802043910520
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
