@@ -3,12 +3,21 @@
     "id": "library_001",
     "text": "과학자는 어렴풋이 들려오는 소리에 귀를 기울였다.",
     "choices": "",
-    "condition": ""
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_001",
+    "text": "으윽... 여긴 어디지?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
   },
   {
     "id": "library_002",
     "text": "눈을 뜨자 보이는 것은\n낯선 천장이였다.",
     "choices": "",
-    "condition": ""
+    "condition": "",
+    "isEndOfDialogue": true
   }
 ]

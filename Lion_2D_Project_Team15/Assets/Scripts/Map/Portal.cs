@@ -55,7 +55,7 @@ public class Portal : MonoBehaviour
                     return;
                 }
                 // 씬 이동 요청 (목표 포탈 인덱스 포함)
-                StageManager.Instance.TeleportScene(targetSceneName);
+                StageManager.Instance.TeleportScene(targetSceneName, targetPortalIndex);
                 break;
 
             case PortalType.PositionChange:

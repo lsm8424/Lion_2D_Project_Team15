@@ -102,7 +102,8 @@ public class DialogueDatabase_JSON : MonoBehaviour
                 id = e.id,
                 text = e.text,
                 options = opts,
-                conditionCheck = cond
+                conditionCheck = cond,
+                isEndOfDialogue = e.isEndOfDialogue
             };
         }
 
