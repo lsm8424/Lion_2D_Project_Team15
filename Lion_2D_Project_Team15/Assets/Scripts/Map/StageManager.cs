@@ -90,7 +90,7 @@ public class StageManager : Singleton<GameManager>
     /// <summary>
     /// 포탈을 통해 다른 씬으로 이동 요청 (SceneController 이용, 수정 없음) 🔧
     /// </summary>
-    public void TeleportScene(string sceneName, int spawnPortalIndex = 0)
+    public void TeleportScene(string sceneName, int spawnPortalIndex)
     {
         if (!Application.CanStreamedLevelBeLoaded(sceneName))
         {
