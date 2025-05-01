@@ -22,9 +22,12 @@ public class PlayerCombat : MonoBehaviour
     private Animator anim;
     public bool hasCoralStaff = false;
 
+    private PlayerMovement playerMovement;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
 
         // 게임 시작 시 Coral Staff는 비활성화 (획득 전까지 숨김)
         if (coralStaffInHand != null)
@@ -33,6 +36,11 @@ public class PlayerCombat : MonoBehaviour
 
     public void HandleAttack()
     {
+        // ** 은주 추가
+        float h = Input.GetAxisRaw("Horizontal");
+        playerMovement.FlipByDirection(h);
+        // **
+
         if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime + attackCooldown)
         {
             lastAttackTime = Time.time;
@@ -61,6 +69,9 @@ public class PlayerCombat : MonoBehaviour
             }
         }
     }
+
+  
+
 
     public void HandleSkill()
     {
