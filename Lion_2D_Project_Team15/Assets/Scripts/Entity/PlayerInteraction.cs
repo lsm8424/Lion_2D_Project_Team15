@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -16,16 +16,23 @@ public class PlayerInteraction : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
+    private bool ladderJustEntered = false; // 중복 상호작용 방지용
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
+    
     public void HandleInteraction()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            // 사다리 타자마자 바로 Exit 되는 것 방지
+            if (ladderJustEntered)
+                return;
+
             if (isTalking)
             {
                 currentNPC?.AdvanceDialogue();
@@ -38,8 +45,7 @@ public class PlayerInteraction : MonoBehaviour
                 return;
             }
 
-            // ─── Ray 쏴서 상호작용 감지 ───
-            Vector2 direction = transform.right;
+            Vector2 direction = Player.Instance.movement.facingRight ? Vector2.right : Vector2.left;
             Vector2 origin = (Vector2)transform.position + direction * 0.1f;
 
             RaycastHit2D hit = Physics2D.Raycast(origin, direction, interactRange, interactLayerMask);
@@ -59,7 +65,7 @@ public class PlayerInteraction : MonoBehaviour
                         isTalking = true;
                     }
                 }
-                else if (target.GetComponent<ParentDolphin>() != null) // 태그와 상관없이 컴포넌트로 감지
+                else if (target.GetComponent<ParentDolphin>() != null)
                 {
                     currentNPC = target.GetComponent<ParentDolphin>();
                     if (currentNPC != null)
@@ -76,7 +82,7 @@ public class PlayerInteraction : MonoBehaviour
                         baby.Select();
                     }
                 }
-                else if (target.CompareTag("Item")) // 아이템 줍기
+                else if (target.CompareTag("Item"))
                 {
                     PickupItem(target);
                 }
@@ -88,23 +94,25 @@ public class PlayerInteraction : MonoBehaviour
                         EnterLadder();
                     }
                 }
-
             }
         }
     }
 
-    // 아이템 습득 처리
     private void PickupItem(GameObject item)
     {
-        
         if (Time.timeSinceLevelLoad < 1.0f)
             return;
 
-
         Debug.Log("아이템을 획득했습니다: " + item.name);
 
-        Destroy(item);
+        if (item.name.Contains("CoralStaff"))
+        {
+            Player.Instance.combat.hasCoralStaff = true;
+            Player.Instance.combat.coralStaffInHand.SetActive(true);
+            Debug.Log("Coral Staff를 획득했습니다! 이제 원거리 공격이 가능합니다!");
+        }
 
+        Destroy(item);
     }
 
     public void EndDialogue()
@@ -116,8 +124,12 @@ public class PlayerInteraction : MonoBehaviour
     private void EnterLadder()
     {
         isOnLadder = true;
+
+        // 이동 막기 → 사다리 이동만 가능하게
         Player.Instance.movement.enabled = false;
-        rb.gravityScale = 0f;
+
+        rb.linearVelocity = Vector2.zero; // 잔여속도 제거
+        rb.gravityScale = 0f;       // 중력 제거
 
         if (anim != null)
             anim.SetTrigger("ClimbStart");
@@ -129,13 +141,21 @@ public class PlayerInteraction : MonoBehaviour
     {
         isOnLadder = false;
         currentLadder = null;
+
         Player.Instance.movement.enabled = true;
-        rb.gravityScale = 1f;
+        rb.gravityScale = 1f; // 중력 복구
 
         if (anim != null)
             anim.SetTrigger("ClimbEnd");
 
         Debug.Log("사다리에서 내려옴");
+    }
+
+
+    private IEnumerator ResetLadderJustEntered()
+    {
+        yield return new WaitForSeconds(0.5f); // 최소 0.5초 기다림
+        ladderJustEntered = false;
     }
 
     public bool IsOnLadder() => isOnLadder;
