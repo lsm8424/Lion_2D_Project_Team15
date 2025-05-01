@@ -20,6 +20,7 @@ public class DialogueEntry
     public string text; // 대화 내용
     public string choices; // 선택지 문자열 (형식: "선택1:next1|선택2:next2")
     public string condition; // 대화 표시 조건 (예: "player.level >= 10")
+    public bool isEndOfDialogue; // 대화 종료 플래그
 }
 
 public class DialogueOption
@@ -34,4 +35,5 @@ public class DialogueLineData
     public string text; // 대화 내용
     public DialogueOption[] options; // 선택지 배열
     public Func<bool> conditionCheck; // 대화 표시 조건을 검사하는 함수
+    public bool isEndOfDialogue; // 대화 종료 플래그
 }
