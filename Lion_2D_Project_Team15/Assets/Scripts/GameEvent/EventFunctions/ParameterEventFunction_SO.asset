@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adf92fe0fce2b8b4c90e7d8b6261a518, type: 3}
-  m_Name: CutsceneEventSO
+  m_Script: {fileID: 11500000, guid: d5bbed2bf5c8518458a051753cf1f233, type: 3}
+  m_Name: ParameterEventFunction_SO
   m_EditorClassIdentifier: 
   FunctionType: 2
-  Clip: {fileID: 11400000, guid: 53ce909d32fa28f47a0c2309da4da654, type: 2}
+  Functions: []
