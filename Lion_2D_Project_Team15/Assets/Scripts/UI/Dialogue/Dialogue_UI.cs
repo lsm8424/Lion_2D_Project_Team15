@@ -18,11 +18,11 @@ public class Dialogue_UI : MonoBehaviour
 
     DialogueCategory _category;
     DialogueLineData _currentDialogueData;
+    DialogueManager _dialogueManager;
 
     void Start()
     {
-        // 테스트
-        SetUpScripts(DialogueCategory.Interaction, "librarian_001");
+        _dialogueManager = DialogueManager.Instance;
     }
 
     public void OnClickTouchPanel()
@@ -33,43 +33,30 @@ public class Dialogue_UI : MonoBehaviour
             return;
         }
 
-        MoveNext();
+        _dialogueManager.MoveNext();
     }
 
-    public void SetUpScripts(DialogueCategory category, string path)
+    public void ShowDialogue(DialogueLineData lineData)
     {
-        _category = category;
-        _currentDialogueData = DialogueDatabase_JSON
-                .Instance
-                .GetDialogue(category, path);
+        StartCoroutine(PlayScript(lineData));
+    }
 
-        if (_currentDialogueData == null)
-        {
-            Debug.LogError($"스크립트가 로드되지 않았습니다. DialogueCategory: {category}, path: {path}");
-            return;
-        }
+    IEnumerator PlayScript(DialogueLineData lineData)
+    {
+        // 초기화
+        IsPrintComplete = false;
+        DoSkip = false;
 
         string[] split = _currentDialogueData.id.Split("_");
 
         scriptIdPrefix = split[0];
         scriptIdNumber = split[1];
 
-        _speaker.SetText("");
-        _content.SetText("");
-
-        StartCoroutine(PlayScript());
-    }
-
-    IEnumerator PlayScript()
-    {
-        // 초기화
-        IsPrintComplete = false;
-        DoSkip = false;
         _speaker.SetText(scriptIdPrefix);    // 화자의 이름을 어떻게 정할지
         _content.SetText("");
 
         GameManager gameManager = GameManager.Instance;
-        string script = _currentDialogueData.text;
+        string script = lineData.text;
 
         // 딜레이마다 한 글자씩 출력
         for (int i = 0; i < script.Length; ++i)
@@ -108,42 +95,11 @@ public class Dialogue_UI : MonoBehaviour
         IsPrintComplete = true;
     }
 
-    bool MoveNext()
-    {
-        GetNextId();
-
-        string path = scriptIdPrefix + "_" + scriptIdNumber;
-
-        _currentDialogueData = DialogueDatabase_JSON
-                .Instance
-                .GetDialogue(_category, path);
-
-        if (_currentDialogueData == null)
-        {
-            Debug.LogError($"Dialogue가 정상적으로 로드되지 않았습니다. Path: {path}");
-            return false;
-        }
-
-        return true;
-    }
-
-    void GetNextId()
-    {
-        if (!int.TryParse(scriptIdNumber, out int id))
-        {
-            Debug.LogError($"유효하지 않은 ${scriptIdPrefix}_${scriptIdNumber}");
-            return;
-        }
-
-        ++id;
-        scriptIdNumber = id.ToString("D3");
-    }
-
-    public void ChooseOption(string path)
+    public void ChooseOption(string dialogueID)
     {
         _dialogueOptionPanel.ClearOptions();
         _dialogueOptionPanel.gameObject.SetActive(false);
-        SetUpScripts(_category, path);
+        _dialogueManager.JumpTo(dialogueID);
     }
     
     // IEnumerator PlayScript(ITextEffect textEffect);

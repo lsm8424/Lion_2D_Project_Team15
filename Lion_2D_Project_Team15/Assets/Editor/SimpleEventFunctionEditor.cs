@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(SimpleEventFunction))]
+[CustomEditor(typeof(SimpleEventFunction_SO))]
 public class SimpleEventFunctionEditor : Editor
 {
     private SerializedProperty simpleEventsProp;
@@ -35,19 +35,19 @@ public class SimpleEventFunctionEditor : Editor
             EditorGUILayout.PropertyField(processTypeProp);
             EditorGUILayout.PropertyField(processNameProp);
 
-            SimpleEventFunction.EProcessType processType = (SimpleEventFunction.EProcessType)processTypeProp.enumValueIndex;
+            SimpleEventFunction_SO.EProcessType processType = (SimpleEventFunction_SO.EProcessType)processTypeProp.enumValueIndex;
 
-            // √≥∏Æ≈∏¿‘¿Ã ∏‚πˆ∫Øºˆ, «¡∑Œ∆€∆º ∂Û∏È ≈∏¿‘∞˙ ±◊ø° «ÿ¥Á«œ¥¬ ¿‘∑¬ƒ≠ «•Ω√
-            if (processType == SimpleEventFunction.EProcessType.Field || processType == SimpleEventFunction.EProcessType.Property)
+            // Ï≤òÎ¶¨ÌÉÄÏûÖÏù¥ Î©§Î≤ÑÎ≥ÄÏàò, ÌîÑÎ°úÌçºÌã∞ ÎùºÎ©¥ ÌÉÄÏûÖÍ≥º Í∑∏Ïóê Ìï¥ÎãπÌïòÎäî ÏûÖÎ†•Ïπ∏ ÌëúÏãú
+            if (processType == SimpleEventFunction_SO.EProcessType.Field || processType == SimpleEventFunction_SO.EProcessType.Property)
             {
                 EditorGUILayout.PropertyField(valueTypeProp);
 
-                // --- ValueTypeø° µ˚∂Û Value ¿‘∑¬√¢ ¡¶æÓ ---
-                SimpleEventFunction.EValueType fieldType = (SimpleEventFunction.EValueType)valueTypeProp.enumValueIndex;
+                // --- ValueTypeÏóê Îî∞Îùº Value ÏûÖÎ†•Ï∞Ω Ï†úÏñ¥ ---
+                SimpleEventFunction_SO.EValueType fieldType = (SimpleEventFunction_SO.EValueType)valueTypeProp.enumValueIndex;
                 SetFieldMember(fieldType, element);
             }
 
-            if (GUILayout.Button("ªË¡¶"))
+            if (GUILayout.Button("ÏÇ≠Ï†ú"))
             {
                 simpleEventsProp.DeleteArrayElementAtIndex(i);
             }
@@ -55,7 +55,7 @@ public class SimpleEventFunctionEditor : Editor
             EditorGUILayout.EndVertical();
         }
 
-        if (GUILayout.Button("ªı ¿Ã∫•∆Æ √ﬂ∞°"))
+        if (GUILayout.Button("ÏÉà Ïù¥Î≤§Ìä∏ Ï∂îÍ∞Ä"))
         {
             simpleEventsProp.InsertArrayElementAtIndex(simpleEventsProp.arraySize);
         }
@@ -63,23 +63,23 @@ public class SimpleEventFunctionEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 
-    public void SetFieldMember(SimpleEventFunction.EValueType fieldType, SerializedProperty element)
+    public void SetFieldMember(SimpleEventFunction_SO.EValueType fieldType, SerializedProperty element)
     {
         switch (fieldType)
         {
-            case SimpleEventFunction.EValueType.Bool:
+            case SimpleEventFunction_SO.EValueType.Bool:
                 EditorGUILayout.PropertyField(element.FindPropertyRelative("BoolValue"), new GUIContent("Bool Value"));
                 break;
-            case SimpleEventFunction.EValueType.Int:
+            case SimpleEventFunction_SO.EValueType.Int:
                 EditorGUILayout.PropertyField(element.FindPropertyRelative("IntValue"), new GUIContent("Int Value"));
                 break;
-            case SimpleEventFunction.EValueType.Float:
+            case SimpleEventFunction_SO.EValueType.Float:
                 EditorGUILayout.PropertyField(element.FindPropertyRelative("FloatValue"), new GUIContent("Float Value"));
                 break;
-            case SimpleEventFunction.EValueType.String:
+            case SimpleEventFunction_SO.EValueType.String:
                 EditorGUILayout.PropertyField(element.FindPropertyRelative("StringValue"), new GUIContent("String Value"));
                 break;
-            case SimpleEventFunction.EValueType.Vector3:
+            case SimpleEventFunction_SO.EValueType.Vector3:
                 EditorGUILayout.PropertyField(element.FindPropertyRelative("Vector3Value"), new GUIContent("Vector3 Value"));
                 break;
         }

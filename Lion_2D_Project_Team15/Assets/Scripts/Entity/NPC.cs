@@ -15,29 +15,19 @@ public class NPC : MonoBehaviour
     public DialogueLine[] dialogueLines;
     private int dialogueIndex = 0; // 현재 몇번째 대사인지 추적
 
+    public string DialogueID;
 
     // 플레이어가 F 키로 상호작용 시 호출됨
     public void Interact()
     {
-        dialogueIndex = 0; // 대사 인덱스 초기화
-        ShowDialogue(); // 첫 번째 대사 출력
+        DialogueManager.Instance.StartDialogue(DialogueCategory.Dialogue, DialogueID);
     }
 
 
     // 플레이어가 F 키를 다시 누르면 호출됨
     public void AdvanceDialogue()
     {
-        dialogueIndex++; // 다음 대사로 이동
-
-        if (dialogueIndex >= dialogueLines.Length) 
-        {
-            OnDialogueEnd(); // 대사가 끝났을 경우 처리
-        }
-        else
-        {
-            ShowDialogue(); // 다음 대사 출력
-        }
-
+        DialogueManager.Instance.Dialogue_UI.OnClickTouchPanel();
     }
 
     private void ShowDialogue()

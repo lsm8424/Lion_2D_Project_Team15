@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Reflection;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SimpleEventFunction", menuName = "Scriptable Objects/SimpleEventFunction")]
-public class SimpleEventFunction : EventFunctionSO
+[CreateAssetMenu(fileName = "SimpleEventFunction_SO", menuName = "Scriptable Objects/EventFunction/SimpleEventFunction_SO")]
+public class SimpleEventFunction_SO : EventFunction_SO
 {
     public SimpleEventStruct[] SimpleEvents;
     Action[] Process;
@@ -43,17 +44,14 @@ public class SimpleEventFunction : EventFunctionSO
         Vector3,
     }
 
-    public SimpleEventFunction()
+    public SimpleEventFunction_SO()
     {
         FunctionType = EGameEventFunctionType.Normal;
     }
-    public override void Execute()
+    public override IEnumerator Execute()
     {
-        GameManager.Instance.StartCoroutine(RunEventsCoroutine(SimpleEvents));
-    }
+        SimpleEventStruct[] events = SimpleEvents;
 
-    IEnumerator RunEventsCoroutine(SimpleEventStruct[] events)
-    {
         for (int i = 0; i < events.Length; ++i)
         {
             if (events[i].DelaySeconds > 0f)
@@ -66,7 +64,7 @@ public class SimpleEventFunction : EventFunctionSO
     /// <summary>
     /// 리플렉션을 이용한 세팅
     /// </summary>
-    public override void Initialize()
+    public override void Setup()
     {
         Process = new Action[SimpleEvents.Length];
         var warehouse = IDManager.Instance.Identifiers;
