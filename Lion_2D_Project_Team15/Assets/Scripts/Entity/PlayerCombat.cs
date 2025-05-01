@@ -2,52 +2,107 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public float attackPower; // ±âº» °ø°İÀÇ µ¥¹ÌÁö
-    public float attackCooldown; // ±âº» °ø°İ ÄğÅ¸ÀÓ
-    public float skillCooldown; // ½ºÅ³ ÄğÅ¸ÀÓ
+    [Header("ì¥ë¹„ ê´€ë ¨")]
+    public GameObject coralStaffInHand; // ì†ì— ë“¤ë ¤ì¤„ Coral Staff ì˜¤ë¸Œì íŠ¸
+    public float coralStaffAttackPower = 15f; // Coral Staff ê³ ìœ  ê³µê²©ë ¥
 
-    public float attackRange = 1.5f; // °ø°İ ¹üÀ§
+    [Header("ê³µê²© ì„¤ì •")]
+    public float attackPower;
+    public float attackCooldown;
+    private float lastAttackTime = -999f;
 
-    private float lastAttackTime = -999f; // ¸¶Áö¸· °ø°İ ½Ã°£ (Ã³À½ºÎÅÍ °ø°İ °¡´ÉÇÏ°Ô ÃÊ±âÈ­)
-    private float lastSkillTime = -999f; // ¸¶Áö¸· ½ºÅ³ »ç¿ë ½Ã°£
+    [Header("ìŠ¤í‚¬ ì„¤ì •")]
+    public float skillCooldown;
+    private float lastSkillTime = -999f;
 
-    private Animator anim; // ¾Ö´Ï¸ŞÀÌÅÍ ÄÄÆ÷³ÍÆ®
+    [Header("ë°œì‚¬ì²´ ì„¤ì •")]
+    public GameObject coralProjectilePrefab; // ìƒì„±í•  ë°œì‚¬ì²´ í”„ë¦¬íŒ¹
+    public Transform firePoint; // ë°œì‚¬ ìœ„ì¹˜ (í”Œë ˆì´ì–´ ìœ„ì¹˜ë‚˜ ì† ìœ„ì¹˜)
+
+    private Animator anim;
+    public bool hasCoralStaff = false;
 
     private void Start()
     {
-        anim = GetComponent<Animator>(); // ÀÌ ¿ÀºêÁ§Æ®ÀÇ Animator °¡Á®¿À±â
+        anim = GetComponent<Animator>();
+
+        // ê²Œì„ ì‹œì‘ ì‹œ Coral StaffëŠ” ë¹„í™œì„±í™” (íšë“ ì „ê¹Œì§€ ìˆ¨ê¹€)
+        if (coralStaffInHand != null)
+            coralStaffInHand.SetActive(false);
     }
 
     public void HandleAttack()
     {
-        // ¸¶¿ì½º ÁÂÅ¬¸¯ & ÄğÅ¸ÀÓ Ã¼Å©
         if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime + attackCooldown)
         {
-            lastAttackTime = Time.time; // °ø°İ ½Ã°£ °»½Å
+            lastAttackTime = Time.time;
             if (anim != null)
-                anim.SetTrigger("Attack"); // ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà
+                anim.SetTrigger("Attack");
 
-            Debug.Log("±âº» °ø°İ! °ø°İ·Â: " + attackPower); 
+            Debug.Log("ê¸°ë³¸ ê³µê²©!");
+
+            // ê³µê²© ë²”ìœ„ ë‚´ ëª¬ìŠ¤í„° ì°¾ê¸°
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1.5f); // 1.5f: ê³µê²© ë²”ìœ„
+
+            foreach (Collider2D col in hits)
+            {
+                Debug.Log("ì¶©ëŒ ê°ì§€í•œ ì˜¤ë¸Œì íŠ¸: " + col.name);
+
+                if (col.CompareTag("Monster"))
+                {
+                    Debug.Log("ëª¬ìŠ¤í„° ê°ì§€! ë°ë¯¸ì§€ ì…í˜");
+
+                    Entity monster = col.GetComponent<Entity>();
+                    if (monster != null)
+                    {
+                        monster.TakeDamage(attackPower);
+                    }
+                }
+            }
         }
     }
 
     public void HandleSkill()
     {
-        // ¸¶¿ì½º ¿ìÅ¬¸¯ & ÄğÅ¸ÀÓ Ã¼Å©
+        if (!hasCoralStaff)
+            return; // CoralStaff ì—†ìœ¼ë©´ ìŠ¤í‚¬ ëª»ì”€
+
         if (Input.GetMouseButtonDown(1) && Time.time >= lastSkillTime + skillCooldown)
         {
-            lastSkillTime = Time.time; // ½ºÅ³ ½Ã°£ °»½Å
+            lastSkillTime = Time.time;
+
             if (anim != null)
                 anim.SetTrigger("Skill");
 
-            Debug.Log("½ºÅ³ »ç¿ë!");
+            Debug.Log("CoralStaff ìŠ¤í‚¬ ë°œì‚¬!");
+
+            ShootProjectile();
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void ShootProjectile()
     {
-        // Scence ºä¿¡¼­ ¼±ÅÃÇßÀ» ¶§ »¡°£ ¿øÀ¸·Î °ø°İ ¹üÀ§ Ç¥½Ã
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        if (coralProjectilePrefab == null || firePoint == null)
+            return;
+
+        GameObject projectile = Instantiate(coralProjectilePrefab, firePoint.position, Quaternion.identity);
+
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        CoralProjectile cp = projectile.GetComponent<CoralProjectile>();
+
+        if (cp != null)
+        {
+            cp.damage = coralStaffAttackPower;
+        }
+
+        if (rb != null)
+        {
+            // ë°©í–¥ ê²°ì •
+            float direction = transform.localScale.x > 0 ? 1f : -1f;
+            Vector2 shootDir = new Vector2(direction, 0f); // xë°©í–¥ìœ¼ë¡œë§Œ ë°œì‚¬
+            rb.linearVelocity = shootDir * 10f;
+        }
     }
+
+
 }
