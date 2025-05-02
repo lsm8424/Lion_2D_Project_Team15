@@ -67,7 +67,7 @@ public class Monster : Entity
             lastAttackTime = Time.time;
 
             if (anim != null)
-                anim.SetTrigger("Attack");
+                anim.SetTrigger("Attack"); // 널 체크 나중에 에니메이션 추가되면 변경
 
             Debug.Log($"몬스터가 플레이어를 공격! 공격력: {attackPower}");
 
