@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,82 +54,72 @@ public class StageManager : Singleton<GameManager>
     }
 
     /// <summary>
-    /// 같은 씬 내 포탈로 이동
+    /// 같은 씬 내 포탈 위치로 이동 (페이드 포함) 🔧
     /// </summary>
     public void TeleportToPortal(int targetIndex)
     {
-        if (!portalDict.TryGetValue(targetIndex, out Portal targetPortal))
-        {
-            Debug.LogError($"[StageManager] 이동 실패: 인덱스 {targetIndex}의 포탈을 찾을 수 없습니다.");
-            return;
-        }
-
-        if (Player == null)
-        {
-            Debug.LogError("[StageManager] Player 오브젝트를 찾을 수 없습니다.");
-            return;
-        }
-
-        Player.transform.position = targetPortal.targetPortal.position;
+        StartCoroutine(FadeAndTeleport(targetIndex)); // 🔧 페이드 포함 이동 처리
     }
-    //    //페이드 인아웃 + 플레이어 이동
-    //    StartCoroutine(FadeAndTeleport(targetPortal));
-    //}
-
-    //private IEnumerator FadeAndTeleport(Portal targetPortal)
-    //{
-    //    //yield return SceneController.Instance.FadeIn(0.5f); // 페이드 인
-
-    //    Player.transform.position = targetPortal.targetPortal.position;
-
-    //    #region 나중에 지워야할 것
-    //    player.GetComponent<move>().currentMap = targetPortal.MapIndex;
-    //    Camera.main.GetComponent<followcam>().transCam(targetPortal.MapIndex);
-    //    #endregion
-
-    //    //yield return SceneController.Instance.FadeOut(0.5f); // 페이드 아웃
-
-    //}
 
     /// <summary>
-    /// 다른 씬으로 이동하고, 해당 씬 내 포탈 인덱스 위치로 이동
+    /// 위치 이동 전후로 페이드 인/아웃 적용 💡
     /// </summary>
-    public void TeleportScene(string sceneName, int spawnPortalIndex = 0)
+    private IEnumerator FadeAndTeleport(int targetIndex)
+    {
+        var fadeIn = new Fade(Color.clear, Color.black, 0.5f); // 💡 페이드 인
+        yield return fadeIn.Execute();
+
+        if (!portalDict.TryGetValue(targetIndex, out Portal targetPortal))
+        {
+            Debug.LogError($"[StageManager] 이동 실패: 인덱스 {targetIndex} 포탈을 찾을 수 없습니다.");
+            yield break;
+        }
+
+        if (Player != null)
+        {
+            //카메라 임시 설정
+            Camera.main.GetComponent<followcam>().transCam(targetPortal.MapIndex);
+
+            Player.transform.position = targetPortal.targetPortal.position;
+        }
+
+        var fadeOut = new Fade(Color.black, Color.clear, 0.5f); // 💡 페이드 아웃
+        yield return fadeOut.Execute();
+    }
+
+    /// <summary>
+    /// 포탈을 통해 다른 씬으로 이동 요청 (SceneController 이용, 수정 없음) 🔧
+    /// </summary>
+    public void TeleportScene(string sceneName, int spawnPortalIndex)
     {
         if (!Application.CanStreamedLevelBeLoaded(sceneName))
         {
-            Debug.LogError($"[StageManager] 씬 '{sceneName}' 을(를) 로드할 수 없습니다. Build Settings에 등록되어 있는지 확인하세요.");
+            Debug.LogError($"[StageManager] 씬 '{sceneName}' 을(를) 로드할 수 없습니다.");
             return;
         }
 
-        // 씬 전환 전 페이드 아웃 추가
-        StartCoroutine(FadeOutThenLoad(sceneName, spawnPortalIndex));
+        // 🔥 기존 SceneController의 LoadSceneWithFadeInOut만 호출
+        SceneController.Instance.LoadSceneWithFadeInOut(sceneName, 0.5f);
+
+        //씬 전환전 포탈 초기화
+        portalDict.Clear();
+
+        // 🔥 별도로 코루틴 돌려서 포탈 이동까지 관리
+        StartCoroutine(HandleAfterSceneLoad(spawnPortalIndex, sceneName));
     }
-
-    private IEnumerator FadeOutThenLoad(string sceneName, int spawnPortalIndex)
-    {
-        //yield return SceneController.Instance.FadeIn(0.5f); //페이드 인 먼저 실행
-
-        // 이제 기존 로딩 코루틴 실행
-        yield return LoadSceneAndTeleport(sceneName, spawnPortalIndex);
-    }
-
 
     /// <summary>
-    /// 씬 비동기 로딩 + 도착 포탈 위치로 이동 처리
+    /// 씬 로딩 완료 후 포탈 이동 처리 (SceneController는 수정 안함) 🔧
     /// </summary>
-    private IEnumerator LoadSceneAndTeleport(string sceneName, int spawnPortalIndex)
+    private IEnumerator HandleAfterSceneLoad(int spawnPortalIndex, string sceneName)
     {
-        portalDict.Clear(); // 이전 씬 포탈 데이터 초기화
-
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-        while (!asyncLoad.isDone)
+        //현재 활성화된 씬과 씬이름이 일치할때까지 대기
+        while (SceneManager.GetActiveScene().name != sceneName)
             yield return null;
 
-        // 씬 전환 후 포탈 등록 대기 (0.3초대기)
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.3f); // 포탈 등록 대기
 
-        player = GameObject.FindGameObjectWithTag("Player"); // 새 씬에서 플레이어 재탐색
+        player = GameObject.FindGameObjectWithTag("Player");    //한번 더 호출
 
         if (!portalDict.TryGetValue(spawnPortalIndex, out Portal spawnPortal))
         {
@@ -137,21 +127,12 @@ public class StageManager : Singleton<GameManager>
             yield break;
         }
 
-
-
         if (Player != null)
         {
             Player.transform.position = spawnPortal.targetPortal.position;
-
-            #region 나중에 지워야할 것
-            player.GetComponent<move>().currentMap = spawnPortal.MapIndex; // 이동할 맵의 인덱스로
-            Camera.main.GetComponent<followcam>().transCam(spawnPortal.MapIndex); // 카메라 이동
-            #endregion
-
-            //페이드 아웃
-            //yield return SceneController.Instance.FadeOut(0.5f);  // 페이드 아웃
+            //카메라 임시 설정
+            Camera.main.GetComponent<followcam>().transCam(spawnPortal.MapIndex);
         }
-
-        
     }
+
 }

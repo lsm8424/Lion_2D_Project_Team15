@@ -9,7 +9,7 @@ public class SceneController  : Singleton<SceneController>
     #region Resource
     [SerializeField] GameObject _sceneCanvasPrefab;
     GameObject _sceneCanvas;
-    Image _fadePanel;
+    public Image FadePanel { get; private set; }
     #endregion
 
     AsyncOperation _currentOperation;
@@ -20,32 +20,53 @@ public class SceneController  : Singleton<SceneController>
     {
         base.Awake();
 
-        // ¸¸¾à PrefabÀÌ ¾ø´Ù¸é Resources/SceneCanvas¸¦ LoadÇÏ¿© »ç¿ë
+        // ë§Œì•½ Prefabì´ ì—†ë‹¤ë©´ Resources/SceneCanvasë¥¼ Loadí•˜ì—¬ ì‚¬ìš©
         if (_sceneCanvasPrefab == null)
             _sceneCanvasPrefab = Resources.Load<GameObject>("UI/SceneCanvas");
 
         if (_sceneCanvas == null)
             _sceneCanvas = Instantiate(_sceneCanvasPrefab, transform);
 
-        _fadePanel = _sceneCanvas.GetComponentInChildren<Image>();
+        FadePanel = _sceneCanvas.GetComponentInChildren<Image>();
+
+        // ì¶”í›„ì‘ì„± í•„ìš”
+        //SceneManager.sceneLoaded += OnSceneLoaded;
+        StartCoroutine(AfterAwake());
+
+    }
+
+    IEnumerator AfterAwake()
+    {
+        yield return null;
+        OnSceneLoaded(new Scene(), LoadSceneMode.Single);
+        //yield return EventManager.Instance.RunEvent("1");
+
+        Debug.Log("ì½”ë£¨í‹´ í…ŒìŠ¤íŠ¸");
+    }
+    public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        // int stageNumber = ???
+        IDManager.Instance.SetUpIdentifiers();
+        EventManager.Instance.SetupEvents(1);
+        // SaveManager.Instance.Save();
     }
 
     /// <summary>
-    /// Fade In/Out È¿°ú¸¦ Àû¿ëÇÏ¸ç Scene·Îµå
+    /// Fade In/Out íš¨ê³¼ë¥¼ ì ìš©í•˜ë©° Sceneë¡œë“œ
     /// </summary>
     /// <param name="sceneName"></param>
     /// <param name="fadeDuration"></param>
     public void LoadSceneWithFadeInOut(string sceneName, float fadeDuration)
     {
-        var fadeIn = new Fade(_fadePanel, Color.clear, Color.black, fadeDuration);
-        var fadeOut = new Fade(_fadePanel, Color.black, Color.clear, fadeDuration);
+        var fadeIn = new Fade(Color.clear, Color.black, fadeDuration);
+        var fadeOut = new Fade(Color.black, Color.clear, fadeDuration);
 
         LoadSceneWithEffect(sceneName, fadeIn, fadeOut);
     }
 
 
     /// <summary>
-    /// ÀÌÆåÆ® È¿°ú¸¦ Àû¿ëÇÏ¿© ¾À ÀüÈ¯
+    /// ì´í™íŠ¸ íš¨ê³¼ë¥¼ ì ìš©í•˜ì—¬ ì”¬ ì „í™˜
     /// </summary>
     /// <param name="sceneName"></param>
     /// <param name="startEffect"></param>
@@ -68,7 +89,7 @@ public class SceneController  : Singleton<SceneController>
     }
 
     /// <summary>
-    /// Scene ·Îµå ÁØºñ
+    /// Scene ì¤€ë¹„
     /// </summary>
     public void LoadSceneAsync()
     {
@@ -78,14 +99,14 @@ public class SceneController  : Singleton<SceneController>
     }
 
     /// <summary>
-    /// 0.9f - ´ÙÀ½ ¾ÀÀÌ ÁØºñµÈ »óÅÂ
-    /// 1f - ·Îµå°¡ ¿Ï·áµÈ »óÅÂ
+    /// 0.9f - ë‹¤ìŒ ì”¬ì´ ì¤€ë¹„ëœ ìƒíƒœ
+    /// 1f - ë¡œë“œê°€ ì™„ë£Œëœ ìƒíƒœ
     /// </summary>
     /// <returns></returns>
     public float GetProgress() => Mathf.Clamp01(_currentOperation.progress / 0.9f);
 
     /// <summary>
-    /// Scene ÀüÈ¯
+    /// Scene ì „í™˜
     /// </summary>
     public void SwitchScene()
     {

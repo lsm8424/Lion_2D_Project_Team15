@@ -2,50 +2,88 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed; // ÀÌµ¿¼Óµµ
-    public float jumpForce; // Á¡ÇÁ Èû
-    public bool isGrounded; // ¶¥¿¡ ´ê¾Æ ÀÖ´ÂÁö ¿©ºÎ
+    [Header("ì´ë™ ì„¤ì •")]
+    public float moveSpeed;      // ì´ë™ ì†ë„
+    public float jumpForce;      // ì í”„ í˜
+    public bool isGrounded;      // ë°”ë‹¥ ì ‘ì§€ ìƒíƒœ
+    public bool facingRight = true; // ìºë¦­í„° ì‹œì‘ ì‹œ ë°”ë¼ë³´ëŠ” ë°©í–¥
 
-    private Rigidbody rb;
+    private Rigidbody2D rb;
+    private Animator anim;
+
+    [Header("ì°¸ì¡°")]
+    public Sword sword; // Sword ì°¸ì¡°
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     public void HandleMove()
     {
-        // WASD ¶Ç´Â ¹æÇâÅ° ÀÔ·Â ¹Ş±â
-        float h = Input.GetAxisRaw("Horizontal"); // A,D ¶Ç´Â ¡ç, ¡æ
-        float v = Input.GetAxisRaw("Vertical"); // W,S ¶Ç´Â ¡è,¡é
+        // ì‚¬ë‹¤ë¦¬ ìœ„ì— ìˆì„ ë•ŒëŠ” ì¢Œ/ìš° ì´ë™ ì°¨ë‹¨
+        if (Player.Instance.interaction.IsOnLadder())
+            return;
 
-        // ÀÔ·Â ¹æÇâÀ¸·ÎÀÇ º¤ÅÍ °è»ê (YÃàÀº Á¦¿ÜÇÏ°í Æò¸é ÀÌµ¿)
-        Vector3 moveDir = new Vector3(h, 0, v).normalized;
-        Vector3 move = moveDir * moveSpeed * Time.deltaTime;
+        float h = Input.GetAxisRaw("Horizontal");
+        Vector3 moveDir = new Vector3(h, 0, 0).normalized;
+        transform.Translate(moveDir * moveSpeed * Time.deltaTime, Space.World);
 
-        transform.Translate(move, Space.World);
+        FlipByDirection(h);
 
-        if (moveDir != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
-        }
+        bool isRunning = h != 0;
+        anim.SetBool("Run", isRunning);
+        if (sword != null) sword.SetRun(isRunning); // Swordì— ì „ë‹¬
+
     }
+
+
 
     public void HandleJump()
     {
-        // ½ºÆäÀÌ½º Å° ÀÔ·Â && ¶¥¿¡ ÀÖ´Â »óÅÂÀÏ °æ¿ì¸¸ Á¡ÇÁ °¡´É
+        // ì‚¬ë‹¤ë¦¬ ìœ„ì—ì„œëŠ” ì í”„ ê¸ˆì§€ (PlayerInteractionì´ ìŠ¤í˜ì´ìŠ¤ë¡œ íƒˆì¶œ ì²˜ë¦¬)
+        if (Player.Instance.interaction.IsOnLadder())
+            return;
+
+        // ìŠ¤í˜ì´ìŠ¤ í‚¤ ì…ë ¥ && ë°”ë‹¥ì— ë‹¿ì•„ ìˆì„ ë•Œë§Œ ì í”„
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // À§ÂÊÀ¸·Î ÈûÀ» °¡ÇÔ
-            isGrounded = false; // °øÁß »óÅÂ·Î ÀüÈ¯
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            isGrounded = false; // ê³µì¤‘ ìƒíƒœë¡œ ì „í™˜
+
+            anim.SetBool("Jump", true);
+            if (sword != null) sword.SetJump(true);
+
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void FlipByDirection(float h)
     {
-        // Ãæµ¹ÇÑ ´ë»óÀÌ Ground ÅÂ±×¸¦ °¡Áö°í ÀÖ´Ù¸é ÂøÁö Ã³¸®
+        if (h > 0 && !facingRight)
+            Flip();
+        else if (h < 0 && facingRight)
+            Flip();
+    }
+
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+
+        if (sword != null) sword.Flip(facingRight); // Swordì—ë„ Flip ì „ë‹¬
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         if (collision.gameObject.CompareTag("Ground"))
-            isGrounded = true; // ´Ù½Ã Á¡ÇÁ °¡´É »óÅÂ·Î ¼³Á¤
+            isGrounded = true;
+
+        anim.SetBool("Jump", false);
+        if (sword != null) sword.SetJump(false);
+
     }
 }

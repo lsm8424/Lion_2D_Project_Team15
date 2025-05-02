@@ -12,9 +12,9 @@ public class Fade : IScreenEffect
 
     public bool IsCompleted { get; private set; }
 
-    public Fade(Image image, Color startColor, Color endColor, float duration)
+    public Fade(Color startColor, Color endColor, float duration)
     {
-        _image = image;
+        _image = SceneController.Instance.FadePanel;
         _startColor = startColor;
         _endColor = endColor;
         _duration = duration;

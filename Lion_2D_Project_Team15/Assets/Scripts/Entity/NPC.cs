@@ -3,59 +3,47 @@ using UnityEngine;
 public enum SpeakerType { Player, NPC }
 
 [System.Serializable]
-public class DalogueLine
+public class DialogueLine
 {
-    public SpeakerType speaker; // ¸»ÇÏ´Â ÁÖÃ¼
-    public string text; // ´ë»ç ³»¿ë
+    public SpeakerType speaker; // ë§í•˜ëŠ” ì£¼ì²´
+    public string text; // ëŒ€ì‚¬ ë‚´ìš©
 }
 public class NPC : MonoBehaviour
 {
     
-    public string NPCName; // NPC ÀÌ¸§
-    public DalogueLine[] dialogueLines;
-    private int dialogueIndex = 0; // ÇöÀç ¸î¹øÂ° ´ë»çÀÎÁö ÃßÀû
+    public string NPCName; // NPC ì´ë¦„
+    public DialogueLine[] dialogueLines;
+    private int dialogueIndex = 0; // í˜„ìž¬ ëª‡ë²ˆì§¸ ëŒ€ì‚¬ì¸ì§€ ì¶”ì 
 
+    public string DialogueID;
 
-    // ÇÃ·¹ÀÌ¾î°¡ F Å°·Î »óÈ£ÀÛ¿ë ½Ã È£ÃâµÊ
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+            Interact();
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            AdvanceDialogue();
+        }
+    }
+
+    // í”Œë ˆì´ì–´ê°€ F í‚¤ë¡œ ìƒí˜¸ìž‘ìš© ì‹œ í˜¸ì¶œë¨
     public void Interact()
     {
-        dialogueIndex = 0; // ´ë»ç ÀÎµ¦½º ÃÊ±âÈ­
-        ShowDialogue(); // Ã¹ ¹øÂ° ´ë»ç Ãâ·Â
+        DialogueManager.Instance.StartDialogue(DialogueCategory.Dialogue, DialogueID);
     }
 
 
-    // ÇÃ·¹ÀÌ¾î°¡ F Å°¸¦ ´Ù½Ã ´©¸£¸é È£ÃâµÊ
+    // í”Œë ˆì´ì–´ê°€ F í‚¤ë¥¼ ë‹¤ì‹œ ëˆ„ë¥´ë©´ í˜¸ì¶œë¨
     public void AdvanceDialogue()
     {
-        dialogueIndex++; // ´ÙÀ½ ´ë»ç·Î ÀÌµ¿
-
-        if (dialogueIndex >= dialogueLines.Length) 
-        {
-            OnDialogueEnd(); // ´ë»ç°¡ ³¡³µÀ» °æ¿ì Ã³¸®
-        }
-        else
-        {
-            ShowDialogue(); // ´ÙÀ½ ´ë»ç Ãâ·Â
-        }
-    }
-
-    private void ShowDialogue()
-    {
-        var line = dialogueLines[dialogueIndex];
-
-        if (line.speaker == SpeakerType.NPC)
-        {
-            Debug.Log($"{NPCName}: {line.text}");
-        }
-        else
-        {
-            Debug.Log($"Player: {line.text}");
-        }
+        DialogueManager.Instance.ProcessPlayerInput();
     }
 
     protected virtual void OnDialogueEnd()
     {
-        Debug.Log("´ëÈ­ Á¾·á");
+        Debug.Log("ëŒ€í™” ì¢…ë£Œ");
         Player.Instance.interaction.EndDialogue();
     }
 }

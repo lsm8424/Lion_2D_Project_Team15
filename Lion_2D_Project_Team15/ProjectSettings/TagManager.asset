@@ -4,18 +4,25 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Ground
+  - Monster
+  - NPC
+  - Item
+  - Ladder
+  - Episode2_parentdolphin_1
+  - Episode2_babydolphin_1
   - Potal
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
+  - Episode2_babydolphin_1
   - 
-  - 
-  - 
-  - 
+  - Player
+  - Interactable
   - 
   - 
   - 
@@ -41,6 +48,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 743180249
+    locked: 0
+  - name: Player
+    uniqueID: 3883324543
     locked: 0
   m_RenderingLayers:
   - Default

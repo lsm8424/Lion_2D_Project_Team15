@@ -72,6 +72,7 @@ public class DialogueDatabase_JSON : MonoBehaviour
         }
     }
 
+    //JSON 파일을 로드하여 대사 데이터를 초기화하는 함수
     void LoadCategory(DialogueCategory category, string resourcePath)
     {
         TextAsset jsonFile = Resources.Load<TextAsset>(resourcePath);
@@ -101,7 +102,8 @@ public class DialogueDatabase_JSON : MonoBehaviour
                 id = e.id,
                 text = e.text,
                 options = opts,
-                conditionCheck = cond
+                conditionCheck = cond,
+                isEndOfDialogue = e.isEndOfDialogue
             };
         }
 
@@ -137,6 +139,7 @@ public class DialogueDatabase_JSON : MonoBehaviour
         return choiceList.ToArray();
     }
 
+    // 딕셔너리 속 대사를 반환 해주는 함수(카테고리, 대사 ID를 인자로 받음)
     public DialogueLineData GetDialogue(DialogueCategory category, string id)
     {
         if (

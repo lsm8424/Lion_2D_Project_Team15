@@ -1,20 +1,22 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("»óÈ£ÀÛ¿ë ¼³Á¤")]
-    public float interactRange; // »óÈ£ÀÛ¿ë °Å¸®
+    [Header("ìƒí˜¸ì‘ìš© ì„¤ì •")]
+    public float interactRange;            // ìƒí˜¸ì‘ìš© ê±°ë¦¬
+    public LayerMask interactLayerMask;    // ìƒí˜¸ì‘ìš© ë ˆì´ì–´
 
-    private NPC currentNPC = null;       // ÇöÀç ´ëÈ­ ÁßÀÎ NPC
-    private bool isTalking = false;      // ´ëÈ­ ÁßÀÎÁö ¿©ºÎ
+    private NPC currentNPC = null;
+    private bool isTalking = false;
 
-    private Ladder currentLadder = null; // ÇöÀç ¿Ã¶óÅº »ç´Ù¸®
-    private bool isOnLadder = false;     // »ç´Ù¸® »óÅÂ ¿©ºÎ
+    public Ladder currentLadder { get; private set; }
+    private bool isOnLadder = false;
 
-    private Rigidbody2D rb;              // 2D Rigidbody
-    private Animator anim;               // ¾Ö´Ï¸ŞÀÌ¼Ç
+    private Rigidbody2D rb;
+    private Animator anim;
 
-    public LayerMask interactLayerMask; // Inspector¿¡¼­ ¼³Á¤ÇÒ ¼ö ÀÖ°Ô ¸¸µê
+    private bool ladderJustEntered = false; // ì¤‘ë³µ ìƒí˜¸ì‘ìš© ë°©ì§€ìš©
 
     private void Start()
     {
@@ -22,93 +24,131 @@ public class PlayerInteraction : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    // Player.cs Update()ì—ì„œ í˜¸ì¶œ
     public void HandleInteraction()
     {
+        // ì‚¬ë‹¤ë¦¬ íƒ€ê³  ìˆì„ ë•Œ ìŠ¤í˜ì´ìŠ¤ë°”ë¡œ íƒˆì¶œ
+        if (isOnLadder && Input.GetKeyDown(KeyCode.Space))
+        {
+            ExitLadder();
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("F Å° ´­¸²! »óÈ£ÀÛ¿ë ½Ãµµ Áß");
+            // ì§„ì… ì§í›„ ê³§ë°”ë¡œ íƒˆì¶œ ë°©ì§€
+            if (ladderJustEntered)
+                return;
 
+            // ëŒ€í™” ì¤‘ì¼ ë•Œ
             if (isTalking)
             {
-                currentNPC?.AdvanceDialogue(); // ´ëÈ­ ³Ñ±â±â
+                currentNPC?.AdvanceDialogue();
                 return;
             }
 
+            // ì‚¬ë‹¤ë¦¬ ìƒíƒœì—ì„œ Fí‚¤ ëˆ„ë¥´ë©´ íƒˆì¶œ
             if (isOnLadder)
             {
-                ExitLadder(); // »ç´Ù¸® ³»·Á¿À±â
+                ExitLadder();
                 return;
             }
 
-            // ¦¡¦¡¦¡ NPC ¶Ç´Â Ladder Å½Áö¿ë Raycast (2D Àü¿ë) ¦¡¦¡¦¡
-            Vector2 direction = transform.right;
-            Vector2 origin = (Vector2)transform.position + direction * 0.1f;
-
-            RaycastHit2D hit = Physics2D.Raycast(origin, direction, interactRange, interactLayerMask);
-            Debug.DrawRay(origin, direction * interactRange, Color.red, 1f);
-
+            // Raycastë¡œ ìƒí˜¸ì‘ìš© ëŒ€ìƒ ê°ì§€
+            Vector2 dir = Player.Instance.movement.facingRight ? Vector2.right : Vector2.left;
+            Vector2 origin = (Vector2)transform.position + dir * 0.1f;
+            RaycastHit2D hit = Physics2D.Raycast(origin, dir, interactRange, interactLayerMask);
+            Debug.DrawRay(origin, dir * interactRange, Color.red, 1f);
 
             if (hit.collider != null)
             {
                 GameObject target = hit.collider.gameObject;
-                Debug.Log("Ray°¡ ¹º°¡¸¦ ¸ÂÃè½À´Ï´Ù: " + hit.collider.name);
+                Debug.Log("Rayê°€ ë§ì¶˜ ì˜¤ë¸Œì íŠ¸: " + target.name);
 
                 if (target.CompareTag("NPC"))
                 {
                     currentNPC = target.GetComponent<NPC>();
                     if (currentNPC != null)
                     {
-                        currentNPC.Interact(); // ´ëÈ­ ½ÃÀÛ
+                        currentNPC.Interact();
                         isTalking = true;
                     }
+                }
+                else if (target.CompareTag("Item"))
+                {
+                    PickupItem(target);
                 }
                 else if (target.CompareTag("Ladder"))
                 {
                     currentLadder = target.GetComponent<Ladder>();
                     if (currentLadder != null)
-                    {
                         EnterLadder();
-                    }
                 }
             }
         }
     }
 
-    // ´ëÈ­ Á¾·á ½Ã È£ÃâµÊ
+    private void PickupItem(GameObject item)
+    {
+        if (Time.timeSinceLevelLoad < 1.0f)
+            return;
+
+        Debug.Log("ì•„ì´í…œì„ íšë“í–ˆìŠµë‹ˆë‹¤: " + item.name);
+        if (item.name.Contains("CoralStaff"))
+        {
+            Player.Instance.combat.hasCoralStaff = true;
+            Player.Instance.combat.coralStaffInHand.SetActive(true);
+            Debug.Log("Coral Staffë¥¼ íšë“í–ˆìŠµë‹ˆë‹¤! ì´ì œ ì›ê±°ë¦¬ ê³µê²©ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤!");
+        }
+        Destroy(item);
+    }
+
     public void EndDialogue()
     {
         isTalking = false;
         currentNPC = null;
     }
 
-    // »ç´Ù¸® Å¾½Â Ã³¸®
     private void EnterLadder()
     {
         isOnLadder = true;
+        ladderJustEntered = true;
+
+        // ì´ë™ ìŠ¤í¬ë¦½íŠ¸ ë¹„í™œì„±í™” â†’ ì¢Œìš° ì´ë™ ì°¨ë‹¨
         Player.Instance.movement.enabled = false;
-        rb.gravityScale = 0f;
+        rb.linearVelocity = Vector2.zero;   // ì”ì—¬ ì†ë„ ì œê±°
+        rb.gravityScale = 0f;         // ì¤‘ë ¥ ì œê±°
+        
 
         if (anim != null)
-            anim.SetTrigger("ClimbStart");
+            anim.SetTrigger("ClimbStart"); // ë„ ì²´í¬ ë‚˜ì¤‘ì— ì—ë‹ˆë©”ì´ì…˜ ì¶”ê°€ë˜ë©´ ë³€ê²½
 
-        Debug.Log("»ç´Ù¸®¿¡ ¿Ã¶óÅ½");
+        Debug.Log("ì‚¬ë‹¤ë¦¬ì— ì˜¬ë¼íƒ");
+
+        StartCoroutine(ResetLadderJustEntered());
     }
 
-    // »ç´Ù¸® Å»Ãâ Ã³¸®
+    private IEnumerator ResetLadderJustEntered()
+    {
+        yield return new WaitForSeconds(0.3f);
+        ladderJustEntered = false;
+    }
+
     private void ExitLadder()
     {
         isOnLadder = false;
         currentLadder = null;
+
         Player.Instance.movement.enabled = true;
         rb.gravityScale = 1f;
+        
 
         if (anim != null)
-            anim.SetTrigger("ClimbEnd");
+            anim.SetTrigger("ClimbStart"); // ë„ ì²´í¬ ë‚˜ì¤‘ì— ì—ë‹ˆë©”ì´ì…˜ ì¶”ê°€ë˜ë©´ ë³€ê²½
 
-        Debug.Log("»ç´Ù¸®¿¡¼­ ³»·Á¿È");
+        Debug.Log("ì‚¬ë‹¤ë¦¬ì—ì„œ ë‚´ë ¤ì˜´");
     }
 
-    // ¿ÜºÎ Á¢±Ù¿ë: ÇöÀç »ç´Ù¸® »óÅÂ
     public bool IsOnLadder() => isOnLadder;
     public Ladder GetCurrentLadder() => currentLadder;
     public void ForceExitLadder() => ExitLadder();
