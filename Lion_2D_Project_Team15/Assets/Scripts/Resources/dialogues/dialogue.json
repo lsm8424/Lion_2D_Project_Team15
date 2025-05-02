@@ -1,23 +1,359 @@
 [
   {
-    "id": "library_001",
-    "text": "과학자는 어렴풋이 들려오는 소리에 귀를 기울였다.",
-    "choices": "",
-    "condition": "",
-    "isEndOfDialogue": false
-  },
-  {
     "id": "player_001",
-    "text": "으윽... 여긴 어디지?",
+    "text": "으윽..",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
-    "id": "library_002",
-    "text": "눈을 뜨자 보이는 것은\n낯선 천장이였다.",
+    "id": "player_002",
+    "text": "여긴.. 어디지..?",
     "choices": "",
     "condition": "",
-    "isEndOfDialogue": true
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_001",
+    "text": "(상체를 이르켜 주위를 둘러보고자 하는데 몸이 움직이질 않는다.)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_003",
+    "text": "으윽 몸이 안움직여..",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_001",
+    "text": "이런, 드디어 정신을 차렸구만.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_002",
+    "text": "보아하니 깨어난지 얼마 되지 않아 혼란스러워 보이는데,\n진정해보게나.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_004",
+    "text": "당신은 누구죠? 그보다 여긴 어딥니까!",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_003",
+    "text": "이곳은 만물의 서고, '아카이발투스' 라네.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_004",
+    "text": "그리고 나는 이곳의 사서 '리브람' 이지.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_005",
+    "text": "(아카이발투스? 그런곳은 들어본적 없어)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_006",
+    "text": "이곳이 어딘지는 모르겠지만, 저는 빨리 돌아갸아 합니다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_005",
+    "text": "마음은 알겠으나, 진정하게.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_006",
+    "text": "어찌됐든 자네는 지금 움직이지 못하는 상태 아닌가.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_007",
+    "text": "제 상태에 아시는게 있으신가요? 어디 부러졌다던가, 신경이 끊어졌다던가.\n또, 또...",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_008",
+    "text": "혹시 영원히 못 움직이는거..라면..",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_007",
+    "text": "그런것과는 어느정도 궤가 달라. 자네는 지금 '산산조각난 상태' 라네.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_009",
+    "text": "네?! 그게 무슨..? 저는 멀쩡히 살아있습니다만.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_010",
+    "text": "허허 그런게 아니라네. 이거 아주 긴 설명이 되겠구먼.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_011",
+    "text": "이곳은 비트폴, 링크 차원 이라네.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_010",
+    "text": "비트폴? 링크 차원? 그게 무슨 황당한 말씀이십니까?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_012",
+    "text": "자네의 반응을 보니 역시 자네는 오리진 차원 으로 부터 온거로군.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_013",
+    "text": "쉽게 설명하자면 원래 자네가 있던 곳은 '오리진 차원', 그리고 지금 이곳은 오리진 차원에 의해 생겨난 '링크 차원'이라는걸세.\n오리진 차원은 부모, 링크 차원은 자식인 셈이지.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_014",
+    "text": "그리고 자네는 모종의 이유로 자네가 살던 오리진 차원에서 이곳 링크 차원으로 떨어진거지.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_011",
+    "text": "(오리진 차원, 링크 차원.. 믿기도 힘든 황당한 말이다.\n다만 나 스스로가 현실에서 컴퓨터 속으로 들어가는 것도 해냈는데, 차원이동이라고 불가능한건 아니겠지)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_012",
+    "text": "믿기는 어렵지만, 무슨 말씀이신지는 잘 알겠습니다.\n그렇다면 원래 차원으로는 어떻게 돌아가는지 알고 싶습니다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_015",
+    "text": "아쉽게도 돌아가는 방법은 나도 모른다네. 안다고 해도 지금 자네 상태로는 불가능할테고.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_013",
+    "text": "그럴수가... 돌아갈 수 없다고?\n아무것도 모르는 이곳에서?\n아는이 하나 없는 이곳에서?\n외면받으면서도 겨우 이뤄낸 내 노력은..\n도대체, 어째서...",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_016",
+    "text": "정신차리게! 절망한다고 해서 아무것도 해결 되는 것은 없다네.\n그리고 모른다고 했지 없다고는 하지 않았네.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_014",
+    "text": "(그래, 절망하기엔 이르다)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_015",
+    "text": "(이곳으로 넘어온 통로가 있다면, 분명히 돌아가는 통로도 존재할 거야.\n컴퓨터 속으로 들어가는 것도 처음에는 모두가 비웃었지. 하지만 나는 결국 해냈어. 반드시 이번에도 해낼것이다)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_017",
+    "text": "호오, 결심한 모양이군. 눈빛이 볼만해 졌어.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_016",
+    "text": "말씀 감사합니다. 그럼 산산조각 났다는건 무슨 뜻이죠?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_018",
+    "text": "모든 차원은 저마다 특별한 법칙이 존재한다네. 우리는 이걸 '차원의 개연성'이라 부르지.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_019",
+    "text": "이곳 비트폴은 다른 차원에서 넘어온 모든 존재를 정해진 기준에 따라 분류하려 한다네.\n그렇게 분류된 '데이터'들은  이곳 아카이발투스로 흘러 들어와 책 형태로 저장되지.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_020",
+    "text": "자네 또한 넘어온 순간 분류가 시작되었지만, 자네만의 특별한 점만은 개연성이 분류하지 못했네.\n그렇게 특별함만 남은 자네를 도서관 주변에서 발견해 데려오게 된 것이지.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_017",
+    "text": "저만의 특별함이요?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_021",
+    "text": "그래. 자네에게는 '자아'가 존재했네. 스스로 생각하고 스스로 행동하고자 하는 의지가.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_022",
+    "text": "나 또한 자네를 처음 봤을 때 굉장히 놀랬지. 차원의 개연성이 분류하지 못하는 데이터가 존재 할 줄이야...\n다만 자아를 제외한 데이터들은 이미 분류 되었기에 자네가 지금 움직이지 못하는 것이라네.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_018",
+    "text": "(자아를 가진 데이터라.  그건 내가 살아있기 때문인가?) 그렇다면 분류된 데이터를 되찾을 방법은 없는겁니까?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_023",
+    "text": "이곳 아카이발투스에 저장된 데이터들은 그 양이 엄청나지.\n그 안에서 자네의 데이터만 찾는다는것은 사막에서 바늘을 찾는것과 가깝네.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_024",
+    "text": "하지만 자아를 지닌 자네라면 저장된 데이터들을 찾을 수 있을지 모르지.\n자네가 깨어난 것을 알게된 것도 움직이고자 하는 자네의 의지에 반응한 책을 발견해서라네.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_025",
+    "text": "다른 데이터 사이에서 홀로 빛나고 있었지.\n자 여기 이 데이터라면 움직일 수 있을걸세.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_002",
+    "text": "(책에 손을 대자 책의 형태가 흩어지면서 내 몸에 깃든다)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_019",
+    "text": "(마치 퍼즐을 끼워 맞추듯이 몸속에 들어맞는 기분이야\n이제 움직일 수 있을까)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_003",
+    "text": "(갓 걸음마를 시작한 아기 마냥 조심스럽게 상체를 이르켜 바닥에 발을 딛어 보았다)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_020",
+    "text": "움직여..지는군요\n(겨우 걷기 시작한 것만으로 무언가 가슴속에서 차오르는 기분이다)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_026",
+    "text": "호오.. 묘한 표정이로군. 뭔가 느끼는 점이라도 있는 모양이야.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_021",
+    "text": "넵. 오랜만에 의지가 생기는것 같아요.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_022",
+    "text": "(역시 포기는 나랑 맞지 않아. 컴퓨터 속으로 들어가는 기술을 발명해낸 그때처럼 이번에도 나는 해낼것이다\n그러기 위해서는 데이터를 더 찾아야 해)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_023",
+    "text": "어서 다른 데이터를 찾아야겠습니다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_027",
+    "text": "허허 마침 부탁 일도 있으니 잠시 이쪽으로 와 보게나.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
   }
 ]
