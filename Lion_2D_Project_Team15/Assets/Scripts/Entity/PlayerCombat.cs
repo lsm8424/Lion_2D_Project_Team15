@@ -39,10 +39,10 @@ public class PlayerCombat : MonoBehaviour
 
     public void HandleAttack()
     {
-        // ** 은주 추가
+      
         float h = Input.GetAxisRaw("Horizontal");
         playerMovement.FlipByDirection(h);
-        // **
+        
 
         if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime + attackCooldown)
         {
