@@ -1223,10 +1223,6 @@ PrefabInstance:
       value: Parent Dolphin
       objectReference: {fileID: 0}
     - target: {fileID: 4464305837580023017, guid: be843483277c7434d9623e1ca2e0a96b, type: 3}
-      propertyPath: DialogueID
-      value: rewrew
-      objectReference: {fileID: 0}
-    - target: {fileID: 4464305837580023017, guid: be843483277c7434d9623e1ca2e0a96b, type: 3}
       propertyPath: dialogueLines.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -1264,7 +1260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7769260452718588660, guid: be843483277c7434d9623e1ca2e0a96b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7769260452718588660, guid: be843483277c7434d9623e1ca2e0a96b, type: 3}
       propertyPath: m_TagString
@@ -1405,7 +1401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3831333995941918512, guid: 602dc2cde7e93fd479f1bffd759af408, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4600962375221965451, guid: 602dc2cde7e93fd479f1bffd759af408, type: 3}
       propertyPath: HP

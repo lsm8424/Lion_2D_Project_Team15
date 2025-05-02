@@ -26,12 +26,6 @@ public class PlayerInteraction : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    public void HandleInteraction()
-    {
-        // 내용
-    }
-
-
     private void Update()
     {
         DetectInteractable(); // 항상 감지
@@ -67,6 +61,11 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    public void HandleInteraction()
+    {
+        // 내용
+    }
+
     private void DetectInteractable()
     {
         Vector2 dir = Player.Instance.movement.facingRight ? Vector2.right : Vector2.left;
@@ -77,22 +76,13 @@ public class PlayerInteraction : MonoBehaviour
 
         if (hit.collider != null)
         {
-            GameObject hitObject = hit.collider.gameObject;
-
-            // 태그가 상호작용 가능한 종류 중 하나일 때만 메시지 출력
-            if (hitObject.CompareTag("NPC") || hitObject.CompareTag("Item") || hitObject.CompareTag("Ladder"))
-            {
-                Debug.Log("상호작용 가능한 대상입니다: " + hitObject.name);
-            }
-
-            currentTarget = hitObject;
+            currentTarget = hit.collider.gameObject;
         }
         else
         {
             currentTarget = null;
         }
     }
-
 
     private void TryInteract(GameObject target)
     {
