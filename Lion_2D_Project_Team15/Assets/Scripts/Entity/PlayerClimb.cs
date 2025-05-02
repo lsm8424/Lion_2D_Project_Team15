@@ -19,9 +19,17 @@ public class PlayerClimb : MonoBehaviour
 
             rb.linearVelocityX = 0;
             if(Player.Instance.interaction.currentLadder != null)
-                transform.position = 
-                    new Vector2(Player.Instance.interaction.currentLadder.GetComponent<Ladder>().centerX,
-                    transform.position.y);
+            {
+                Ladder ladder = Player.Instance.interaction.currentLadder.GetComponent<Ladder>();
+                float x = ladder.centerX;
+                float y = transform.position.y;
+
+                if(transform.position.y > ladder.topExitY)
+                    y = ladder.topExitY;
+
+                transform.position = new Vector2(x,y);
+            }
+                
 
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, vertical * climbSpeed);
         }
