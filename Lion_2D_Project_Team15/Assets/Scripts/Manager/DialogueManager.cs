@@ -20,11 +20,9 @@ public class DialogueManager : Singleton<DialogueManager>
         if (!Dialogue_UI.IsPrintComplete)
         {
             Dialogue_UI.DoSkip = true;
-            Debug.Log("DOSKIP");
             return;
         }
 
-        Debug.Log("MOVENEXT");
         MoveNext();
     }
 

@@ -39,7 +39,7 @@ public class SceneController  : Singleton<SceneController>
     {
         yield return null;
         OnSceneLoaded(new Scene(), LoadSceneMode.Single);
-        yield return EventManager.Instance.RunEvent("1");
+        //yield return EventManager.Instance.RunEvent("1");
 
         Debug.Log("코루틴 테스트");
     }
