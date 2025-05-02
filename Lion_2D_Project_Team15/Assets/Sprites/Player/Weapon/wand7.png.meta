@@ -1,10 +1,49 @@
 fileFormatVersion: 2
-guid: c253ce1afdc9e764d8b947d7758eb4fe
+guid: 70d8a8140039c7a4ebfd2e8c6d86354b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6215762207029355761
-    second: Sword30_0
+      213: 1815491954106965911
+    second: wand7_0
+  - first:
+      213: -5686167318363778320
+    second: wand7_1
+  - first:
+      213: 6154561399672642202
+    second: wand7_2
+  - first:
+      213: 5278434280123252021
+    second: wand7_3
+  - first:
+      213: -5224711381144386944
+    second: wand7_4
+  - first:
+      213: 2449186096309571057
+    second: wand7_5
+  - first:
+      213: -1171204439518600663
+    second: wand7_6
+  - first:
+      213: 6669096039304630653
+    second: wand7_7
+  - first:
+      213: -6990244858666786703
+    second: wand7_8
+  - first:
+      213: -3809215273574460750
+    second: wand7_9
+  - first:
+      213: -5488947572915515150
+    second: wand7_10
+  - first:
+      213: 8021391485101116109
+    second: wand7_11
+  - first:
+      213: -5002122164993998975
+    second: wand7_12
+  - first:
+      213: 8660363891151334506
+    second: wand7_13
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +76,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +90,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 96
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,13 +178,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sword30_0
+      name: wand7_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 289
-        height: 287
+        width: 280
+        height: 284
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f0b97b9843d2db9a0800000000000000
-      internalID: -6215762207029355761
+      spriteID: 79f1029305ce13910800000000000000
+      internalID: 1815491954106965911
       vertices: []
       indices: 
       edges: []
@@ -164,7 +203,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b9e33bad1cdfcc44a891ea6656813148
+    spriteID: 75d1ce361bc37714ab17df728969eb44
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +213,20 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Sword30_0: -6215762207029355761
+      wand7_0: 1815491954106965911
+      wand7_1: -5686167318363778320
+      wand7_10: -5488947572915515150
+      wand7_11: 8021391485101116109
+      wand7_12: -5002122164993998975
+      wand7_13: 8660363891151334506
+      wand7_2: 6154561399672642202
+      wand7_3: 5278434280123252021
+      wand7_4: -5224711381144386944
+      wand7_5: 2449186096309571057
+      wand7_6: -1171204439518600663
+      wand7_7: 6669096039304630653
+      wand7_8: -6990244858666786703
+      wand7_9: -3809215273574460750
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
