@@ -10,7 +10,7 @@ public class PlayerInteraction : MonoBehaviour
     private NPC currentNPC = null;
     private bool isTalking = false;
 
-    private Ladder currentLadder = null;
+    public Ladder currentLadder { get; private set; }
     private bool isOnLadder = false;
 
     private Rigidbody2D rb;
