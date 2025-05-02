@@ -445,7 +445,7 @@ MonoBehaviour:
   attackCooldown: 1
   skillCooldown: 1
   coralProjectilePrefab: {fileID: 1924222696}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 106017173}
   hasCoralStaff: 0
   sword: {fileID: 1924222698}
 --- !u!114 &410422191
