@@ -9,10 +9,15 @@ public class PlayerMovement : MonoBehaviour
     public bool facingRight = true; // 캐릭터 시작 시 바라보는 방향
 
     private Rigidbody2D rb;
+    private Animator anim;
+
+    [Header("참조")]
+    public Sword sword; // Sword 참조
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     public void HandleMove()
@@ -25,15 +30,15 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDir = new Vector3(h, 0, 0).normalized;
         transform.Translate(moveDir * moveSpeed * Time.deltaTime, Space.World);
 
-        // 방향 전환 처리
-        if (h != 0)
-        {
-            if (h > 0 && !facingRight)
-                Flip();
-            else if (h < 0 && facingRight)
-                Flip();
-        }
+        FlipByDirection(h);
+
+        bool isRunning = h != 0;
+        anim.SetBool("Run", isRunning);
+        if (sword != null) sword.SetRun(isRunning); // Sword에 전달
+
     }
+
+
 
     public void HandleJump()
     {
@@ -46,8 +51,21 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isGrounded = false; // 공중 상태로 전환
+
+            anim.SetBool("Jump", true);
+            if (sword != null) sword.SetJump(true);
+
         }
     }
+
+    public void FlipByDirection(float h)
+    {
+        if (h > 0 && !facingRight)
+            Flip();
+        else if (h < 0 && facingRight)
+            Flip();
+    }
+
 
     private void Flip()
     {
@@ -55,11 +73,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+
+        if (sword != null) sword.Flip(facingRight); // Sword에도 Flip 전달
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
             isGrounded = true;
+
+        anim.SetBool("Jump", false);
+        if (sword != null) sword.SetJump(false);
+
     }
 }
