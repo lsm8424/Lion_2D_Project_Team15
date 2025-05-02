@@ -146,7 +146,7 @@ public class PlayerInteraction : MonoBehaviour
         StartCoroutine(ResetLadderJustEntered());
     }
 
-    private void ExitLadder()
+    public void ExitLadder()
     {
         isOnLadder = false;
         currentLadder = null;

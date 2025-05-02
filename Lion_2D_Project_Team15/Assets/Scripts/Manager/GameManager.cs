@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public float EntityTimeScale { get; private set; } = 1f;    // Entity, NPC TimeScale
-    public float DialogueTimeScale { get; private set; } = 1f;  // ´ëÈ­Ã¢ °ü·Ã TimeScale
+    public float EntityTimeScale { get; private set; } = 1f; // Entity, NPC TimeScale
+    public float DialogueTimeScale { get; private set; } = 1f; // ëŒ€í™”ì°½ ê´€ë ¨ TimeScale
     public ETimeCase CurrentTime;
 
-
     /// <summary>
-    /// ÀüÃ¼ÀûÀÎ GameObject¸¦ Á¦¾îÇÏ±â À§ÇØ °ÔÀÓ »óÅÂ¸¦ Á¤ÀÇ
+    /// ì „ì²´ì ì¸ GameObjectë¥¼ ì œì–´í•˜ê¸° ìœ„í•´ ê²Œì„ ìƒíƒœë¥¼ ì •ì˜
     /// </summary>
     public enum ETimeCase
     {
@@ -19,7 +18,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     /// <summary>
-    /// »óÈ²¾Ö ¸Â´Â GameObject °ü¸®
+    /// ìƒí™©ì•  ë§ëŠ” GameObject ê´€ë¦¬
     /// </summary>
     /// <param name="timeCase"></param>
     public void SetTimeScale(ETimeCase timeCase)
