@@ -29,7 +29,7 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
     }
 
     public delegate Vector3 Interpolation(Vector3 start, Vector3 end, float t);
-    public Interpolation[] InterpolationFunc =
+    public static Interpolation[] InterpolationFunc =
     {
         Vector3.Lerp,
         Vector3.Slerp,
