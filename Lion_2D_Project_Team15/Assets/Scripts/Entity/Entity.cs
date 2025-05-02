@@ -21,20 +21,20 @@ public class Entity : MonoBehaviour
         }
     }
 
-    // ▶ 이동 함수 (자식 클래스에서 override)
+    // 이동 함수 (자식 클래스에서 override)
     public virtual void Move()
     {
         // 공통 이동이 필요 없다면 비워둠
     }
 
-    // ▶ 사망 처리
+    // 사망 처리
     protected virtual void Death()
     {
         Debug.Log($"{gameObject.name}이(가) 사망했습니다.");
 
         if (anim != null)
         {
-            anim.SetTrigger("Death"); // 사망 애니메이션 (트리거가 있으면)
+            anim.SetTrigger("Death"); // 널 체크 나중에 에니메이션 추가되면 변경
         }
 
         // 사망 후 제거

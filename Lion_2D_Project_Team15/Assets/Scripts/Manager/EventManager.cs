@@ -1,10 +1,12 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EventManager : Singleton<EventManager>
 {
-    public Dictionary<string, GameEventSO> Events { get; private set; } = new();
+    public Dictionary<string, GameEvent_SO> Events { get; private set; } = new();
     public Dictionary<string, object> Flags { get; private set; } = new();
+    public bool DidSetup = false;
 
     protected override void Awake()
     {
@@ -13,19 +15,18 @@ public class EventManager : Singleton<EventManager>
         SetupEvents(1);
     }
 
-    public void RunEvent(string eventId)
+    public Coroutine RunEvent(string eventID)
     {
-        if (!Events.ContainsKey(eventId))
+        if (!Events.TryGetValue(eventID, out var gameEvent))
         {
-            Debug.LogError($"À¯È¿ÇÑ Event ID°¡ ¾Æ´Õ´Ï´Ù. EventID: {eventId}");
-            return;
+            Debug.LogError($"ìœ íš¨í•œ Event IDê°€ ì•„ë‹™ë‹ˆë‹¤. EventID: {eventID}");
+            return null;
         }
 
-        foreach (var function in Events[eventId].EventFunctions)
-            function.Execute();
+        return StartCoroutine(gameEvent.Execute());
     }
 
-    // FlagÀÇ ±ÔÄ¢À» Á¤ÇØ °ãÄ¡Áö ¾Êµµ·Ï
+    // Flagì˜ ê·œì¹™ì„ ì •í•´ ê²¹ì¹˜ì§€ ì•Šë„ë¡
     public T CheckFlag<T>(string key)
     {
         if (!Flags.ContainsKey(key))
@@ -42,18 +43,17 @@ public class EventManager : Singleton<EventManager>
     {
         Events.Clear();
 
-        string stageEventPath = "Stage " + stageNumber;
-        GameEventSO[] gameEvents = Resources.LoadAll<GameEventSO>($"GameEvent/{stageEventPath}");
+        string stageEventPath = "Stage" + stageNumber;
+        GameEvent_SO[] gameEvents = Resources.LoadAll<GameEvent_SO>($"GameEvent/{stageEventPath}");
 
         for (int i = 0; i < gameEvents.Length; ++i)
         {
-            string id = gameEvents[i].EventId;
-            var functions = gameEvents[i].EventFunctions;
-
-            foreach (var func in functions)
-                func.Initialize();
-
+            string id = gameEvents[i].EventID;
             Events.Add(id, gameEvents[i]);
+
+            gameEvents[i].SetUp();
         }
+
+        DidSetup = true;
     }
 }

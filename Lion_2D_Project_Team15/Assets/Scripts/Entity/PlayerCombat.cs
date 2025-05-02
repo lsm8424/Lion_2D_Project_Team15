@@ -48,7 +48,7 @@ public class PlayerCombat : MonoBehaviour
         {
             lastAttackTime = Time.time;
             if (anim != null)
-                anim.SetTrigger("Attack");
+                anim.SetTrigger("Attack"); // 널 체크 나중에 에니메이션 추가되면 변경
 
             if (sword != null)
                 sword.TriggerAttack(); // Sword에 공격 전달
@@ -89,7 +89,7 @@ public class PlayerCombat : MonoBehaviour
             lastSkillTime = Time.time;
 
             if (anim != null)
-                anim.SetTrigger("Skill");
+                anim.SetTrigger("Skill"); // 널 체크 나중에 에니메이션 추가되면 변경
 
             Debug.Log("CoralStaff 스킬 발사!");
 
