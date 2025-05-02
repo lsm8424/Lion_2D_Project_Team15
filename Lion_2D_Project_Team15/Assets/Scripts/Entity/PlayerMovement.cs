@@ -10,6 +10,10 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
+    [Header("참조")]
+    public Sword sword; // Sword 참조
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,12 +27,14 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDir = new Vector3(h, 0, 0).normalized;
         transform.Translate(moveDir * moveSpeed * Time.deltaTime, Space.World);
 
-        anim.SetBool("Run", h != 0);
+        bool isRunning = h != 0;
+        anim.SetBool("Run", isRunning);
+        if (sword != null) sword.SetRun(isRunning); // Sword에 전달
 
         FlipByDirection(h);
     }
 
-    // ** 은주 추가
+    
     public void FlipByDirection(float h)
     {
         if (h > 0 && !facingRight)
@@ -36,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         else if (h < 0 && facingRight)
             Flip();
     }
-    // **
+ 
 
     private void Flip()
     {
@@ -44,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+
+        if (sword != null) sword.Flip(facingRight); // Sword에도 Flip 전달
     }
 
 
@@ -56,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false; // 공중 상태로 전환
 
             anim.SetBool("Jump", true);
+            if (sword != null) sword.SetJump(true);
         }
     }
 
@@ -66,5 +75,6 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true; // 다시 점프 가능 상태로 설정
 
         anim.SetBool("Jump", false);
+        if (sword != null) sword.SetJump(false);
     }
 }

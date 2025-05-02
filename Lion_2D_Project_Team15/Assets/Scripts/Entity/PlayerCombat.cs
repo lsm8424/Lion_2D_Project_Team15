@@ -24,6 +24,9 @@ public class PlayerCombat : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
+    [Header("소드 연결")]
+    public Sword sword; // Sword 참조 추가
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -46,6 +49,9 @@ public class PlayerCombat : MonoBehaviour
             lastAttackTime = Time.time;
             if (anim != null)
                 anim.SetTrigger("Attack");
+
+            if (sword != null)
+                sword.TriggerAttack(); // Sword에 공격 전달
 
             Debug.Log("기본 공격!");
 
