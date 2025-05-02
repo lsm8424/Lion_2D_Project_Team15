@@ -1,5 +1,6 @@
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using System;
 
 public class DialogueManager : Singleton<DialogueManager>
@@ -8,8 +9,16 @@ public class DialogueManager : Singleton<DialogueManager>
     List<DialogueLineData> _dialogueLines = new();
     int _dialogueIndex;
 
+    public bool IsDialogueCompleted { get; private set; } = true;
+
     public void StartDialogue(DialogueCategory category, string dialogueID)
     {
+        if (!IsDialogueCompleted)
+        {
+            Debug.LogError("Dialogue가 완전히 끝나지 않은 상태로 실행되었습니다.");
+        }
+
+        IsDialogueCompleted = false;
         LoadDialogueLines(category, dialogueID);
         Dialogue_UI.gameObject.SetActive(true);
         Dialogue_UI.ShowDialogue(_dialogueLines[_dialogueIndex]);
@@ -67,6 +76,7 @@ public class DialogueManager : Singleton<DialogueManager>
         Dialogue_UI.gameObject.SetActive(false);
         //Player.Instance.interaction.EndDialogue();
         // NPC의 대화종료 이벤트가 필요하다면 코드 수정 필요
+        IsDialogueCompleted = true;
         _dialogueLines = null;
     }
 
