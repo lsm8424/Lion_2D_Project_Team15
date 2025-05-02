@@ -24,7 +24,7 @@ public class PlayerCombat : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
-    [Header("소드 연결")]
+    [Header("무기 연결")]
     public Sword sword; // Sword 참조 추가
 
     private void Start()

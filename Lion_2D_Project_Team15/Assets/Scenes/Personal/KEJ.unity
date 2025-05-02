@@ -383,8 +383,8 @@ GameObject:
   - component: {fileID: 410422193}
   - component: {fileID: 410422192}
   - component: {fileID: 410422191}
-  - component: {fileID: 410422190}
   - component: {fileID: 410422189}
+  - component: {fileID: 410422190}
   - component: {fileID: 410422188}
   - component: {fileID: 410422196}
   m_Layer: 8
@@ -410,7 +410,7 @@ MonoBehaviour:
   jumpForce: 7
   isGrounded: 1
   facingRight: 1
-  sword: {fileID: 652684753}
+  sword: {fileID: 1924222698}
 --- !u!114 &410422189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,10 +444,10 @@ MonoBehaviour:
   attackPower: 5
   attackCooldown: 1
   skillCooldown: 1
-  coralProjectilePrefab: {fileID: 0}
+  coralProjectilePrefab: {fileID: 1924222696}
   firePoint: {fileID: 0}
   hasCoralStaff: 0
-  sword: {fileID: 652684753}
+  sword: {fileID: 1924222698}
 --- !u!114 &410422191
 MonoBehaviour:
   m_ObjectHideFlags: 0
