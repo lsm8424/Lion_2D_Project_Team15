@@ -688,7 +688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1577566361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,7 +707,6 @@ MonoBehaviour:
     text: das
   - speaker: 0
     text: gvvv
-  DialogueID: 
 --- !u!61 &1577566362
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -842,7 +841,6 @@ MonoBehaviour:
     text: ads
   - speaker: 0
     text: xvcvc
-  DialogueID: 
   melody: {fileID: 0}
 --- !u!4 &1938742294 stripped
 Transform:
@@ -1023,10 +1021,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
-    - target: {fileID: 2460255799010496195, guid: 1302ed6b24bc12b4e99a2e9187591e92, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4034468010146386023, guid: 1302ed6b24bc12b4e99a2e9187591e92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.52
@@ -1087,10 +1081,6 @@ PrefabInstance:
     - target: {fileID: 2563466317855913007, guid: 8ee2032a62d1af5498c8d76353ac873d, type: 3}
       propertyPath: m_Name
       value: babydolphin
-      objectReference: {fileID: 0}
-    - target: {fileID: 2563466317855913007, guid: 8ee2032a62d1af5498c8d76353ac873d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4426647063117368949, guid: 8ee2032a62d1af5498c8d76353ac873d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1223,10 +1213,6 @@ PrefabInstance:
       value: Parent Dolphin
       objectReference: {fileID: 0}
     - target: {fileID: 4464305837580023017, guid: be843483277c7434d9623e1ca2e0a96b, type: 3}
-      propertyPath: DialogueID
-      value: rewrew
-      objectReference: {fileID: 0}
-    - target: {fileID: 4464305837580023017, guid: be843483277c7434d9623e1ca2e0a96b, type: 3}
       propertyPath: dialogueLines.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -1261,10 +1247,6 @@ PrefabInstance:
     - target: {fileID: 7769260452718588660, guid: be843483277c7434d9623e1ca2e0a96b, type: 3}
       propertyPath: m_Name
       value: parentdolphin
-      objectReference: {fileID: 0}
-    - target: {fileID: 7769260452718588660, guid: be843483277c7434d9623e1ca2e0a96b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7769260452718588660, guid: be843483277c7434d9623e1ca2e0a96b, type: 3}
       propertyPath: m_TagString
@@ -1405,7 +1387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3831333995941918512, guid: 602dc2cde7e93fd479f1bffd759af408, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4600962375221965451, guid: 602dc2cde7e93fd479f1bffd759af408, type: 3}
       propertyPath: HP
