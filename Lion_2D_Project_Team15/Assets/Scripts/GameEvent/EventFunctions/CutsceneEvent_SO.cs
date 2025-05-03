@@ -21,8 +21,19 @@ public class CutsceneEvent_SO : EventFunction_SO
             Debug.LogError("Clip이 할당되지 않았습니다.");
             yield break;
         }
-        CutscenePlayer.Instance.Play(Clip);
+
+        CutscenePlayer cutscenePlayer = CutscenePlayer.Instance;
+        PlayableDirector playableDirector = cutscenePlayer.PlayableDirector;
+
+        // Timeline이 종료되었는지 확실하게 알 수 있는 방법이 없음
+        // Timeline 끝에 Trigger로 알리는 방법 CutscenePlayer.TimelineEndTrigger();
+
+        cutscenePlayer.Play(Clip);
+        yield return new WaitUntil(() => !cutscenePlayer.IsPlaying);
     }
 
-    public override void Setup() { }
+    public override void Setup()
+    {
+    
+    }
 }

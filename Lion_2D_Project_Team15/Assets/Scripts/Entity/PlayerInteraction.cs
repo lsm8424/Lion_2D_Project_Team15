@@ -97,6 +97,10 @@ public class PlayerInteraction : MonoBehaviour
 
         if (hit.collider != null)
         {
+            if (currentTarget != hit.collider.gameObject)
+            {
+                Debug.Log("상호작용할 수 있는 Object입니다: " + hit.collider.name);
+            }
             currentTarget = hit.collider.gameObject;
         }
         else
@@ -104,6 +108,7 @@ public class PlayerInteraction : MonoBehaviour
             currentTarget = null;
         }
     }
+
 
     private void TryInteract(GameObject target)
     {

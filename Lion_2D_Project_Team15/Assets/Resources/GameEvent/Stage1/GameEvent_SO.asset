@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventType: 0
   EventID: 1
-  EventName: TestEvent
+  EventName: "\uB300\uD654 \uD14C\uC2A4\uD2B8"
   RequireSave: 0
   EventFunctions:
-  - {fileID: 11400000, guid: e2a778b70aeff9345b2d0dfc113b3706, type: 2}
+  - {fileID: 11400000, guid: ebf0d0dde97760c4bb79b72f1e376162, type: 2}
+  - {fileID: 11400000, guid: 2b7327c6141a76244a667ab0ee5d2f27, type: 2}

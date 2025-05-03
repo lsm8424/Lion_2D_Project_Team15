@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using static Unity.Cinemachine.IInputAxisOwner.AxisDescriptor;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
     public Dialogue_UI Dialogue_UI;
     List<DialogueLineData> _dialogueLines = new();
     int _dialogueIndex;
-
     public bool IsDialogueCompleted { get; private set; } = true;
+    public bool IsOneShotCompleted { get; private set; } = true;
 
     public void StartDialogue(DialogueCategory category, string dialogueID)
     {
@@ -32,7 +33,14 @@ public class DialogueManager : Singleton<DialogueManager>
             return;
         }
 
-        MoveNext();
+        if (!IsOneShotCompleted)
+        {
+            IsOneShotCompleted = true;
+            CloseDialogueUI();
+            return;
+        }
+        else
+            MoveNext();
     }
 
     public bool MoveNext()
@@ -124,5 +132,18 @@ public class DialogueManager : Singleton<DialogueManager>
         nextID = prefix + "_" + num.ToString("D3");
 
         return true;
+    }
+
+    public void PlayOneShot(DialogueCategory category, string dialogueID)
+    {
+        IsOneShotCompleted = false;
+        var line = DialogueDatabase_JSON.Instance.GetDialogue(category, dialogueID);
+        if (line == null)
+        {
+            Debug.LogError($"로드된 Dialogue의 내용이 존재하지 않습니다. {dialogueID}");
+        }
+
+        Dialogue_UI.gameObject.SetActive(true);
+        Dialogue_UI.ShowDialogue(line);
     }
 }
