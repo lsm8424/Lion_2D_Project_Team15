@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerInteraction : MonoBehaviour
@@ -60,7 +60,8 @@ public class PlayerInteraction : MonoBehaviour
         // F 키 눌렀을 때 상호작용
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (ladderJustEntered) return;
+            if (ladderJustEntered)
+                return;
 
             if (isTalking)
             {
@@ -129,7 +130,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void PickupItem(GameObject item)
     {
-        if (Time.timeSinceLevelLoad < 1.0f) return;
+        if (Time.timeSinceLevelLoad < 1.0f)
+            return;
 
         Debug.Log("아이템을 획득했습니다: " + item.name);
 
@@ -172,7 +174,10 @@ public class PlayerInteraction : MonoBehaviour
         rb.gravityScale = 1f;
 
         if (anim != null)
+        {
             anim.SetBool("Climb", false);
+            anim.speed = 1f; // 애니메이션 속도를 기본값으로 리셋
+        }
 
         Debug.Log("사다리에서 내려옴");
     }
@@ -184,6 +189,8 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     public bool IsOnLadder() => isOnLadder;
+
     public Ladder GetCurrentLadder() => currentLadder;
+
     public void ForceExitLadder() => ExitLadder();
 }
