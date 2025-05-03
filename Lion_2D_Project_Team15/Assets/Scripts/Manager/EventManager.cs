@@ -11,8 +11,6 @@ public class EventManager : Singleton<EventManager>
     protected override void Awake()
     {
         base.Awake();
-
-        SetupEvents(1);
     }
 
     public Coroutine RunEvent(string eventID)
@@ -39,12 +37,12 @@ public class EventManager : Singleton<EventManager>
         Flags[key] = flagValue;
     }
 
-    public void SetupEvents(int stageNumber)
+    public void SetupEvents(string path)
     {
+        DidSetup = true;
         Events.Clear();
 
-        string stageEventPath = "Stage" + stageNumber;
-        GameEvent_SO[] gameEvents = Resources.LoadAll<GameEvent_SO>($"GameEvent/{stageEventPath}");
+        GameEvent_SO[] gameEvents = Resources.LoadAll<GameEvent_SO>($"GameEvent/{path}");
 
         for (int i = 0; i < gameEvents.Length; ++i)
         {
