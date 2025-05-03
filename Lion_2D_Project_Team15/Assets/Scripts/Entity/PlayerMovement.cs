@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
-    [Header("참조")]
+    [Header("무기 참조")]
     public Sword sword; // Sword 참조
 
     private void Start()
