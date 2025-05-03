@@ -865,6 +865,177 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1854434994910724355
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2652484227469157594, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652484227469157594, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652484227469157594, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652484227469157594, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652484227469157594, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652484227469157594, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652484227469157594, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652484227469157594, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652484227469157594, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652484227469157594, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663983811720002381, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+      propertyPath: m_Name
+      value: bubble emotes july update_123
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+--- !u!1001 &7497036164850466077
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3350340909871811999, guid: ab1107f57bd30bd42ad9b56ba06f53c9, type: 3}
+      propertyPath: m_Name
+      value: exclamation_bubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575455553973082546, guid: ab1107f57bd30bd42ad9b56ba06f53c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575455553973082546, guid: ab1107f57bd30bd42ad9b56ba06f53c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.013
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575455553973082546, guid: ab1107f57bd30bd42ad9b56ba06f53c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575455553973082546, guid: ab1107f57bd30bd42ad9b56ba06f53c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575455553973082546, guid: ab1107f57bd30bd42ad9b56ba06f53c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575455553973082546, guid: ab1107f57bd30bd42ad9b56ba06f53c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575455553973082546, guid: ab1107f57bd30bd42ad9b56ba06f53c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575455553973082546, guid: ab1107f57bd30bd42ad9b56ba06f53c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575455553973082546, guid: ab1107f57bd30bd42ad9b56ba06f53c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575455553973082546, guid: ab1107f57bd30bd42ad9b56ba06f53c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab1107f57bd30bd42ad9b56ba06f53c9, type: 3}
+--- !u!1001 &8596816773160610985
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1383352662870355905, guid: 7ddc65520dc1f1747a50ef346e1a9233, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383352662870355905, guid: 7ddc65520dc1f1747a50ef346e1a9233, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383352662870355905, guid: 7ddc65520dc1f1747a50ef346e1a9233, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383352662870355905, guid: 7ddc65520dc1f1747a50ef346e1a9233, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383352662870355905, guid: 7ddc65520dc1f1747a50ef346e1a9233, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383352662870355905, guid: 7ddc65520dc1f1747a50ef346e1a9233, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383352662870355905, guid: 7ddc65520dc1f1747a50ef346e1a9233, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383352662870355905, guid: 7ddc65520dc1f1747a50ef346e1a9233, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383352662870355905, guid: 7ddc65520dc1f1747a50ef346e1a9233, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383352662870355905, guid: 7ddc65520dc1f1747a50ef346e1a9233, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960710688478705243, guid: 7ddc65520dc1f1747a50ef346e1a9233, type: 3}
+      propertyPath: m_Name
+      value: bubble emotes july update_99
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7ddc65520dc1f1747a50ef346e1a9233, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -875,3 +1046,6 @@ SceneRoots:
   - {fileID: 1696322323}
   - {fileID: 276400194}
   - {fileID: 418256871}
+  - {fileID: 7497036164850466077}
+  - {fileID: 8596816773160610985}
+  - {fileID: 1854434994910724355}
