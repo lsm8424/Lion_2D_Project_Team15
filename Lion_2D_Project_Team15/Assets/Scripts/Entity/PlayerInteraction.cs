@@ -37,8 +37,17 @@ public class PlayerInteraction : MonoBehaviour
 
             if (anim != null)
             {
-                anim.SetBool("Climb", vertical != 0); // W/S 입력 여부로 Climb 애니메이션 활성화
-                anim.speed = vertical != 0 ? 1 : 0;   // 움직임 없으면 일시정지, 움직이면 재생
+                bool isClimbing = vertical != 0; // W/S 키 입력 여부로 Climb 애니메이션 활성화
+                anim.SetBool("Climb", isClimbing); // W/S 입력에 따라 Climb 애니메이션 상태 업데이트
+
+                if (!isClimbing) // 움직이지 않으면 애니메이션 속도를 0으로 유지
+                {
+                    anim.speed = 0;
+                }
+                else
+                {
+                    anim.speed = 1; // 움직일 때 애니메이션 재생
+                }
             }
         }
 
