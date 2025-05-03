@@ -14,11 +14,17 @@ public class Sword : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        if (anim == null)
+        {
+            Debug.LogError("Animator가 이 오브젝트에 연결되어 있지 않습니다!");
+        }
+
         if (hand == null)
         {
             Debug.LogError("Hand Transform이 설정되지 않았습니다!");
         }
     }
+
 
     private void Update()
     {

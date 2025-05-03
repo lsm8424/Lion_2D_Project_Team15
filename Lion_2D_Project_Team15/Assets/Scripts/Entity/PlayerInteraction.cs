@@ -37,16 +37,15 @@ public class PlayerInteraction : MonoBehaviour
 
             if (anim != null)
             {
-                bool isClimbing = vertical != 0; // W/S 키 입력 여부로 Climb 애니메이션 활성화
-                anim.SetBool("Climb", isClimbing); // W/S 입력에 따라 Climb 애니메이션 상태 업데이트
+                anim.SetBool("Climb", true); // 사다리 위에 있는 동안 Climb 상태 유지
 
-                if (!isClimbing) // 움직이지 않으면 애니메이션 속도를 0으로 유지
+                if (vertical == 0) // 움직이지 않으면
                 {
-                    anim.speed = 0;
+                    anim.speed = 0; // 애니메이션 일시정지
                 }
-                else
+                else // 움직이면
                 {
-                    anim.speed = 1; // 움직일 때 애니메이션 재생
+                    anim.speed = 1; // 애니메이션 재생
                 }
             }
         }
