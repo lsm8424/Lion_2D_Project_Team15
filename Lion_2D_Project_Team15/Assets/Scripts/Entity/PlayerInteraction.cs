@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -29,6 +30,25 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         DetectInteractable(); // 항상 감지
+
+        if (isOnLadder)
+        {
+            float vertical = Input.GetAxisRaw("Vertical"); // W/S 키 입력 감지
+
+            if (anim != null)
+            {
+                anim.SetBool("Climb", true); // 사다리 위에 있는 동안 Climb 상태 유지
+
+                if (vertical == 0) // 움직이지 않으면
+                {
+                    anim.speed = 0; // 애니메이션 일시정지
+                }
+                else // 움직이면
+                {
+                    anim.speed = 1; // 애니메이션 재생
+                }
+            }
+        }
 
         // 스페이스로 사다리 탈출
         if (isOnLadder && Input.GetKeyDown(KeyCode.Space))
@@ -138,9 +158,6 @@ public class PlayerInteraction : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0f;
 
-        if (anim != null)
-            anim.SetTrigger("ClimbStart");
-
         Debug.Log("사다리에 올라탐");
 
         StartCoroutine(ResetLadderJustEntered());
@@ -155,7 +172,7 @@ public class PlayerInteraction : MonoBehaviour
         rb.gravityScale = 1f;
 
         if (anim != null)
-            anim.SetTrigger("ClimbEnd");
+            anim.SetBool("Climb", false);
 
         Debug.Log("사다리에서 내려옴");
     }
