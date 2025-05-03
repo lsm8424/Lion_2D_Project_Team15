@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "GameEventSequence_SO", menuName = "Scriptable Objects/GameEventSequence_SO")]
-public class GameEventSequence_SO : ScriptableObject
+[CreateAssetMenu(fileName = "QuestLine_SO", menuName = "Scriptable Objects/QuestLine_SO")]
+public class QuestLine_SO : ScriptableObject
 {
-    public EventTriggerPair[] EventTriggerSequence;
+    public QuestInfo[] EventTriggerSequence;
 
     [Serializable]
-    public struct EventTriggerPair
+    public struct QuestInfo
     {
         public EEventTriggerType EventTrigger;
         public GameEvent_SO GameEvent;

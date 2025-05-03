@@ -27,6 +27,19 @@ public class IDManager : Singleton<IDManager>
     {
         if (!Identifiers.ContainsKey(key))
         {
+            // SetUpIdentifiers() 이후의 생성될 수 있으므로, 다시 초기화
+            IdentifiableMonoBehavior[] identifers = FindObjectsByType<IdentifiableMonoBehavior>(FindObjectsSortMode.None);
+
+            foreach (var identifier in identifers)
+            {
+                if (identifier.ObjectID == key)
+                {
+                    Identifiers.Add(identifier.ObjectID, identifier);
+                    obj = identifier;
+                    return true;
+                }
+            }
+
             Debug.LogError($"[IDManager] 유효한 ObjectId를 찾을 수 없습니다. {key}");
             obj = null;
             return false;

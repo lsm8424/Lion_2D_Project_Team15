@@ -9,7 +9,9 @@ public abstract class EventFunction_SO : ScriptableObject
         Normal,
         Cutscene,
         ParameterFunction,
+        TemporarySpawn,
         Unique,
+        Custom,
     }
 
     public abstract void Setup();
