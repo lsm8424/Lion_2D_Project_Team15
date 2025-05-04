@@ -2,7 +2,6 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEditor.MPE;
 using UnityEngine;
 
@@ -54,7 +53,6 @@ public class QuestManager : Singleton<QuestManager>
                 Debug.LogError("이 퀘스트는 이미 종료되었습니다. QuestID: " + questID);
                 yield break;
             }
-
             Quests[questID].RemoveTrigger(prevProgressLevel);
             progressLevel = prevProgressLevel + 1;
             Progresses[questID] = progressLevel;
