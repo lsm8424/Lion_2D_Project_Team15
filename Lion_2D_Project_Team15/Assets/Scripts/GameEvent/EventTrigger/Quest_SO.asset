@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a75b65feb1353e479fcd91db1106898, type: 3}
+  m_Name: Quest_SO
+  m_EditorClassIdentifier: 
+  QuestID: 
+  Progress:
+  - Triggers:
+    - {fileID: 11400000, guid: 244d8b5b858ba6a46a9e03778917adc4, type: 2}
+    GameEvent: {fileID: 11400000, guid: 768638bb9596ac242b5e3a9fd0835cb2, type: 2}
+  - Triggers:
+    - {fileID: 11400000, guid: 02273f907a86a4b478f57896263ab722, type: 2}
+    - {fileID: 11400000, guid: 244d8b5b858ba6a46a9e03778917adc4, type: 2}
+    GameEvent: {fileID: 11400000, guid: 768638bb9596ac242b5e3a9fd0835cb2, type: 2}

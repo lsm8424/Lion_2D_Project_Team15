@@ -5,23 +5,30 @@ using UnityEngine.Timeline;
 public class CutscenePlayer : Singleton<CutscenePlayer>
 {
     public TimelineAsset Clip { get; private set; }
-    PlayableDirector _playableDirector;
+    public PlayableDirector PlayableDirector { get; private set; }
+    public bool IsPlaying = false;
 
     protected override void Awake()
     {
         base.Awake();
 
-        _playableDirector = GetComponent<PlayableDirector>();
+        PlayableDirector = GetComponent<PlayableDirector>();
     }
 
     public void Play(TimelineAsset clip)
     {
         if (Clip == null)
         {
-            Debug.LogError("ClipÀÌ µî·ÏµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.LogError("Clipì´ ë“±ë¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
         }
-
+        IsPlaying = true;
         Clip = clip;
-        _playableDirector.Play(Clip);
+        PlayableDirector.Play(Clip);
+    }
+
+
+    public void TimelineEndTrigger()
+    {
+        IsPlaying = false;
     }
 }

@@ -11,8 +11,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
-    [Header("참조")]
+    [Header("무기 참조")]
     public Sword sword; // Sword 참조
+
+    // 공격 상태 관리 플래그
+    public bool isAttacking = false;
 
     private void Start()
     {
@@ -22,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleMove()
     {
+        // 공격 중이고 점프 상태가 아닐 경우 이동 차단
+        if (isAttacking && !anim.GetBool("Jump"))
+            return;
+
         // 사다리 위에 있을 때는 좌/우 이동 차단
         if (Player.Instance.interaction.IsOnLadder())
             return;

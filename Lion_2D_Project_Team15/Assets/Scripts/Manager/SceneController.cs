@@ -31,7 +31,7 @@ public class SceneController  : Singleton<SceneController>
 
         // 추후작성 필요
         //SceneManager.sceneLoaded += OnSceneLoaded;
-        StartCoroutine(AfterAwake());
+        StartCoroutine(AfterAwake());   // 임시용 코드 이후에 위 코드와 교체
 
     }
 
@@ -39,15 +39,12 @@ public class SceneController  : Singleton<SceneController>
     {
         yield return null;
         OnSceneLoaded(new Scene(), LoadSceneMode.Single);
-        //yield return EventManager.Instance.RunEvent("1");
-
-        Debug.Log("코루틴 테스트");
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         // int stageNumber = ???
         IDManager.Instance.SetUpIdentifiers();
-        EventManager.Instance.SetupEvents(1);
+        EventManager.Instance.SetupEvents("Stage1");
         // SaveManager.Instance.Save();
     }
 

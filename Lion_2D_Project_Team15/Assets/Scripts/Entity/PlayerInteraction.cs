@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -30,6 +31,25 @@ public class PlayerInteraction : MonoBehaviour
     {
         DetectInteractable(); // 항상 감지
 
+        if (isOnLadder)
+        {
+            float vertical = Input.GetAxisRaw("Vertical"); // W/S 키 입력 감지
+
+            if (anim != null)
+            {
+                anim.SetBool("Climb", true); // 사다리 위에 있는 동안 Climb 상태 유지
+
+                if (vertical == 0) // 움직이지 않으면
+                {
+                    anim.speed = 0; // 애니메이션 일시정지
+                }
+                else // 움직이면
+                {
+                    anim.speed = 1; // 애니메이션 재생
+                }
+            }
+        }
+
         // 스페이스로 사다리 탈출
         if (isOnLadder && Input.GetKeyDown(KeyCode.Space))
         {
@@ -40,7 +60,8 @@ public class PlayerInteraction : MonoBehaviour
         // F 키 눌렀을 때 상호작용
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (ladderJustEntered) return;
+            if (ladderJustEntered)
+                return;
 
             if (isTalking)
             {
@@ -76,6 +97,10 @@ public class PlayerInteraction : MonoBehaviour
 
         if (hit.collider != null)
         {
+            if (currentTarget != hit.collider.gameObject)
+            {
+                Debug.Log("상호작용할 수 있는 Object입니다: " + hit.collider.name);
+            }
             currentTarget = hit.collider.gameObject;
         }
         else
@@ -83,6 +108,7 @@ public class PlayerInteraction : MonoBehaviour
             currentTarget = null;
         }
     }
+
 
     private void TryInteract(GameObject target)
     {
@@ -109,7 +135,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void PickupItem(GameObject item)
     {
-        if (Time.timeSinceLevelLoad < 1.0f) return;
+        if (Time.timeSinceLevelLoad < 1.0f)
+            return;
 
         Debug.Log("아이템을 획득했습니다: " + item.name);
 
@@ -138,9 +165,6 @@ public class PlayerInteraction : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0f;
 
-        if (anim != null)
-            anim.SetTrigger("ClimbStart");
-
         Debug.Log("사다리에 올라탐");
 
         StartCoroutine(ResetLadderJustEntered());
@@ -155,7 +179,10 @@ public class PlayerInteraction : MonoBehaviour
         rb.gravityScale = 1f;
 
         if (anim != null)
-            anim.SetTrigger("ClimbEnd");
+        {
+            anim.SetBool("Climb", false);
+            anim.speed = 1f; // 애니메이션 속도를 기본값으로 리셋
+        }
 
         Debug.Log("사다리에서 내려옴");
     }
@@ -167,6 +194,8 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     public bool IsOnLadder() => isOnLadder;
+
     public Ladder GetCurrentLadder() => currentLadder;
+
     public void ForceExitLadder() => ExitLadder();
 }
