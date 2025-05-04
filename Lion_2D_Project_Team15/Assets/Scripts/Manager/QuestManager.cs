@@ -53,10 +53,7 @@ public class QuestManager : Singleton<QuestManager>
                 Debug.LogError("이 퀘스트는 이미 종료되었습니다. QuestID: " + questID);
                 yield break;
             }
-
-            foreach (var prevTriggers in questProgress[prevProgressLevel].Triggers)
-                prevTriggers.RemoveTrigger();
-
+            Quests[questID].RemoveTrigger(prevProgressLevel);
             progressLevel = prevProgressLevel + 1;
             Progresses[questID] = progressLevel;
             yield return questProgress[prevProgressLevel].GameEvent.Execute();
@@ -66,11 +63,7 @@ public class QuestManager : Singleton<QuestManager>
         if (questProgress.Length <= progressLevel)
             yield break;
 
-
-        foreach (var curTrigger in questProgress[progressLevel].Triggers)
-        {
-            curTrigger.AddEventTrigger();
-        }
+        Quests[questID].SetTrigger(progressLevel);
     }
 
     public void SetUp(string path)

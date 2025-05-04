@@ -9,20 +9,18 @@ public class Quest_SO : ScriptableObject
 
     public void SetTrigger(int i)
     {
-        foreach (var item in Progress[i].Triggers)
-            item.AddEventTrigger();
+        Progress[i].Trigger.AddEventTrigger();
     }
 
     public void RemoveTrigger(int i)
     {
-        foreach (var item in Progress[i].Triggers)
-            item.RemoveTrigger();
+        Progress[i].Trigger.AddEventTrigger();
     }
 
     [Serializable]
     public struct QuestInfo
     {
-        public EventTrigger_SO[] Triggers;
+        public EventTrigger_SO Trigger;
         public GameEvent_SO GameEvent;
     }
 }
