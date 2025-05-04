@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: TriggerCondition_SO
   m_EditorClassIdentifier: 
   ObjectID: 
-  ComparisonType: 5
+  ComparisonType: 4
   ComponentName: 
-  ProcessType: 0
+  ProcessType: 1
   ProcessName: 
-  ValueType: 3
+  ValueType: 1
   BoolValue: 0
   IntValue: 0
   FloatValue: 0

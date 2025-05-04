@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEditor.MPE;
 using UnityEngine;
 
@@ -54,9 +55,7 @@ public class QuestManager : Singleton<QuestManager>
                 yield break;
             }
 
-            foreach (var prevTriggers in questProgress[prevProgressLevel].Triggers)
-                prevTriggers.RemoveTrigger();
-
+            Quests[questID].RemoveTrigger(prevProgressLevel);
             progressLevel = prevProgressLevel + 1;
             Progresses[questID] = progressLevel;
             yield return questProgress[prevProgressLevel].GameEvent.Execute();
@@ -66,11 +65,7 @@ public class QuestManager : Singleton<QuestManager>
         if (questProgress.Length <= progressLevel)
             yield break;
 
-
-        foreach (var curTrigger in questProgress[progressLevel].Triggers)
-        {
-            curTrigger.AddEventTrigger();
-        }
+        Quests[questID].SetTrigger(progressLevel);
     }
 
     public void SetUp(string path)

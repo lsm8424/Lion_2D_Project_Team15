@@ -15,7 +15,7 @@ MonoBehaviour:
   QuestID: 
   Progress:
   - Triggers:
-    - {fileID: 11400000, guid: 244d8b5b858ba6a46a9e03778917adc4, type: 2}
+    - {fileID: 0}
     GameEvent: {fileID: 11400000, guid: 768638bb9596ac242b5e3a9fd0835cb2, type: 2}
   - Triggers:
     - {fileID: 11400000, guid: 02273f907a86a4b478f57896263ab722, type: 2}
