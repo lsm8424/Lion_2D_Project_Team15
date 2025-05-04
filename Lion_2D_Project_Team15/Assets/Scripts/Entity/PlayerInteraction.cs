@@ -109,7 +109,6 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-
     private void TryInteract(GameObject target)
     {
         if (target.CompareTag("NPC"))
@@ -176,7 +175,7 @@ public class PlayerInteraction : MonoBehaviour
         currentLadder = null;
 
         Player.Instance.movement.enabled = true;
-        rb.gravityScale = 1f;
+        rb.gravityScale = 2f;
 
         if (anim != null)
         {
