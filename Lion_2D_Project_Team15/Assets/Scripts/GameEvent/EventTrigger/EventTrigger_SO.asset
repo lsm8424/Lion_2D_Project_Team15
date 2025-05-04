@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bef1b41f17438f43925fe24a7b17069, type: 3}
   m_Name: EventTrigger_SO
   m_EditorClassIdentifier: 
+  ObjectID: 
+  Type: 0
+  Conditions:
+  - {fileID: 11400000, guid: fa2499f874a565143b60009600108005, type: 2}
+  QuestID: 
+  ProgressLevel: 0
