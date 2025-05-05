@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a99858654405a44aa7d861a7f583142, type: 3}
-  m_Name: conver2
+  m_Script: {fileID: 11500000, guid: 045a91e831e6cfa4d96e98716bc79f09, type: 3}
+  m_Name: Conver2
   m_EditorClassIdentifier: 
   FunctionType: 0
   Conversations:
   - Category: 1
-    DialogueID: player_003
+    DialogueID: narration_001
   - Category: 1
-    DialogueID: libram_001
+    DialogueID: player_003

@@ -35,6 +35,9 @@ public class Player : Entity
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentTime != GameManager.ETimeCase.EntityMovement)
+            return;
+
         // 각 기능 모듈의 매서드 실행
         movement.HandleMove(); // 이동
         movement.HandleJump(); // 점프

@@ -45,6 +45,7 @@ public class SceneController  : Singleton<SceneController>
         // int stageNumber = ???
         IDManager.Instance.SetUpIdentifiers();
         EventManager.Instance.SetupEvents("Stage1");
+        EventManager.Instance.RunEvent("Explain_Event");
         // SaveManager.Instance.Save();
     }
 

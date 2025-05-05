@@ -27,6 +27,9 @@ public class Fade : IScreenEffect
         float percent = 0;
         float elapsedTime = 0;
 
+        if (_image == null)
+            _image = SceneController.Instance.FadePanel;
+
         Color currentColor = _image.color;
         currentColor = _startColor;
         _image.color = currentColor;
@@ -37,6 +40,9 @@ public class Fade : IScreenEffect
             percent = elapsedTime / Duration;
             currentColor = Color.Lerp(_startColor, _endColor, percent);
             _image.color = currentColor;
+
+            if (GameManager.Instance.NeedsWaitForSetting())
+                yield return new WaitUntil(() => !GameManager.Instance.NeedsWaitForSetting());
             yield return null;
         }
 
