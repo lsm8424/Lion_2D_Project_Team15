@@ -12,6 +12,13 @@ public class DialogueManager : Singleton<DialogueManager>
     public bool IsDialogueCompleted { get; private set; } = true;
     public bool IsOneShotCompleted { get; private set; } = true;
 
+    void Update()
+    {
+        if (!(IsDialogueCompleted && IsOneShotCompleted) && Input.GetKeyDown(KeyCode.F))
+        {
+            ProcessPlayerInput();
+        }
+    }
     public void StartDialogue(DialogueCategory category, string dialogueID)
     {
         if (!IsDialogueCompleted)
