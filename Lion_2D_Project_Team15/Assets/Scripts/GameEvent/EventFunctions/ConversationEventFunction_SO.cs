@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ConversationEventFunction_SO", menuName = "Scriptable Objects/EventFunction/ConversationEventFunction_SO")]
@@ -25,6 +26,8 @@ public class ConversationEventFunction_SO : EventFunction_SO
         foreach (var (category, dialogueID) in Conversations)
         {
             DialogueManager.Instance.PlayOneShot(category, dialogueID);
+            if (GameManager.Instance.NeedsWaitForSetting())
+                yield return new WaitUntil(() => GameManager.Instance.NeedsWaitForSetting());
             yield return new WaitUntil(() => DialogueManager.Instance.IsOneShotCompleted);
         }
     }
