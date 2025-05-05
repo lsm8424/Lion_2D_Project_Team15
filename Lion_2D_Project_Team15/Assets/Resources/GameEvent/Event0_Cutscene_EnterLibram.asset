@@ -9,16 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 095a09c7195885c4da6409c54ab8d6b3, type: 3}
-  m_Name: TriggerCondition_SO
+  m_Script: {fileID: 11500000, guid: adf92fe0fce2b8b4c90e7d8b6261a518, type: 3}
+  m_Name: Event0_Cutscene_EnterLibram
   m_EditorClassIdentifier: 
-  ObjectID: 
-  ComparisonType: 4
-  ComponentName: 
-  ProcessType: 1
-  ProcessName: 
-  ValueType: 1
-  BoolValue: 0
-  IntValue: 0
-  FloatValue: 0
-  StringValue: 
+  FunctionType: 1
+  Clip: {fileID: 11400000, guid: 949b12520e019a4409a3fabc2272b8dd, type: 2}

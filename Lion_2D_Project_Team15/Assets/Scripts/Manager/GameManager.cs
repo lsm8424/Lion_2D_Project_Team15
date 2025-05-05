@@ -54,7 +54,6 @@ public class GameManager : Singleton<GameManager>
 
     void ApplyTimeScale(ETimeCase timeCase)
     {
-        Debug.Log("CurrentTimeScale: " + CurrentTime);
         switch (timeCase)
         {
             case ETimeCase.EntityMovement:

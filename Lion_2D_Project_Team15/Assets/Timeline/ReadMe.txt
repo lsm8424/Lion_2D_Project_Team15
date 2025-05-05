@@ -1,0 +1,1 @@
+Timeline을 제작할 때는 CutscenePlayerTrigger.signal을 종료시점에 붙여야 합정상적으로 실행됩니다.
