@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 045a91e831e6cfa4d96e98716bc79f09, type: 3}
-  m_Name: Conver1
+  m_Script: {fileID: 11500000, guid: 1722b30b23542a74f9904c9bf42cc0bd, type: 3}
+  m_Name: Sweat
   m_EditorClassIdentifier: 
-  FunctionType: 0
-  Conversations:
-  - Category: 1
-    DialogueID: player_002
+  FunctionType: 2
+  Prefab: {fileID: 4663983811720002381, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
+  ObjectID: Player
+  Offset: {x: -0.05, y: 1.15, z: 0}
+  Duration: 5

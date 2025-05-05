@@ -8,12 +8,7 @@ public class ScreenEffectEventFunction_SO : EventFunction_SO
     public EScreenEffectType ScreenEffectType;
 
 
-    static IScreenEffect[] screenEffects =
-    {
-        new Fade(Color.clear, Color.black, 0),
-        new Fade(Color.black, Color.clear, 0),
-        new Fade(Color.clear, Color.clear, 0),
-    };
+    static IScreenEffect[] screenEffects;
 
     public enum EScreenEffectType
     {
@@ -30,5 +25,20 @@ public class ScreenEffectEventFunction_SO : EventFunction_SO
     {
         screenEffects[(int)ScreenEffectType].Duration = Duration;
         yield return screenEffects[(int)ScreenEffectType].Execute();
+    }
+
+    void OnEnable()
+    {
+        screenEffects = new IScreenEffect[]
+        {
+            new Fade(Color.clear, Color.black, 0),
+            new Fade(Color.black, Color.clear, 0),
+            new Fade(Color.clear, Color.clear, 0),
+        };
+    }
+
+    void OnDisable()
+    {
+        screenEffects = null;
     }
 }
