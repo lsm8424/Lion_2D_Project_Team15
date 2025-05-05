@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public class Entity : IdentifiableMonoBehavior
 {
     [Header("스탯")]
     public float HP = 100f;           // 현재 체력
