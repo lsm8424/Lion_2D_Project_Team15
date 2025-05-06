@@ -7,6 +7,7 @@ public class Stage2_Boss_Pattern1 : MonoBehaviour
     [SerializeField] private float bulletSpeed; // 총알 속도
     [SerializeField] private float bulletCount; // 총알 개수
     [SerializeField] private float coolTime; // 쿨타임
+    [SerializeField] private float damage; // 공격력
 
     private float delta;
 
@@ -38,7 +39,7 @@ public class Stage2_Boss_Pattern1 : MonoBehaviour
             Vector3 direction = new Vector3(Mathf.Cos(radian), Mathf.Sin(radian), 0f);
 
             GameObject bullet = Instantiate(bulletPrefab, transform.position + direction.normalized, Quaternion.identity);
-            bullet.GetComponent<Stage2_Boss_Pattern1_Bullet>().Initialize(bulletSpeed, direction); // 해당 방향으로 발사
+            bullet.GetComponent<Stage2_Boss_Pattern1_Bullet>().Initialize(bulletSpeed, direction, damage); // 해당 방향으로 발사
         }
     }
 }

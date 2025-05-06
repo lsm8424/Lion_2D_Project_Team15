@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fb8771af8676f7143b8090a4a7809952
+guid: e97c8d0198adc714bbd0764b5cc6ac4b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6704949762986600239
-    second: Dolphin2_0
+      213: -6092313075528410591
+    second: hpbar_white_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dolphin2_0
+      name: hpbar_white_0
       rect:
         serializedVersion: 2
-        x: 63
-        y: 48
-        width: 903
-        height: 971
+        x: 0
+        y: 0
+        width: 149
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f27e7abf844cc0d50800000000000000
-      internalID: 6704949762986600239
+      spriteID: 12a59a84981c37ba0800000000000000
+      internalID: -6092313075528410591
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dolphin2_0: 6704949762986600239
+      hpbar_white_0: -6092313075528410591
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
