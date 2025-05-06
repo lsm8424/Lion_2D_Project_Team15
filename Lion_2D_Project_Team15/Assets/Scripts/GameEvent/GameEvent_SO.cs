@@ -17,7 +17,7 @@ public class GameEvent_SO : ScriptableObject
     public void SetUp()
     {
         for (int i = 0; i < EventFunctions.Length; ++i)
-            EventFunctions.Initialize();
+            EventFunctions[i].Setup();
     }
 
     public IEnumerator Execute()
@@ -39,4 +39,3 @@ public class GameEvent_SO : ScriptableObject
         Trigger,
     }
 }
-
