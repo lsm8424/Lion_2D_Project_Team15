@@ -20,12 +20,12 @@ public class Stage2_Boss_Pattern1 : MonoBehaviour
         delta -= Time.deltaTime;
         if (delta <= 0)
         {
-            Fire();
+            Shoot();
             delta = coolTime;
         }
     }
 
-    void Fire()
+    void Shoot()
     {
         float oneangle = 360f / bulletCount; // 각도 간격
 
