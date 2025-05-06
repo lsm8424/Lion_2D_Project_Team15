@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Dolphin2_0: 6704949762986600239
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
