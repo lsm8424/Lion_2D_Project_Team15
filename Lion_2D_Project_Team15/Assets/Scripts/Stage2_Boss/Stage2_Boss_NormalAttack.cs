@@ -6,6 +6,8 @@ public class Stage2_Boss_NormalAttack : MonoBehaviour
     [SerializeField] private GameObject normalAttackPrefab; // 기본 공격 프리팹
     [SerializeField] private float coolTime; // 공격 쿨타임
     [SerializeField] private float bulletspeed; // 공격 속도
+    [SerializeField] private float nockBack; // 넉백 힘
+    [SerializeField] private float damage; // 공격력
 
     [Header("웨이브")]
     [SerializeField] private float waveFrequency; // 웨이브 주기
@@ -36,6 +38,6 @@ public class Stage2_Boss_NormalAttack : MonoBehaviour
         Vector3 dir= attackDir.normalized; // 방향 벡터 정규화
 
         GameObject shootObj = Instantiate(normalAttackPrefab, transform.position + new Vector3(dir.x, dir.y,0), Quaternion.identity);
-        shootObj.GetComponent<Stage2_Boss_Bullet>().SetBullet(dir, bulletspeed, waveFrequency, waveAmplitude); // 불렛 설정
+        shootObj.GetComponent<Stage2_Boss_Bullet>().SetBullet(dir, bulletspeed, nockBack, damage, waveFrequency, waveAmplitude); // 불렛 설정
     }
 }

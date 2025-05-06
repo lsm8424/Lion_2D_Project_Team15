@@ -7,6 +7,7 @@ public class Stage2_Boss_Pattern2 : MonoBehaviour
     [SerializeField] private float moveSpeed; // 이동속도
     [SerializeField] private int loachCount; // 몹 개수
     [SerializeField] private float coolTime; // 쿨타임
+    [SerializeField] private float damage; // 공격력
 
     [Header("Warning Box")]
     [SerializeField] private GameObject warningBoxPrefab;   // 경고 박스 프리팹
@@ -46,7 +47,7 @@ public class Stage2_Boss_Pattern2 : MonoBehaviour
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
             GameObject loachSkill = Instantiate(loachSkillPrefab, warning.transform.position, Quaternion.identity);
-            loachSkill.GetComponent<Stage2_Boss_LoachSkill>().SetLoach(angle, moveSpeed, ranCount);
+            loachSkill.GetComponent<Stage2_Boss_LoachSkill>().SetLoach(angle, moveSpeed, ranCount, damage);
         });
 
     }

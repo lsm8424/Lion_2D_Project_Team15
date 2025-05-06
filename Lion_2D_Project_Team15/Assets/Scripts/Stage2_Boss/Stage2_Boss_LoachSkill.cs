@@ -6,6 +6,7 @@ public class Stage2_Boss_LoachSkill : MonoBehaviour
     private float moveSpeed; // 이동속도
     private BoxCollider2D cd;   //콜라이더
     private float angle; // 회전 각도
+    private float damage; // 공격력
 
     [SerializeField] private GameObject loachPrefab; // 돌진 지렁이 프리팹
 
@@ -14,6 +15,8 @@ public class Stage2_Boss_LoachSkill : MonoBehaviour
         cd = GetComponent<BoxCollider2D>();
         SpawnLoach(loachCount);
         SetCDandRot();
+
+        Destroy(gameObject, 3f); // 2초 후에 삭제
     }
 
     void Update()
@@ -21,11 +24,12 @@ public class Stage2_Boss_LoachSkill : MonoBehaviour
         transform.Translate(Vector2.right * moveSpeed * Time.deltaTime); // 몹 이동
     }
 
-    public void SetLoach(float angle, float speed, int count)
+    public void SetLoach(float angle, float speed, int count, float damage)
     {
         this.angle = angle;
         moveSpeed = speed;
         loachCount = count;
+        this.damage = damage;
     }
 
     void SpawnLoach(int count)
@@ -70,6 +74,8 @@ public class Stage2_Boss_LoachSkill : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            //Player.Instance.TakeDamage(damage); // 플레이어 데미지
+
             Destroy(gameObject); // 몹이 플레이어와 충돌하면 삭제
         }
     }
