@@ -16,4 +16,4 @@ MonoBehaviour:
   Prefab: {fileID: 4663983811720002381, guid: 5466f5b5cb3d4834891ed4a5fdba5aab, type: 3}
   ObjectID: Player
   Offset: {x: -0.05, y: 1.15, z: 0}
-  Duration: 5
+  Duration: 2
