@@ -2,7 +2,10 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TemporarySpawnEventFunction_SO", menuName = "Scriptable Objects/EventFunction/TemporarySpawnEventFunction_SO")]
+[CreateAssetMenu(
+    fileName = "TemporarySpawnEventFunction_SO",
+    menuName = "Scriptable Objects/EventFunction/TemporarySpawnEventFunction_SO"
+)]
 public class TemporarySpawnEventFunction_SO : EventFunction_SO
 {
     public GameObject Prefab;
@@ -14,6 +17,7 @@ public class TemporarySpawnEventFunction_SO : EventFunction_SO
     float _prevAnimationSpeed;
 
     float _timer;
+
     public TemporarySpawnEventFunction_SO()
     {
         FunctionType = EGameEventFunctionType.ParameterFunction;

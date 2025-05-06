@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneController  : Singleton<SceneController>
+public class SceneController : Singleton<SceneController>
 {
     #region Resource
-    [SerializeField] GameObject _sceneCanvasPrefab;
+    [SerializeField]
+    GameObject _sceneCanvasPrefab;
     GameObject _sceneCanvas;
     public Image FadePanel { get; private set; }
     #endregion
@@ -31,8 +32,7 @@ public class SceneController  : Singleton<SceneController>
 
         // 추후작성 필요
         //SceneManager.sceneLoaded += OnSceneLoaded;
-        StartCoroutine(AfterAwake());   // 임시용 코드 이후에 위 코드와 교체
-
+        StartCoroutine(AfterAwake()); // 임시용 코드 이후에 위 코드와 교체
     }
 
     IEnumerator AfterAwake()
@@ -40,11 +40,12 @@ public class SceneController  : Singleton<SceneController>
         yield return null;
         OnSceneLoaded(new Scene(), LoadSceneMode.Single);
     }
+
     public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         // int stageNumber = ???
         IDManager.Instance.SetUpIdentifiers();
-        EventManager.Instance.SetupEvents("Stage1");
+        EventManager.Instance.SetupEvents("Episode1");
         EventManager.Instance.RunEvent("Explain_Event");
         // SaveManager.Instance.Save();
     }
@@ -62,14 +63,17 @@ public class SceneController  : Singleton<SceneController>
         LoadSceneWithEffect(sceneName, fadeIn, fadeOut);
     }
 
-
     /// <summary>
     /// 이펙트 효과를 적용하여 씬 전환
     /// </summary>
     /// <param name="sceneName"></param>
     /// <param name="startEffect"></param>
     /// <param name="endEffect"></param>
-    public void LoadSceneWithEffect(string sceneName, IScreenEffect startEffect, IScreenEffect endEffect)
+    public void LoadSceneWithEffect(
+        string sceneName,
+        IScreenEffect startEffect,
+        IScreenEffect endEffect
+    )
     {
         if (_hasStarted)
             return;
@@ -77,13 +81,15 @@ public class SceneController  : Singleton<SceneController>
         _hasStarted = true;
         _sceneName = sceneName;
 
-        StartCoroutine(ScreenEffectController.InOutEffect(
-            startEffect,
-            endEffect,
-            LoadSceneAsync,
-            () => GetProgress() >= 1f,
-            SwitchScene
-        ));
+        StartCoroutine(
+            ScreenEffectController.InOutEffect(
+                startEffect,
+                endEffect,
+                LoadSceneAsync,
+                () => GetProgress() >= 1f,
+                SwitchScene
+            )
+        );
     }
 
     /// <summary>
