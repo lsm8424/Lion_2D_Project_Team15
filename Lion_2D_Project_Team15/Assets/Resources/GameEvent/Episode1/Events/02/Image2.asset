@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1767291af51d5469b8bb834eb2e061, type: 3}
+  m_Name: Image2
+  m_EditorClassIdentifier: 
+  FunctionType: 0
+  ImageToShow: {fileID: -8758472279073926807, guid: e2f381c651dab004d96b9bc621c25a3b, type: 3}
+  Show: 1
+  targetTag: CutImage
