@@ -5,7 +5,6 @@ public class move : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] float speed;
-    [SerializeField] float jumpForce;
 
     private void Awake()
     {
@@ -20,13 +19,12 @@ public class move : MonoBehaviour
     void Update()
     {
         float xInput = Input.GetAxisRaw("Horizontal");
+        float yInput = Input.GetAxisRaw("Vertical");
 
-        rb.linearVelocity = new Vector2(xInput * speed, rb.linearVelocityY);
+        Vector2 dir = new Vector2(xInput, yInput).normalized; // 방향 벡터 정규화
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.linearVelocityY = jumpForce;
-        }
+        rb.linearVelocity = dir * speed;
+
     }
 
 }
