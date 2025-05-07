@@ -12,10 +12,10 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public enum ETimeCase
     {
-        EntityMovement,
-        PlayingDialogue,
-        Loading,
-        Setting,
+        EntityMovement = 0,
+        PlayingDialogue = 1,
+        Setting = 2,
+        Loading = 3,
     }
 
     void Update()
@@ -27,8 +27,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public bool NeedsWaitForSetting() => CurrentTime == ETimeCase.Setting;
-    public bool NeedsWaitForDialogue() => CurrentTime == ETimeCase.PlayingDialogue;
+    public bool ShouldWaitForDialogue() => CurrentTime > ETimeCase.PlayingDialogue;
+    public bool ShouldWaitForEntity() => CurrentTime > ETimeCase.EntityMovement;
     /// <summary>
     /// 상황애 맞는 GameObject 관리
     /// </summary>

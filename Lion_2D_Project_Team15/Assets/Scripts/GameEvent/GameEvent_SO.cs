@@ -26,8 +26,8 @@ public class GameEvent_SO : ScriptableObject
         {
             GameManager.Instance.SetTimeScale(GameManager.ETimeCase.PlayingDialogue);
             yield return EventFunctions[i].Execute();
-            if (GameManager.Instance.NeedsWaitForSetting())
-                yield return new WaitUntil(() => !GameManager.Instance.NeedsWaitForSetting());
+            if (GameManager.Instance.ShouldWaitForDialogue())
+                yield return new WaitUntil(() => !GameManager.Instance.ShouldWaitForDialogue());
             GameManager.Instance.RevertTimeScale();
         }
     }

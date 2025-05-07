@@ -21,6 +21,15 @@ public class Fade : IScreenEffect
         IsCompleted = false;
     }
 
+    public Fade(Image image, Color startColor, Color endColor, float duration)
+    {
+        _image = image;
+        _startColor = startColor;
+        _endColor = endColor;
+        Duration = duration;
+        IsCompleted = false;
+    }
+
     public IEnumerator Execute(Action onComplete = null)
     {
         IsCompleted = false;
@@ -41,8 +50,8 @@ public class Fade : IScreenEffect
             currentColor = Color.Lerp(_startColor, _endColor, percent);
             _image.color = currentColor;
 
-            if (GameManager.Instance.NeedsWaitForSetting())
-                yield return new WaitUntil(() => !GameManager.Instance.NeedsWaitForSetting());
+            if (GameManager.Instance.ShouldWaitForDialogue())
+                yield return new WaitUntil(() => !GameManager.Instance.ShouldWaitForDialogue());
             yield return null;
         }
 

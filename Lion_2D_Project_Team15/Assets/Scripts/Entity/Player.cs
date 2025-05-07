@@ -35,7 +35,7 @@ public class Player : Entity
 
     private void Update()
     {
-        if (GameManager.Instance.CurrentTime != GameManager.ETimeCase.EntityMovement)
+        if (GameManager.Instance.ShouldWaitForEntity())
             return;
 
         // 각 기능 모듈의 매서드 실행
