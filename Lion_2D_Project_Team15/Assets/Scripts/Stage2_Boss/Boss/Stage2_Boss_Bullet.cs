@@ -44,8 +44,7 @@ public class Stage2_Boss_Bullet : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             //플레이어 뒤로 밀기
-            collision.transform.position += direction * nockBack;
-
+            collision.GetComponent<Rigidbody2D>().AddForce(direction * nockBack);
             //플레이어 데미지
             //Player.Instance.TakeDamage(damage);
 
