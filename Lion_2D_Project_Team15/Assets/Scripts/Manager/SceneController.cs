@@ -46,7 +46,13 @@ public class SceneController : Singleton<SceneController>
         // int stageNumber = ???
         IDManager.Instance.SetUpIdentifiers();
         EventManager.Instance.SetupEvents("Episode1");
+<<<<<<< HEAD
         EventManager.Instance.RunEvent("Ep1_01");
+=======
+        QuestManager.Instance.SetUp("Episode1");
+        QuestManager.Instance.StartQuest("Ep1");
+        // SaveManager.Instance.Save();
+>>>>>>> LSM
     }
 
     /// <summary>

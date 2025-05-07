@@ -3,7 +3,10 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ConversationEventFunction_SO", menuName = "Scriptable Objects/EventFunction/ConversationEventFunction_SO")]
+[CreateAssetMenu(
+    fileName = "ConversationEventFunction_SO",
+    menuName = "Scriptable Objects/EventFunction/ConversationEventFunction_SO"
+)]
 public class ConversationEventFunction_SO : EventFunction_SO
 {
     public ConversationInfo[] Conversations;
@@ -26,8 +29,15 @@ public class ConversationEventFunction_SO : EventFunction_SO
         foreach (var (category, dialogueID) in Conversations)
         {
             DialogueManager.Instance.PlayOneShot(category, dialogueID);
+<<<<<<< HEAD
             if (GameManager.Instance.ShouldWaitForDialogue())
                 yield return new WaitUntil(() => GameManager.Instance.ShouldWaitForDialogue());
+=======
+
+            if (GameManager.Instance.NeedsWaitForSetting())
+                yield return new WaitUntil(() => !GameManager.Instance.NeedsWaitForSetting());
+
+>>>>>>> LSM
             yield return new WaitUntil(() => DialogueManager.Instance.IsOneShotCompleted);
         }
 
@@ -35,7 +45,5 @@ public class ConversationEventFunction_SO : EventFunction_SO
             Player.Instance.interaction.EndDialogue();
     }
 
-    public override void Setup()
-    {
-    }
+    public override void Setup() { }
 }

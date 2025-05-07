@@ -22,7 +22,7 @@
   },
   {
     "id": "player_003",
-    "text": "으윽 몸이 안움직여..",
+    "text": "큭..몸이 안움직여",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
@@ -36,7 +36,7 @@
   },
   {
     "id": "libram_002",
-    "text": "보아하니 깨어난지 얼마 되지 않아 혼란스러워 보이는데,\n진정해보게나.",
+    "text": "보아하니 깨어난지 얼마 되지 않아 혼란스러워 보이는데,\n말은 할 수 있겠는가?",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
@@ -106,7 +106,7 @@
   },
   {
     "id": "libram_007",
-    "text": "그런것과는 어느정도 궤가 달라. 자네는 지금 '산산조각난 상태' 라네.",
+    "text": "그런것과는 전혀 다른 이야기일세. 자네는 지금 '산산조각난 상태' 라네.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
@@ -294,64 +294,113 @@
     "isEndOfDialogue": false
   },
   {
+    "id": "libram_026",
+    "text": "이런 내 잠시 자네가 움직이지 못한다는것을 잊었군. 허허허!\n실례했네.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
     "id": "narration_002",
-    "text": "(책에 손을 대자 책의 형태가 흩어지면서 내 몸에 깃든다)",
+    "text": "(리브람이 가까이 다가와 책을 가져다 대자 책이 빛나며 공중에 떠올랐다.\n그와 동시에 순간 머릿속에 많은 기억들이 몰아쳤다.)",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "player_019",
-    "text": "(마치 퍼즐을 끼워 맞추듯이 몸속에 들어맞는 기분이야\n이제 움직일 수 있을까)",
-    "choices": "",
-    "condition": "",
-    "isEndOfDialogue": false
-  },
-  {
-    "id": "narration_003",
-    "text": "(갓 걸음마를 시작한 아기 마냥 조심스럽게 상체를 이르켜 바닥에 발을 딛어 보았다)",
-    "choices": "",
-    "condition": "",
-    "isEndOfDialogue": false
-  },
-  {
-    "id": "player_020",
-    "text": "움직여..지는군요\n(겨우 걷기 시작한 것만으로 무언가 가슴속에서 차오르는 기분이다)",
-    "choices": "",
-    "condition": "",
-    "isEndOfDialogue": false
-  },
-  {
-    "id": "libram_026",
-    "text": "호오.. 묘한 표정이로군. 뭔가 느끼는 점이라도 있는 모양이야.",
-    "choices": "",
-    "condition": "",
-    "isEndOfDialogue": false
-  },
-  {
-    "id": "player_021",
-    "text": "넵. 오랜만에 의지가 생기는것 같아요.",
-    "choices": "",
-    "condition": "",
-    "isEndOfDialogue": false
-  },
-  {
-    "id": "player_022",
-    "text": "(역시 포기는 나랑 맞지 않아. 컴퓨터 속으로 들어가는 기술을 발명해낸 그때처럼 이번에도 나는 해낼것이다\n그러기 위해서는 데이터를 더 찾아야 해)",
-    "choices": "",
-    "condition": "",
-    "isEndOfDialogue": false
-  },
-  {
-    "id": "player_023",
-    "text": "어서 다른 데이터를 찾아야겠습니다.",
+    "text": "(이것들은..?)",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "libram_027",
-    "text": "허허 마침 부탁 일도 있으니 잠시 이쪽으로 와 보게나.",
+    "text": "왜그런가?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_020",
+    "text": "뭔가 많은 기억들이 스쳐 지나갔어요.\n 자유롭게 돌아다니던 순간들이.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_028",
+    "text": "호오, 놀랍군. 이것도 자아의 영향인가?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_029",
+    "text": "자 그렇다면 한번 움직여 보게나.\n자네의 말을 들으니 충분히 해낼수 있을거라는 생각이 드는군.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_003",
+    "text": "(리브람의 말에 갓 걸음마를 시작한 아기처럼 매우 조심스럽게 상체를 이르켜 땅에 발을 딛어 보았다)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_021",
+    "text": "움직여..지는군요.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_022",
+    "text": "(갑자기 가슴속에서 형용할 수 없는 기분이 차오르는 듯한 기분이다)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_030",
+    "text": "호오.. 묘한 표정이로군. 뭔가 느끼는 점이라도 있는 모양이야.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_023",
+    "text": "넵. 오랜만에 의지가 생기는것 같아요.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_024",
+    "text": "(역시 포기는 나랑 맞지 않아.)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_025",
+    "text": "(컴퓨터 속으로 들어가는 기술을 발명해낸 그때처럼 이번에도 나는 해낼것이다\n그러기 위해서는 데이터를 더 찾아야 해)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_026",
+    "text": "어서 다른 데이터를 찾아야겠습니다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_031",
+    "text": "허허 진정하게.\n그런 자네를 위해 마침 부탁 일도 있으니, 잠시 이쪽으로 와 보게나.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false

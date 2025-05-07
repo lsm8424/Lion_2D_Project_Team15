@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventType: 0
   EventID: Ep1_01
-  EventName: "\uB9AC\uBE0C\uB78C\uACFC\uC758 \uB300\uD654 \uC774\uBCA4\uD2B8"
+  EventName: "\uB3C4\uC11C\uAD00\uC5D0\uC11C \uB208\uC744 \uB728\uB2E4"
   RequireSave: 0
   EventFunctions:
   - {fileID: 11400000, guid: 8668bde05cb64794fa9f134732822d59, type: 2}
