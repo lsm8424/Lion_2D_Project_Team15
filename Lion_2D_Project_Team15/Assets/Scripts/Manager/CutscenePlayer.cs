@@ -5,7 +5,8 @@ using UnityEngine.Timeline;
 
 public class CutscenePlayer : Singleton<CutscenePlayer>
 {
-    [field:SerializeField] public TimelineAsset Clip { get; private set; }
+    [field: SerializeField]
+    public TimelineAsset Clip { get; private set; }
     public PlayableDirector PlayableDirector { get; private set; }
     public bool IsPlaying = false;
 
@@ -28,7 +29,7 @@ public class CutscenePlayer : Singleton<CutscenePlayer>
         PlayableDirector.Play(Clip);
         StartCoroutine(WhilePlaying());
     }
-    
+
     IEnumerator WhilePlaying()
     {
         while (IsPlaying)

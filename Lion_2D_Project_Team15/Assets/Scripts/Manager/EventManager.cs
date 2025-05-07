@@ -32,6 +32,7 @@ public class EventManager : Singleton<EventManager>
 
         return (T)Flags[key];
     }
+
     public void SetFlag(string key, bool flagValue)
     {
         Flags[key] = flagValue;
