@@ -4,23 +4,24 @@ using UnityEngine.Tilemaps;
 
 public class FallingNote : MonoBehaviour
 {
-    public Transform shadow;           // 미리 바닥에 위치한 그림자 오브젝트
     private float fallDuration;     //떨어지는 시간
     private Vector3 startScale;
     private Vector3 endScale = new Vector3(0.1f, 0.1f, 0.1f);
 
     private float timer = 0f;
+    private Vector3 startPosition;
     private Vector3 targetPosition;
 
-    [SerializeField] float groundDisappearTime = 3f;
-    private Tilemap groundTilemap;
+    [Header("타일이 삭제되는 효과")]
+    public GameObject disappearTilePrefab; //사라진 타일 프리팹
+    public GameObject EffectPrefab;
+    public float groundDisappearTime;
 
+    private bool alreadyHit = false;
 
     void Start()
     {
-        Destroy(gameObject, fallDuration);
 
-        groundTilemap = GameObject.FindGameObjectWithTag("Ground").GetComponent<Tilemap>();
     }
 
     void Update()
@@ -28,47 +29,62 @@ public class FallingNote : MonoBehaviour
         timer += Time.deltaTime;
         float t = timer / fallDuration;
 
-        transform.position = Vector3.Lerp(transform.position, shadow.position, t);
+        transform.position = Vector3.Lerp(startPosition, targetPosition, t);
         transform.localScale = Vector3.Lerp(startScale, endScale, t);
 
         if (t >= 0.99f)
         {
             // 낙하 완료 - 충돌 판정 활성화
             GetComponent<Collider2D>().enabled = true;
-            Destroy(shadow.gameObject); // 그림자 제거
-            this.enabled = false; // 더 이상 업데이트하지 않음
         }
     }
 
     public void Initialize(Vector3 position, float fallduration)
     {
         targetPosition = position;
-        transform.position = position + new Vector3(0f, 2f, 0f); // 높이 조절 (탑뷰 상 가상의 위)
-        shadow.position = position;
+        startPosition = position + new Vector3(0f, 5f, 0f); // 높이 조절 (탑뷰 상 가상의 위)
+        fallDuration = fallduration;
+        transform.position = startPosition;
         transform.localScale = startScale;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (alreadyHit) return;
+
+        if (collision.CompareTag("Player"))
         {
-            Vector3 hitPos = collision.GetContact(0).point;
-            Vector3Int cell = groundTilemap.WorldToCell(hitPos);
+            // 데미지 처리
+            Debug.Log("플레이어가 음표에 맞음!");
+            alreadyHit = true;
+            Destroy(gameObject);
+            return;
+        }
 
-            TileBase original = groundTilemap.GetTile(cell);
-            if (original != null)
-            {
-                groundTilemap.SetTile(cell, null); // 타일 제거
-                StartCoroutine(RestoreTile(cell, original));
-            }
-
-            Destroy(gameObject); // 낙하물 제거
+        else if (collision.CompareTag("Ground"))
+        {
+            StartCoroutine(DelayedGroundHit());
         }
     }
-
-    IEnumerator RestoreTile(Vector3Int cell, TileBase tile)
+    private IEnumerator DelayedGroundHit()
     {
-        yield return new WaitForSeconds(groundDisappearTime);
-        groundTilemap.SetTile(cell, tile); // 타일 복원
+        yield return new WaitForSeconds(0.1f); // 0.1초 대기
+
+        if (alreadyHit) yield break; // 그 사이에 Player에 맞았으면 무시
+
+        alreadyHit = true;
+
+        Debug.Log("바닥에 닿음!");
+
+        GameObject effect = Instantiate(EffectPrefab, targetPosition, Quaternion.identity);
+        Destroy(effect, effect.GetComponent<ParticleSystem>().main.duration);
+
+        GameObject tile = Instantiate(disappearTilePrefab, targetPosition, Quaternion.identity);
+        Destroy(tile, groundDisappearTime);
+
+        Destroy(gameObject);
     }
+
+
+
 }

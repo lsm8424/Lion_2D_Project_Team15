@@ -89,9 +89,28 @@ public class KeyInputManager : MonoBehaviour
 
     private KeyCode GetRandomKey()
     {
-        // A ~ Z 중에서 랜덤 키 반환
-        int ascii = Random.Range(97, 123); // ASCII 코드 A(97)~Z(122)
-        return (KeyCode)ascii;
+        int ranindex = Random.Range(0, 12);
+
+        KeyCode key = KeyCode.None;
+
+        switch (ranindex)
+        {
+            case 0: key = KeyCode.Q; break;
+            case 1: key = KeyCode.W; break;
+            case 2: key = KeyCode.E; break;
+            case 3: key = KeyCode.R; break;
+            case 4: key = KeyCode.A; break;
+            case 5: key = KeyCode.S; break;
+            case 6: key = KeyCode.D; break;
+            case 7: key = KeyCode.F; break;
+            case 8: key = KeyCode.Z; break;
+            case 9: key = KeyCode.X; break;
+            case 10: key = KeyCode.C; break;
+            case 11: key = KeyCode.V; break;
+        }
+
+
+        return key;
     }
 
     private void EndInput(bool success)
