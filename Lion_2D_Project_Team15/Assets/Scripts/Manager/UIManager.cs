@@ -13,19 +13,24 @@ public class UIManager : Singleton<UIManager>
         {
             GameObject canvasPrefab = Resources.Load<GameObject>("UI/SettingsCanvas");
             _settingsCanvas = Instantiate(canvasPrefab, transform);
+
+            _settingsCanvas.SetActive(true);
+            GameManager.Instance.SetTimeCase(GameManager.ETimeCase.Setting);
+            return;
         }
 
         bool isActive = _settingsCanvas.activeSelf;
+        Debug.Log(isActive);
 
         if (isActive)
         {
             _settingsCanvas.SetActive(false);
-            GameManager.Instance.RevertTimeScale();
+            GameManager.Instance.RevertTimeCase();
         }
         else
         {
             _settingsCanvas.SetActive(true);
-            GameManager.Instance.SetTimeScale(GameManager.ETimeCase.Setting);
+            GameManager.Instance.SetTimeCase(GameManager.ETimeCase.Setting);
         }
     }
 }

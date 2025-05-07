@@ -117,6 +117,9 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
             positionComposer.TargetOffset = Vector3.Lerp(StartOffset, EndOffset, easedT);
             targetCamera.Lens.OrthographicSize = Mathf.Lerp(StartZoom, EndZoom, easedT);
 
+            if (GameManager.Instance.ShouldWaitForDialogue())
+                yield return new WaitUntil(() => !GameManager.Instance.ShouldWaitForDialogue());
+
             yield return null;
         }
 
