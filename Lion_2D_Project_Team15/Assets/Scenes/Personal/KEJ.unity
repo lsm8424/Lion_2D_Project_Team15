@@ -1727,6 +1727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topExitY: 10.5
   centerX: 76
+  bottomExitY: 0
 --- !u!61 &169355785
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12875,6 +12876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topExitY: 59.5
   centerX: 103.95
+  bottomExitY: 0
 --- !u!61 &187428227
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18222,6 +18224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topExitY: 10.5
   centerX: 50
+  bottomExitY: 0
 --- !u!61 &862783445
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20539,10 +20542,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cinemaPosition: {fileID: 1008600794}
   cinemaCamera: {fileID: 1008600795}
-  duration: 2
-  defaultScreenPosition: {x: 0, y: 0.2}
-  defaultOffset: {x: 0, y: 0, z: 0}
-  defaultZoom: 6
   initPosition: {x: 0, y: 0.3}
   initOffset: {x: 14, y: 0, z: 0}
   initZoom: 8
@@ -21219,6 +21218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ed89b5b50c7b146bf2c7da7feb2b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectId: 
   HP: 100
   maxHP: 100
   anim: {fileID: 0}
@@ -21286,7 +21286,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -33222,10 +33222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cinemaPosition: {fileID: 1548158723}
   cinemaCamera: {fileID: 1548158724}
-  duration: 2
-  defaultScreenPosition: {x: 0, y: 0.2}
-  defaultOffset: {x: 0, y: 0, z: 0}
-  defaultZoom: 6
   initPosition: {x: 0, y: 0.6}
   initOffset: {x: 13, y: 0, z: 0}
   initZoom: 10
@@ -36909,10 +36905,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cinemaPosition: {fileID: 1822792475}
   cinemaCamera: {fileID: 1822792476}
-  duration: 2
-  defaultScreenPosition: {x: 0, y: 0.2}
-  defaultOffset: {x: 0, y: 0, z: 0}
-  defaultZoom: 6
   initPosition: {x: 0, y: 0.4}
   initOffset: {x: 30, y: 0, z: 0}
   initZoom: 12
