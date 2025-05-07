@@ -30,7 +30,9 @@ public class ConversationEventFunction_SO : EventFunction_SO
                 yield return new WaitUntil(() => GameManager.Instance.ShouldWaitForDialogue());
             yield return new WaitUntil(() => DialogueManager.Instance.IsOneShotCompleted);
         }
-        Player.Instance.interaction.EndDialogue();
+
+        if (Player.Instance)
+            Player.Instance.interaction.EndDialogue();
     }
 
     public override void Setup()

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3832410480801106339}
   - component: {fileID: 4600962375221965451}
   - component: {fileID: 1027727577542006771}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Monster
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -78,9 +78,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.8773585, g: 0.27727836, b: 0.41539726, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -129,10 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1cfb1344f749e49b9b80c875a2717b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectId: Episode2_monster1
   HP: 80
   maxHP: 80
   anim: {fileID: 0}
-  moveSpeed: 3
+  moveSpeed: 2
   attackPower: 3
   attackCooldown: 1
   attackRange: 1.5
