@@ -14,8 +14,8 @@ public class Stage2_Boss_Pattern3 : MonoBehaviour
     [SerializeField] private float damage;      //트랩 데미지    
 
     //랜덤한 위치 정하기
-    private float maxX = 15;
-    private float maxY = 15;
+    private float maxX = 18;
+    private float maxY = 18;
 
     private bool isPatternActive = false;
     private float delta = 5;
@@ -37,21 +37,41 @@ public class Stage2_Boss_Pattern3 : MonoBehaviour
     {
         isPatternActive = true;
 
-        float randomX = Random.Range(-maxX, maxX);
-        float randomY = Random.Range(-maxY, maxY);
+        Vector3 randomSpawn = Vector3.zero;
 
-        //두 숫자가 절대값 3보다 작지 않을 때 까지 반복
-        while (Mathf.Abs(randomX) > 3 && Mathf.Abs(randomY) > 3)
+        while(true)
         {
-            randomX = Random.Range(-maxX, maxX);
-            randomY = Random.Range(-maxY, maxY);
+            randomSpawn = new Vector3(Random.Range(0, maxX), Random.Range(0, maxY), 0);
+            float distance = Vector3.Distance(randomSpawn, Vector3.zero);
+            if(distance >4 && distance < 18)
+                break;
         }
 
-        GameObject wave = Instantiate(trapPrefab, transform.position + new Vector3(randomX, randomY, 0), Quaternion.identity);
+        GameObject wave = Instantiate(trapPrefab, transform.position + NearPlayerSpawn(randomSpawn), Quaternion.identity);
 
         wave.GetComponent<Stage2_Boss_TrapSkill>().SetWave(lifeTime, trapSize, damage, keyInputCount, keyDuration);
 
         Invoke("TimeSet", lifeTime);
+    }
+
+    private Vector3 NearPlayerSpawn(Vector3 pos)
+    {
+        Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+        Vector3 direction = playerPos - transform.position;
+
+        Vector3 newdirection = Vector3.zero;
+
+        if(direction.x <0)
+            newdirection.x = -pos.x;
+        else
+            newdirection.x = pos.x;
+        if (direction.y < 0)
+            newdirection.y = -pos.y;
+        else
+            newdirection.y = pos.y;
+
+        return newdirection;
     }
 
     private void TimeSet()
