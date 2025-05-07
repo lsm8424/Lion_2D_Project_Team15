@@ -47,7 +47,6 @@ public class SceneController : Singleton<SceneController>
         IDManager.Instance.SetUpIdentifiers();
         EventManager.Instance.SetupEvents("Episode1");
         EventManager.Instance.RunEvent("Ep1_01");
-        // SaveManager.Instance.Save();
     }
 
     /// <summary>
