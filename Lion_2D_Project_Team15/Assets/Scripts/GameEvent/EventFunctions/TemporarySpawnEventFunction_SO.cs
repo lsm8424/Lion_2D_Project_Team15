@@ -31,10 +31,10 @@ public class TemporarySpawnEventFunction_SO : EventFunction_SO
         {
             _timer += Time.deltaTime * GameManager.Instance.DialogueTimeScale;
 
-            if (GameManager.Instance.NeedsWaitForSetting())
+            if (GameManager.Instance.ShouldWaitForDialogue())
             {
                 OnPause();
-                yield return new WaitUntil(() => !GameManager.Instance.NeedsWaitForSetting());
+                yield return new WaitUntil(() => !GameManager.Instance.ShouldWaitForDialogue());
                 OnReload();
             }
 

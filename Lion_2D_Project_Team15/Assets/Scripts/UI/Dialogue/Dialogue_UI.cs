@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -18,9 +19,24 @@ public class Dialogue_UI : MonoBehaviour
 
     DialogueManager _dialogueManager;
 
+
+    Dictionary<string, string> _nicknames = new Dictionary<string, string>
+    {
+        {"player", "플레이어" },
+        {"libram", "리브람" },
+    };
+
     void Start()
     {
         _dialogueManager = DialogueManager.Instance;
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            _dialogueManager.ProcessPlayerInput();
+        }
     }
 
     public void OnClickTouchPanel()
@@ -44,7 +60,8 @@ public class Dialogue_UI : MonoBehaviour
         scriptIdPrefix = split[0];
         scriptIdNumber = split[1];
 
-        _speaker.SetText(scriptIdPrefix);    // 화자의 이름을 어떻게 정할지
+
+        SetNickname(scriptIdPrefix);
         _content.SetText("");
 
         GameManager gameManager = GameManager.Instance;
@@ -92,6 +109,14 @@ public class Dialogue_UI : MonoBehaviour
         _dialogueOptionPanel.ClearOptions();
         _dialogueOptionPanel.gameObject.SetActive(false);
         _dialogueManager.JumpTo(dialogueID);
+    }
+
+    void SetNickname(string speaker)
+    {
+        if (_nicknames.TryGetValue(scriptIdPrefix, out string nickname))
+            _speaker.SetText(nickname);
+        else
+            _speaker.SetText(scriptIdPrefix);
     }
     
     // IEnumerator PlayScript(ITextEffect textEffect);
