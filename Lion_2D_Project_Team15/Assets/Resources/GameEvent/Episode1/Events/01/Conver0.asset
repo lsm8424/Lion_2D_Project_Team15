@@ -16,3 +16,5 @@ MonoBehaviour:
   Conversations:
   - Category: 1
     DialogueID: player_001
+  - Category: 1
+    DialogueID: player_002
