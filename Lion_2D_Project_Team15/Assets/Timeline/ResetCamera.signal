@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adf92fe0fce2b8b4c90e7d8b6261a518, type: 3}
-  m_Name: Event0_Cutscene_EnterLibram
+  m_Script: {fileID: 11500000, guid: d6fa2d92fc1b3f34da284357edf89c3b, type: 3}
+  m_Name: ResetCamera
   m_EditorClassIdentifier: 
-  FunctionType: 1
-  Clip: {fileID: 11400000, guid: 949b12520e019a4409a3fabc2272b8dd, type: 2}
