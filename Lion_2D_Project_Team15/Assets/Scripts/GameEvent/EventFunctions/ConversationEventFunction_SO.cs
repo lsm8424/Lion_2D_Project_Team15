@@ -29,12 +29,14 @@ public class ConversationEventFunction_SO : EventFunction_SO
         foreach (var (category, dialogueID) in Conversations)
         {
             DialogueManager.Instance.PlayOneShot(category, dialogueID);
-
-            if (GameManager.Instance.NeedsWaitForSetting())
-                yield return new WaitUntil(() => !GameManager.Instance.NeedsWaitForSetting());
+            if (GameManager.Instance.ShouldWaitForDialogue())
+                yield return new WaitUntil(() => GameManager.Instance.ShouldWaitForDialogue());
 
             yield return new WaitUntil(() => DialogueManager.Instance.IsOneShotCompleted);
         }
+
+        if (Player.Instance)
+            Player.Instance.interaction.EndDialogue();
     }
 
     public override void Setup() { }

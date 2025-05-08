@@ -65,7 +65,8 @@ public class PlayerInteraction : MonoBehaviour
 
             if (isTalking)
             {
-                currentNPC?.AdvanceDialogue();
+                // Dialogue_UI.cs에서 플레이어 입력 처리
+                // currentNPC?.AdvanceDialogue();
                 return;
             }
 

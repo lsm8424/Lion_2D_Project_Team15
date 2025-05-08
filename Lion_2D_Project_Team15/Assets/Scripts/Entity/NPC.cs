@@ -15,31 +15,23 @@ public class NPC : MonoBehaviour
     public DialogueLine[] dialogueLines;
     private int dialogueIndex = 0; // 현재 몇번째 대사인지 추적
 
-    public string DialogueID;
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.D))
-            Interact();
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            AdvanceDialogue();
-        }
-    }
+    public string EventID;
 
     // 플레이어가 F 키로 상호작용 시 호출됨
     public void Interact()
     {
-        DialogueManager.Instance.StartDialogue(DialogueCategory.Dialogue, DialogueID);
+        // 수정 필요
+        // DialogueManager.Instance.StartDialogue(DialogueCategory.Dialogue, DialogueID);
+        if (!string.IsNullOrWhiteSpace(EventID))
+            EventManager.Instance.RunEvent(EventID);
     }
 
 
     // 플레이어가 F 키를 다시 누르면 호출됨
-    public void AdvanceDialogue()
-    {
-        DialogueManager.Instance.ProcessPlayerInput();
-    }
+    //public void AdvanceDialogue()
+    //{
+    //    DialogueManager.Instance.ProcessPlayerInput();
+    //}
 
     protected virtual void OnDialogueEnd()
     {

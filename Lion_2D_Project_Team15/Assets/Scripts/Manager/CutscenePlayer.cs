@@ -34,11 +34,11 @@ public class CutscenePlayer : Singleton<CutscenePlayer>
     {
         while (IsPlaying)
         {
-            if (GameManager.Instance.NeedsWaitForSetting())
+            if (GameManager.Instance.ShouldWaitForDialogue())
             {
                 //PlayableDirector.Pause(); // Pause()를 사용하면 애니메이션이 초기상태로 돌아가는 경우가 발생함.
                 PlayableDirector.playableGraph.GetRootPlayable(0).SetSpeed(0);
-                yield return new WaitUntil(() => !GameManager.Instance.NeedsWaitForSetting());
+                yield return new WaitUntil(() => !GameManager.Instance.ShouldWaitForDialogue());
                 //PlayableDirector.Play();
                 PlayableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1);
             }

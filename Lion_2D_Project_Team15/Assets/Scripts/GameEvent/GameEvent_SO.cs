@@ -24,13 +24,11 @@ public class GameEvent_SO : ScriptableObject
     {
         for (int i = 0; i < EventFunctions.Length; ++i)
         {
-            GameManager.Instance.SetTimeScale(GameManager.ETimeCase.PlayingDialogue);
-
-            if (GameManager.Instance.NeedsWaitForSetting())
-                yield return new WaitUntil(() => !GameManager.Instance.NeedsWaitForSetting());
-
+            GameManager.Instance.SetTimeCase(GameManager.ETimeCase.PlayingDialogue);
             yield return EventFunctions[i].Execute();
-            GameManager.Instance.RevertTimeScale();
+            if (GameManager.Instance.ShouldWaitForDialogue())
+                yield return new WaitUntil(() => !GameManager.Instance.ShouldWaitForDialogue());
+            GameManager.Instance.RevertTimeCase();
         }
     }
 

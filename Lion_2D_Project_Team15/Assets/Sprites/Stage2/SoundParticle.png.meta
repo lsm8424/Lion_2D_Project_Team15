@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: c45d8f4848461c24784f21d72699a8fc
+guid: 53d6e4c77bc4de64aadb2819c704ec55
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 523844683030640136
-    second: Walk 1_0
+      213: -3817292445911010443
+    second: SoundParticle_0
   - first:
-      213: -5512362066219966912
-    second: Walk 1_1
+      213: -5188650160831273252
+    second: SoundParticle_1
   - first:
-      213: 5764517470042293013
-    second: Walk 1_2
+      213: 1271071186019384313
+    second: SoundParticle_2
   - first:
-      213: 4185009363995111261
-    second: Walk 1_3
-  - first:
-      213: 5052056608758846958
-    second: Walk 1_4
-  - first:
-      213: -6357181456617676392
-    second: Walk 1_5
+      213: 7323847510958348966
+    second: SoundParticle_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -66,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 8
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -111,56 +105,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk 1_0
+      name: SoundParticle_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 16
-        width: 38
-        height: 13
+        x: 206
+        y: 351
+        width: 516
+        height: 338
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 806b489b6f1154700800000000000000
-      internalID: 523844683030640136
+      spriteID: 57331bdceb0460bc0800000000000000
+      internalID: -3817292445911010443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk 1_1
+      name: SoundParticle_1
       rect:
         serializedVersion: 2
-        x: 51
-        y: 16
-        width: 38
-        height: 14
+        x: 751
+        y: 558
+        width: 39
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 04ede9118e72083b0800000000000000
-      internalID: -5512362066219966912
+      spriteID: cd6e0eb5b263ef7b0800000000000000
+      internalID: -5188650160831273252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk 1_2
+      name: SoundParticle_2
       rect:
         serializedVersion: 2
-        x: 99
-        y: 16
-        width: 38
-        height: 13
+        x: 814
+        y: 594
+        width: 19
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5138767e81eafff40800000000000000
-      internalID: 5764517470042293013
+      spriteID: 9fb7bee5280c3a110800000000000000
+      internalID: 1271071186019384313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk 1_3
+      name: SoundParticle_3
       rect:
         serializedVersion: 2
-        x: 147
-        y: 15
-        width: 38
-        height: 13
+        x: 719
+        y: 543
+        width: 19
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,52 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d5fac9ae7d3241a30800000000000000
-      internalID: 4185009363995111261
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk 1_4
-      rect:
-        serializedVersion: 2
-        x: 194
-        y: 15
-        width: 38
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ee55c3ef7b28c1640800000000000000
-      internalID: 5052056608758846958
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk 1_5
-      rect:
-        serializedVersion: 2
-        x: 242
-        y: 15
-        width: 38
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8916a91a521c6c7a0800000000000000
-      internalID: -6357181456617676392
+      spriteID: 6aa1dcff18883a560800000000000000
+      internalID: 7323847510958348966
       vertices: []
       indices: 
       edges: []
@@ -299,12 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Walk 1_0: 523844683030640136
-      Walk 1_1: -5512362066219966912
-      Walk 1_2: 5764517470042293013
-      Walk 1_3: 4185009363995111261
-      Walk 1_4: 5052056608758846958
-      Walk 1_5: -6357181456617676392
+      SoundParticle_0: -3817292445911010443
+      SoundParticle_1: -5188650160831273252
+      SoundParticle_2: 1271071186019384313
+      SoundParticle_3: 7323847510958348966
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
