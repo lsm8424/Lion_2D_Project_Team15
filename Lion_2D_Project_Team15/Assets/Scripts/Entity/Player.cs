@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : Entity
@@ -6,6 +7,12 @@ public class Player : Entity
     // ────────────── Singleton ──────────────
 
     // Player 인스턴스를 전역에서 접근 가능하도록 static으로 선언
+
+    private bool isStunned = false;
+    public float stunDuration = 1f;
+
+    public bool IsStunned => isStunned;
+
     public static Player Instance { get; private set; }
 
     private void Awake()
@@ -52,8 +59,25 @@ public class Player : Entity
         interaction.HandleInteraction(); // F 키 상호작용 (NPC, 아이템 등)
     }
 
-    internal void Stun()
+    public void Stun()
     {
-        throw new NotImplementedException();
+        if (!isStunned)
+        {
+            StartCoroutine(StunCoroutine());
+        }
     }
+
+    private IEnumerator StunCoroutine()
+    {
+        isStunned = true;
+        //Debug.Log("플레이어가 경직되었습니다!");
+        movement.enabled = false;
+
+        yield return new WaitForSeconds(stunDuration);
+
+        movement.enabled = true;
+        isStunned = false;
+        //Debug.Log("플레이어가 경직에서 회복되었습니다!");
+    }
+
 }

@@ -59,26 +59,50 @@ public class ObstacleSpawner : MonoBehaviour
     {
         while (timer > 0)
         {
+            if (player == null)
+                yield break;
+
             Transform spawn = ySpawnPoints[Random.Range(0, ySpawnPoints.Length)];
-            SpawnObstacle(spawn.position, Vector2.down);
+            Vector2 direction = Vector2.down; // 위에서 아래로
+
+            SpawnObstacle(spawn.position, direction);
+
             yield return new WaitForSeconds(ySpawnInterval);
         }
     }
+
+
+
 
     IEnumerator SpawnX()
     {
         while (timer > 0)
         {
+            // 플레이어가 이미 사망했거나 제거된 경우 탈출
+            if (player == null)
+                yield break;
+
             Transform spawn = xSpawnPoints[Random.Range(0, xSpawnPoints.Length)];
             Vector2 direction = (spawn.position.x > player.position.x) ? Vector2.left : Vector2.right;
             SpawnObstacle(spawn.position, direction);
+
             yield return new WaitForSeconds(xSpawnInterval);
         }
     }
+
+
 
     void SpawnObstacle(Vector2 position, Vector2 direction)
     {
         GameObject obj = Instantiate(obstaclePrefab, position, Quaternion.identity);
         obj.GetComponent<Rigidbody2D>().linearVelocity = direction * obstacleSpeed;
     }
+
+    public void StopSpawning()
+    {
+        spawning = false;
+        StopAllCoroutines();
+        //Debug.Log("스폰 정지됨");
+    }
+
 }
