@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded;      // 바닥 접지 상태
     public bool facingRight = true; // 캐릭터 시작 시 바라보는 방향
 
+    [Header("상태")]
+    public bool isStunned = false;   // 경직 상태
+
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -25,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleMove()
     {
+        if (isStunned) 
+            return;
+
         // 공격 중이고 점프 상태가 아닐 경우 이동 차단
         if (isAttacking && !anim.GetBool("Jump"))
             return;
@@ -41,27 +47,24 @@ public class PlayerMovement : MonoBehaviour
 
         bool isRunning = h != 0;
         anim.SetBool("Run", isRunning);
-        if (sword != null) sword.SetRun(isRunning); // Sword에 전달
-
+        if (sword != null) sword.SetRun(isRunning);
     }
-
-
 
     public void HandleJump()
     {
+        if (isStunned) return;
+
         // 사다리 위에서는 점프 금지 (PlayerInteraction이 스페이스로 탈출 처리)
         if (Player.Instance.interaction.IsOnLadder())
             return;
 
-        // 스페이스 키 입력 && 바닥에 닿아 있을 때만 점프
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            isGrounded = false; // 공중 상태로 전환
+            isGrounded = false;
 
             anim.SetBool("Jump", true);
             if (sword != null) sword.SetJump(true);
-
         }
     }
 
@@ -73,7 +76,6 @@ public class PlayerMovement : MonoBehaviour
             Flip();
     }
 
-
     private void Flip()
     {
         facingRight = !facingRight;
@@ -81,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         scale.x *= -1;
         transform.localScale = scale;
 
-        if (sword != null) sword.Flip(facingRight); // Sword에도 Flip 전달
+        if (sword != null) sword.Flip(facingRight);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -91,6 +93,5 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetBool("Jump", false);
         if (sword != null) sword.SetJump(false);
-
     }
 }
