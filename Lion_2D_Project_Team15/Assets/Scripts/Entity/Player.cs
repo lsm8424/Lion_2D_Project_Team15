@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : Entity
@@ -49,5 +50,10 @@ public class Player : Entity
         combat.HandleAttack(); // 기본 공격 (좌클릭)
         combat.HandleSkill(); // 스킬 공격 (우클릭)
         interaction.HandleInteraction(); // F 키 상호작용 (NPC, 아이템 등)
+    }
+
+    internal void Stun()
+    {
+        throw new NotImplementedException();
     }
 }
