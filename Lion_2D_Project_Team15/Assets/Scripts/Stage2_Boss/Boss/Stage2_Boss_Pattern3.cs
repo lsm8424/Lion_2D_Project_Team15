@@ -9,9 +9,13 @@ public class Stage2_Boss_Pattern3 : MonoBehaviour
     [SerializeField] private float lifeTime;    //트랩 지속시간
     [SerializeField] private float coolDown;    //쿨타임
     [SerializeField] private int keyInputCount; //키입력 개수
-    [SerializeField] private float trapSize;    //트랩 사이즈
+    [SerializeField] private int trapSize;    //트랩 사이즈
     [SerializeField] private float keyDuration; //키입력 시간
     [SerializeField] private float damage;      //트랩 데미지    
+
+    [Header("Warning Trap")]
+    [SerializeField] private GameObject warningTrapPrefab;   // 경고 박스 프리팹
+    [SerializeField] private float warningTime; // 경고 시간
 
     //랜덤한 위치 정하기
     private float maxX = 18;
@@ -47,9 +51,13 @@ public class Stage2_Boss_Pattern3 : MonoBehaviour
                 break;
         }
 
-        GameObject wave = Instantiate(trapPrefab, transform.position + NearPlayerSpawn(randomSpawn), Quaternion.identity);
+        GameObject warning = Instantiate(warningTrapPrefab, randomSpawn, Quaternion.identity);
+        warning.GetComponent<Stage2_Boss_TrapWarning>().Initialize(randomSpawn, trapSize, warningTime,() =>
+        {
+            GameObject wave = Instantiate(trapPrefab, transform.position + NearPlayerSpawn(randomSpawn), Quaternion.identity);
 
-        wave.GetComponent<Stage2_Boss_TrapSkill>().SetWave(lifeTime, trapSize, damage, keyInputCount, keyDuration);
+            wave.GetComponent<Stage2_Boss_TrapSkill>().SetWave(lifeTime, trapSize, damage, keyInputCount, keyDuration);
+        });
 
         Invoke("TimeSet", lifeTime);
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Stage2_Boss_LoachSkill : MonoBehaviour
+public class Stage2_Boss_WaveSkill : MonoBehaviour
 {
     private int waveCount; // 몹 개수
     private float moveSpeed; // 이동속도
@@ -8,31 +8,32 @@ public class Stage2_Boss_LoachSkill : MonoBehaviour
     private float angle; // 회전 각도
     private float damage; // 공격력
 
-    [SerializeField] private GameObject wavePrefab; // 돌진 지렁이 프리팹
+    [SerializeField] private GameObject wavePrefab; // 웨이브 프리팹
 
     void Start()
     {
         cd = GetComponent<BoxCollider2D>();
-        SpawnLoach(waveCount);
+        SpawnWave(waveCount);
         SetCDandRot();
 
-        Destroy(gameObject, 1f); // 1초 후에 삭제
+        Destroy(gameObject, 3f); // 1초 후에 삭제
     }
 
     void Update()
     {
-        colliderOffset();
+        transform.Translate(Vector2.right * moveSpeed * Time.deltaTime); // 몹 이동
     }
 
-    public void SetLoach(float angle, float speed, int count, float damage)
+    public void SetWave(float angle, float speed, int count, float damage)
     {
         this.angle = angle;
         moveSpeed = speed;
         waveCount = count;
         this.damage = damage;
+
     }
 
-    void SpawnLoach(int count)
+    void SpawnWave(int count)
     {
         if (count <= 0)
             return;
@@ -49,6 +50,12 @@ public class Stage2_Boss_LoachSkill : MonoBehaviour
                 GameObject loach = Instantiate(wavePrefab);
                 loach.transform.parent = transform;
                 loach.transform.position = transform.position + new Vector3(0, 0.5f + i - halfCount, 0); // 몹 위치 조정
+                
+                SpriteRenderer[] sr = loach.GetComponentsInChildren<SpriteRenderer>();
+                for (int j = 0; j < sr.Length; j++)
+                {
+                    sr[j].flipY = flip; // 몹 flip
+                }
             }
         }
         else
@@ -58,14 +65,19 @@ public class Stage2_Boss_LoachSkill : MonoBehaviour
                 GameObject loach = Instantiate(wavePrefab);
                 loach.transform.parent = transform;
                 loach.transform.position = transform.position + new Vector3(0, i - halfCount, 0); // 몹 위치 조정
+
+                SpriteRenderer[] sr = loach.GetComponentsInChildren<SpriteRenderer>();
+                for (int j = 0; j < sr.Length; j++)
+                {
+                    sr[j].flipY = flip; // 몹 flip
+                }
             }
         }
     }
 
     void SetCDandRot()
     {
-        cd.size = new Vector2(10, waveCount);
-        cd.offset = new Vector2(5, 0); // 콜라이더 offset
+        cd.size = new Vector2(5f, waveCount);
         transform.rotation = Quaternion.Euler(0, 0, angle); // 회전
     }
 
@@ -80,16 +92,6 @@ public class Stage2_Boss_LoachSkill : MonoBehaviour
         }
     }
 
-    private void colliderOffset()
-    {
-        // 콜라이더의 offset을 진행 방향으로 증가
-        Vector2 offset = cd.offset;
 
-        //1초에 10만큼 이동
-        offset.x += 10 * Time.deltaTime;
-
-        cd.offset = offset;
-
-    }
 
 }

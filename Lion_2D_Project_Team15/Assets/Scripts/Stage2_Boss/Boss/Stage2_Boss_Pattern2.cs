@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Stage2_Boss_Pattern2 : MonoBehaviour
 {
-    [Header("Pattern 1 (돌진 몹 공격)")]
-    [SerializeField] private GameObject loachSkillPrefab; // 돌진 지렁이 프리팹
+    [Header("Pattern 1 (웨이브 공격)")]
+    [SerializeField] private GameObject waveSkillPrefab; // 돌진 지렁이 프리팹
     [SerializeField] private float moveSpeed; // 이동속도
-    [SerializeField] private int loachCount; // 몹 개수
+    [SerializeField] private int waveCount; // 몹 개수
     [SerializeField] private float coolTime; // 쿨타임
     [SerializeField] private float damage; // 공격력
 
@@ -38,7 +38,7 @@ public class Stage2_Boss_Pattern2 : MonoBehaviour
 
         isWarning = true; // 경고 중으로 설정
 
-        int ranCount = Random.Range(1, loachCount + 1); // 랜덤으로 몹 개수 정하기
+        int ranCount = Random.Range(1, waveCount + 1); // 랜덤으로 몹 개수 정하기
 
         GameObject warning = Instantiate(warningBoxPrefab, transform.position, Quaternion.identity);
         warning.GetComponent<Stage2_Boss_WarningBox>().Initialize(player.transform, transform.position, ranCount, warningTime, () =>
@@ -46,8 +46,8 @@ public class Stage2_Boss_Pattern2 : MonoBehaviour
             Vector3 dir = (player.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-            GameObject loachSkill = Instantiate(loachSkillPrefab, warning.transform.position, Quaternion.identity);
-            loachSkill.GetComponent<Stage2_Boss_LoachSkill>().SetLoach(angle, moveSpeed, ranCount, damage);
+            GameObject loachSkill = Instantiate(waveSkillPrefab, warning.transform.position, Quaternion.identity);
+            loachSkill.GetComponent<Stage2_Boss_WaveSkill>().SetWave(angle, moveSpeed, ranCount, damage);
         });
 
     }
