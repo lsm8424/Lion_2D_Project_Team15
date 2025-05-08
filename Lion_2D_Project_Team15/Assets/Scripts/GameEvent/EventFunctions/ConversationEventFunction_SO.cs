@@ -29,15 +29,9 @@ public class ConversationEventFunction_SO : EventFunction_SO
         foreach (var (category, dialogueID) in Conversations)
         {
             DialogueManager.Instance.PlayOneShot(category, dialogueID);
-<<<<<<< HEAD
             if (GameManager.Instance.ShouldWaitForDialogue())
                 yield return new WaitUntil(() => GameManager.Instance.ShouldWaitForDialogue());
-=======
 
-            if (GameManager.Instance.NeedsWaitForSetting())
-                yield return new WaitUntil(() => !GameManager.Instance.NeedsWaitForSetting());
-
->>>>>>> LSM
             yield return new WaitUntil(() => DialogueManager.Instance.IsOneShotCompleted);
         }
 
