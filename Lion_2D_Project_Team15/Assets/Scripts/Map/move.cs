@@ -5,8 +5,17 @@ public class move : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] float speed;
+
+    //넉백중
     private bool isKnockBack = false; // 넉백 상태
     private float knockbackTimer = 0f; // 넉백 지속 시간
+
+    // 키입력 중
+    public bool isKeyInput = false; // 키 입력 상태
+
+    // 회오리 갇힘
+    public bool isStuck = false; // 회오리 갇힘 상태
+    private Vector3 trapCenter; // 회오리 중심 위치
 
     private void Awake()
     {
@@ -20,6 +29,10 @@ public class move : MonoBehaviour
 
     void Update()
     {
+        // 키입력 상태이거나 회오리에 갇혔으면 이동 무시
+        if (isKeyInput || isStuck)
+            return;
+   
         // 넉백 지속 시간을 줄여주고, 끝나면 이동 잠금 해제
         if (isKnockBack)
         {
@@ -45,6 +58,5 @@ public class move : MonoBehaviour
         isKnockBack = true;
         knockbackTimer = duration;
     }
-
 
 }

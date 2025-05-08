@@ -3,9 +3,10 @@ using UnityEngine;
 public class Stage2_Boss_Pattern2 : MonoBehaviour
 {
     [Header("Pattern 1 (웨이브 공격)")]
-    [SerializeField] private GameObject waveSkillPrefab; // 돌진 지렁이 프리팹
+    [SerializeField] private GameObject waveSkillPrefab; // 웨이브 프리팹
     [SerializeField] private float moveSpeed; // 이동속도
-    [SerializeField] private int waveCount; // 몹 개수
+    [SerializeField] private int waveCount; // 웨이브 개수
+    [SerializeField] private float nockBackForce; // 넉백 힘
     [SerializeField] private float coolTime; // 쿨타임
     [SerializeField] private float damage; // 공격력
 
@@ -47,7 +48,8 @@ public class Stage2_Boss_Pattern2 : MonoBehaviour
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
             GameObject loachSkill = Instantiate(waveSkillPrefab, warning.transform.position, Quaternion.identity);
-            loachSkill.GetComponent<Stage2_Boss_WaveSkill>().SetWave(angle, moveSpeed, ranCount, damage);
+            loachSkill.GetComponent<Stage2_Boss_WaveSkill>().SetWave(angle, moveSpeed, ranCount,
+                nockBackForce, damage, transform.position);
         });
 
     }
