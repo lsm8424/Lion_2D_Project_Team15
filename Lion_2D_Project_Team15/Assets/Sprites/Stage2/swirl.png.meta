@@ -223,7 +223,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      swirl_0: -8092140889840403818
+      swirl_1: 6764638862342516094
+      swirl_2: -3242385427370679131
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

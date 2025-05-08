@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Conv1
   m_EditorClassIdentifier: 
   FunctionType: 0
-  Conversations: []
+  Conversations:
+  - Category: 0
+    DialogueID: libram_Q1_start_001

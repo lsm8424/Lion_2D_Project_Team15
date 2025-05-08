@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: '#Events_03'
   m_EditorClassIdentifier: 
   EventType: 0
-  EventID: 
-  EventName: 
+  EventID: Ep1_03
+  EventName: "\uB9AC\uBE0C\uB78C\uC758 \uBD80\uD0C1"
   RequireSave: 0
-  EventFunctions: []
+  EventFunctions:
+  - {fileID: 11400000, guid: 1fb1dc6ca75208d4cbd02adb9a14d211, type: 2}
