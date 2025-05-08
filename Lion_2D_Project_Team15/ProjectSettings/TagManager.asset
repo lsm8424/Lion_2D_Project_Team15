@@ -13,6 +13,7 @@ TagManager:
   - Episode2_babydolphin_1
   - Potal
   - CutImage
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Water
   - UI
   - Episode2_babydolphin_1
-  - 
+  - Wall
   - Player
   - Interactable
   - Monster

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : Entity
@@ -6,18 +7,13 @@ public class Player : Entity
     // ────────────── Singleton ──────────────
 
     // Player 인스턴스를 전역에서 접근 가능하도록 static으로 선언
+
+    private bool isStunned = false;
+    public float stunDuration = 1f;
+
+    public bool IsStunned => isStunned;
+
     public static Player Instance { get; private set; }
-
-    //넉백중
-    private bool isKnockBack = false; // 넉백 상태
-    private float knockbackTimer = 0f; // 넉백 지속 시간
-
-    // 키입력 중
-    public bool isKeyInput = false; // 키 입력 상태
-
-    // 회오리 갇힘
-    public bool isStuck = false; // 회오리 갇힘 상태
-
 
     private void Awake()
     {
@@ -55,19 +51,6 @@ public class Player : Entity
         if (GameManager.Instance.ShouldWaitForEntity())
             return;
 
-        // 키입력 상태이거나 회오리에 갇혔으면 이동 무시
-        if (isKeyInput || isStuck)
-            return;
-
-        // 넉백 지속 시간을 줄여주고, 끝나면 이동 잠금 해제
-        if (isKnockBack)
-        {
-            knockbackTimer -= Time.deltaTime;
-            if (knockbackTimer <= 0f)
-                isKnockBack = false;
-            return; // 이동 입력 무시
-        }
-
         // 각 기능 모듈의 매서드 실행
         movement.HandleMove(); // 이동
         movement.HandleJump(); // 점프
@@ -76,17 +59,25 @@ public class Player : Entity
         interaction.HandleInteraction(); // F 키 상호작용 (NPC, 아이템 등)
     }
 
-    internal void Stun()
+    public void Stun()
     {
-        throw new NotImplementedException();
+        if (!isStunned)
+        {
+            StartCoroutine(StunCoroutine());
+        }
     }
 
-    public void ApplyKnockback(Vector2 direction, float force, float duration)
+    private IEnumerator StunCoroutine()
     {
-        GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero; // 기존 속도 초기화
-        GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
-        isKnockBack = true;
-        knockbackTimer = duration;
+        isStunned = true;
+        //Debug.Log("플레이어가 경직되었습니다!");
+        movement.enabled = false;
+
+        yield return new WaitForSeconds(stunDuration);
+
+        movement.enabled = true;
+        isStunned = false;
+        //Debug.Log("플레이어가 경직에서 회복되었습니다!");
     }
 
 }

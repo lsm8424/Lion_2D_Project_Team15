@@ -41,7 +41,7 @@ public class MonsterSpawner : MonoBehaviour
             entity.OnDeath += () => currentSpawnCount--;
         }
 
-        Debug.Log($"몬스터 스폰 완료: {monster.name}");
+        //Debug.Log($"몬스터 스폰 완료: {monster.name}");
     }
 
     private void OnDrawGizmosSelected()
