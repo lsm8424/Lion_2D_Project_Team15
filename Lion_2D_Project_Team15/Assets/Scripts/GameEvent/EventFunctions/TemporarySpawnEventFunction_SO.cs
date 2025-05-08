@@ -28,24 +28,25 @@ public class TemporarySpawnEventFunction_SO : EventFunction_SO
         _timer = 0f;
         IDManager.Instance.TryGet(ObjectID, out var targetObject);
         var parent = targetObject.transform;
-        var go = GameManager.Instantiate(Prefab, parent.position + Offset, Quaternion.identity);
-        go.transform.SetParent(parent);
+        _spawnedObject = GameManager.Instantiate(Prefab, parent.position + Offset, Quaternion.identity);
+        _spawnedObject.transform.SetParent(parent);
 
         while (_timer < Duration)
         {
             _timer += Time.deltaTime * GameManager.Instance.DialogueTimeScale;
 
-            if (GameManager.Instance.NeedsWaitForSetting())
+            if (GameManager.Instance.ShouldWaitForDialogue())
             {
                 OnPause();
-                yield return new WaitUntil(() => !GameManager.Instance.NeedsWaitForSetting());
+                yield return new WaitUntil(() => !GameManager.Instance.ShouldWaitForDialogue());
                 OnReload();
             }
 
             yield return null;
         }
 
-        Destroy(go);
+        Destroy(_spawnedObject);
+        _spawnedObject = null;
     }
 
     public void OnPause()
@@ -53,7 +54,7 @@ public class TemporarySpawnEventFunction_SO : EventFunction_SO
         if (_spawnedObject == null)
             return;
 
-        if (_spawnedObject.TryGetComponent<Animator>(out var animator))
+        if (!_spawnedObject.TryGetComponent<Animator>(out var animator))
         {
             return;
         }
@@ -67,7 +68,7 @@ public class TemporarySpawnEventFunction_SO : EventFunction_SO
         if (_spawnedObject == null)
             return;
 
-        if (_spawnedObject.TryGetComponent<Animator>(out var animator))
+        if (!_spawnedObject.TryGetComponent<Animator>(out var animator))
         {
             return;
         }

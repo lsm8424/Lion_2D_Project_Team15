@@ -20,6 +20,7 @@ public class PlayerInteraction : MonoBehaviour
     private Animator anim;
 
     private bool ladderJustEntered = false;
+    public bool canLadder = true;
 
     private void Start()
     {
@@ -65,7 +66,8 @@ public class PlayerInteraction : MonoBehaviour
 
             if (isTalking)
             {
-                currentNPC?.AdvanceDialogue();
+                // Dialogue_UI.cs에서 플레이어 입력 처리
+                // currentNPC?.AdvanceDialogue();
                 return;
             }
 
@@ -126,6 +128,8 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (target.CompareTag("Ladder"))
         {
+            if (!canLadder)
+                return;
             currentLadder = target.GetComponent<Ladder>();
             if (currentLadder != null)
                 EnterLadder();

@@ -3,10 +3,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("이동 설정")]
-    public float moveSpeed;      // 이동 속도
-    public float jumpForce;      // 점프 힘
-    public bool isGrounded;      // 바닥 접지 상태
+    public float moveSpeed; // 이동 속도
+    public float jumpForce; // 점프 힘
+    public bool isGrounded; // 바닥 접지 상태
     public bool facingRight = true; // 캐릭터 시작 시 바라보는 방향
+    public bool canJump = true; // 점프 가능 여부
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -41,14 +42,15 @@ public class PlayerMovement : MonoBehaviour
 
         bool isRunning = h != 0;
         anim.SetBool("Run", isRunning);
-        if (sword != null) sword.SetRun(isRunning); // Sword에 전달
-
+        if (sword != null)
+            sword.SetRun(isRunning); // Sword에 전달
     }
-
-
 
     public void HandleJump()
     {
+        if (!canJump)
+            return;
+
         // 사다리 위에서는 점프 금지 (PlayerInteraction이 스페이스로 탈출 처리)
         if (Player.Instance.interaction.IsOnLadder())
             return;
@@ -60,8 +62,8 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false; // 공중 상태로 전환
 
             anim.SetBool("Jump", true);
-            if (sword != null) sword.SetJump(true);
-
+            if (sword != null)
+                sword.SetJump(true);
         }
     }
 
@@ -73,7 +75,6 @@ public class PlayerMovement : MonoBehaviour
             Flip();
     }
 
-
     private void Flip()
     {
         facingRight = !facingRight;
@@ -81,7 +82,8 @@ public class PlayerMovement : MonoBehaviour
         scale.x *= -1;
         transform.localScale = scale;
 
-        if (sword != null) sword.Flip(facingRight); // Sword에도 Flip 전달
+        if (sword != null)
+            sword.Flip(facingRight); // Sword에도 Flip 전달
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -90,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
 
         anim.SetBool("Jump", false);
-        if (sword != null) sword.SetJump(false);
-
+        if (sword != null)
+            sword.SetJump(false);
     }
 }

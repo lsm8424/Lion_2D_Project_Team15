@@ -10,6 +10,7 @@ public class PlayerCombat : MonoBehaviour
     public float attackPower;
     public float attackCooldown;
     private float lastAttackTime = -999f;
+    public bool canAttack = true; // 공격 가능 여부
 
     [Header("스킬 설정")]
     public float skillCooldown;
@@ -39,10 +40,10 @@ public class PlayerCombat : MonoBehaviour
 
     public void HandleAttack()
     {
-      
+        if (!canAttack)
+            return; // 공격 불가 상태면 리턴
         float h = Input.GetAxisRaw("Horizontal");
         playerMovement.FlipByDirection(h);
-        
 
         if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime + attackCooldown)
         {
@@ -90,9 +91,6 @@ public class PlayerCombat : MonoBehaviour
             playerMovement.isAttacking = false;
     }
 
-
-
-
     public void HandleSkill()
     {
         if (!hasCoralStaff)
@@ -116,7 +114,11 @@ public class PlayerCombat : MonoBehaviour
         if (coralProjectilePrefab == null || firePoint == null)
             return;
 
-        GameObject projectile = Instantiate(coralProjectilePrefab, firePoint.position, Quaternion.identity);
+        GameObject projectile = Instantiate(
+            coralProjectilePrefab,
+            firePoint.position,
+            Quaternion.identity
+        );
 
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         CoralProjectile cp = projectile.GetComponent<CoralProjectile>();
@@ -134,6 +136,4 @@ public class PlayerCombat : MonoBehaviour
             rb.linearVelocity = shootDir * 10f;
         }
     }
-
-
 }

@@ -7,15 +7,16 @@ public class GameManager : Singleton<GameManager>
     public float DialogueTimeScale { get; private set; } = 1f; // 대화창 관련 TimeScale
     public ETimeCase CurrentTime { get; private set; } = ETimeCase.EntityMovement;
     public Stack<ETimeCase> _prevCaseStack = new();
+
     /// <summary>
     /// 전체적인 GameObject를 제어하기 위해 게임 상태를 정의
     /// </summary>
     public enum ETimeCase
     {
-        EntityMovement,
-        PlayingDialogue,
-        Loading,
-        Setting,
+        EntityMovement = 0,
+        PlayingDialogue = 1,
+        Setting = 2,
+        Loading = 3,
     }
 
     void Update()
@@ -27,20 +28,25 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public bool NeedsWaitForSetting() => CurrentTime == ETimeCase.Setting;
-    public bool NeedsWaitForDialogue() => CurrentTime == ETimeCase.PlayingDialogue;
+    public bool ShouldWaitForDialogue() => CurrentTime > ETimeCase.PlayingDialogue;
+
+    public bool ShouldWaitForEntity() => CurrentTime > ETimeCase.EntityMovement;
+
     /// <summary>
     /// 상황애 맞는 GameObject 관리
     /// </summary>
     /// <param name="timeCase"></param>
-    public void SetTimeScale(ETimeCase timeCase)
+    public void SetTimeCase(ETimeCase timeCase)
     {
         _prevCaseStack.Push(CurrentTime);
         CurrentTime = timeCase;
-        ApplyTimeScale(timeCase);
+        AdjustTimeScale(timeCase);
+        //Debug.Log("Push  "+ _prevCaseStack.Count);
     }
-    public void RevertTimeScale()
+
+    public void RevertTimeCase()
     {
+        //Debug.Log("Pop  " + _prevCaseStack.Count);
         if (_prevCaseStack.Count == 0)
         {
             Debug.LogError("의도되지 않은 경우");
@@ -49,10 +55,10 @@ public class GameManager : Singleton<GameManager>
 
         var prevCase = _prevCaseStack.Pop();
         CurrentTime = prevCase;
-        ApplyTimeScale(CurrentTime);
+        AdjustTimeScale(CurrentTime);
     }
 
-    void ApplyTimeScale(ETimeCase timeCase)
+    void AdjustTimeScale(ETimeCase timeCase)
     {
         switch (timeCase)
         {
