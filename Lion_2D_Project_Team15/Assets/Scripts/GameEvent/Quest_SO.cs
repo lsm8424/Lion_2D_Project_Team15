@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Quest_SO", menuName = "Scriptable Objects/Quest_SO")]
+[System.Serializable, CreateAssetMenu(fileName = "Quest_SO", menuName = "Scriptable Objects/Quest_SO")]
 public class Quest_SO : ScriptableObject
 {
     public string QuestID;
