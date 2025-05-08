@@ -17,6 +17,7 @@ MonoBehaviour:
   EventName: "\uB3C4\uC11C\uAD00\uC5D0\uC11C \uB208\uC744 \uB728\uB2E4"
   RequireSave: 0
   EventFunctions:
+  - {fileID: 11400000, guid: 4db28b3caf4f02942bac0a2b43e5a5c2, type: 2}
   - {fileID: 11400000, guid: 8668bde05cb64794fa9f134732822d59, type: 2}
   - {fileID: 11400000, guid: 0420d4fbc88b705488f29038a0fead4a, type: 2}
   - {fileID: 11400000, guid: 655d340861b45ca469af9615d5363c3a, type: 2}

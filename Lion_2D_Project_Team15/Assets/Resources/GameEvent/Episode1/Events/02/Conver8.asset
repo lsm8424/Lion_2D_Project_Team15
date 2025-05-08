@@ -10,17 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 045a91e831e6cfa4d96e98716bc79f09, type: 3}
-  m_Name: Conver6
+  m_Name: Conver8
   m_EditorClassIdentifier: 
   FunctionType: 0
   Conversations:
   - Category: 1
-    DialogueID: player_019
+    DialogueID: player_021
   - Category: 1
-    DialogueID: libram_027
+    DialogueID: player_022
   - Category: 1
-    DialogueID: player_020
+    DialogueID: libram_030
   - Category: 1
-    DialogueID: libram_028
+    DialogueID: player_023
   - Category: 1
-    DialogueID: libram_029
+    DialogueID: player_024
+  - Category: 1
+    DialogueID: player_025
+  - Category: 1
+    DialogueID: player_026
+  - Category: 1
+    DialogueID: libram_031
