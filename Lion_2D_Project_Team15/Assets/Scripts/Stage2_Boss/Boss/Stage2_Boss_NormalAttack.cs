@@ -13,13 +13,14 @@ public class Stage2_Boss_NormalAttack : MonoBehaviour
     [SerializeField] private float waveFrequency; // 웨이브 주기
     [SerializeField] private float waveAmplitude; // 웨이브 진폭
 
-    float delta = 0;
+    float delta;
     Vector3 attackDir; // 공격 방향
     GameObject player; // 플레이어 오브젝트
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player"); // 플레이어 오브젝트 찾기
+        delta = coolTime;
     }
 
     void Update()

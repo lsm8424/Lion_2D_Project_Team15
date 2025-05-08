@@ -43,9 +43,24 @@ public class Stage2_Boss_Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            if (collision.GetComponent<move>().isStuck || collision.GetComponent<move>().isKeyInput)  // 회오리 갇힘 상태이거나 키 입력 중이면 넉백 적용 안함
+            {
+                Destroy(gameObject); // 플레이어와 충돌 시 삭제
+                return;
+            }
+
+            //if (Player.Instance.isStuck || Player.Instance.isKeyInput)  // 회오리 갇힘 상태이거나 키 입력 중이면 넉백 적용 안함
+            //{
+            //    Destroy(gameObject); // 플레이어와 충돌 시 삭제
+            //    return;
+            //}
+
             //플레이어 함수에 넉백 적용
             collision.GetComponent<move>().ApplyKnockback(direction, nockBack, 0.1f); // 플레이어 넉백
+            Debug.Log("보스 기본 공격");
+
             //플레이어 데미지
+            //Player.Instance.ApplyKnockback(direction, nockBack, 0.1f); // 플레이어 넉백
             //Player.Instance.TakeDamage(damage);
 
             Destroy(gameObject); // 플레이어와 충돌 시 삭제

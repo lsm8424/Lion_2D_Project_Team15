@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8071816054642524302}
   - component: {fileID: 6495492869403190239}
   m_Layer: 0
-  m_Name: Wave
+  m_Name: wave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 743180249
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 915149905, guid: d010af2e7d58f7d458975e8514052fa3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

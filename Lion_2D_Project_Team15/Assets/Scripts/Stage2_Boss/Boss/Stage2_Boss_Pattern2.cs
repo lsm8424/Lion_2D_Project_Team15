@@ -21,6 +21,7 @@ public class Stage2_Boss_Pattern2 : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player"); // 플레이어 오브젝트 찾기
+        delta = coolTime;
     }
 
     void Update()
