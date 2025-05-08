@@ -18,3 +18,5 @@ MonoBehaviour:
     GameEvent: {fileID: 11400000, guid: d0d36651d26b12441bd12925bb7cfbaa, type: 2}
   - Trigger: {fileID: 0}
     GameEvent: {fileID: 11400000, guid: c45e156cf0e23454fa5a35853a4cf894, type: 2}
+  - Trigger: {fileID: 11400000, guid: ca21dfb659166ad4b94a6f222f1d880e, type: 2}
+    GameEvent: {fileID: 11400000, guid: 2c645adcd4ec99d499f69f8d9e7f0afa, type: 2}

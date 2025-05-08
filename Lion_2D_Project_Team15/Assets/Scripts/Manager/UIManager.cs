@@ -20,8 +20,6 @@ public class UIManager : Singleton<UIManager>
         }
 
         bool isActive = _settingsCanvas.activeSelf;
-        Debug.Log(isActive);
-
         if (isActive)
         {
             _settingsCanvas.SetActive(false);

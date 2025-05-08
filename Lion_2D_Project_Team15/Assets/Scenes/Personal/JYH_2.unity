@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 0}
+    TrackingTarget: {fileID: 2031523357}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -7904,7 +7904,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 196.08864, y: 50, z: -10}
+  m_LocalPosition: {x: 191, y: 50, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12123,7 +12123,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045975085}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bed572bd6e293dd4caaf1b9422486a0f, type: 3}
   m_Name: 
@@ -16584,7 +16584,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354935781}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4fc3dcef9fd7804599a85280e783e90, type: 3}
   m_Name: 
@@ -16603,7 +16603,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354935781}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f29780be8bdc5e14dbf96e65d67c2dc4, type: 3}
   m_Name: 
@@ -16647,7 +16647,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354935781}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7dae6e39c483fd47b7556fb9fe5250f, type: 3}
   m_Name: 
@@ -16655,6 +16655,7 @@ MonoBehaviour:
   waveSkillPrefab: {fileID: 9072539092158156982, guid: e0c675a140bbec148b52087efee59a1f, type: 3}
   moveSpeed: 10
   waveCount: 3
+  nockBackForce: 10
   coolTime: 3
   damage: 0
   warningBoxPrefab: {fileID: 6529924126980472808, guid: f606b15f59df6c44ca775b3c69f4509f, type: 3}
@@ -16674,10 +16675,9 @@ MonoBehaviour:
   trapPrefab: {fileID: 5647354281805558345, guid: cd7b440730a61904d9048a42697d849b, type: 3}
   lifeTime: 3
   coolDown: 5
-  keyInputCount: 3
   trapSize: 3
-  keyDuration: 3
   damage: 0
+  stuckDuration: 0.7
   warningTrapPrefab: {fileID: 5644881623933223089, guid: 6386676466c97d14db021f68cad7e80c, type: 3}
   warningTime: 1
 --- !u!1 &1362778789
@@ -28343,7 +28343,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2027123, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -28381,6 +28381,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  isKeyInput: 0
+  isStuck: 0
 --- !u!50 &2031523359
 Rigidbody2D:
   serializedVersion: 5
