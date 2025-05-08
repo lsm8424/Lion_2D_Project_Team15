@@ -15,6 +15,17 @@ public class Player : Entity
 
     public static Player Instance { get; private set; }
 
+    //넉백중
+    private bool isKnockBack = false; // 넉백 상태
+    private float knockbackTimer = 0f; // 넉백 지속 시간
+
+    // 키입력 중
+    public bool isKeyInput = false; // 키 입력 상태
+
+    // 회오리 갇힘
+    public bool isStuck = false; // 회오리 갇힘 상태
+
+
     private void Awake()
     {
         // 씬에 Player가 이미 존재한다면 현재 오브젝트를 제거
@@ -104,5 +115,6 @@ public class Player : Entity
         GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
         isKnockBack = true;
         knockbackTimer = duration;
+    }
 
 }
