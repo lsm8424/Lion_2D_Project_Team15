@@ -25,7 +25,7 @@ public class Stage2_Boss_NormalAttack : MonoBehaviour
     void Update()
     {
         delta -= Time.deltaTime;
-        if(delta <= 0)
+        if (delta <= 0)
         {
             Shoot();
             delta = coolTime;
@@ -35,9 +35,9 @@ public class Stage2_Boss_NormalAttack : MonoBehaviour
     void Shoot()
     {
         attackDir = player.transform.position - transform.position; // 플레이어 방향 계산
-        Vector3 dir= attackDir.normalized; // 방향 벡터 정규화
+        Vector3 dir = attackDir.normalized; // 방향 벡터 정규화
 
-        GameObject shootObj = Instantiate(normalAttackPrefab, transform.position + new Vector3(dir.x, dir.y,0), Quaternion.identity);
+        GameObject shootObj = Instantiate(normalAttackPrefab, transform.position + new Vector3(dir.x, dir.y, 0), Quaternion.identity);
         shootObj.GetComponent<Stage2_Boss_Bullet>().SetBullet(dir, bulletspeed, nockBack, damage, waveFrequency, waveAmplitude); // 불렛 설정
     }
 }

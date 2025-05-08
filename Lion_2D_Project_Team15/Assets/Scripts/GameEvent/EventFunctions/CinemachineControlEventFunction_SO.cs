@@ -8,6 +8,9 @@ using UnityEngine;
 )]
 public class CinemachineControlEventFunction_SO : EventFunction_SO
 {
+    [Header("Control Type")]
+    public ECameraControlType ControlType = ECameraControlType.Movement;
+
     [Header("Camera Settings")]
     public string targetCameraName;
     public bool deactivateWhenDone = true;
@@ -15,6 +18,9 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
     [Header("Movement Settings")]
     public float Duration = 2f;
     public EInterpolationType InterpolationType;
+
+    [Header("Target Settings")]
+    public string newTargetObjectID; // 새로운 타겟의 ID
 
     [Header("Start Values")]
     public Vector2 StartScreenPosition;
@@ -49,6 +55,12 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
         SmootherStep,
         EaseOutElastic,
         EaseOutBounce,
+    }
+
+    public enum ECameraControlType
+    {
+        Movement, // 카메라 움직임 제어
+        Target // 카메라 타겟 변경
     }
 
     public override void Setup()
@@ -98,7 +110,23 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
 
         targetCamera.gameObject.SetActive(true);
 
-        // ✅ 이동 전 대기 시간
+        switch (ControlType)
+        {
+            case ECameraControlType.Movement:
+                yield return ExecuteMovement();
+                break;
+
+            case ECameraControlType.Target:
+                yield return ExecuteTargetChange();
+                break;
+        }
+
+        if (deactivateWhenDone)
+            targetCamera.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ExecuteMovement()
+    {
         if (WaitBefore > 0f)
             yield return new WaitForSeconds(WaitBefore);
 
@@ -117,6 +145,9 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
             positionComposer.TargetOffset = Vector3.Lerp(StartOffset, EndOffset, easedT);
             targetCamera.Lens.OrthographicSize = Mathf.Lerp(StartZoom, EndZoom, easedT);
 
+            if (GameManager.Instance.ShouldWaitForDialogue())
+                yield return new WaitUntil(() => !GameManager.Instance.ShouldWaitForDialogue());
+
             yield return null;
         }
 
@@ -125,12 +156,32 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
         positionComposer.TargetOffset = EndOffset;
         targetCamera.Lens.OrthographicSize = EndZoom;
 
-        // ✅ 이동 후 대기 시간
         if (WaitAfter > 0f)
             yield return new WaitForSeconds(WaitAfter);
+    }
 
-        if (deactivateWhenDone)
-            targetCamera.gameObject.SetActive(false);
+    private IEnumerator ExecuteTargetChange()
+    {
+        if (string.IsNullOrEmpty(newTargetObjectID))
+        {
+            Debug.LogError("New target object ID is not set!");
+            yield break;
+        }
+
+        // IDManager를 통해 새로운 타겟 오브젝트 찾기
+        if (
+            !IDManager.Instance.TryGet(newTargetObjectID, out IdentifiableMonoBehavior identifiable)
+        )
+        {
+            Debug.LogError($"Cannot find target object with ID: {newTargetObjectID}");
+            yield break;
+        }
+
+        // 불필요한 중복 블록 제거
+        // 타겟 변경만 수행
+        targetCamera.Follow = identifiable.transform;
+        Debug.Log($"Camera target changed to: {newTargetObjectID}");
+        yield return null;
     }
 
     private float ApplyEasing(float t, EInterpolationType type)

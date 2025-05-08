@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Stage2_BG_Pattern1 : MonoBehaviour
 {
-    public GameObject fallingPrefab;
-
     [Header("떨어지는 음표")]
+    public GameObject fallingPrefab;
+    public GameObject shadowPrefab;
     [SerializeField] private float fallingCoolTime;
     [SerializeField] private float fallDuration;
     [SerializeField] private int maxX;
@@ -53,7 +53,10 @@ public class Stage2_BG_Pattern1 : MonoBehaviour
 
         targetPosition = transform.position + spawnPosition;
 
-        GameObject fallingNote = Instantiate(fallingPrefab, targetPosition + Vector3.up * 3, Quaternion.identity);
+        GameObject fallingNote = Instantiate(fallingPrefab);
         fallingNote.GetComponent<FallingNote>().Initialize(targetPosition, fallDuration);
+        GameObject shadow = Instantiate(shadowPrefab);
+        shadow.GetComponent<GrowShadow>().SetShadow(targetPosition, fallDuration);
+        Destroy(shadow, fallDuration);
     }
 }

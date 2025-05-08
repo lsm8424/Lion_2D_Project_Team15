@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Quest_SO", menuName = "Scriptable Objects/Quest_SO")]
@@ -9,12 +10,54 @@ public class Quest_SO : ScriptableObject
 
     public void SetTrigger(int i)
     {
-        Progress[i].Trigger.AddEventTrigger();
+        if (i >= Progress.Length)
+        {
+            Debug.LogError($"[Quest_SO] Index {i}가 Progress 배열 범위를 벗어났습니다.");
+            return;
+        }
+
+        var progress = Progress[i];
+
+        if (progress.Trigger == null)
+        {
+            Debug.Log($"[Quest_SO] Progress[{i}]에는 Trigger가 없으므로 자동 실행합니다.");
+            QuestManager.Instance.StartCoroutine(AutoAdvance(i));
+            return;
+        }
+
+        progress.Trigger.QuestID = QuestID;
+        progress.Trigger.ProgressLevel = i;
+        progress.Trigger.SetUp();
+        progress.Trigger.AddEventTrigger();
     }
 
     public void RemoveTrigger(int i)
     {
-        Progress[i].Trigger.AddEventTrigger();
+        if (i >= Progress.Length)
+            return;
+
+        var trigger = Progress[i].Trigger;
+        if (trigger != null)
+            trigger.RemoveTrigger();
+    }
+
+    private IEnumerator AutoAdvance(int i)
+    {
+        var gameEvent = Progress[i].GameEvent;
+        if (gameEvent == null)
+        {
+            Debug.LogError($"[Quest_SO] Progress[{i}]의 GameEvent가 null입니다.");
+            yield break;
+        }
+
+        yield return gameEvent.Execute();
+
+        // 직접 다음 진행도로 넘어가도록 수정
+        int nextProgress = i + 1;
+        if (nextProgress < Progress.Length)
+        {
+            SetTrigger(nextProgress);
+        }
     }
 
     [Serializable]

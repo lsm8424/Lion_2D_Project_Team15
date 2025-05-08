@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections; 
 
 public class Player : Entity
 {
@@ -7,12 +6,6 @@ public class Player : Entity
 
     // Player 인스턴스를 전역에서 접근 가능하도록 static으로 선언
     public static Player Instance { get; private set; }
-
-    private bool isStunned = false;
-    public float stunDuration = 1f; // 경직 시간
-
-    public bool IsStunned => isStunned; // 외부에서 확인용
-
 
     private void Awake()
     {
@@ -28,9 +21,14 @@ public class Player : Entity
     }
 
     // 기능별 모듈 스크립트 참조 (외부에서 Player.Instance.movement 처럼 사용 가능)
-    [HideInInspector] public PlayerMovement movement;
-    [HideInInspector] public PlayerCombat combat;
-    [HideInInspector] public PlayerInteraction interaction;
+    [HideInInspector]
+    public PlayerMovement movement;
+
+    [HideInInspector]
+    public PlayerCombat combat;
+
+    [HideInInspector]
+    public PlayerInteraction interaction;
 
     private void Start()
     {
@@ -42,11 +40,7 @@ public class Player : Entity
 
     private void Update()
     {
-        // 경직 중이면 조작 금지
-        if (isStunned)
-            return;
-
-        if (GameManager.Instance.CurrentTime != GameManager.ETimeCase.EntityMovement)
+        if (GameManager.Instance.ShouldWaitForEntity())
             return;
 
         // 각 기능 모듈의 매서드 실행
@@ -56,27 +50,4 @@ public class Player : Entity
         combat.HandleSkill(); // 스킬 공격 (우클릭)
         interaction.HandleInteraction(); // F 키 상호작용 (NPC, 아이템 등)
     }
-
-    public void Stun()
-    {
-        if (!isStunned)
-        {
-            StartCoroutine(StunCoroutine());
-        }
-    }
-
-    private IEnumerator StunCoroutine()
-    {
-        isStunned = true;
-        Debug.Log("플레이어가 경직되었습니다!");
-        Player.Instance.movement.enabled = false;
-
-        yield return new WaitForSeconds(stunDuration);
-
-        Player.Instance.movement.enabled = true;
-        isStunned = false;
-        Debug.Log("플레이어가 경직에서 회복되었습니다!");
-    }
-
-
 }

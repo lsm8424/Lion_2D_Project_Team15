@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a75b65feb1353e479fcd91db1106898, type: 3}
   m_Name: Ep1_01
   m_EditorClassIdentifier: 
-  QuestID: Ep1_01
+  QuestID: Ep1
   Progress:
   - Trigger: {fileID: 0}
     GameEvent: {fileID: 11400000, guid: d0d36651d26b12441bd12925bb7cfbaa, type: 2}
+  - Trigger: {fileID: 0}
+    GameEvent: {fileID: 11400000, guid: c45e156cf0e23454fa5a35853a4cf894, type: 2}
