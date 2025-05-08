@@ -1,37 +1,22 @@
 fileFormatVersion: 2
-guid: 989f9142a366c4345ac026426fc93288
+guid: 4baaa74dcf2b57a488db4b36e596e005
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4493836403487716327
-    second: 1244_0
+      213: 594320770810126579
+    second: FX001_03_0
   - first:
-      213: 3419802437647321147
-    second: 1244_1
+      213: 2619623618544345158
+    second: FX001_03_1
   - first:
-      213: 5135939129647989626
-    second: 1244_2
+      213: -6635075344358902521
+    second: FX001_03_2
   - first:
-      213: 7701252752752019855
-    second: 1244_3
+      213: -2554203692358038977
+    second: FX001_03_3
   - first:
-      213: 1726214941361259373
-    second: 1244_4
-  - first:
-      213: 2826440662968588725
-    second: 1244_5
-  - first:
-      213: -4666098371623505160
-    second: 1244_6
-  - first:
-      213: 6996059705174431192
-    second: 1244_7
-  - first:
-      213: 8459864177560486190
-    second: 1244_8
-  - first:
-      213: 5240391002019343082
-    second: 1244_9
+      213: 3892720728376654631
+    second: FX001_03_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -78,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -166,221 +151,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1244_0
+      name: FX001_03_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        x: 5
+        y: 16
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6c09db392daa6c34db57d49c4b4232b8
-      internalID: -1950460055
+      spriteID: 3f026ca97937f3800800000000000000
+      internalID: 594320770810126579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1244_1
+      name: FX001_03_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        x: 12
+        y: 18
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 0b92dcee84f9632478fbc50107886cb2
-      internalID: 1062912419
+      spriteID: 6402f8c3dc5ca5420800000000000000
+      internalID: 2619623618544345158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1244_2
+      name: FX001_03_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        x: 22
+        y: 11
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 842d2cf2ce8841046860f26a514725f5
-      internalID: -279657633
+      spriteID: 705f881e02a7be3a0800000000000000
+      internalID: -6635075344358902521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1244_3
+      name: FX001_03_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        x: 5
+        y: 7
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6eb7a9a42663abd4ebd9032c41b644a1
-      internalID: 1426457966
+      spriteID: f3a02094645ad8cd0800000000000000
+      internalID: -2554203692358038977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 1244_4
+      name: FX001_03_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        x: 14
+        y: 5
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 18e8f0c1b10fda4479c9b9f09c755a05
-      internalID: 1018896316
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1244_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc05c2f19a7036742baa29ee0f7df743
-      internalID: 1488768032
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1244_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 93beca0ecabefc3439b660c013f90518
-      internalID: 1369697759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1244_7
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 64
-        height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a7a0cfd33a63c3b41bcbb684e6735fb3
-      internalID: 1217481490
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1244_8
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 64
-        height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dcff64ff2c106b2468e2adc6989492a1
-      internalID: -540256996
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1244_9
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 0
-        width: 64
-        height: 64
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 72470190324394d4688ab1af373d16c1
-      internalID: -321810795
+      spriteID: 72bb0b0c0e8b50630800000000000000
+      internalID: 3892720728376654631
       vertices: []
       indices: 
       edges: []
@@ -389,7 +264,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e41785fb853d1c341ae6de5e9f010c02
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -399,16 +274,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      1244_0: -1950460055
-      1244_1: 1062912419
-      1244_2: -279657633
-      1244_3: 1426457966
-      1244_4: 1018896316
-      1244_5: 1488768032
-      1244_6: 1369697759
-      1244_7: 1217481490
-      1244_8: -540256996
-      1244_9: -321810795
+      FX001_03_0: 594320770810126579
+      FX001_03_1: 2619623618544345158
+      FX001_03_2: -6635075344358902521
+      FX001_03_3: -2554203692358038977
+      FX001_03_4: 3892720728376654631
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

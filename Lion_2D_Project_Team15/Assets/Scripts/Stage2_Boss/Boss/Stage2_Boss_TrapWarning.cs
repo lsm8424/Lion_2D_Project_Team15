@@ -5,7 +5,6 @@ public class Stage2_Boss_TrapWarning : MonoBehaviour
 {
     private float duration;
     private int trapSize;  //트랩 크기에 따른 스프라이트 크기 조정
-    private Vector3 spawnPos;
     private Action onEnd;
 
     private float timer;
@@ -16,9 +15,8 @@ public class Stage2_Boss_TrapWarning : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
-    public void Initialize(Vector3 spawnPos, int trapSize, float duration, Action onEnd)
+    public void Initialize(int trapSize, float duration, Action onEnd)
     {
-        this.spawnPos = spawnPos;
         this.trapSize = trapSize;
         this.duration = duration;
         this.onEnd = onEnd;
