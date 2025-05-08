@@ -16,6 +16,7 @@ public class Stage2_Boss_WarningBox : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
     }
+
     public void Initialize(Transform player, Vector3 pos, int count, float duration, Action onEnd)
     {
         this.player = player;
