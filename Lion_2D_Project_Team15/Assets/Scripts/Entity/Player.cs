@@ -51,6 +51,22 @@ public class Player : Entity
         if (GameManager.Instance.ShouldWaitForEntity())
             return;
 
+        // 키입력 상태이거나 회오리에 갇혔으면 velocity를 0으로 설정 및 이동 무시
+        if (isKeyInput || isStuck)
+        {
+            GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            return;
+        }
+
+        // 넉백 지속 시간을 줄여주고, 끝나면 이동 잠금 해제
+        if (isKnockBack)
+        {
+            knockbackTimer -= Time.deltaTime;
+            if (knockbackTimer <= 0f)
+                isKnockBack = false;
+            return; // 이동 입력 무시
+        }
+
         // 각 기능 모듈의 매서드 실행
         movement.HandleMove(); // 이동
         movement.HandleJump(); // 점프
@@ -79,5 +95,14 @@ public class Player : Entity
         isStunned = false;
         //Debug.Log("플레이어가 경직에서 회복되었습니다!");
     }
+
+    public void ApplyKnockback(Vector2 direction, float force, float duration)
+    {
+        if (isStunned || isStuck || isKeyInput) return; // 회오리 갇힘 상태이거나 키 입력 중이면 넉백 적용 안함
+
+        GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero; // 기존 속도 초기화
+        GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
+        isKnockBack = true;
+        knockbackTimer = duration;
 
 }

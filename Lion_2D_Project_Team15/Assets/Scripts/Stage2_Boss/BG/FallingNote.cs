@@ -74,8 +74,6 @@ public class FallingNote : MonoBehaviour
 
         alreadyHit = true;
 
-        Debug.Log("바닥에 닿음!");
-
         GameObject effect = Instantiate(EffectPrefab, targetPosition, Quaternion.identity);
         Destroy(effect, effect.GetComponent<ParticleSystem>().main.duration);
 

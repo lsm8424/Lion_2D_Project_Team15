@@ -28,6 +28,13 @@ public class Stage2_Boss_Pattern1_Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            if (collision.GetComponent<move>().isStuck || collision.GetComponent<move>().isKeyInput) return;
+
+            //회오리 순간이동 상태거나 키입력 상태일 때는 return
+            //if (Player.Instance.isStuck || Player.Instance.isKeyInput)return;
+
+            Debug.Log("보스 패턴1 공격");
+
             // 플레이어와 충돌 시 처리
             //Player.Instance.TakeDamage(damage); // 플레이어에게 데미지 주기
 

@@ -94,15 +94,22 @@ public class Stage2_Boss_WaveSkill : MonoBehaviour
         if (crash)
             return;
 
+
+
         if (collision.CompareTag("Player"))
         {
             PlayerCrash();
+
+            if (collision.GetComponent<move>().isStuck || collision.GetComponent<move>().isKeyInput) return;
+
+            //회오리 순간이동 상태거나 키입력 상태일 때는 return
+            //if (Player.Instance.isStuck || Player.Instance.isKeyInput)return;
 
             nockBackDir = (collision.transform.position - transform.position).normalized; // 넉백 방향
             collision.GetComponent<move>().ApplyKnockback(nockBackDir, nockBackForce, 0.1f); // 플레이어 넉백
             //Player.Instance.ApplyKnockback(nockBackDir, nockBackForce, 0.1f); // 플레이어 넉백
             //Player.Instance.TakeDamage(damage); // 플레이어 데미지
-            Debug.Log("플레이어가 파동에 맞음!");
+            Debug.Log("파동 공격");
 
         }
     }

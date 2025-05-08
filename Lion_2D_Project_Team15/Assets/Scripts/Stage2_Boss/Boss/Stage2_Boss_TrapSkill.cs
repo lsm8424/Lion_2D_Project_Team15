@@ -14,7 +14,7 @@ public class Stage2_Boss_TrapSkill : MonoBehaviour
     private Vector3 teleportTarget;  // 순간이동할 위치
     public GameObject teleportEffect;
 
-    private Transform player = null;
+    private GameObject player = null;
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class Stage2_Boss_TrapSkill : MonoBehaviour
             float t = stuckTimer / stuckDuration;
 
             // 플레이어를 트랩 중앙으로 천천히 끌어당김
-            player.position = Vector3.Lerp(player.position, transform.position, t);
+            player.transform.position = Vector3.Lerp(player.transform.position, transform.position, t);
 
             if (stuckTimer >= stuckDuration)
             {
@@ -49,18 +49,20 @@ public class Stage2_Boss_TrapSkill : MonoBehaviour
 
     IEnumerator TeleportEffect()
     {
+        triggerEnter = false; // 트리거 해제
+
         GameObject effect = Instantiate(teleportEffect, transform.position, Quaternion.identity);
         Destroy(effect, effect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length); // 이펙트 애니메이션 길이만큼 대기
-        yield return null;
-        player.position = teleportTarget;
-        yield return null;
+        yield return new WaitForSeconds(0.05f);
+
+        player.transform.position = teleportTarget;
+        // 상태 해제 및 데미지
+        player.GetComponent<move>().isStuck = false; // 플레이어를 회오리 상태 복원
+        //Player.Instance.isStuck = false; // 플레이어를 회오리 상태로 복원
+        yield return new WaitForSeconds(0.05f);
+        
         GameObject effect2 = Instantiate(teleportEffect, teleportTarget, Quaternion.identity);
         Destroy(effect2, effect2.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length); // 이펙트 애니메이션 길이만큼 대기
-
-        player.GetComponent<move>().isStuck = false; // 플레이어를 회오리 상태로 설정
-
-        // 상태 해제 및 데미지
-        //Player.Instance.isStuck = true; // 플레이어를 회오리 상태로 설정
 
         Destroy(gameObject);
     }
@@ -90,10 +92,11 @@ public class Stage2_Boss_TrapSkill : MonoBehaviour
             //    return;
             //}
 
-            player = collision.transform;
+            player = collision.gameObject;
             triggerEnter = true;
 
             collision.GetComponent<move>().isStuck = true; // 플레이어를 회오리 상태로 설정
+            //Player.Instance.isStuck = true; // 플레이어를 회오리 상태로 설정
             Debug.Log("회오리 데미지 + Stuck");
 
             // 플레이어에게 데미지 주기
@@ -101,31 +104,5 @@ public class Stage2_Boss_TrapSkill : MonoBehaviour
         }
 
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (triggerEnter) return;
-
-    //    if (collision.CompareTag("Player"))
-    //    {
-    //        triggerEnter = true;
-
-    //        KeyInputManager.Instance.StartKeyInput(keyInputCount, keyDuration, () =>
-    //        {
-    //            // 성공 시: 속도 원복
-
-    //            Debug.Log("Success!"); // 성공 시 처리
-    //            Destroy(gameObject); // 트랩 제거
-
-    //        },
-    //         () =>
-    //         {
-    //             // 실패 시: 속도 원복 + 데미지 + 스턴 등
-
-    //             Debug.Log("Fail!"); // 실패 시 처리
-    //             Destroy(gameObject); // 트랩 제거
-    //         });
-    //    }
-    //}
 
 }
