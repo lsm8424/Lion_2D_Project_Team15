@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c0d34088a06793b4a944788e438254db
+guid: 67416704f645d7946b070d6f52daed39
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5541699234793813950
-    second: parallax4_0
+      213: 6110588924533646273
+    second: Lake view small_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: parallax4_0
+      name: Lake view small_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
+        width: 320
+        height: 180
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eb770f5c71218ec40800000000000000
-      internalID: 5541699234793813950
+      spriteID: 1c3a347604c2dc450800000000000000
+      internalID: 6110588924533646273
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      parallax4_0: 5541699234793813950
+      Lake view small_0: 6110588924533646273
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

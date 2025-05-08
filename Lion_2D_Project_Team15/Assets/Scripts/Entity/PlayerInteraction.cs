@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
@@ -22,6 +23,9 @@ public class PlayerInteraction : MonoBehaviour
     private bool ladderJustEntered = false;
     public bool canLadder = true;
 
+    // [수정] 아래 방향키 입력 상태를 외부에서 확인할 수 있도록 프로퍼티 추가
+    public bool IsPressingDown { get; private set; }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,6 +35,9 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         DetectInteractable(); // 항상 감지
+
+        // [수정] 아래 방향키 입력 상태 저장
+        IsPressingDown = Input.GetAxisRaw("Vertical") < 0;
 
         if (isOnLadder)
         {
