@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
     public float DialogueTimeScale { get; private set; } = 1f; // 대화창 관련 TimeScale
     public ETimeCase CurrentTime { get; private set; } = ETimeCase.EntityMovement;
     public Stack<ETimeCase> _prevCaseStack = new();
+
     /// <summary>
     /// 전체적인 GameObject를 제어하기 위해 게임 상태를 정의
     /// </summary>
@@ -28,7 +29,9 @@ public class GameManager : Singleton<GameManager>
     }
 
     public bool ShouldWaitForDialogue() => CurrentTime > ETimeCase.PlayingDialogue;
+
     public bool ShouldWaitForEntity() => CurrentTime > ETimeCase.EntityMovement;
+
     /// <summary>
     /// 상황애 맞는 GameObject 관리
     /// </summary>
@@ -38,11 +41,12 @@ public class GameManager : Singleton<GameManager>
         _prevCaseStack.Push(CurrentTime);
         CurrentTime = timeCase;
         AdjustTimeScale(timeCase);
-        Debug.Log("Push  "+ _prevCaseStack.Count);
+        //Debug.Log("Push  "+ _prevCaseStack.Count);
     }
+
     public void RevertTimeCase()
     {
-        Debug.Log("Pop  " + _prevCaseStack.Count);
+        //Debug.Log("Pop  " + _prevCaseStack.Count);
         if (_prevCaseStack.Count == 0)
         {
             Debug.LogError("의도되지 않은 경우");
