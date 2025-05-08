@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FunctionType: 0
   ControlType: 1
-  targetCameraName: CinemachineCamera1
-  deactivateWhenDone: 1
+  targetCameraName: CinemachineCamera_1
+  deactivateWhenDone: 0
   Duration: 0
   InterpolationType: 0
   newTargetObjectID: Player
