@@ -1569,13 +1569,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 95523044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce09c08709d95674d9530b93b2b1da55, type: 3}
+  m_Script: {fileID: 11500000, guid: 01d661888dcf2ee47ac1824df2546ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectId: Libram
-  HP: 1
-  maxHP: 1
-  anim: {fileID: 0}
+  NPCName: 
+  dialogueLines: []
+  EventID: 
 --- !u!1 &106017172
 GameObject:
   m_ObjectHideFlags: 0
