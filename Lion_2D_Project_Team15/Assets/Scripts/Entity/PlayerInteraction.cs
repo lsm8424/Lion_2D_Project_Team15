@@ -23,9 +23,12 @@ public class PlayerInteraction : MonoBehaviour
     private bool ladderJustEntered = false;
     public bool canLadder = true;
 
-    // [수정] 아래 방향키 입력 상태를 외부에서 확인할 수 있도록 프로퍼티 추가
     public bool IsPressingDown { get; private set; }
+    // [수정] 아래 방향키 입력 상태를 외부에서 확인할 수 있도록 프로퍼티 추가
+    [Header("상호작용 UI")]
+    public GameObject interactIndicatorPrefab;
 
+    private GameObject currentIndicator = null;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -104,17 +107,40 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(origin, dir, interactRange, interactLayerMask);
         Debug.DrawRay(origin, dir * interactRange, Color.yellow);
 
-        if (hit.collider != null)
-        {
-            if (currentTarget != hit.collider.gameObject)
-            {
-                Debug.Log("상호작용할 수 있는 Object입니다: " + hit.collider.name);
-            }
-            currentTarget = hit.collider.gameObject;
-        }
-        else
+        // 감지 해제 조건: 감지 안 됨 or 대화 중
+        if (hit.collider == null || isTalking)
         {
             currentTarget = null;
+
+            if (currentIndicator != null)
+            {
+                Destroy(currentIndicator);
+                currentIndicator = null;
+            }
+
+            return;
+        }
+
+        GameObject hitObj = hit.collider.gameObject;
+
+        if (currentTarget != hitObj)
+        {
+            currentTarget = hitObj;
+            Debug.Log("상호작용할 수 있는 Object입니다: " + hit.collider.name);
+
+            if (currentIndicator != null)
+            {
+                Destroy(currentIndicator);
+            }
+
+            currentIndicator = Instantiate(interactIndicatorPrefab);
+            currentIndicator.transform.position = hitObj.transform.position + Vector3.up * 1.5f;
+            currentIndicator.transform.SetParent(hitObj.transform); // 따라다니게
+        }
+        else if (currentIndicator != null)
+        {
+            // 부모 설정되어 있으므로 위치 자동 유지됨 (이 줄은 없어도 OK)
+            currentIndicator.transform.position = hitObj.transform.position + Vector3.up * 1.5f;
         }
     }
 

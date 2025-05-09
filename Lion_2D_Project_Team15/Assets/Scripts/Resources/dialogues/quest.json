@@ -57,7 +57,7 @@
   },
   {
     "id": "player_Q1_start_003",
-    "text": "후, 한눈에 보기에도 말도 안되게 넓군.\n어디서부터 찾아야할지 감도 안잡혀.\n자연스레 알게 된다는것도 어떤 의미인지 모르겠어.\n내가 무슨 탐지 능력이라도 생겼다는 소린가.",
+    "text": "후, 한눈에 보기에도 말도 안되게 넓군.\n어디서부터 찾아야할지 감도 안잡혀.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
@@ -71,27 +71,27 @@
   },
   {
     "id": "player_Q1_start_005",
-    "text": "소설 속 주인공 마냥 뭔가 찌릿하고 스치는것도 아니..",
+    "text": "소설 속 주인공 마냥 뭔가 특별한 기운이 찌릿하고 스치는것도 아니..",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "player_Q1_start_006",
-    "text": "저쪽 책장에서 무언가 이질감이 느껴져.",
+    "text": "거짓말같이 스치는군...\n저쪽인가.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
-    "id": "player_Q1_start_005",
+    "id": "player_Q1_start_007",
     "text": "(어서 가보자)",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
-    "id": "player_Q1_start_006",
+    "id": "player_Q1_start_008",
     "text": "이 칸에서 무언가 이상한 기운이 새어나오는것 같아.\n그리고 왠지 어떻게 막아야 할지도 알 것 같은 기분이다.",
     "choices": "",
     "condition": "",
@@ -105,28 +105,28 @@
     "isEndOfDialogue": false
   },
   {
-    "id": "player_Q1_start_007",
+    "id": "player_Q1_start_009",
     "text": "자연스럽게 알게 된다는게 이런 뜻이였군.\n아무래도 이곳에 적응할려면 한참 걸리겠어..\n",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
-    "id": "player_Q1_start_008",
+    "id": "player_Q1_start_010",
     "text": "다음은 또 어디로 가야하나..",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
-    "id": "player_Q1_start_009",
+    "id": "player_Q1_start_011",
     "text": "근처에서 또 뭔가 느껴져.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
-    "id": "player_Q1_start_010",
+    "id": "player_Q1_start_012",
     "text": "하지만 이건.. 이질감과는 달라.\n좀 더 익숙한 느낌.. 설마!",
     "choices": "",
     "condition": "",
@@ -140,7 +140,7 @@
     "isEndOfDialogue": false
   },
   {
-    "id": "player_Q1_start_011",
+    "id": "player_Q1_start_013",
     "text": "이 책은 아까 사서님께 받은 것과 비슷한 느낌이야.\n내가 잃어버린 데이터의 일부분인건가..",
     "choices": "",
     "condition": "",
@@ -154,7 +154,7 @@
     "isEndOfDialogue": false
   },
   {
-    "id": "player_Q1_start_012",
+    "id": "player_Q1_start_014",
     "text": "이번에는 왠지 점프 할 수 있을 것 같아.",
     "choices": "",
     "condition": "",
@@ -168,14 +168,14 @@
     "isEndOfDialogue": false
   },
   {
-    "id": "player_Q1_start_013",
+    "id": "player_Q1_start_015",
     "text": "이번에는 어딘가 오르고 싶은 기분이 드는걸 보니 오를 수 있게 된걸까나.\n",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
-    "id": "player_Q1_start_014",
+    "id": "player_Q1_start_016",
     "text": "다음은 이질감이 드는걸 보니 길 잃은 친구를 도와줄 시간이군.\n다만 이번에는 위층에서 느껴지는 걸.",
     "choices": "",
     "condition": "",
