@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -71,10 +72,14 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
             return;
         }
 
-        GameObject found = GameObject.Find(targetCameraName);
+        // 비활성화된 오브젝트까지 포함해서 찾는다
+        var found = Resources
+            .FindObjectsOfTypeAll<GameObject>()
+            .FirstOrDefault(go => go.name == targetCameraName);
+
         if (found == null)
         {
-            Debug.LogError($"Cannot find camera with name: {targetCameraName}");
+            Debug.LogError($"Cannot find camera with name: {targetCameraName} (비활성 포함)");
             return;
         }
 
