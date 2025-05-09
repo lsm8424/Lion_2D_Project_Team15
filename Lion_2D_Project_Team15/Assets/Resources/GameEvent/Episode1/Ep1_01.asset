@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestID: Ep1
   Progress:
-  - Trigger: {fileID: 11400000, guid: 58e3723c2a47cac44a2db677767d6c5f, type: 2}
-    GameEvent: {fileID: 11400000, guid: 5c0a406adc92bc2448f46fd81be1ee86, type: 2}
   - Trigger: {fileID: 0}
     GameEvent: {fileID: 11400000, guid: d0d36651d26b12441bd12925bb7cfbaa, type: 2}
   - Trigger: {fileID: 0}
     GameEvent: {fileID: 11400000, guid: c45e156cf0e23454fa5a35853a4cf894, type: 2}
   - Trigger: {fileID: 11400000, guid: ca21dfb659166ad4b94a6f222f1d880e, type: 2}
     GameEvent: {fileID: 11400000, guid: 2c645adcd4ec99d499f69f8d9e7f0afa, type: 2}
+  - Trigger: {fileID: 11400000, guid: 58e3723c2a47cac44a2db677767d6c5f, type: 2}
+    GameEvent: {fileID: 11400000, guid: 5c0a406adc92bc2448f46fd81be1ee86, type: 2}
+  - Trigger: {fileID: 11400000, guid: d2ade8fcfb74c06489b2add82ae2d9e6, type: 2}
+    GameEvent: {fileID: 11400000, guid: 1f5524f6fca055244830b2b3df06cb9a, type: 2}
