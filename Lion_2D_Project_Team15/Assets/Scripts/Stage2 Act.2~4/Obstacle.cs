@@ -6,14 +6,14 @@ public class Obstacle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("충돌 감지됨!");
-
-            Player p = other.GetComponent<Player>();
-            if (p != null)
+            //Debug.Log("장애물 충돌 감지됨");
+            Player player = other.GetComponent<Player>();
+            if (player != null)
             {
-                p.Stun();
+                player.Stun();
             }
         }
     }
+
 
 }

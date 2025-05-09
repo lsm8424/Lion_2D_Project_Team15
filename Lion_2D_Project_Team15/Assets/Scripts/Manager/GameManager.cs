@@ -41,12 +41,10 @@ public class GameManager : Singleton<GameManager>
         _prevCaseStack.Push(CurrentTime);
         CurrentTime = timeCase;
         AdjustTimeScale(timeCase);
-        //Debug.Log("Push  "+ _prevCaseStack.Count);
     }
 
     public void RevertTimeCase()
     {
-        //Debug.Log("Pop  " + _prevCaseStack.Count);
         if (_prevCaseStack.Count == 0)
         {
             Debug.LogError("의도되지 않은 경우");

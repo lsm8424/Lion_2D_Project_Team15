@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 0}
+    TrackingTarget: {fileID: 2031523357}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -7904,7 +7904,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 196.08864, y: 50, z: -10}
+  m_LocalPosition: {x: 191, y: 50, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9133,7 +9133,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 743180249
   m_SortingLayer: 1
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.62734854, b: 0, a: 1}
   m_FlipX: 0
@@ -12094,6 +12094,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1045975086}
   - component: {fileID: 1045975087}
+  - component: {fileID: 1045975088}
   m_Layer: 0
   m_Name: BGPatternManager
   m_TagString: Untagged
@@ -12130,10 +12131,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallingPrefab: {fileID: 7116548240974687878, guid: cd0b71b744c63724f8e7dabde02e8356, type: 3}
   shadowPrefab: {fileID: 6258467275655505291, guid: 941f2669e20e9fa459fdfd1b6ce38645, type: 3}
-  fallingCoolTime: 1
+  fallingCoolTime: 1.5
   fallDuration: 2
   maxX: 19
   maxY: 19
+--- !u!114 &1045975088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045975085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001e09e509845fe409d1c5f5082e84c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oceanPrefab: {fileID: 741692412455151808, guid: f6fb8e29640dbe24e8857365668a762e, type: 3}
+  coolTime: 10
+  keyInputCount: 3
+  keyDuration: 3
+  growSpeed: 30
+  damage: 0
+  warningPrefab: {fileID: 1328851054533475054, guid: 0a55f1919f0c36e4482dae9ed223bbb9, type: 3}
+  warningTime: 2
 --- !u!1 &1064853903
 GameObject:
   m_ObjectHideFlags: 0
@@ -16460,8 +16481,8 @@ GameObject:
   - component: {fileID: 1354935787}
   - component: {fileID: 1354935783}
   - component: {fileID: 1354935784}
-  - component: {fileID: 1354935786}
   - component: {fileID: 1354935785}
+  - component: {fileID: 1354935786}
   - component: {fileID: 1354935788}
   - component: {fileID: 1354935789}
   m_Layer: 0
@@ -16591,7 +16612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalAttackPrefab: {fileID: 1943133570879582939, guid: a973a01c27a8fb84f8f9a56aa36ca131, type: 3}
   coolTime: 1
-  bulletspeed: 7
+  bulletspeed: 10
   nockBack: 20
   damage: 0
   waveFrequency: 5
@@ -16609,7 +16630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1876284690762656474, guid: 94287aaece7da9a469d1c228c51f013a, type: 3}
-  bulletSpeed: 7
+  bulletSpeed: 10
   bulletCount: 24
   coolTime: 3
   damage: 0
@@ -16621,14 +16642,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354935781}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -16639,7 +16660,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!114 &1354935788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16653,9 +16674,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveSkillPrefab: {fileID: 9072539092158156982, guid: e0c675a140bbec148b52087efee59a1f, type: 3}
-  moveSpeed: 10
+  moveSpeed: 15
   waveCount: 3
-  coolTime: 3
+  nockBackForce: 10
+  coolTime: 5
   damage: 0
   warningBoxPrefab: {fileID: 6529924126980472808, guid: f606b15f59df6c44ca775b3c69f4509f, type: 3}
   warningTime: 1
@@ -16673,11 +16695,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapPrefab: {fileID: 5647354281805558345, guid: cd7b440730a61904d9048a42697d849b, type: 3}
   lifeTime: 3
-  coolDown: 5
-  keyInputCount: 3
+  coolDown: 7
   trapSize: 3
-  keyDuration: 3
   damage: 0
+  stuckDuration: 0.7
   warningTrapPrefab: {fileID: 5644881623933223089, guid: 6386676466c97d14db021f68cad7e80c, type: 3}
   warningTime: 1
 --- !u!1 &1362778789
@@ -28343,7 +28364,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2027123, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -28380,7 +28401,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a87831d514b6b499aa0b5305f34f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 7
+  isKeyInput: 0
+  isStuck: 0
 --- !u!50 &2031523359
 Rigidbody2D:
   serializedVersion: 5
@@ -28406,7 +28429,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &2031523360
 CapsuleCollider2D:

@@ -3,19 +3,29 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("이동 설정")]
-    public float moveSpeed; // 이동 속도
-    public float jumpForce; // 점프 힘
-    public bool isGrounded; // 바닥 접지 상태
-    public bool facingRight = true; // 캐릭터 시작 시 바라보는 방향
-    public bool canJump = true; // 점프 가능 여부
+    public float moveSpeed;
+    public float jumpForce;
+    public bool isGrounded;
+    public bool facingRight = true;
+    public bool canJump = true;
+
+    [Header("접지 체크")]
+    public Transform groundCheck;
+    public LayerMask groundLayer;
+    public float groundCheckRadius = 0.2f;
+
+    [Header("벽 체크 추가")]
+    public Transform wallCheck;
+    public LayerMask wallLayer;
+    public float wallCheckDistance = 0.3f;
+    private bool isTouchingWall;
 
     private Rigidbody2D rb;
     private Animator anim;
 
     [Header("무기 참조")]
-    public Sword sword; // Sword 참조
+    public Sword sword;
 
-    // 공격 상태 관리 플래그
     public bool isAttacking = false;
 
     private void Start()
@@ -26,13 +36,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleMove()
     {
-        // 공격 중이고 점프 상태가 아닐 경우 이동 차단
-        if (isAttacking && !anim.GetBool("Jump"))
-            return;
-
-        // 사다리 위에 있을 때는 좌/우 이동 차단
-        if (Player.Instance.interaction.IsOnLadder())
-            return;
+        if (Player.Instance.IsStunned) return;
+        if (isAttacking && !anim.GetBool("Jump")) return;
+        if (Player.Instance.interaction.IsOnLadder()) return;
 
         float h = Input.GetAxisRaw("Horizontal");
         Vector3 moveDir = new Vector3(h, 0, 0).normalized;
@@ -42,37 +48,27 @@ public class PlayerMovement : MonoBehaviour
 
         bool isRunning = h != 0;
         anim.SetBool("Run", isRunning);
-        if (sword != null)
-            sword.SetRun(isRunning); // Sword에 전달
+        if (sword != null) sword.SetRun(isRunning);
     }
 
     public void HandleJump()
     {
-        if (!canJump)
-            return;
+        if (!canJump) return;
+        if (Player.Instance.interaction.IsOnLadder()) return;
 
-        // 사다리 위에서는 점프 금지 (PlayerInteraction이 스페이스로 탈출 처리)
-        if (Player.Instance.interaction.IsOnLadder())
-            return;
-
-        // 스페이스 키 입력 && 바닥에 닿아 있을 때만 점프
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            isGrounded = false; // 공중 상태로 전환
-
+            isGrounded = false;
             anim.SetBool("Jump", true);
-            if (sword != null)
-                sword.SetJump(true);
+            if (sword != null) sword.SetJump(true);
         }
     }
 
     public void FlipByDirection(float h)
     {
-        if (h > 0 && !facingRight)
-            Flip();
-        else if (h < 0 && facingRight)
-            Flip();
+        if (h > 0 && !facingRight) Flip();
+        else if (h < 0 && facingRight) Flip();
     }
 
     private void Flip()
@@ -82,8 +78,7 @@ public class PlayerMovement : MonoBehaviour
         scale.x *= -1;
         transform.localScale = scale;
 
-        if (sword != null)
-            sword.Flip(facingRight); // Sword에도 Flip 전달
+        if (sword != null) sword.Flip(facingRight);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -92,7 +87,13 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
 
         anim.SetBool("Jump", false);
-        if (sword != null)
-            sword.SetJump(false);
+        if (sword != null) sword.SetJump(false);
+    }
+
+    private void Update()
+    {
+        // 벽에 붙은 상태가 아니라면 접지 여부 확인
+        isTouchingWall = Physics2D.Raycast(wallCheck.position, facingRight ? Vector2.right : Vector2.left, wallCheckDistance, wallLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) && !isTouchingWall;
     }
 }

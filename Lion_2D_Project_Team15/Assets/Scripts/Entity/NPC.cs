@@ -18,7 +18,6 @@ public class NPC : IdentifiableMonoBehavior, IInteractable
 {
     public string NPCName; // NPC 이름
     public DialogueLine[] dialogueLines;
-    private int dialogueIndex = 0; // 현재 몇번째 대사인지 추적
 
     public string EventID;
 
@@ -29,6 +28,7 @@ public class NPC : IdentifiableMonoBehavior, IInteractable
     {
         // 수정 필요
         // DialogueManager.Instance.StartDialogue(DialogueCategory.Dialogue, DialogueID);
+        OnInteracted?.Invoke(InteractionType.Interaction);
         if (!string.IsNullOrWhiteSpace(EventID))
             EventManager.Instance.RunEvent(EventID);
 

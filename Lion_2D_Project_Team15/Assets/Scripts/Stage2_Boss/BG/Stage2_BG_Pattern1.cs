@@ -16,7 +16,7 @@ public class Stage2_BG_Pattern1 : MonoBehaviour
 
     void Start()
     {
-
+        delta = fallingCoolTime;
     }
 
     void Update()

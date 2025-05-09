@@ -13,7 +13,7 @@ public class Stage2_Boss_Pattern1 : MonoBehaviour
 
     void Start()
     {
-        
+        delta = coolTime;
     }
 
     void Update()

@@ -43,11 +43,9 @@ public class SceneController : Singleton<SceneController>
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        // int stageNumber = ???
         IDManager.Instance.SetUpIdentifiers();
         QuestManager.Instance.SetUp("Episode1");
         QuestManager.Instance.StartQuest("Ep1");
-        // SaveManager.Instance.Save();
     }
 
     /// <summary>
