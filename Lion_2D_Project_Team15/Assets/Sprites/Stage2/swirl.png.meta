@@ -145,37 +145,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: swirl_0
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 183
-        width: 304
-        height: 346
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 69a36a41cb0f2bf80800000000000000
-      internalID: -8092140889840403818
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: swirl_1
       rect:
         serializedVersion: 2
-        x: 151
-        y: 57
-        width: 699
-        height: 808
+        x: 115
+        y: 111
+        width: 807
+        height: 759
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -188,33 +166,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: swirl_2
-      rect:
-        serializedVersion: 2
-        x: 748
-        y: 499
-        width: 149
-        height: 295
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5a4eaa8f1abb003d0800000000000000
-      internalID: -3242385427370679131
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 38ef0642c06dcdd478c01e200ddccaa2
     internalID: 0
     vertices: []
     indices: 
