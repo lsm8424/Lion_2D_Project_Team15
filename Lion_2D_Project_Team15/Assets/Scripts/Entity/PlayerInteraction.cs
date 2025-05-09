@@ -118,7 +118,7 @@ public class PlayerInteraction : MonoBehaviour
             currentNPC = target.GetComponent<NPC>();
             if (currentNPC != null)
             {
-                currentNPC.Interact();
+                currentNPC.Interact(); // 기존 대화 처리
                 isTalking = true;
             }
         }
@@ -130,9 +130,24 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (!canLadder)
                 return;
+
             currentLadder = target.GetComponent<Ladder>();
             if (currentLadder != null)
                 EnterLadder();
+        }
+
+        // ✅ 여기부터 추가: IInteractable 인터페이스 이벤트 처리
+        var interactableComponent = target.GetComponent<MonoBehaviour>() as IInteractable;
+        if (interactableComponent != null)
+        {
+            //Debug.Log("[PlayerInteraction] IInteractable 감지됨 → 이벤트 호출");
+
+            // 이벤트 호출을 구현체의 메서드를 통해 전달
+            (interactableComponent as MonoBehaviour)?.SendMessage(
+                "InvokeInteraction",
+                InteractionType.Interaction,
+                SendMessageOptions.DontRequireReceiver
+            );
         }
     }
 

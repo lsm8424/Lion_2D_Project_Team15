@@ -21,6 +21,7 @@ public class ComponentChangeFunction_SO : EventFunction_SO
     public string StringValue;
     public Color ColorValue;
     public Vector3 Vector3Value;
+    public UnityEngine.Object ObjectValue;
 
     public enum MemberType
     {
@@ -35,7 +36,8 @@ public class ComponentChangeFunction_SO : EventFunction_SO
         Float,
         String,
         Color,
-        Vector3
+        Vector3,
+        Object
     }
 
     public override void Setup() { }
@@ -122,6 +124,7 @@ public class ComponentChangeFunction_SO : EventFunction_SO
             ValueType.String => StringValue,
             ValueType.Color => ColorValue,
             ValueType.Vector3 => Vector3Value,
+            ValueType.Object => ObjectValue,
             _ => null
         };
     }
