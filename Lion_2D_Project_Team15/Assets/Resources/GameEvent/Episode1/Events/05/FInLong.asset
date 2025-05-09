@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 045a91e831e6cfa4d96e98716bc79f09, type: 3}
-  m_Name: Conv1
+  m_Script: {fileID: 11500000, guid: 817d6f88f26be2c48b39dae09a85de0a, type: 3}
+  m_Name: FInLong
   m_EditorClassIdentifier: 
   FunctionType: 0
-  Conversations:
-  - Category: 0
-    DialogueID: player_Q1_start_003
-  - Category: 0
-    DialogueID: player_Q1_start_004
-  - Category: 0
-    DialogueID: player_Q1_start_005
+  Duration: 2
+  ScreenEffectType: 0

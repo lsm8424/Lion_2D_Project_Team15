@@ -19,3 +19,9 @@ MonoBehaviour:
   EventFunctions:
   - {fileID: 11400000, guid: a726cdcb38615094bb5717e2057330e9, type: 2}
   - {fileID: 11400000, guid: c5fee18209185b444b096c95916dd4ab, type: 2}
+  - {fileID: 11400000, guid: 9a7e83cf682e4ca4b8dc7ddbe358b459, type: 2}
+  - {fileID: 11400000, guid: 788240f15fd69ca41957a3a8c1bd4c96, type: 2}
+  - {fileID: 11400000, guid: 7f46352e759967f49829348ce6253671, type: 2}
+  - {fileID: 11400000, guid: 8e6ff80b29fd10d4498f761caf10406d, type: 2}
+  - {fileID: 11400000, guid: 866491d163b5f954ba0cbed0e7fd9af7, type: 2}
+  - {fileID: 11400000, guid: 139a0b0754f621e4d8d7ca5063093446, type: 2}
