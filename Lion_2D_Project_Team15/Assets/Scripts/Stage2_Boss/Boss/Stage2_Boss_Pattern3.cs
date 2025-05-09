@@ -8,9 +8,7 @@ public class Stage2_Boss_Pattern3 : MonoBehaviour
     [SerializeField] private GameObject trapPrefab;
     [SerializeField] private float lifeTime;    //트랩 지속시간
     [SerializeField] private float coolDown;    //쿨타임
-    //[SerializeField] private int keyInputCount; //키입력 개수
     [SerializeField] private int trapSize;    //트랩 사이즈
-    //[SerializeField] private float keyDuration; //키입력 시간
     [SerializeField] private float damage;      //트랩 데미지
     [SerializeField] private float stuckDuration; //트랩에 갇히는 시간
 
@@ -22,12 +20,17 @@ public class Stage2_Boss_Pattern3 : MonoBehaviour
     private float maxX = 18;
     private float maxY = 18;
 
-    private bool isPatternActive = false;
-    private float delta = 5;
+    private bool isWaveSpawn = false;
+    private float delta;
+
+    private void Start()
+    {
+        delta = coolDown;
+    }
 
     private void Update()
     {
-        if (!isPatternActive)
+        if (!isWaveSpawn)
         {
             delta -= Time.deltaTime;
             if (delta < 0)
@@ -40,7 +43,7 @@ public class Stage2_Boss_Pattern3 : MonoBehaviour
 
     private void SpawnWave()
     {
-        isPatternActive = true;
+        isWaveSpawn = true;
 
         Vector3 randomSpawn = Vector3.zero;
 
@@ -108,7 +111,7 @@ public class Stage2_Boss_Pattern3 : MonoBehaviour
 
     private void TimeSet()
     {
-        isPatternActive = false;
+        isWaveSpawn = false;
         delta = coolDown;
     }
 
