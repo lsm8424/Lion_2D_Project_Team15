@@ -16486,7 +16486,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.87, y: -1.65, z: -10}
+  m_LocalPosition: {x: -8.8967, y: -1.7377, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28673,7 +28673,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 1140504452}
+    TrackingTarget: {fileID: 45923683}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -28705,7 +28705,7 @@ Transform:
   m_GameObject: {fileID: 1008600793}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3696551, y: -1.9750834, z: -5}
+  m_LocalPosition: {x: -2.3788621, y: -2.0116248, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29898,7 +29898,7 @@ Transform:
   m_GameObject: {fileID: 1140504443}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.87, y: -1.65, z: 0}
+  m_LocalPosition: {x: 9.75, y: -1.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41308,7 +41308,7 @@ Transform:
   m_GameObject: {fileID: 1548158720}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -98.00405, y: -33.992775, z: -10}
+  m_LocalPosition: {x: -100.65861, y: -33.992775, z: -10}
   m_LocalScale: {x: 1.3172064, y: 1.1111112, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44589,7 +44589,7 @@ Transform:
   m_GameObject: {fileID: 1822792472}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43.430504, y: -3.8658726, z: -6.2499995}
+  m_LocalPosition: {x: -32.499763, y: -3.8658726, z: -6.2499995}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44608,7 +44608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoundingShape2D: {fileID: 7878350320264960500}
-  Damping: 0.5
+  Damping: 0
   SlowingDistance: 5
   OversizeWindow:
     Enabled: 0
@@ -56916,8 +56916,8 @@ Transform:
   - {fileID: 1822792473}
   m_Father: {fileID: 1038345692}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7878350320264960500
-BoxCollider2D:
+--- !u!60 &7878350320264960500
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -56960,8 +56960,13 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 40, y: 20}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -20, y: 10}
+      - {x: -20, y: -10}
+      - {x: 20, y: -10}
+      - {x: 20, y: 10}
+  m_UseDelaunayMesh: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -18,3 +18,4 @@ MonoBehaviour:
   RequireSave: 0
   EventFunctions:
   - {fileID: 11400000, guid: a726cdcb38615094bb5717e2057330e9, type: 2}
+  - {fileID: 11400000, guid: c5fee18209185b444b096c95916dd4ab, type: 2}

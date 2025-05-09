@@ -44,7 +44,6 @@ public class SceneController : Singleton<SceneController>
     public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         IDManager.Instance.SetUpIdentifiers();
-        EventManager.Instance.SetupEvents("Episode1");
         QuestManager.Instance.SetUp("Episode1");
         QuestManager.Instance.StartQuest("Ep1");
     }

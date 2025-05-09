@@ -57,13 +57,27 @@
   },
   {
     "id": "player_Q1_start_003",
-    "text": "(예상보다 더 넓은 도서관이다)\n허, 어디서부터 둘러봐야 할지 감이 오지 않는군.\n자연스레 알게 된다는것도 어떤 의미인지 모르겠어.\n내가 무슨 탐지 능력이라도 생겼다는 소린가.",
+    "text": "후, 한눈에 보기에도 말도 안되게 넓군.\n어디서부터 찾아야할지 감도 안잡혀.\n자연스레 알게 된다는것도 어떤 의미인지 모르겠어.\n내가 무슨 탐지 능력이라도 생겼다는 소린가.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "player_Q1_start_004",
+    "text": "자연스레 알게 된다는것도 어떤 의미인지 모르겠어.\n내게 무슨 특별한 능력이라도 생겼다는 뜻인가?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_Q1_start_005",
+    "text": "소설 속 주인공 마냥 뭔가 찌릿하고 스치는것도 아니..",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_Q1_start_006",
     "text": "저쪽 책장에서 무언가 이질감이 느껴져.",
     "choices": "",
     "condition": "",
