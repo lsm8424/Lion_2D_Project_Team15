@@ -15,7 +15,7 @@ MonoBehaviour:
   FunctionType: 0
   ControlType: 0
   targetCameraName: CinemachineCamera_1
-  deactivateWhenDone: 1
+  deactivateWhenDone: 0
   Duration: 4
   InterpolationType: 6
   newTargetObjectID: 

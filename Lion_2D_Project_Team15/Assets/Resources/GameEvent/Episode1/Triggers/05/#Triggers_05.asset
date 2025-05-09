@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bef1b41f17438f43925fe24a7b17069, type: 3}
   m_Name: '#Triggers_05'
   m_EditorClassIdentifier: 
-  ObjectID: spBook_01
+  ObjectID: spBook_0
   Type: 0
   Conditions: []
-  QuestID: 
-  ProgressLevel: 0
+  QuestID: Ep1
+  ProgressLevel: 4
