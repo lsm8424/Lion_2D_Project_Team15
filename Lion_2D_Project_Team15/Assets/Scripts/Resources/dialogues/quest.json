@@ -92,7 +92,7 @@
   },
   {
     "id": "player_Q1_start_008",
-    "text": "이 칸에서 무언가 이상한 기운이 새어나오는것 같아.\n그리고 왠지 어떻게 막아야 할지도 알 것 같은 기분이다.",
+    "text": "이 칸에서 무언가 이상한 기운이 새어나오는것 같아.\n그리고 왠지 늘 하던 일 인것 마냥 어떻게 막아야 할지도 알 것 같아.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
@@ -113,55 +113,83 @@
   },
   {
     "id": "player_Q1_start_010",
-    "text": "다음은 또 어디로 가야하나..",
+    "text": "그나저나 한번 느끼기 시작하니까 사방에서 기운들이 느껴지는군..",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "player_Q1_start_011",
-    "text": "근처에서 또 뭔가 느껴져.",
+    "text": "가장 가까운건 이쪽인가.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "player_Q1_start_012",
-    "text": "하지만 이건.. 이질감과는 달라.\n좀 더 익숙한 느낌.. 설마!",
+    "text": "근데 뭔가 이상해. 아까와는 어딘가 달라.\n좀 더 익숙한 느낌이 들어... 설마!",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "narration_Q1_start_003",
-    "text": "(까이 다가가자 꽂혀있던 책 한 권에서 기운이 느껴진다)",
+    "text": "(가까이 다가가자 꽂혀있던 책 한 권에서 익숙한 기운이 느껴진다)",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "player_Q1_start_013",
-    "text": "이 책은 아까 사서님께 받은 것과 비슷한 느낌이야.\n내가 잃어버린 데이터의 일부분인건가..",
+    "text": "역시나. 아까 사서님께 받은 책과 비슷한 기운이야.\n그렇다면 이 책 또한 내가 잃어버린 데이터의 일부분인건가..",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "narration_Q1_start_004",
-    "text": "(의미심장한 기분으로 손을 대자 아까처럼 책이 내 몸속에 깃들었다)",
+    "text": "(의미심장한 기분으로 손을 대자, 아까와같이 수많은 기억들이 스쳐 지나갔다)",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "player_Q1_start_014",
-    "text": "이번에는 왠지 점프 할 수 있을 것 같아.",
+    "text": "높은곳에서 점프하다가 발은 잘못 딛여 크게 다쳤던 순간..",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
-    "id": "narration_Q1_start_005",
+    "id": "player_Q1_start_015",
+    "text": "처음으로 번지 점프에 도전했던 날...",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_Q1_start_016",
+    "text": "전부 점프와 관련된 강렬한 기억들이군.\n그렇다면 역시.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_Q1_start_017",
+    "text": "점프를 할 수 있게 된거겠지?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_Q1_start_018",
+    "text": "마침 저쪽 높은 턱 위에서도 기운이 느껴지니 시험해 보자.\n",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_Q1_start_019",
     "text": "(그리고 또 다른 곳에서 익숙한 기운이 느껴진다)\n나와 관련한 데이티들은 전부 이 주변에 있는걸까?",
     "choices": "",
     "condition": "",
