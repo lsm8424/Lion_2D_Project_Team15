@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5069674721842765187}
   - component: {fileID: 6144132428223466879}
   - component: {fileID: 7719205973421323021}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spBook_0
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

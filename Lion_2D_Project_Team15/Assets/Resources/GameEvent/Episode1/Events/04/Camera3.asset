@@ -26,5 +26,5 @@ MonoBehaviour:
   EndOffset: {x: 10, y: 0, z: 0}
   EndZoom: 6
   WaitBefore: 0
-  WaitAfter: 2
+  WaitAfter: 1
   useCurrentAsStart: 1

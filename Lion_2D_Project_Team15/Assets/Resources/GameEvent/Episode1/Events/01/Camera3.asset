@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: Camera3
   m_EditorClassIdentifier: 
   FunctionType: 0
+  ControlType: 0
   targetCameraName: CinemachineCamera_1
   deactivateWhenDone: 0
   Duration: 4
   InterpolationType: 0
-  StartScreenPosition: {x: 0, y: 0.3}
+  newTargetObjectID: 
+  StartScreenPosition: {x: 0, y: 0.2}
   StartOffset: {x: 14, y: 0, z: 0}
   StartZoom: 8
   EndScreenPosition: {x: 0, y: 0.2}
   EndOffset: {x: 0, y: 0, z: 0}
   EndZoom: 6
+  WaitBefore: 0
+  WaitAfter: 0
   useCurrentAsStart: 0
