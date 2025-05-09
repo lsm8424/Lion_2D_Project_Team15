@@ -20,6 +20,8 @@ public class LadderPlatform : MonoBehaviour
         if (player == null)
             return;
 
-        collider.isTrigger = player.GetComponent<PlayerInteraction>().IsOnLadder();
+        var interaction = player.GetComponent<PlayerInteraction>();
+        // 수정: 사다리 위에 있거나, 아래 방향키 입력 시 트리거 활성화
+        collider.isTrigger = interaction.IsOnLadder() || interaction.IsPressingDown;
     }
 }

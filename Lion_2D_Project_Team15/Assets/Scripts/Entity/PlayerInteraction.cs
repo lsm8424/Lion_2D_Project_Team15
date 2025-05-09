@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
@@ -22,6 +23,9 @@ public class PlayerInteraction : MonoBehaviour
     private bool ladderJustEntered = false;
     public bool canLadder = true;
 
+    // [수정] 아래 방향키 입력 상태를 외부에서 확인할 수 있도록 프로퍼티 추가
+    public bool IsPressingDown { get; private set; }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,6 +35,9 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         DetectInteractable(); // 항상 감지
+
+        // [수정] 아래 방향키 입력 상태 저장
+        IsPressingDown = Input.GetAxisRaw("Vertical") < 0;
 
         if (isOnLadder)
         {
@@ -118,7 +125,7 @@ public class PlayerInteraction : MonoBehaviour
             currentNPC = target.GetComponent<NPC>();
             if (currentNPC != null)
             {
-                currentNPC.Interact();
+                currentNPC.Interact(); // 기존 대화 처리
                 isTalking = true;
             }
         }
@@ -130,9 +137,24 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (!canLadder)
                 return;
+
             currentLadder = target.GetComponent<Ladder>();
             if (currentLadder != null)
                 EnterLadder();
+        }
+
+        // ✅ 여기부터 추가: IInteractable 인터페이스 이벤트 처리
+        var interactableComponent = target.GetComponent<MonoBehaviour>() as IInteractable;
+        if (interactableComponent != null)
+        {
+            //Debug.Log("[PlayerInteraction] IInteractable 감지됨 → 이벤트 호출");
+
+            // 이벤트 호출을 구현체의 메서드를 통해 전달
+            (interactableComponent as MonoBehaviour)?.SendMessage(
+                "InvokeInteraction",
+                InteractionType.Interaction,
+                SendMessageOptions.DontRequireReceiver
+            );
         }
     }
 
