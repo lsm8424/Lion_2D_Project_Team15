@@ -25,7 +25,7 @@ public class followcam : MonoBehaviour
 
     void Start()
     {
-        transCam(1);
+        transCam(2);
     }
 
 }
