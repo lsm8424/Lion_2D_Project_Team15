@@ -4,18 +4,8 @@ public class UIManager : Singleton<UIManager>
 {
     GameObject _settingsCanvas;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            // Å×½ºÆ®¿ë
-            //SceneController.Instance.LoadSceneWithFadeInOut("JYH_1", 3f);
-            //ToggleSettings();
-        }
-    }
-
     /// <summary>
-    /// ¼³Á¤Ã¢À» Åä±ÛÇÕ´Ï´Ù
+    /// ì„¤ì •ì°½ì„ í† ê¸€í•©ë‹ˆë‹¤
     /// </summary>
     public void ToggleSettings()
     {
@@ -23,8 +13,22 @@ public class UIManager : Singleton<UIManager>
         {
             GameObject canvasPrefab = Resources.Load<GameObject>("UI/SettingsCanvas");
             _settingsCanvas = Instantiate(canvasPrefab, transform);
+
+            _settingsCanvas.SetActive(true);
+            GameManager.Instance.SetTimeCase(GameManager.ETimeCase.Setting);
             return;
         }
-        _settingsCanvas.SetActive(!_settingsCanvas.activeSelf);
+
+        bool isActive = _settingsCanvas.activeSelf;
+        if (isActive)
+        {
+            _settingsCanvas.SetActive(false);
+            GameManager.Instance.RevertTimeCase();
+        }
+        else
+        {
+            _settingsCanvas.SetActive(true);
+            GameManager.Instance.SetTimeCase(GameManager.ETimeCase.Setting);
+        }
     }
 }

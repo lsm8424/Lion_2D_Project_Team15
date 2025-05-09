@@ -10,6 +10,7 @@ public class PlayerCombat : MonoBehaviour
     public float attackPower;
     public float attackCooldown;
     private float lastAttackTime = -999f;
+    public bool canAttack = true; // 공격 가능 여부
 
     [Header("스킬 설정")]
     public float skillCooldown;
@@ -24,7 +25,7 @@ public class PlayerCombat : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
-    [Header("소드 연결")]
+    [Header("무기 연결")]
     public Sword sword; // Sword 참조 추가
 
     private void Start()
@@ -39,14 +40,19 @@ public class PlayerCombat : MonoBehaviour
 
     public void HandleAttack()
     {
-      
+        if (!canAttack)
+            return; // 공격 불가 상태면 리턴
         float h = Input.GetAxisRaw("Horizontal");
         playerMovement.FlipByDirection(h);
-        
 
         if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime + attackCooldown)
         {
             lastAttackTime = Time.time;
+
+            // 공격 상태 활성화
+            if (playerMovement != null)
+                playerMovement.isAttacking = true;
+
             if (anim != null)
                 anim.SetTrigger("Attack"); // 널 체크 나중에 에니메이션 추가되면 변경
 
@@ -54,6 +60,9 @@ public class PlayerCombat : MonoBehaviour
                 sword.TriggerAttack(); // Sword에 공격 전달
 
             Debug.Log("기본 공격!");
+
+            // 공격 종료 처리
+            Invoke(nameof(ResetAttackState), 0.7f); // 공격 애니메이션 길이만큼 대기
 
             // 공격 범위 내 몬스터 찾기
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1.5f); // 1.5f: 공격 범위
@@ -76,8 +85,11 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-  
-
+    private void ResetAttackState()
+    {
+        if (playerMovement != null)
+            playerMovement.isAttacking = false;
+    }
 
     public void HandleSkill()
     {
@@ -102,7 +114,11 @@ public class PlayerCombat : MonoBehaviour
         if (coralProjectilePrefab == null || firePoint == null)
             return;
 
-        GameObject projectile = Instantiate(coralProjectilePrefab, firePoint.position, Quaternion.identity);
+        GameObject projectile = Instantiate(
+            coralProjectilePrefab,
+            firePoint.position,
+            Quaternion.identity
+        );
 
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         CoralProjectile cp = projectile.GetComponent<CoralProjectile>();
@@ -120,6 +136,4 @@ public class PlayerCombat : MonoBehaviour
             rb.linearVelocity = shootDir * 10f;
         }
     }
-
-
 }

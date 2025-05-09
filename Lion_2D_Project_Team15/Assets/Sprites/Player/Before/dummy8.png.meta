@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 1900cd0d29fae4d43aab5b12278e42c0
+    spriteID: 81226206ccf0445409fc491f6f6f7556
     internalID: 0
     vertices: []
     indices: 
@@ -175,6 +175,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       dummy8_0: -5537332797586289142
+      dummy8_1: -607309422
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,14 +5,19 @@ using UnityEngine;
 public class EventManager : Singleton<EventManager>
 {
     public Dictionary<string, GameEvent_SO> Events { get; private set; } = new();
-    public Dictionary<string, object> Flags { get; private set; } = new();
+    public Dictionary<string, Flag> EventFlags { get; private set; } = new();
     public bool DidSetup = false;
+
+    public struct Flag
+    {
+        public string Type;
+        public object Value;
+    }
+
 
     protected override void Awake()
     {
         base.Awake();
-
-        SetupEvents(1);
     }
 
     public Coroutine RunEvent(string eventID)
@@ -26,25 +31,34 @@ public class EventManager : Singleton<EventManager>
         return StartCoroutine(gameEvent.Execute());
     }
 
-    // Flag의 규칙을 정해 겹치지 않도록
-    public T CheckFlag<T>(string key)
+    //Flag의 규칙을 정해 겹치지 않도록
+    public bool TryGetFlag<T>(string key, out T value)
     {
-        if (!Flags.ContainsKey(key))
-            return default;
+        if (!EventFlags.ContainsKey(key))
+        {
+            value = default;
+            return false;
+        }
 
-        return (T)Flags[key];
-    }
-    public void SetFlag(string key, bool flagValue)
-    {
-        Flags[key] = flagValue;
+        value = (T)EventFlags[key].Value;
+        return true;
     }
 
-    public void SetupEvents(int stageNumber)
+    public void SetFlag<T>(string key, T flagValue)
     {
+        EventFlags[key] = new Flag
+        {
+            Type = typeof(T).FullName,
+            Value = flagValue
+        };
+    }
+
+    public void SetupEvents(string path)
+    {
+        DidSetup = true;
         Events.Clear();
 
-        string stageEventPath = "Stage" + stageNumber;
-        GameEvent_SO[] gameEvents = Resources.LoadAll<GameEvent_SO>($"GameEvent/{stageEventPath}");
+        GameEvent_SO[] gameEvents = Resources.LoadAll<GameEvent_SO>($"GameEvent/{path}");
 
         for (int i = 0; i < gameEvents.Length; ++i)
         {

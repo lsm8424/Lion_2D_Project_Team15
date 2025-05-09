@@ -1,6 +1,6 @@
 [
   {
-    "id": "librarian_Q1_start_001",
+    "id": "libram_Q1_start_001",
     "text": "자 받게나.",
     "choices": "",
     "condition": "",
@@ -15,20 +15,20 @@
   },
   {
     "id": "player_Q1_start_001",
-    "text": "이건..책?",
+    "text": "이건 책, 아니 데이터입니까?",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
-    "id": "librarian_Q1_start_002",
+    "id": "libram_Q1_start_002",
     "text": "저장되지 못한 책들이네.\n분류된 데이터들은 자연스레 본인의 구역에 저장되지만, 종종 이렇게 도달하지 못하는 경우가 있다네.\n어디서나 길을 잃은 이들이 존재하는 법이지. 마치 자네처럼 말이야.\n",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
-    "id": "librarian_Q1_start_003",
+    "id": "libram_Q1_start_003",
     "text": "도서관을 둘러보면서 겸사겸사 이 책들을 제자리에 돌려놔 주게나.\n위치는 자연스레 알게 될걸세.",
     "choices": "",
     "condition": "",
@@ -42,14 +42,14 @@
     "isEndOfDialogue": false
   },
   {
-    "id": "librarian_Q1_start_004",
+    "id": "libram_Q1_start_004",
     "text": "말보단 겪어보는게 빠르지. 서두르게, 갈길이 멀지 않은가.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
-    "id": "librarian_Q1_during_001",
+    "id": "libram_Q1_during_001",
     "text": "아직 멀어 보이는구만. 더 둘러보게나.",
     "choices": "",
     "condition": "",

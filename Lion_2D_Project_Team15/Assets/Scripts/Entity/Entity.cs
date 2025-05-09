@@ -1,15 +1,22 @@
 using UnityEngine;
+using System;
 
-public class Entity : MonoBehaviour
+public class Entity : IdentifiableMonoBehavior
 {
     [Header("스탯")]
-    public float HP = 100f;           // 현재 체력
-    public float maxHP = 100f;      // 최대 체력 (필요 시 UI에 활용)
+    public float HP = 100f;
+    public float maxHP = 100f;
 
     [Header("컴포넌트")]
-    public Animator anim;             // 애니메이션 연결
+    public Animator anim;
 
-    // ▶ 데미지 받기
+    // 정적 참조 (MonsterKillManager)
+    public static MonsterKillManager killManager;
+
+    // 사망 이벤트
+    public event Action OnDeath;
+
+    // 데미지 받기
     public virtual void TakeDamage(float value)
     {
         HP -= value;
@@ -21,10 +28,10 @@ public class Entity : MonoBehaviour
         }
     }
 
-    // 이동 함수 (자식 클래스에서 override)
+    // 이동 (자식 클래스에서 필요 시 재정의)
     public virtual void Move()
     {
-        // 공통 이동이 필요 없다면 비워둠
+        // 기본 이동 없음
     }
 
     // 사망 처리
@@ -32,12 +39,19 @@ public class Entity : MonoBehaviour
     {
         Debug.Log($"{gameObject.name}이(가) 사망했습니다.");
 
+        // 외부 이벤트 알림
+        OnDeath?.Invoke();
+
+        // 애니메이션 재생
         if (anim != null)
         {
-            anim.SetTrigger("Death"); // 널 체크 나중에 에니메이션 추가되면 변경
+            anim.SetTrigger("Death");
         }
 
-        // 사망 후 제거
-        Destroy(gameObject, 1.5f); // 1.5초 후 삭제 (애니메이션 시간 고려)
+        // 킬 카운트 등록
+        killManager?.RegisterKill();
+
+        // 오브젝트 삭제 (0.5초 후)
+        Destroy(gameObject, 0.5f);
     }
 }
