@@ -19,6 +19,13 @@ public class Entity : IdentifiableMonoBehavior
     // 데미지 받기
     public virtual void TakeDamage(float value)
     {
+        // 무적 상태인 경우 데미지를 무시 (자식 클래스에서 정의됨)
+        if (this is Player player && player.IsInvincible)
+        {
+            Debug.Log($"{gameObject.name}은 무적 상태입니다. 데미지를 무시합니다.");
+            return;
+        }
+
         HP -= value;
         Debug.Log($"{gameObject.name}이(가) {value} 데미지를 입었습니다. (남은 체력: {HP})");
 
@@ -27,6 +34,7 @@ public class Entity : IdentifiableMonoBehavior
             Death();
         }
     }
+
 
     // 이동 (자식 클래스에서 필요 시 재정의)
     public virtual void Move()
