@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 743180249
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1667862952, guid: a00933afdf0abe6408d05963de04be71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8009965c8c58dc439cad15717a96e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleportEffect: {fileID: 761822917747052990, guid: 6d893a343bc07a84a8810965c0e35ca8, type: 3}
 --- !u!58 &305262404130100971
 CircleCollider2D:
   m_ObjectHideFlags: 0
