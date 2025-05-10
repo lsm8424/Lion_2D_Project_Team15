@@ -183,14 +183,21 @@
   },
   {
     "id": "player_Q1_start_018",
-    "text": "마침 저쪽 높은 턱 위에서도 기운이 느껴지니 시험해 보자.\n",
+    "text": "마침 오른쪽 높은 턱 너머에서도 기운이 느껴지니 시험해 보는게 좋겠어.\n",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "player_Q1_start_019",
-    "text": "(그리고 또 다른 곳에서 익숙한 기운이 느껴진다)\n나와 관련한 데이티들은 전부 이 주변에 있는걸까?",
+    "text": "이번에도 익숙한 기운.\n혹시 나와 관련된 데이티들은 전부 이 주변에 모여 있는걸까?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_Q1_start_020",
+    "text": "그런거라면 정말 좋을텐데.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
