@@ -404,5 +404,138 @@
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_032",
+    "text": "그래, 자네의 상태를 보니 무슨 일이 있었는지 궁금하군.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_004",
+    "text": "(리브람에게 그동안 있었던 일을 설명 했다)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_033",
+    "text": "놀랍구만, 데이터를 그렇게 많이 찾은것도 대단한데\n데이터가 없는데도 의지만으로 행동하다니.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_027",
+    "text": "제가 공격을 해낸것도, 자아때문인거겠죠?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_034",
+    "text": "끊임없는 욕망에 스스로 데이터를 만들어 낸걸지도 모르지.\n다만 정확한건 나도 모른다네.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_028",
+    "text": "제게 자아말고도 뭔가 더 있다는 말씀이신가요?.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_035",
+    "text": "글쎄. 나도 추측일 뿐일세\n 다만 자네에겐 무한한 가능성이 있다는것은 확실해",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_036",
+    "text": "그래 이제 뭘 하고 싶은가?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_029",
+    "text": "잃어버린 제 형체를 찾고 싶습니다.\n다만 더 이상 이곳에는 없는 것 같군요.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_037",
+    "text": "그렇다면 이곳에서 멀지 않은 곳에 특별한 호수가 있다네.\n그곳에서 소리를 찾아보는건 어떤가?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_030",
+    "text": "소리라뇨? 소리라면 멀쩡이 들립니다만.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_038",
+    "text": "이런. 그동안 자네가 아무런 소리를 내지 않는다것을 몰랐던겐가?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_031",
+    "text": "(이럴수가. 들리는 소리는 문제가 없어 그동안 소리에는 아무런 의문을 갖지 않았는데..)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_032",
+    "text": "그. 그렇다면 그 특별한 호수에 가면 소리 데이터를 찾을 수 있는겁니까?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_039",
+    "text": "아카이발투스에 오지 못하고 흩어지는 소리 데이터들이 그 방향으로 모여드는것을 보면 아마 그럴걸세",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_033",
+    "text": "그렇다면 그곳으로 가보겠습니다.\n가만히 있기만 해선 아무것도 할 수 없으니까요.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_040",
+    "text": "건투를 빌지. 오른쪽으로 가면 도서관 출구가 나올걸세.\n묻고 싶은 것이 있다면 언제든 다시 찾아오게나.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_034",
+    "text": "감사합니다.\n그럼 이만.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_041",
+    "text": "(후후, 자네가 보여줄 기적. 기대하겠네)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
   }
 ]
