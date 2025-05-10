@@ -16820,7 +16820,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.8967, y: -1.7377, z: -10}
+  m_LocalPosition: {x: -8.87, y: -1.638, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29402,7 +29402,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 45923683}
+    TrackingTarget: {fileID: 1140504452}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -29434,7 +29434,7 @@ Transform:
   m_GameObject: {fileID: 1008600793}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3788621, y: -2.0116248, z: -5}
+  m_LocalPosition: {x: -2.3696551, y: -1.9700832, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30840,7 +30840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetSceneName
-      value: JYH_1
+      value: Ep_2
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetPortalIndex

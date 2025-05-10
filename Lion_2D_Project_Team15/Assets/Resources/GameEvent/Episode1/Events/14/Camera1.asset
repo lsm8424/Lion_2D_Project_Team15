@@ -19,7 +19,7 @@ MonoBehaviour:
   Duration: 2
   InterpolationType: 6
   newTargetObjectID: 
-  StartScreenPosition: {x: 0, y: 0}
+  StartScreenPosition: {x: 0, y: 0.2}
   StartOffset: {x: 0, y: 0, z: 0}
   StartZoom: 6
   EndScreenPosition: {x: 0, y: 0.2}
@@ -27,7 +27,7 @@ MonoBehaviour:
   EndZoom: 6
   WaitBefore: 0
   WaitAfter: 0
-  useCurrentAsStart: 1
+  useCurrentAsStart: 0
   useShake: 0
   shakeIntensity: 0.2
   shakeFrequency: 20
