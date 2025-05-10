@@ -73,8 +73,6 @@ public class QuestManager : Singleton<QuestManager>
 
         yield return currentEvent.Execute();
 
-        if (questProgress[currentProgress].ShouldSave)
-            SaveManager.Instance.Save();
         
         int nextProgress = currentProgress + 1;
         Progresses[questID] = nextProgress;
@@ -88,6 +86,8 @@ public class QuestManager : Singleton<QuestManager>
         }
 
         quest.SetTrigger(nextProgress);
+        if (questProgress[currentProgress].ShouldSave)
+            SaveManager.Instance.Save();
         _activeQuests.Remove(questID);
     }
 

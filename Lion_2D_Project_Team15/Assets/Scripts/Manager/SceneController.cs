@@ -51,6 +51,7 @@ public class SceneController : Singleton<SceneController>
             yield break;
         }
 
+        // Scene 이름은 "Ep_숫자" 로 가정
         string[] split = scene.name.Split('_');
         string episode = split[1];
 
@@ -61,14 +62,16 @@ public class SceneController : Singleton<SceneController>
 
         // ID, Event, Quest 순으로 초기화
         IDManager.Instance.SetUpIdentifiers();
-        EventManager.Instance.SetupEvents("Ep" + episode);
+        EventManager.Instance.SetupEvents("Episode" + episode);
         QuestManager.Instance.SetUp("Episode"+ episode);
 
 #if UNITY_EDITOR
         if (!DebugMode || (DebugMode && StartQuest))
-            QuestManager.Instance.StartQuest("Ep" + episode);
+            if (!ShouldLoadData)
+                QuestManager.Instance.StartQuest("Ep" + episode);
 #else
-        QuestManager.Instance.StartQuest("Ep" + episode);
+        if (!ShouldLoadData)
+            QuestManager.Instance.StartQuest("Ep" + episode);
 #endif
 
         if (ShouldLoadData)

@@ -79,7 +79,7 @@ public class SaveManager : Singleton<SaveManager>
 
     public void Load()
     {
-        string path = Path.Combine(Application.persistentDataPath, _savePath, "TestSave.json");
+        string path = GetPath();
 
         if (!File.Exists(path))
         {

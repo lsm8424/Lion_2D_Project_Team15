@@ -67,8 +67,8 @@ public class IDManager : Singleton<IDManager>
     {
         Identifiers.Clear();
 
-        IdentifiableMonoBehavior[] foundObjects = FindObjectsByType<IdentifiableMonoBehavior>(FindObjectsSortMode.None);
-
+        IdentifiableMonoBehavior[] foundObjects = FindObjectsByType<IdentifiableMonoBehavior>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        
         foreach (var obj in foundObjects)
             Set(obj.ObjectID, obj);
     }

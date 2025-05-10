@@ -27,7 +27,7 @@ public class GameObjectActiveEventFunction_SO : EventFunction_SO
     {
         if (target == null)
         {
-            Debug.LogError("[GameObjectActiveEvent] 타겟 오브젝트가 설정되지 않았습니다.");
+            Debug.LogError("[GameObjectActiveEvent] 타겟 오브젝트가 설정되지 않았습니다. Name: " + name);
             yield break;
         }
 

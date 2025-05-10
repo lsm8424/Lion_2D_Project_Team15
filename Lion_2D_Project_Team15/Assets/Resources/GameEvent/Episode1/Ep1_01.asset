@@ -14,10 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestID: Ep1
   Progress:
-  - Trigger: {fileID: 11400000, guid: 4c3f633f3cc90f748adae9709938c93f, type: 2}
-    GameEvent: {fileID: 11400000, guid: 54e66d35baf63a74a9bc2dba293f68bb, type: 2}
-  - Trigger: {fileID: 11400000, guid: 9e27c0ddb8d38b144864d9b111a9956d, type: 2}
-    GameEvent: {fileID: 11400000, guid: fbe032d492fc5e0488c153d0a1e8e306, type: 2}
   - Trigger: {fileID: 0}
     GameEvent: {fileID: 11400000, guid: d0d36651d26b12441bd12925bb7cfbaa, type: 2}
     ShouldSave: 1
@@ -41,4 +37,22 @@ MonoBehaviour:
     ShouldSave: 0
   - Trigger: {fileID: 11400000, guid: 21c098c333e3e9648b651db4ccbed47c, type: 2}
     GameEvent: {fileID: 11400000, guid: 668255c87622e024082719fd6bb719a8, type: 2}
+    ShouldSave: 0
+  - Trigger: {fileID: 11400000, guid: 4c3f633f3cc90f748adae9709938c93f, type: 2}
+    GameEvent: {fileID: 11400000, guid: 54e66d35baf63a74a9bc2dba293f68bb, type: 2}
+    ShouldSave: 0
+  - Trigger: {fileID: 11400000, guid: 9e27c0ddb8d38b144864d9b111a9956d, type: 2}
+    GameEvent: {fileID: 11400000, guid: fbe032d492fc5e0488c153d0a1e8e306, type: 2}
+    ShouldSave: 0
+  - Trigger: {fileID: 11400000, guid: 4b95f4ca504e1e74ca7d30dbe4bda95e, type: 2}
+    GameEvent: {fileID: 11400000, guid: 389e056f98ea6234aa473621e1bb24d4, type: 2}
+    ShouldSave: 0
+  - Trigger: {fileID: 11400000, guid: a5a247f6311ec3f4a95bc907baa033dd, type: 2}
+    GameEvent: {fileID: 11400000, guid: b1c36a4c4dbd1444e85d9adb3b8d4433, type: 2}
+    ShouldSave: 0
+  - Trigger: {fileID: 11400000, guid: f9bbfa78bec0d714ca705074cebda621, type: 2}
+    GameEvent: {fileID: 11400000, guid: 26525d39065d72d4b9e64994448fdf66, type: 2}
+    ShouldSave: 0
+  - Trigger: {fileID: 11400000, guid: dab74882a80c79b4a8e0849c08b66002, type: 2}
+    GameEvent: {fileID: 11400000, guid: 2537d7e3456469c4988a9ed1189862de, type: 2}
     ShouldSave: 0

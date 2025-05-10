@@ -53,7 +53,11 @@ public class Quest_SO : ScriptableObject
         yield return gameEvent.Execute();
 
         if (Progress[i].ShouldSave)
+        {
+            Debug.Log("Save in AutoAdvance. Progress Level이 제대로 저장안될 가능성이 있음.");
+            QuestManager.Instance.Progresses[QuestID] = i + 1;
             SaveManager.Instance.Save();
+        }
 
         // 직접 다음 진행도로 넘어가도록 수정
         int nextProgress = i + 1;
