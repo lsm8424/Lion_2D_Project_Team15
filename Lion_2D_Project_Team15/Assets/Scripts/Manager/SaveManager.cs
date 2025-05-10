@@ -12,6 +12,29 @@ public class SaveManager : Singleton<SaveManager>
     string _savePath = "Save";
     public string GetPath() => Path.Combine(Application.persistentDataPath, _savePath, "Save.json");
     public bool HasSave => new FileInfo(GetPath()).Exists;
+
+    public string GetSceneName()
+    {
+        string path = GetPath();
+
+        if (!File.Exists(path))
+        {
+            Debug.LogWarning("세이브 파일이 존재하지 않습니다: " + path);
+            return null;
+        }
+
+        string json = File.ReadAllText(path);
+
+        SaveData save = JsonConvert.DeserializeObject<SaveData>(
+            json,
+            new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            }
+        );
+
+        return save.SceneName;
+    }
     void Start()
     {
     }

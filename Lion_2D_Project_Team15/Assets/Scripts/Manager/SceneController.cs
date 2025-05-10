@@ -15,13 +15,13 @@ public class SceneController : Singleton<SceneController>
     AsyncOperation _currentOperation;
     string _sceneName;
     bool _hasStarted;
-    public bool ShouldLoadData = false;
+    public bool ShouldLoadData { get; private set; } = false;
 
     [Space]
     [Header("Debug")]
     [SerializeField] bool DebugMode = false;
-    [SerializeField] string DebugLoadSceneName = "Episode_1";
-    [SerializeField] bool StartQuest = true;
+    [SerializeField] string DebugSceneName = "Episode_1";
+    [SerializeField] bool DebugStartQuest = true;
 
     protected override void Awake()
     {
@@ -35,8 +35,10 @@ public class SceneController : Singleton<SceneController>
             _sceneCanvas = Instantiate(_sceneCanvasPrefab, transform);
 
         FadePanel = _sceneCanvas.GetComponentInChildren<Image>();
+    }
 
-
+    void Start()
+    {
         SceneManager.sceneLoaded += (scene, loadSceneMode) => StartCoroutine(AfterAwake(scene, loadSceneMode));
     }
 
@@ -56,7 +58,7 @@ public class SceneController : Singleton<SceneController>
         string episode = split[1];
 
         if (DebugMode)
-            episode = DebugLoadSceneName.Split('_')[1];
+            episode = DebugSceneName.Split('_')[1];
 
         Debug.Log($"Episode{episode} is Setting...");
 
@@ -66,7 +68,7 @@ public class SceneController : Singleton<SceneController>
         QuestManager.Instance.SetUp("Episode"+ episode);
 
 #if UNITY_EDITOR
-        if (!DebugMode || (DebugMode && StartQuest))
+        if (!DebugMode || (DebugMode && DebugStartQuest))
             if (!ShouldLoadData)
                 QuestManager.Instance.StartQuest("Ep" + episode);
 #else
@@ -82,6 +84,14 @@ public class SceneController : Singleton<SceneController>
         Debug.Log($"Scene {scene.name} is Loaded.");
         GameManager.Instance.SetTimeCase(GameManager.ETimeCase.EntityMovement);
     }
+    
+    public void LoadSaveScene(IScreenEffect startEffect, IScreenEffect endEffect)
+    {
+        ShouldLoadData = true;
+        
+        LoadSceneWithEffect(SaveManager.Instance.GetSceneName(), startEffect, endEffect);
+    }
+
 
     /// <summary>
     /// Fade In/Out 효과를 적용하며 Scene로드
