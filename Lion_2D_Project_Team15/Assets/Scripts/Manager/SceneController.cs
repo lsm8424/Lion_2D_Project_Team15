@@ -36,11 +36,7 @@ public class SceneController : Singleton<SceneController>
 
         FadePanel = _sceneCanvas.GetComponentInChildren<Image>();
 
-        // 추후작성 필요
-        //SceneManager.sceneLoaded += OnSceneLoaded;
-        //Scene tempScene = new Scene();
-        //tempScene.name = "Episode1";
-        //StartCoroutine(AfterAwake(tempScene, LoadSceneMode.Single));
+
         SceneManager.sceneLoaded += (scene, loadSceneMode) => StartCoroutine(AfterAwake(scene, loadSceneMode));
     }
 

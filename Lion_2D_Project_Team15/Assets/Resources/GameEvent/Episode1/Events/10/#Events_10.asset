@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4bb44513028c494182856922e3dbf7e, type: 3}
+  m_Name: '#Events_10'
+  m_EditorClassIdentifier: 
+  EventType: 0
+  EventID: Ep1_03_07
+  EventName: "\uCC45 \uB099\uD558 \uC774\uBCA4\uD2B8"
+  RequireSave: 0
+  EventFunctions:
+  - {fileID: 11400000, guid: 8b7766f5329c8b1489b4ff670128664f, type: 2}
+  - {fileID: 11400000, guid: 5276e0be32286a94e911b9403cdc49c4, type: 2}
+  - {fileID: 11400000, guid: a742d294193fdbe4a95c1bd20f11ea27, type: 2}
+  - {fileID: 11400000, guid: 4e8cec99c671b474bb364201866897c3, type: 2}
+  - {fileID: 11400000, guid: 002043007b6044b41b81ef7d18872d1e, type: 2}
+  - {fileID: 11400000, guid: 4a7cf9ed58531284b9ab80f2a9d65942, type: 2}
+  - {fileID: 11400000, guid: ce70509bcbc6b8b4da759c9aa55d7670, type: 2}
+  - {fileID: 11400000, guid: 9bb0ddddc4be5044587a1347328d273b, type: 2}
+  - {fileID: 11400000, guid: 046cabd567cda5642a0917bef32d64b1, type: 2}
+  - {fileID: 11400000, guid: 4d715b13ba01599449dd67a6b9a80002, type: 2}
+  - {fileID: 11400000, guid: 0159116ad87a71c479a0d0992cb7ae00, type: 2}
+  - {fileID: 11400000, guid: 4c2066a18b30996438e162c5ee425f40, type: 2}

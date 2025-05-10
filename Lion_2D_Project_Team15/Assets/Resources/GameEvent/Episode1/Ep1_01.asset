@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestID: Ep1
   Progress:
+  - Trigger: {fileID: 11400000, guid: 4c3f633f3cc90f748adae9709938c93f, type: 2}
+    GameEvent: {fileID: 11400000, guid: 54e66d35baf63a74a9bc2dba293f68bb, type: 2}
+  - Trigger: {fileID: 11400000, guid: 9e27c0ddb8d38b144864d9b111a9956d, type: 2}
+    GameEvent: {fileID: 11400000, guid: fbe032d492fc5e0488c153d0a1e8e306, type: 2}
   - Trigger: {fileID: 0}
     GameEvent: {fileID: 11400000, guid: d0d36651d26b12441bd12925bb7cfbaa, type: 2}
     ShouldSave: 1
