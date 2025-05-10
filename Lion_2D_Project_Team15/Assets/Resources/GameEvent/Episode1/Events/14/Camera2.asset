@@ -19,11 +19,11 @@ MonoBehaviour:
   Duration: 2
   InterpolationType: 7
   newTargetObjectID: 
-  StartScreenPosition: {x: 0, y: 0}
+  StartScreenPosition: {x: 0, y: 0.2}
   StartOffset: {x: 0, y: 0, z: 0}
   StartZoom: 6
   EndScreenPosition: {x: 0, y: 0.2}
-  EndOffset: {x: -7, y: 0, z: 0}
+  EndOffset: {x: 0, y: 0, z: 0}
   EndZoom: 6
   WaitBefore: 0
   WaitAfter: 0
