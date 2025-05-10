@@ -23,7 +23,7 @@ MonoBehaviour:
   StartOffset: {x: 2, y: 0, z: 0}
   StartZoom: 6
   EndScreenPosition: {x: 0, y: 0.2}
-  EndOffset: {x: -10, y: 15, z: 0}
+  EndOffset: {x: -25, y: 13, z: 0}
   EndZoom: 6
   WaitBefore: 0
   WaitAfter: 1

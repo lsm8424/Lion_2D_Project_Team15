@@ -39,19 +39,11 @@ public class Fade : IScreenEffect
         if (_image == null)
             _image = SceneController.Instance.FadePanel;
 
-        // === 여기서 null 체크 추가 ===
-        if (_image == null)
-        {
-            Debug.LogWarning("FadePanel이 null입니다. 페이드 효과를 건너뜁니다.");
-            onComplete?.Invoke();
-            IsCompleted = true;
-            yield break;
-        }
-        // ===========================
 
         Color currentColor = _image.color;
         currentColor = _startColor;
         _image.color = currentColor;
+
 
         while (percent < 1)
         {

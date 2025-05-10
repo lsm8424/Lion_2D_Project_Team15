@@ -73,6 +73,9 @@ public class QuestManager : Singleton<QuestManager>
 
         yield return currentEvent.Execute();
 
+        if (questProgress[currentProgress].ShouldSave)
+            SaveManager.Instance.Save();
+        
         int nextProgress = currentProgress + 1;
         Progresses[questID] = nextProgress;
         Debug.Log($"[QuestManager] 다음 단계로: Progress[{nextProgress}]");

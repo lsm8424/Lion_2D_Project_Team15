@@ -16,16 +16,15 @@ public class GameManager : Singleton<GameManager>
         EntityMovement = 0,
         PlayingDialogue = 1,
         Setting = 2,
-        Loading = 3,
+        Title = 3,
+        Loading = 4,
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            // 테스트용
-            UIManager.Instance.ToggleSettings();
-        }
+        if (CurrentTime <= ETimeCase.Title)
+            if (Input.GetKeyDown(KeyCode.Escape))
+                UIManager.Instance.ToggleSettings();
     }
 
     public bool ShouldWaitForDialogue() => CurrentTime > ETimeCase.PlayingDialogue;
@@ -76,6 +75,35 @@ public class GameManager : Singleton<GameManager>
                 EntityTimeScale = 0f;
                 DialogueTimeScale = 0f;
                 break;
+            case ETimeCase.Title:
+                EntityTimeScale = 1f;
+                DialogueTimeScale = 1f;
+                break;
+            default:
+                Debug.LogError("유효하지 않은 TimeCase " + timeCase);
+                break;
         }
+    }
+
+    public void OnTitle()
+    {
+        SetTimeCase(ETimeCase.Title);
+        if (SaveManager.Instance.HasSave)
+        {
+            // Load 버튼 활성화
+        }
+    }
+
+    public void GameStart()
+    {
+        SceneController.Instance.LoadSceneWithFadeInOut("EP_1", 2f);
+    }
+
+    public void GameLoad()
+    {
+        // Scene Load 후
+        // EventManager, QuestManager, IdManager SetUp.
+        // SaveManager.Load()
+        // 이후 fadeout 되면서 시작
     }
 }

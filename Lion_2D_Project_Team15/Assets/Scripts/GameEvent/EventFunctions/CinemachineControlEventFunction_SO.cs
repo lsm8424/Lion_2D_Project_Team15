@@ -21,7 +21,7 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
     public EInterpolationType InterpolationType;
 
     [Header("Target Settings")]
-    public string newTargetObjectID; // 새로운 타겟의 ID
+    public string newTargetObjectID;
 
     [Header("Start Values")]
     public Vector2 StartScreenPosition;
@@ -39,6 +39,11 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
 
     [Header("Auto Start")]
     public bool useCurrentAsStart = false;
+
+    [Header("Shake Settings")]
+    public bool useShake = false;
+    public float shakeIntensity = 0.2f;
+    public float shakeFrequency = 20f;
 
     private CinemachineCamera targetCamera;
     private CinemachinePositionComposer positionComposer;
@@ -60,8 +65,8 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
 
     public enum ECameraControlType
     {
-        Movement, // 카메라 움직임 제어
-        Target // 카메라 타겟 변경
+        Movement,
+        Target
     }
 
     public override void Setup()
@@ -72,14 +77,13 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
             return;
         }
 
-        // 비활성화된 오브젝트까지 포함해서 찾는다
         var found = Resources
             .FindObjectsOfTypeAll<GameObject>()
             .FirstOrDefault(go => go.name == targetCameraName);
 
         if (found == null)
         {
-            Debug.LogError($"Cannot find camera with name: {targetCameraName} (비활성 포함)");
+            Debug.LogError($"Cannot find camera with name: {targetCameraName}");
             return;
         }
 
@@ -88,7 +92,7 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
 
         if (targetCamera == null || positionComposer == null)
         {
-            Debug.LogError($"Missing required components on {targetCameraName}");
+            Debug.LogError($"Missing components on {targetCameraName}");
             return;
         }
 
@@ -99,7 +103,6 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
             StartZoom = targetCamera.Lens.OrthographicSize;
         }
 
-        // 씬 시작 시 Start 위치로 세팅
         positionComposer.Composition.ScreenPosition = StartScreenPosition;
         positionComposer.TargetOffset = StartOffset;
         targetCamera.Lens.OrthographicSize = StartZoom;
@@ -107,6 +110,7 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
 
     public override IEnumerator Execute()
     {
+        EventFunctionTracker.BeginEvent();
         if (targetCamera == null || positionComposer == null)
         {
             Debug.LogError("Camera or PositionComposer is not set!");
@@ -128,6 +132,7 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
 
         if (deactivateWhenDone)
             targetCamera.gameObject.SetActive(false);
+        EventFunctionTracker.EndEvent();
     }
 
     private IEnumerator ExecuteMovement()
@@ -142,12 +147,25 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
             float t = Mathf.Clamp01(elapsed / Duration);
             float easedT = ApplyEasing(t, InterpolationType);
 
+            Vector3 shakeOffset = Vector3.zero;
+
+            if (useShake)
+            {
+                float shakeAmount =
+                    shakeIntensity * Mathf.PerlinNoise(Time.time * shakeFrequency, 0f);
+                shakeOffset =
+                    new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f).normalized
+                    * shakeAmount;
+            }
+
             positionComposer.Composition.ScreenPosition = Vector2.Lerp(
                 StartScreenPosition,
                 EndScreenPosition,
                 easedT
             );
-            positionComposer.TargetOffset = Vector3.Lerp(StartOffset, EndOffset, easedT);
+
+            positionComposer.TargetOffset =
+                Vector3.Lerp(StartOffset, EndOffset, easedT) + shakeOffset;
             targetCamera.Lens.OrthographicSize = Mathf.Lerp(StartZoom, EndZoom, easedT);
 
             if (GameManager.Instance.ShouldWaitForDialogue())
@@ -156,7 +174,6 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
             yield return null;
         }
 
-        // 이동 완료 후 정확한 위치 보정
         positionComposer.Composition.ScreenPosition = EndScreenPosition;
         positionComposer.TargetOffset = EndOffset;
         targetCamera.Lens.OrthographicSize = EndZoom;
@@ -173,7 +190,6 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
             yield break;
         }
 
-        // IDManager를 통해 새로운 타겟 오브젝트 찾기
         if (
             !IDManager.Instance.TryGet(newTargetObjectID, out IdentifiableMonoBehavior identifiable)
         )
@@ -182,8 +198,6 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
             yield break;
         }
 
-        // 불필요한 중복 블록 제거
-        // 타겟 변경만 수행
         targetCamera.Follow = identifiable.transform;
         Debug.Log($"Camera target changed to: {newTargetObjectID}");
         yield return null;
