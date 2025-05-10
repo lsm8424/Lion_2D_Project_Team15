@@ -17,13 +17,13 @@ MonoBehaviour:
   targetCameraName: CinemachineCamera_2
   deactivateWhenDone: 0
   Duration: 2
-  InterpolationType: 0
+  InterpolationType: 2
   newTargetObjectID: 
   StartScreenPosition: {x: 0, y: 0.2}
   StartOffset: {x: 2, y: 0, z: 0}
   StartZoom: 6
-  EndScreenPosition: {x: 0, y: 0.3}
-  EndOffset: {x: 7, y: 2, z: 0}
+  EndScreenPosition: {x: 0, y: 0.2}
+  EndOffset: {x: -10, y: 15, z: 0}
   EndZoom: 6
   WaitBefore: 0
   WaitAfter: 1

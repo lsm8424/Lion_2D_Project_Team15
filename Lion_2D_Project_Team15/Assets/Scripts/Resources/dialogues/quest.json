@@ -203,15 +203,29 @@
     "isEndOfDialogue": false
   },
   {
-    "id": "player_Q1_start_015",
-    "text": "이번에는 어딘가 오르고 싶은 기분이 드는걸 보니 오를 수 있게 된걸까나.\n",
+    "id": "player_Q1_start_021",
+    "text": "이번에는 어릴적 아버지께 매달려 올라가던 기억이군...\n즐거웠던 순간이 이렇게 이렇게 많았는데, 다 잊고 살았었네.. ",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
-    "id": "player_Q1_start_016",
-    "text": "다음은 이질감이 드는걸 보니 길 잃은 친구를 도와줄 시간이군.\n다만 이번에는 위층에서 느껴지는 걸.",
+    "id": "player_Q1_start_022",
+    "text": "후. 정신차리자.\n지금은 지나간 순간보다 앞으로의 순간에 더 집중해야 할 때야.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_Q1_start_023",
+    "text": "이번 기억을 토대로라면, 어딘가 오를 수 있게 된거겠지\n이젠 사다리 위쪽의 기운도 확인할 수 있겠어.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_Q1_start_024",
+    "text": "위쪽의 기운은 익숙함보다는 이질감에 가까워.\n 그렇다면 길 잃은 친구를 도와줄 시간이군.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
