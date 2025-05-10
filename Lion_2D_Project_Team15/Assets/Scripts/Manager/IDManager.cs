@@ -51,10 +51,16 @@ public class IDManager : Singleton<IDManager>
 
     public void Set(string key, IdentifiableMonoBehavior obj)
     {
+        if (string.IsNullOrWhiteSpace(key))
+        {
+            Debug.LogError($"비정상적인 ObjectID: {key}, Name: {obj.name}");
+            return;
+        }
+
         if (Identifiers.ContainsKey(obj.ObjectID))
             Debug.LogError($"[IDManager] ObjectId가 동일합니다. {obj.ObjectID}");
 
-        Identifiers.Add(obj.ObjectID, obj);
+        Identifiers[obj.ObjectID] = obj;
     }
 
     public void SetUpIdentifiers()

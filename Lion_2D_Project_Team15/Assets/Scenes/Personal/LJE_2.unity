@@ -29598,6 +29598,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 636
   canLadder: 1
+  interactIndicatorPrefab: {fileID: 0}
 --- !u!114 &1140504447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29637,6 +29638,7 @@ MonoBehaviour:
   maxHP: 100
   anim: {fileID: 0}
   stunDuration: 1
+  invincibleDuration: 1.5
   isKeyInput: 0
   isStuck: 0
   movement: {fileID: 0}
@@ -56526,6 +56528,18 @@ PrefabInstance:
     - target: {fileID: 2167039124210861247, guid: db01d3e646bd7f449bfef70907a32439, type: 3}
       propertyPath: m_Name
       value: SceneController
+      objectReference: {fileID: 0}
+    - target: {fileID: 8154732863235170163, guid: db01d3e646bd7f449bfef70907a32439, type: 3}
+      propertyPath: DebugMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8154732863235170163, guid: db01d3e646bd7f449bfef70907a32439, type: 3}
+      propertyPath: StartQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8154732863235170163, guid: db01d3e646bd7f449bfef70907a32439, type: 3}
+      propertyPath: DebugLoadSceneName
+      value: Episode_1
       objectReference: {fileID: 0}
     - target: {fileID: 8587887105815185897, guid: db01d3e646bd7f449bfef70907a32439, type: 3}
       propertyPath: m_LocalPosition.x

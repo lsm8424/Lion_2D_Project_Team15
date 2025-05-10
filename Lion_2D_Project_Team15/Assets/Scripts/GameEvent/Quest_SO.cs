@@ -52,6 +52,9 @@ public class Quest_SO : ScriptableObject
 
         yield return gameEvent.Execute();
 
+        if (Progress[i].ShouldSave)
+            SaveManager.Instance.Save();
+
         // 직접 다음 진행도로 넘어가도록 수정
         int nextProgress = i + 1;
         if (nextProgress < Progress.Length)

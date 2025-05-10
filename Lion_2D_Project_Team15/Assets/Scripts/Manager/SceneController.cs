@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,6 +15,13 @@ public class SceneController : Singleton<SceneController>
     AsyncOperation _currentOperation;
     string _sceneName;
     bool _hasStarted;
+    public bool ShouldLoadData = false;
+
+    [Space]
+    [Header("Debug")]
+    [SerializeField] bool DebugMode = false;
+    [SerializeField] string DebugLoadSceneName = "Episode_1";
+    [SerializeField] bool StartQuest = true;
 
     protected override void Awake()
     {
@@ -32,29 +38,50 @@ public class SceneController : Singleton<SceneController>
 
         // 추후작성 필요
         //SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneLoaded += (scene, loadSceneMode) => StartCoroutine(AfterAwake(scene, loadSceneMode)); // 임시용 코드 이후에 위 코드와 교체
+        //Scene tempScene = new Scene();
+        //tempScene.name = "Episode1";
+        //StartCoroutine(AfterAwake(tempScene, LoadSceneMode.Single));
+        SceneManager.sceneLoaded += (scene, loadSceneMode) => StartCoroutine(AfterAwake(scene, loadSceneMode));
     }
 
     IEnumerator AfterAwake(Scene scene, LoadSceneMode loadSceneMode)
     {
+        Debug.Log($"Scene {scene.name} is Loading...");
+        GameManager.Instance.SetTimeCase(GameManager.ETimeCase.Loading);
         yield return null;
+
         if (scene.name == "Title")
         {
             yield break;
         }
 
-        // 순서는 ID
+        string[] split = scene.name.Split('_');
+        string episode = split[1];
+
+        if (DebugMode)
+            episode = DebugLoadSceneName.Split('_')[1];
+
+        Debug.Log($"Episode{episode} is Setting...");
+
+        // ID, Event, Quest 순으로 초기화
         IDManager.Instance.SetUpIdentifiers();
-        QuestManager.Instance.SetUp("Episode1");
-        //QuestManager.Instance.StartQuest("Ep1");
+        EventManager.Instance.SetupEvents("Ep" + episode);
+        QuestManager.Instance.SetUp("Episode"+ episode);
 
-        // if Load
-        // SaveManger.Instance.Load();
-    }
+#if UNITY_EDITOR
+        if (!DebugMode || (DebugMode && StartQuest))
+            QuestManager.Instance.StartQuest("Ep" + episode);
+#else
+        QuestManager.Instance.StartQuest("Ep" + episode);
+#endif
 
-    void LoadSaveData()
-    {
-
+        if (ShouldLoadData)
+        {
+            SaveManager.Instance.Load();
+            ShouldLoadData = false;
+        }
+        Debug.Log($"Scene {scene.name} is Loaded.");
+        GameManager.Instance.SetTimeCase(GameManager.ETimeCase.EntityMovement);
     }
 
     /// <summary>
