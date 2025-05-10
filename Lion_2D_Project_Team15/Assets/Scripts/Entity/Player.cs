@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Entity
@@ -55,6 +56,7 @@ public class Player : Entity
         movement = GetComponent<PlayerMovement>();
         combat = GetComponent<PlayerCombat>();
         interaction = GetComponent<PlayerInteraction>();
+        Bind();
     }
 
     private void Update()
@@ -117,4 +119,10 @@ public class Player : Entity
         knockbackTimer = duration;
     }
 
+    public override void Bind()
+    {
+        _binding.Assign<bool>("canJump", () => movement.canJump, v => movement.canJump = (bool)v);
+        _binding.Assign<bool>("canLadder", () => interaction.canLadder, v => interaction.canLadder = (bool)v);
+        _binding.Assign<bool>("hasCoralStaff", () => combat.hasCoralStaff, v => combat.hasCoralStaff = (bool)v);
+    }
 }

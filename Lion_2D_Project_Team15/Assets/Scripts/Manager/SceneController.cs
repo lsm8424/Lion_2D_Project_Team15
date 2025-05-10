@@ -32,21 +32,21 @@ public class SceneController : Singleton<SceneController>
 
         // 추후작성 필요
         //SceneManager.sceneLoaded += OnSceneLoaded;
-        StartCoroutine(AfterAwake()); // 임시용 코드 이후에 위 코드와 교체
+        SceneManager.sceneLoaded += (scene, loadSceneMode) => StartCoroutine(AfterAwake(scene, loadSceneMode)); // 임시용 코드 이후에 위 코드와 교체
     }
 
-    IEnumerator AfterAwake()
+    IEnumerator AfterAwake(Scene scene, LoadSceneMode loadSceneMode)
     {
         yield return null;
-        OnSceneLoaded(new Scene(), LoadSceneMode.Single);
-    }
+        if (scene.name == "Title")
+        {
+            yield break;
+        }
 
-    public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
-    {
         IDManager.Instance.SetUpIdentifiers();
         EventManager.Instance.SetupEvents("Episode1");
         QuestManager.Instance.SetUp("Episode1");
-        QuestManager.Instance.StartQuest("Ep1");
+        //QuestManager.Instance.StartQuest("Ep1");
     }
 
     /// <summary>
