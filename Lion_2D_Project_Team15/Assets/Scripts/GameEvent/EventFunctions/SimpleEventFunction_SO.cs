@@ -4,7 +4,10 @@ using System.Reflection;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
-[CreateAssetMenu(fileName = "SimpleEventFunction_SO", menuName = "Scriptable Objects/EventFunction/SimpleEventFunction_SO")]
+[CreateAssetMenu(
+    fileName = "SimpleEventFunction_SO",
+    menuName = "Scriptable Objects/EventFunction/SimpleEventFunction_SO"
+)]
 public class SimpleEventFunction_SO : EventFunction_SO
 {
     public SimpleEventStruct[] SimpleEvents;
@@ -37,6 +40,7 @@ public class SimpleEventFunction_SO : EventFunction_SO
         Property,
         Method,
     }
+
     public enum EValueType
     {
         Bool,
@@ -71,6 +75,7 @@ public class SimpleEventFunction_SO : EventFunction_SO
     {
         FunctionType = EGameEventFunctionType.Normal;
     }
+
     public override IEnumerator Execute()
     {
         SimpleEventStruct[] events = SimpleEvents;
@@ -106,14 +111,18 @@ public class SimpleEventFunction_SO : EventFunction_SO
             var componentType = Type.GetType(simpleEvent.ComponentName);
             if (componentType == null)
             {
-                Debug.LogError($"[SimpleEventFunction] 잘못된 ComponentType입니다: {simpleEvent.ComponentName}");
+                Debug.LogError(
+                    $"[SimpleEventFunction] 잘못된 ComponentType입니다: {simpleEvent.ComponentName}"
+                );
                 continue;
             }
 
             var component = go.GetComponent(componentType);
             if (component == null)
             {
-                Debug.LogError($"[SimpleEventFunction] Component를 찾을 수 없습니다. Type: {simpleEvent.ComponentName} in {go.name}");
+                Debug.LogError(
+                    $"[SimpleEventFunction] Component를 찾을 수 없습니다. Type: {simpleEvent.ComponentName} in {go.name}"
+                );
                 continue;
             }
 
@@ -121,14 +130,22 @@ public class SimpleEventFunction_SO : EventFunction_SO
         }
     }
 
-    void GenerateCoroutine(SimpleEventStruct evt, object component, Type componentType, out IEnumerator coroutine)
+    void GenerateCoroutine(
+        SimpleEventStruct evt,
+        object component,
+        Type componentType,
+        out IEnumerator coroutine
+    )
     {
         coroutine = null;
 
         switch (evt.ProcessType)
         {
             case EProcessType.Field:
-                var fieldInfo = componentType.GetField(evt.ProcessName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                var fieldInfo = componentType.GetField(
+                    evt.ProcessName,
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+                );
                 if (fieldInfo == null)
                 {
                     Debug.LogError($"[SimpleEventFunction] Field 미발견: {evt.ProcessName}");
@@ -138,18 +155,24 @@ public class SimpleEventFunction_SO : EventFunction_SO
                 coroutine = FieldSetterCoroutine(fieldInfo, component, value);
                 break;
             case EProcessType.Property:
-                var propInfo = componentType.GetProperty(evt.ProcessName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                var propInfo = componentType.GetProperty(
+                    evt.ProcessName,
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+                );
                 if (propInfo == null)
                 {
                     Debug.LogError($"[SimpleEventFunction] Property 미발견: {evt.ProcessName}");
-                    return ;
+                    return;
                 }
 
                 value = GetValueByFieldType(evt);
                 coroutine = PropertySetterCoroutine(propInfo, component, value);
                 break;
             case EProcessType.Method:
-                var methodInfo = componentType.GetMethod(evt.ProcessName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                var methodInfo = componentType.GetMethod(
+                    evt.ProcessName,
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+                );
                 if (methodInfo == null)
                 {
                     Debug.LogError($"[SimpleEventFunction] Method 미발견: {evt.ProcessName}");
@@ -167,13 +190,14 @@ public class SimpleEventFunction_SO : EventFunction_SO
         if (coroutine == null)
             Debug.LogError("Coroutine이 실행되지 않았습니다.");
     }
+
     IEnumerator FieldSetterCoroutine(FieldInfo fieldInfo, object component, object value)
     {
         if (component == null || fieldInfo == null || value == null)
         {
             Debug.LogError("FieldSetter 오류");
             yield break;
-        }    
+        }
         fieldInfo.SetValue(component, value);
     }
 
@@ -195,12 +219,11 @@ public class SimpleEventFunction_SO : EventFunction_SO
             yield break;
         }
 
-        if (parameters.Length == 0 || parameters == null)
+        if (parameters == null || parameters.Length == 0)
             methodInfo.Invoke(component, null);
         else
             methodInfo.Invoke(component, parameters);
     }
-
 
     object[] ConvertParameter(ParameterInfo[] parameters)
     {
@@ -242,6 +265,4 @@ public class SimpleEventFunction_SO : EventFunction_SO
             _ => null
         };
     }
-
 }
-

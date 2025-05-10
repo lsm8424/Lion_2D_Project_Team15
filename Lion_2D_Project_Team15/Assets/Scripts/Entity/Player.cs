@@ -12,6 +12,10 @@ public class Player : Entity
     private bool isStunned = false;
     public float stunDuration = 1f;
 
+
+    public bool IsInvincible => isInvincible;
+    private bool isInvincible = false;
+    public float invincibleDuration = 1.5f;
     public bool IsStunned => isStunned;
 
     public static Player Instance { get; private set; }
@@ -124,5 +128,33 @@ public class Player : Entity
         _binding.Assign<bool>("canJump", () => movement.canJump, v => movement.canJump = (bool)v);
         _binding.Assign<bool>("canLadder", () => interaction.canLadder, v => interaction.canLadder = (bool)v);
         _binding.Assign<bool>("hasCoralStaff", () => combat.hasCoralStaff, v => combat.hasCoralStaff = (bool)v);
+    }
+    public override void TakeDamage(float value)
+    {
+        if (isInvincible)
+        {
+            Debug.Log("무적 상태 중, 데미지 무시됨.");
+            return;
+        }
+
+        base.TakeDamage(value); // Entity의 체력 감소, 사망 처리 포함
+
+        StartInvincibility(); // 무적 시작
+    }
+
+
+    public void StartInvincibility()
+    {
+        if (!isInvincible)
+            StartCoroutine(InvincibilityCoroutine());
+    }
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+        Debug.Log("무적 상태 시작!");
+        yield return new WaitForSeconds(invincibleDuration);
+        isInvincible = false;
+        Debug.Log("무적 상태 종료!");
     }
 }

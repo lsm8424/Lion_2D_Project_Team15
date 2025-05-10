@@ -92,6 +92,12 @@ public class QuestManager : Singleton<QuestManager>
 
     public void SetUp(string path)
     {
+        // EventManager가 아직 초기화되지 않았다면 먼저 세팅
+        if (!EventManager.Instance.DidSetup)
+        {
+            EventManager.Instance.SetupEvents(path);
+        }
+
         Quest_SO[] quests = Resources.LoadAll<Quest_SO>($"GameEvent/{path}");
 
         for (int i = 0; i < quests.Length; ++i)

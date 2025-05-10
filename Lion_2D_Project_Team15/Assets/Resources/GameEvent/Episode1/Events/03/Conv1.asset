@@ -16,3 +16,5 @@ MonoBehaviour:
   Conversations:
   - Category: 0
     DialogueID: libram_Q1_start_001
+  - Category: 0
+    DialogueID: narration_Q1_start_001

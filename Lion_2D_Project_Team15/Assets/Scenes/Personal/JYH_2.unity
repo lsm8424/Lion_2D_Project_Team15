@@ -12154,7 +12154,7 @@ MonoBehaviour:
   growSpeed: 30
   damage: 0
   warningPrefab: {fileID: 1328851054533475054, guid: 0a55f1919f0c36e4482dae9ed223bbb9, type: 3}
-  warningTime: 1.5
+  warningTime: 2
 --- !u!1 &1064853903
 GameObject:
   m_ObjectHideFlags: 0
@@ -16674,7 +16674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveSkillPrefab: {fileID: 9072539092158156982, guid: e0c675a140bbec148b52087efee59a1f, type: 3}
-  moveSpeed: 10
+  moveSpeed: 15
   waveCount: 3
   nockBackForce: 10
   coolTime: 5

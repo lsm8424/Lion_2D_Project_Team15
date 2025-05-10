@@ -12,8 +12,13 @@ public enum PortalType
 /// <summary>
 /// 포탈 동작을 제어하는 컴포넌트
 /// </summary>
-public class Portal : MonoBehaviour
+public class Portal : IdentifiableMonoBehavior, IInteractable
 {
+    public string EventID; // 포탈과 연결된 이벤트 ID (필요 시 사용)
+
+    public event System.Action<InteractionType> OnInteracted; // 상호작용 이벤트
+
+    [Header("포탈 동작 타입")]
     public PortalType portalType; // 포탈 동작 타입 선택
 
     [Header("포탈 인덱스 정보")]
@@ -30,7 +35,6 @@ public class Portal : MonoBehaviour
     public Transform targetPortal; // 도착할 포탈 Transform (오프셋 조정용)
     public Sprite closeSprite; // 포탈 닫힘 상태 스프라이트
     public Sprite openSprite; // 포탈 열림 상태 스프라이트
-
 
     private void Start()
     {
@@ -80,5 +84,14 @@ public class Portal : MonoBehaviour
         // 포탈을 닫는 로직 (예: 스프라이트 변경)
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = closeSprite; // 포탈 열림 상태로 변경
+    }
+
+    void AnimatorFalse()
+    {
+        Animator animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.enabled = false; // 애니메이터 컴포넌트 비활성화
+        }
     }
 }

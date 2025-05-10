@@ -45,7 +45,6 @@ public class SceneController : Singleton<SceneController>
 
         // 순서는 ID
         IDManager.Instance.SetUpIdentifiers();
-        EventManager.Instance.SetupEvents("Episode1");
         QuestManager.Instance.SetUp("Episode1");
         //QuestManager.Instance.StartQuest("Ep1");
 

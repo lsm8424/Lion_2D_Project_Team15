@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4bb44513028c494182856922e3dbf7e, type: 3}
+  m_Name: '#Events_04'
+  m_EditorClassIdentifier: 
+  EventType: 0
+  EventID: Ep1_03_01
+  EventName: "\uB9F51 \uC774\uB3D9"
+  RequireSave: 0
+  EventFunctions:
+  - {fileID: 11400000, guid: 9b501d92137820444a4f8096a43f8bee, type: 2}
+  - {fileID: 11400000, guid: 28f18f0dea4fb384091502a22b92d1cb, type: 2}
+  - {fileID: 11400000, guid: 1acbaa46b1e3b3d4998bb655f7565919, type: 2}
+  - {fileID: 11400000, guid: 31f87c2db0c7bcb469609ca6c3f1f79c, type: 2}
+  - {fileID: 11400000, guid: a726cdcb38615094bb5717e2057330e9, type: 2}
+  - {fileID: 11400000, guid: c5fee18209185b444b096c95916dd4ab, type: 2}
+  - {fileID: 11400000, guid: 9a7e83cf682e4ca4b8dc7ddbe358b459, type: 2}
+  - {fileID: 11400000, guid: 788240f15fd69ca41957a3a8c1bd4c96, type: 2}
+  - {fileID: 11400000, guid: 7f46352e759967f49829348ce6253671, type: 2}
+  - {fileID: 11400000, guid: 8e6ff80b29fd10d4498f761caf10406d, type: 2}
+  - {fileID: 11400000, guid: 866491d163b5f954ba0cbed0e7fd9af7, type: 2}
+  - {fileID: 11400000, guid: 139a0b0754f621e4d8d7ca5063093446, type: 2}
