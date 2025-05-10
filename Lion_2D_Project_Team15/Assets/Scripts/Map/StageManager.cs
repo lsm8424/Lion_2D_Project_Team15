@@ -66,7 +66,7 @@ public class StageManager : Singleton<GameManager>
     /// </summary>
     private IEnumerator FadeAndTeleport(int targetIndex)
     {
-        var fadeIn = new Fade(Color.clear, Color.black, 0.5f); // 💡 페이드 인
+        Fade fadeIn = new Fade(Color.clear, Color.black, 0.5f); // 💡 페이드 인
         yield return fadeIn.Execute();
 
         if (!portalDict.TryGetValue(targetIndex, out Portal targetPortal))
@@ -83,7 +83,7 @@ public class StageManager : Singleton<GameManager>
             Player.transform.position = targetPortal.targetPortal.position;
         }
 
-        var fadeOut = new Fade(Color.black, Color.clear, 0.5f); // 💡 페이드 아웃
+        Fade fadeOut = new Fade(Color.black, Color.clear, 0.5f); // 💡 페이드 아웃
         yield return fadeOut.Execute();
     }
 

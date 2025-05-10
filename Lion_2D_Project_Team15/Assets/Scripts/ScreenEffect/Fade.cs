@@ -39,9 +39,11 @@ public class Fade : IScreenEffect
         if (_image == null)
             _image = SceneController.Instance.FadePanel;
 
+
         Color currentColor = _image.color;
         currentColor = _startColor;
         _image.color = currentColor;
+
 
         while (percent < 1)
         {
