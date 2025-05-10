@@ -65,5 +65,6 @@ public class Quest_SO : ScriptableObject
     {
         public EventTrigger_SO Trigger;
         public GameEvent_SO GameEvent;
+        public bool ShouldSave;
     }
 }
