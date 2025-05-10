@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3832410480801106339}
   - component: {fileID: 4600962375221965451}
   - component: {fileID: 1027727577542006771}
+  - component: {fileID: 5682549746306908449}
   m_Layer: 10
   m_Name: Monster
   m_TagString: Monster
@@ -79,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.8773585, g: 0.27727836, b: 0.41539726, a: 1}
+  m_Sprite: {fileID: 4723107735738678597, guid: 0793c59989c820f4a82a4022b4ed946e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -130,13 +131,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectId: Episode2_monster1
+  SaveData:
+    Position: {x: 0, y: 0, z: 0}
+    IsActive: 0
+    Properties: []
   HP: 80
   maxHP: 80
-  anim: {fileID: 0}
+  anim: {fileID: 5682549746306908449}
   moveSpeed: 2
   attackPower: 3
   attackCooldown: 1
   attackRange: 1.5
+  knockbackForce: 15
+  knockbackDuration: 0.2
 --- !u!61 &1027727577542006771
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171,15 +178,37 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.008781433}
+  m_Offset: {x: 0, y: -0.1289146}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1.0175629}
+  m_Size: {x: 1, y: 1.5530477}
   m_EdgeRadius: 0
+--- !u!95 &5682549746306908449
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3831333995941918512}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d34b1e24fa029094fabec04546391755, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

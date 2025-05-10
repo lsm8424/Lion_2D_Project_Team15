@@ -11,8 +11,17 @@ public class Monster : Entity
     [Header("Attack Settings")]
     public float attackRange;
 
+    [Header("Knockback Settings")]
+    public float knockbackForce = 15f;
+    public float knockbackDuration = 0.3f; // 넉백 유지 시간(초)
+
     private Transform player;
     private Rigidbody2D rb;
+
+    // Knockback 상태 관리용
+    private bool isKnockback = false;
+    private float knockbackTimer = 0f;
+
 
     private void Awake()
     {
@@ -33,6 +42,17 @@ public class Monster : Entity
     {
         if (player == null) return;
 
+        // 넉백 중이면 이동/공격 불가
+        if (isKnockback)
+        {
+            knockbackTimer -= Time.deltaTime;
+            if (knockbackTimer <= 0f)
+            {
+                isKnockback = false;
+            }
+            return;
+        }
+
         float distance = Vector2.Distance(transform.position, player.position);
 
         if (distance > attackRange)
@@ -52,6 +72,8 @@ public class Monster : Entity
 
         // X축만 이동 (Y축은 중력 유지)
         rb.linearVelocity = new Vector2(direction.x * moveSpeed, rb.linearVelocity.y);
+
+        anim.SetBool("Walk", true);
 
         // 스프라이트 방향 반전 처리
         if (direction.x > 0)
@@ -87,6 +109,26 @@ public class Monster : Entity
                 }
             }
         }
+    }
+
+    public override void TakeDamage(float value)
+    {
+        base.TakeDamage(value);
+
+        // Knockback 적용
+        if (player != null)
+        {
+            Vector2 hitDirection = (transform.position - player.position).normalized;
+            Knockback(hitDirection);
+        }
+    }
+
+    public void Knockback(Vector2 hitDirection)
+    {
+        Vector2 force = new Vector2(hitDirection.x, 0.1f).normalized * knockbackForce;
+        rb.AddForce(force, ForceMode2D.Impulse);
+        isKnockback = true;
+        knockbackTimer = knockbackDuration;
     }
 
     private void OnDrawGizmosSelected()

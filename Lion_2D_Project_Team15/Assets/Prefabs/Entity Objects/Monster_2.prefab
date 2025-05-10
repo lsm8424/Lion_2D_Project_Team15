@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9076405456120824181}
   - component: {fileID: 2722256465206076474}
   - component: {fileID: 3408597832170392926}
+  - component: {fileID: 8727512997942784272}
   m_Layer: 10
   m_Name: Monster_2
   m_TagString: Monster
@@ -130,9 +131,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectId: Episode2_monster2
+  SaveData:
+    Position: {x: 0, y: 0, z: 0}
+    IsActive: 0
+    Properties: []
   HP: 80
   maxHP: 80
-  anim: {fileID: 0}
+  anim: {fileID: 8727512997942784272}
   moveSpeed: 2
   attackPower: 3
   attackCooldown: 1
@@ -183,3 +188,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1.0175629}
   m_EdgeRadius: 0
+--- !u!95 &8727512997942784272
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642215688076973111}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d34b1e24fa029094fabec04546391755, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

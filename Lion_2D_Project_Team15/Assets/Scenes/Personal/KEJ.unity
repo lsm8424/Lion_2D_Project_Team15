@@ -15755,7 +15755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &482668032
 Transform:
   m_ObjectHideFlags: 0
@@ -15765,7 +15765,7 @@ Transform:
   m_GameObject: {fileID: 482668031}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 144.71967, y: 35.10945, z: 0.019472122}
+  m_LocalPosition: {x: 32.989662, y: 7.2494516, z: 0.019472122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17120,7 +17120,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.759697, y: 0.23000383, z: -10}
+  m_LocalPosition: {x: 137.9, y: -2.4217415, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23438,7 +23438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1077716696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23522,7 +23522,7 @@ Transform:
   m_GameObject: {fileID: 1077716695}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 49.58, y: 0.22999978, z: -10}
+  m_LocalPosition: {x: 129.8, y: -0.20000005, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -53903,6 +53903,11 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!4 &1809049584 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4145717718118471407, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
+  m_PrefabInstance: {fileID: 3349412750220132111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1813277479
 GameObject:
   m_ObjectHideFlags: 0
@@ -54457,7 +54462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1924222697
 Transform:
   m_ObjectHideFlags: 0
@@ -54467,7 +54472,7 @@ Transform:
   m_GameObject: {fileID: 1924222696}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.428, y: 1.366, z: 0}
+  m_LocalPosition: {x: 151.146, y: -0.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54485,7 +54490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0087e753b9b094c4dae2511e7184967a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: {fileID: 0}
+  hand: {fileID: 1809049584}
   offset: {x: 0, y: 0, z: 0}
 --- !u!95 &1924222699
 Animator:
@@ -57296,6 +57301,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3363412551389235749, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 1924222698}
+    - target: {fileID: 3363412551389235749, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
+      propertyPath: attackPower
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3888047460808392904, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -57314,11 +57327,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5321697584548551026, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49.58
+      value: 137.9
       objectReference: {fileID: 0}
     - target: {fileID: 5321697584548551026, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.17
+      value: -2.38
       objectReference: {fileID: 0}
     - target: {fileID: 5321697584548551026, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -57353,6 +57366,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6273532740790557362, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
+      propertyPath: HP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6273532740790557362, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
       propertyPath: anim
       value: 
       objectReference: {fileID: 1206044200}
@@ -57360,6 +57377,10 @@ PrefabInstance:
       propertyPath: interactIndicatorPrefab
       value: 
       objectReference: {fileID: 8686575929209925530, guid: 55de5243662a0f644aeb87dff1dcc033, type: 3}
+    - target: {fileID: 8646790342216456888, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 1924222698}
     - target: {fileID: 8646790342216456888, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
       propertyPath: isStunned
       value: 0
