@@ -17,6 +17,7 @@ MonoBehaviour:
   EventName: "\uCCAB\uBC88\uC9F8 \uCC45\uACFC\uC758 \uC0C1\uD638\uC791\uC6A9"
   RequireSave: 0
   EventFunctions:
+  - {fileID: 11400000, guid: df7502d430e8bdf45839db69852e3f2b, type: 2}
   - {fileID: 11400000, guid: bbaedfb6ee96da04e9f98c1510e41379, type: 2}
   - {fileID: 11400000, guid: aae300b411ca43e4d8eecf82f2402b36, type: 2}
   - {fileID: 11400000, guid: 2f1490df05240d747bda128315e98fed, type: 2}
@@ -25,7 +26,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0eaed2d828223644dae5423505bbf451, type: 2}
   - {fileID: 11400000, guid: 4bce675dde834034d88243d668441aaf, type: 2}
   - {fileID: 11400000, guid: e904afb43dc4c974887e34aebe961449, type: 2}
-  - {fileID: 11400000, guid: df7502d430e8bdf45839db69852e3f2b, type: 2}
   - {fileID: 11400000, guid: 44cc8853458e59e43ad0fce8eb126f3a, type: 2}
   - {fileID: 11400000, guid: 96a3ff2b6e3bdb1458bab71a526867a2, type: 2}
   - {fileID: 11400000, guid: 97a62970a057ab848bc5a1b3f596604c, type: 2}
