@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7480781411378701771}
   - component: {fileID: 5500474970940855395}
   m_Layer: 0
-  m_Name: moving_1_0
+  m_Name: jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: -411642753
   m_SortingLayer: 2
   m_SortingOrder: 3
-  m_Sprite: {fileID: 4990219098530502749, guid: 66c1df86e2d75a041a1eabbef64cefb3, type: 3}
+  m_Sprite: {fileID: 4281637774074219296, guid: 4853b99c5df49b64fb228bc0a09f2790, type: 3}
   m_Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.6117647}
   m_FlipX: 0
   m_FlipY: 0
