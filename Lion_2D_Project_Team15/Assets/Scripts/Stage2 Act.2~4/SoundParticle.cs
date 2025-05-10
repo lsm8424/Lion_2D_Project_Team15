@@ -6,20 +6,14 @@ public class SoundParticle : MonoBehaviour
     public float fadeDuration = 2f;
 
     private SpriteRenderer spriteRenderer;
-    private Transform[] waypoints;
-    private int currentIndex = 0;
+    private Transform targetWaypoint;
     private float lifetime;
-    private Vector3 targetPos;
+    private bool hasReachedWaypoint = false; // 웨이포인트 도달 여부 플래그
 
-    // 웨이포인트 경로를 받아서 시작
-    public void SetWaypoints(Transform[] points)
+    public void SetTargetWaypoint(Transform waypoint)
     {
-        waypoints = points;
-        currentIndex = 0;
-        if (waypoints != null && waypoints.Length > 0)
-            targetPos = waypoints[0].position;
-        else
-            targetPos = transform.position;
+        targetWaypoint = waypoint;
+        hasReachedWaypoint = false; // 새 웨이포인트 설정 시 플래그 초기화
     }
 
     private void Start()
@@ -30,34 +24,25 @@ public class SoundParticle : MonoBehaviour
 
     private void Update()
     {
-        // 웨이포인트 경로 따라 이동
-        if (waypoints != null && waypoints.Length > 0)
+        if (targetWaypoint != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
 
-            if (Vector3.Distance(transform.position, targetPos) < 0.05f)
+            if (!hasReachedWaypoint && Vector3.Distance(transform.position, targetWaypoint.position) < 0.15f)
             {
-                currentIndex++;
-                if (currentIndex < waypoints.Length)
-                {
-                    targetPos = waypoints[currentIndex].position;
-                }
-                // 마지막 웨이포인트 도달 시 원하는 동작 추가(멈춤, 파괴 등)
+                Debug.Log($"웨이포인트 {targetWaypoint.name} 도달!");
+                hasReachedWaypoint = true; // 한 번만 실행되도록 플래그 설정
+
+                var emitter = Object.FindFirstObjectByType<SoundEmitter>(); // Unity 6 방식
+                emitter?.AdvanceWaypoint();
             }
         }
-        else
-        {
-            // 경로가 없으면 제자리
-        }
 
-        // 페이드 아웃
         if (spriteRenderer != null)
         {
             lifetime -= Time.deltaTime;
             float alpha = Mathf.Clamp01(lifetime / fadeDuration);
-            Color color = spriteRenderer.color;
-            color.a = alpha;
-            spriteRenderer.color = color;
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
         }
     }
 }
