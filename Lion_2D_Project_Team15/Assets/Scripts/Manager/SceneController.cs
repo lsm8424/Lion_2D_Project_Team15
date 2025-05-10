@@ -53,10 +53,7 @@ public class SceneController : Singleton<SceneController>
         // SaveManger.Instance.Load();
     }
 
-    void LoadSaveData()
-    {
-
-    }
+    void LoadSaveData() { }
 
     /// <summary>
     /// Fade In/Out 효과를 적용하며 Scene로드
