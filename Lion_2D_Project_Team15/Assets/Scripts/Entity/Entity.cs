@@ -55,6 +55,8 @@ public class Entity : IdentifiableMonoBehavior
         // 애니메이션 재생
         if (anim != null)
         {
+            Debug.Log("Death 트리거 호출!");
+            anim.ResetTrigger("Hurt");
             anim.SetTrigger("Death");
         }
 
@@ -67,6 +69,6 @@ public class Entity : IdentifiableMonoBehavior
 
     protected virtual void ScheduleDestroy()
     {
-        Destroy(gameObject, 0.5f); // 기본: 0.5초 후 삭제
+        Destroy(gameObject, 1f); // 기본: 0.7초 후 삭제
     }
 }
