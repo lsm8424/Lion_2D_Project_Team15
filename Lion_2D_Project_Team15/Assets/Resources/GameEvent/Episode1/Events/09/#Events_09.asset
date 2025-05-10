@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4bb44513028c494182856922e3dbf7e, type: 3}
+  m_Name: '#Events_09'
+  m_EditorClassIdentifier: 
+  EventType: 0
+  EventID: Ep1_03_06
+  EventName: "\uB9F53\uB85C \uC774\uB3D9"
+  RequireSave: 0
+  EventFunctions:
+  - {fileID: 11400000, guid: 3f6836f2899104949803bb5d55616d6e, type: 2}
+  - {fileID: 11400000, guid: ecd44b150b56bd34f88f87e5d74ad6fb, type: 2}
+  - {fileID: 11400000, guid: dcf2e6fa2b4b56548827edc55c17bffb, type: 2}
+  - {fileID: 11400000, guid: 8d49f3ed07e16614280c39eb8b583b05, type: 2}
