@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -32,7 +31,7 @@ public class SceneController : Singleton<SceneController>
 
         // 추후작성 필요
         //SceneManager.sceneLoaded += OnSceneLoaded;
-        StartCoroutine(AfterAwake()); // 임시용 코드 이후에 위 코드와 교체
+        //StartCoroutine(AfterAwake()); // 임시용 코드 이후에 위 코드와 교체
     }
 
     IEnumerator AfterAwake()
