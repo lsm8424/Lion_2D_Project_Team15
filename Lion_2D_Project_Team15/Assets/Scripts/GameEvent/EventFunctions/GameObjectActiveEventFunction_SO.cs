@@ -25,6 +25,7 @@ public class GameObjectActiveEventFunction_SO : EventFunction_SO
 
     public override IEnumerator Execute()
     {
+        EventFunctionTracker.BeginEvent();
         if (target == null)
         {
             Debug.LogError("[GameObjectActiveEvent] 타겟 오브젝트가 설정되지 않았습니다.");
@@ -33,5 +34,6 @@ public class GameObjectActiveEventFunction_SO : EventFunction_SO
 
         target.SetActive(SetActiveTo);
         yield return null;
+        EventFunctionTracker.EndEvent();
     }
 }

@@ -1,12 +1,14 @@
 using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ScreenEffectEventFunction_SO", menuName = "Scriptable Objects/EventFunction/ScreenEffectEventFunction_SO")]
+[CreateAssetMenu(
+    fileName = "ScreenEffectEventFunction_SO",
+    menuName = "Scriptable Objects/EventFunction/ScreenEffectEventFunction_SO"
+)]
 public class ScreenEffectEventFunction_SO : EventFunction_SO
 {
     public float Duration = 1f;
     public EScreenEffectType ScreenEffectType;
-
 
     static IScreenEffect[] screenEffects;
 
@@ -17,14 +19,14 @@ public class ScreenEffectEventFunction_SO : EventFunction_SO
         Clear
     }
 
-    public override void Setup()
-    {
-    }
+    public override void Setup() { }
 
     public override IEnumerator Execute()
     {
+        EventFunctionTracker.BeginEvent();
         screenEffects[(int)ScreenEffectType].Duration = Duration;
         yield return screenEffects[(int)ScreenEffectType].Execute();
+        EventFunctionTracker.EndEvent();
     }
 
     void OnEnable()
