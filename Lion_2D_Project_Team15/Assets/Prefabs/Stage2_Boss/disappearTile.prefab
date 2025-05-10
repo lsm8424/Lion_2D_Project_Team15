@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1900237973457043697}
   - component: {fileID: 6363023038177930733}
   - component: {fileID: 831124428762111350}
-  - component: {fileID: -397258630122524431}
+  - component: {fileID: 2764974771274812370}
   m_Layer: 0
   m_Name: disappearTile
   m_TagString: Untagged
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cde056379c438041b09c7efa0ae519b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &-397258630122524431
+--- !u!61 &2764974771274812370
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,5 +145,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 16, y: 16}
   m_EdgeRadius: 0
