@@ -337,35 +337,63 @@
   },
   {
     "id": "player_Q1_start_036",
-    "text": "부탁하신 책은 전부 돌려놨어.\n아쉽게도 더는 느껴지는 기운도 없군.",
+    "text": "부탁하신 책은 전부 돌려놨어.\n다음으로 데이터를 찾으려 했지만..",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "player_Q1_start_037",
-    "text": "아직 몸의 형체는 하나도 찾지 못했는데 어떻게 하면 좋지.",
+    "text": "아쉽게도 더는 느껴지는 기운도 없군.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "player_Q1_start_038",
-    "text": "....",
+    "text": "아직 몸의 형체는 하나도 찾지 못했는데 어떻게 하면 좋지.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "player_Q1_start_039",
-    "text": "이런, 부정적인 생각에 빠지지 않기도 다짐해 놓고 또 빠지뻔 했군.",
+    "text": "....",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
   },
   {
     "id": "player_Q1_start_040",
+    "text": "이런, 부정적인 생각에 빠지지 않기도 다짐해 놓고 또 빠지뻔 했군.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_Q1_start_041",
     "text": "일단 사서님께 돌아가서 방법을 모색해보자.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_Q1_start_005",
+    "text": "돌아왔는가.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_Q1_start_006",
+    "text": "꽤나 많은 일을 겪은 눈빛이로군.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "libram_Q1_start_007",
+    "text": "잠시 쉬었다 다시 대화 하도록 하세.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
