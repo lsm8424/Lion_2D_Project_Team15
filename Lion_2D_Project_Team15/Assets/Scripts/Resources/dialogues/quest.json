@@ -229,5 +229,26 @@
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_Q1_start_005",
+    "text": "(빈 공간에 책을 꽂아 넣었다)",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_Q1_start_025",
+    "text": "읏..차.\n후 이제 한 권만 돌려 놓으면 끝이군.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_Q1_start_026",
+    "text": "더 높은 곳에서 기운이 느껴지는걸 보면, 한 층 더 올라가야겠어.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
   }
 ]
