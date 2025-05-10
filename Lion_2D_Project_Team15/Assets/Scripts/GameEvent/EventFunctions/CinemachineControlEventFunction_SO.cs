@@ -110,6 +110,7 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
 
     public override IEnumerator Execute()
     {
+        EventFunctionTracker.BeginEvent();
         if (targetCamera == null || positionComposer == null)
         {
             Debug.LogError("Camera or PositionComposer is not set!");
@@ -131,6 +132,7 @@ public class CinemachineControlEventFunction_SO : EventFunction_SO
 
         if (deactivateWhenDone)
             targetCamera.gameObject.SetActive(false);
+        EventFunctionTracker.EndEvent();
     }
 
     private IEnumerator ExecuteMovement()

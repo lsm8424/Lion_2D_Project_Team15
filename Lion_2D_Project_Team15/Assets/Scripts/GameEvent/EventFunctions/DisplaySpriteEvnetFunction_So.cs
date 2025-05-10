@@ -32,6 +32,7 @@ public class DisplayObjectEventFunction_SO : EventFunction_SO
 
     public override IEnumerator Execute()
     {
+        EventFunctionTracker.BeginEvent();
         if (!IDManager.Instance.TryGet(ObjectID, out var targetObj))
         {
             Debug.LogError($"[DisplayObjectEvent] 유효하지 않은 ObjectID: {ObjectID}");
@@ -91,6 +92,7 @@ public class DisplayObjectEventFunction_SO : EventFunction_SO
 
         // 종료 대기
         yield return new WaitForSeconds(1f);
+        EventFunctionTracker.EndEvent();
     }
 
     private IEnumerator ScaleCoroutine(Transform target, Vector3 targetScale, float duration)

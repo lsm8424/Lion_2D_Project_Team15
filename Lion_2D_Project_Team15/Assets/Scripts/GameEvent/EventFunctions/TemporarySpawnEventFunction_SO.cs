@@ -25,10 +25,15 @@ public class TemporarySpawnEventFunction_SO : EventFunction_SO
 
     public override IEnumerator Execute()
     {
+        EventFunctionTracker.BeginEvent();
         _timer = 0f;
         IDManager.Instance.TryGet(ObjectID, out var targetObject);
         var parent = targetObject.transform;
-        _spawnedObject = GameManager.Instantiate(Prefab, parent.position + Offset, Quaternion.identity);
+        _spawnedObject = GameManager.Instantiate(
+            Prefab,
+            parent.position + Offset,
+            Quaternion.identity
+        );
         _spawnedObject.transform.SetParent(parent);
 
         while (_timer < Duration)
@@ -47,6 +52,7 @@ public class TemporarySpawnEventFunction_SO : EventFunction_SO
 
         Destroy(_spawnedObject);
         _spawnedObject = null;
+        EventFunctionTracker.EndEvent();
     }
 
     public void OnPause()

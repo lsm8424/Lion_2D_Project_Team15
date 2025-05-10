@@ -3,7 +3,10 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-[CreateAssetMenu(fileName = "CutsceneEvent_SO", menuName = "Scriptable Objects/EventFunction/CutsceneEvent_SO")]
+[CreateAssetMenu(
+    fileName = "CutsceneEvent_SO",
+    menuName = "Scriptable Objects/EventFunction/CutsceneEvent_SO"
+)]
 public class CutsceneEvent_SO : EventFunction_SO
 {
     public TimelineAsset Clip;
@@ -16,6 +19,7 @@ public class CutsceneEvent_SO : EventFunction_SO
     // 아직 구현되지 않음
     public override IEnumerator Execute()
     {
+        EventFunctionTracker.BeginEvent();
         if (Clip == null)
         {
             Debug.LogError("Clip이 할당되지 않았습니다.");
@@ -30,10 +34,8 @@ public class CutsceneEvent_SO : EventFunction_SO
 
         cutscenePlayer.Play(Clip);
         yield return new WaitUntil(() => !cutscenePlayer.IsPlaying);
+        EventFunctionTracker.EndEvent();
     }
 
-    public override void Setup()
-    {
-    
-    }
+    public override void Setup() { }
 }
