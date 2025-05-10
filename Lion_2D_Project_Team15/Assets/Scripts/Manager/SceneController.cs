@@ -32,7 +32,8 @@ public class SceneController : Singleton<SceneController>
 
         // 추후작성 필요
         //SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneLoaded += (scene, loadSceneMode) => StartCoroutine(AfterAwake(scene, loadSceneMode)); // 임시용 코드 이후에 위 코드와 교체
+        //ep2 포탈을 위한 주석처리
+        //SceneManager.sceneLoaded += (scene, loadSceneMode) => StartCoroutine(AfterAwake(scene, loadSceneMode)); // 임시용 코드 이후에 위 코드와 교체
     }
 
     IEnumerator AfterAwake(Scene scene, LoadSceneMode loadSceneMode)
