@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,8 +21,6 @@ public class SceneController : Singleton<SceneController>
     [Space]
     [Header("Debug")]
     [SerializeField] bool DebugMode = false;
-    [SerializeField] string DebugSceneName = "Episode_1";
-    [SerializeField] bool DebugStartQuest = true;
 
     protected override void Awake()
     {
@@ -42,6 +41,28 @@ public class SceneController : Singleton<SceneController>
         SceneManager.sceneLoaded += (scene, loadSceneMode) => StartCoroutine(AfterAwake(scene, loadSceneMode));
     }
 
+    Dictionary<string, SceneInfo> SceneLoadInfo = new Dictionary<string, SceneInfo>()
+    {
+        {"TitleScene", new SceneInfo("", "", "") },
+        {"Prologue2", new SceneInfo("Prologue", "Prologue", "Prologue") },
+        {"Ep_1", new SceneInfo("Episode1", "Episode1", "Ep1_01") },
+        {"Ep_2", new SceneInfo("Episode2", "Episode2", "") },
+    };
+    readonly struct SceneInfo
+    {
+        public readonly string QuestPath;
+        public readonly string EventPath;
+        public readonly string StartQuestName;
+
+        public SceneInfo(string questPath, string eventPath, string startQuestName)
+        {
+            QuestPath = questPath;
+            EventPath = eventPath;
+            StartQuestName = startQuestName;
+        }
+    }
+
+
     IEnumerator AfterAwake(Scene scene, LoadSceneMode loadSceneMode)
     {
         Debug.Log($"Scene {scene.name} is Loading...");
@@ -55,31 +76,36 @@ public class SceneController : Singleton<SceneController>
         // 순서는 ID
         IDManager.Instance.SetUpIdentifiers();
 
+        SceneInfo sceneInfo;
+        if (!SceneLoadInfo.TryGetValue(scene.name, out sceneInfo))
+        {
+            Debug.LogError("잘못된 Scene이름 " + scene.name);
+            yield break;
+        }
         // QuestManager.Instance.SetUp("Prologue");
         // QuestManager.Instance.StartQuest("Prologue");
 
-        // Scene 이름은 "Ep_숫자" 로 가정
-        string[] split = scene.name.Split('_');
-        string episode = split[1];
 
-        if (DebugMode)
-            episode = DebugSceneName.Split('_')[1];
-
-        Debug.Log($"Episode{episode} is Setting...");
+        Debug.Log($"{sceneInfo.QuestPath} is Setting...");
 
         // ID, Event, Quest 순으로 초기화
         IDManager.Instance.SetUpIdentifiers();
-        EventManager.Instance.SetupEvents("Episode" + episode);
-        QuestManager.Instance.SetUp("Episode"+ episode);
 
-#if UNITY_EDITOR
-        if (!DebugMode || (DebugMode && DebugStartQuest))
-            if (!ShouldLoadData)
-                QuestManager.Instance.StartQuest("Ep" + episode);
-#else
+        if (!DebugMode)
+        {
+            if (ShouldLoadData)
+            {
+                SaveManager.Instance.Load();
+                ShouldLoadData = false;
+            }
+            yield break;
+        }
+
+        EventManager.Instance.SetupEvents(sceneInfo.EventPath);
+        QuestManager.Instance.SetUp(sceneInfo.QuestPath);
+
         if (!ShouldLoadData)
-            QuestManager.Instance.StartQuest("Ep" + episode);
-#endif
+            QuestManager.Instance.StartQuest(sceneInfo.StartQuestName);
 
         if (ShouldLoadData)
         {
