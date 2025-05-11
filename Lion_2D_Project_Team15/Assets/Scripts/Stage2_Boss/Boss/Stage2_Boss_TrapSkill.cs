@@ -57,7 +57,8 @@ public class Stage2_Boss_TrapSkill : MonoBehaviour
 
         player.transform.position = teleportTarget;
         // 상태 해제 및 데미지
-        Player.Instance.isStuck = false; // 플레이어를 회오리 상태로 복원
+        player.GetComponent<move>().isStuck = false; // 플레이어를 회오리 상태 복원
+        //Player.Instance.isStuck = false; // 플레이어를 회오리 상태로 복원
         yield return new WaitForSeconds(0.05f);
         
         GameObject effect2 = Instantiate(teleportEffect, teleportTarget, Quaternion.identity);
@@ -86,19 +87,20 @@ public class Stage2_Boss_TrapSkill : MonoBehaviour
             if (collision.GetComponent<move>().isStuck || collision.GetComponent<move>().isKeyInput) return;
 
             //회오리 순간이동 상태거나 키입력 상태일 때는 return
-            if (Player.Instance.isStuck || Player.Instance.isKeyInput)
-            {
-                return;
-            }
+            //if (Player.Instance.isStuck || Player.Instance.isKeyInput)
+            //{
+            //    return;
+            //}
 
             player = collision.gameObject;
             triggerEnter = true;
 
-            //collision.GetComponent<move>().isStuck = true; // 플레이어를 회오리 상태로 설정
-            Player.Instance.isStuck = true; // 플레이어를 회오리 상태로 설정
+            collision.GetComponent<move>().isStuck = true; // 플레이어를 회오리 상태로 설정
+            //Player.Instance.isStuck = true; // 플레이어를 회오리 상태로 설정
+            Debug.Log("회오리 데미지 + Stuck");
 
             // 플레이어에게 데미지 주기
-            Player.Instance.TakeDamage(damage);
+            //Player.Instance.TakeDamage(damage);
         }
 
     }

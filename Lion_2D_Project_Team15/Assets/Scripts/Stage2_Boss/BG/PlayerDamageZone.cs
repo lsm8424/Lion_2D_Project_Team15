@@ -5,7 +5,7 @@ public class PlayerDamageZone : MonoBehaviour
     Vector2 centerPos = new Vector2(200, 50);
 
     float radius = 20f;
-    float damage = 3;
+    float damage = 10;
     float damageInterval = 1f;
 
     float lastDamageTime = 0f;
@@ -24,7 +24,8 @@ public class PlayerDamageZone : MonoBehaviour
             {
                 if (Time.time - lastDamageTime > damageInterval)
                 {
-                    Player.Instance.TakeDamage(damage);  // 데미지 주기
+                    Debug.Log("원형 밖의 존 데미지!");
+                    //Player.Instance.TakeDamage(damage);  // 데미지 주기
                     lastDamageTime = Time.time;  // 마지막 데미지 시간 기록
                 }
             }

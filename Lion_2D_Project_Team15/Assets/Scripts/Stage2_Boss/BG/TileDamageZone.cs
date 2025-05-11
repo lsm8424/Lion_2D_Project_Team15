@@ -14,11 +14,12 @@ public class TileDamageZone : MonoBehaviour
         if (collision.GetComponent<move>().isStuck || collision.GetComponent<move>().isKeyInput) return;
 
         //회오리 순간이동 상태거나 키입력 상태일 때는 return
-        if (Player.Instance.isStuck || Player.Instance.isKeyInput)return;
+        //if (Player.Instance.isStuck || Player.Instance.isKeyInput)return;
 
         if (Time.time - lastDamageTime > damageInterval)
         {
-            Player.Instance.TakeDamage(damage);
+            Debug.Log("붕괴 타일 데미지!");
+            // Player.Instance.TakeDamage(damage);
             lastDamageTime = Time.time;
         }
     }
