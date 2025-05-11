@@ -75,6 +75,7 @@ public class SceneController : Singleton<SceneController>
         yield return null;
         if (scene.name == "TitleScene")
         {
+            GameManager.Instance.RevertTimeCase();
             yield break;
         }
 
@@ -109,16 +110,15 @@ public class SceneController : Singleton<SceneController>
         EventManager.Instance.SetupEvents(sceneInfo.EventPath);
         QuestManager.Instance.SetUp(sceneInfo.QuestPath);
 
-        if (!ShouldLoadData)
-            QuestManager.Instance.StartQuest(sceneInfo.StartQuestName);
-
         if (ShouldLoadData)
         {
             SaveManager.Instance.Load();
             ShouldLoadData = false;
         }
         Debug.Log($"Scene {scene.name} is Loaded.");
-        GameManager.Instance.SetTimeCase(GameManager.ETimeCase.EntityMovement);
+        GameManager.Instance.RevertTimeCase();
+        if (!ShouldLoadData)
+            QuestManager.Instance.StartQuest(sceneInfo.StartQuestName);
     }
 
     public void LoadSaveScene(IScreenEffect startEffect, IScreenEffect endEffect)
