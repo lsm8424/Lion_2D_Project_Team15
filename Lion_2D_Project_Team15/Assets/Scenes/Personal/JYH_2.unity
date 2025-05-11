@@ -16800,8 +16800,13 @@ MonoBehaviour:
   waveFrequency: 5
   waveAmplitude: 5
   attackSound:
-  - {fileID: 8300000, guid: 4c0f942c13f182e41bef1e09a0dd908e, type: 3}
-  - {fileID: 8300000, guid: 3a0000db87d9522418fb7f9c03633c10, type: 3}
+  - {fileID: 8300000, guid: 60cdf88ade62f974887edb22477d78e8, type: 3}
+  - {fileID: 8300000, guid: 8bebaf611d2d0904280936e241abd450, type: 3}
+  - {fileID: 8300000, guid: 5784041a842d0914db401fb5aad6b9a6, type: 3}
+  - {fileID: 8300000, guid: f90ec30b43a16c04197a06eec356ff9e, type: 3}
+  - {fileID: 8300000, guid: 2e0bcea3664410e48bf38ba86e2ad8c7, type: 3}
+  - {fileID: 8300000, guid: 296d28e0ba7bc6142bafb40141eb1f6e, type: 3}
+  - {fileID: 8300000, guid: 04fcd5a9103a4824d890de8697f16ce0, type: 3}
   value: 0.1
 --- !u!114 &1354935786
 MonoBehaviour:
