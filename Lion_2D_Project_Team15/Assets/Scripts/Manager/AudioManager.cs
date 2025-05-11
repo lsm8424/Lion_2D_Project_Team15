@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
@@ -26,7 +27,7 @@ public class AudioManager : Singleton<AudioManager>
             _audioMixer = Resources.Load<AudioMixer>("Audio/VolumeMixer");
         }
 
-        // AudioMixerGroup ÃÊ±âÈ­
+        // AudioMixerGroup ì´ˆê¸°í™”
         for (int i = 0; i < 3; ++i)
         {
             EAudioType type = (EAudioType)i;
@@ -34,20 +35,36 @@ public class AudioManager : Singleton<AudioManager>
             _audioGroups[type] = _audioMixer.FindMatchingGroups(groupName)[0];
         }
 
-        // Background ¼¼ÆÃ
+        // Background ì„¸íŒ…
         BackgroundAudio = GetComponent<AudioSource>();
         BackgroundAudio.outputAudioMixerGroup = _audioGroups[EAudioType.Background];
+
+        StartCoroutine(LoadSetting());
     }
+
+    IEnumerator LoadSetting()
+    {
+        yield return new WaitUntil(() => UIManager.Instance.didAwake);
+        foreach (var item in UIManager.Instance.VolumePanel.GetComponentsInChildren<VolumeSliderController>())
+        {
+            item.LoadSetting();
+        }
+        foreach (var item in UIManager.Instance.VolumePanel.GetComponentsInChildren<MuteToggle>())
+        {
+            item.LoadSetting();
+        }
+    }
+
     public void SetVolume(EAudioType audioType, float volume) => SetVolume(audioType.ToString(), volume);
 
-    // volumeÀÌ 0ÀÎ °æ¿ì, ½ÇÁ¦·Î´Â muteµÇÁö ¾ÊÀ½
+    // volumeì´ 0ì¸ ê²½ìš°, ì‹¤ì œë¡œëŠ” muteë˜ì§€ ì•ŠìŒ
     public void SetVolume(string audioMixerGroup, float volume)
     {
-        _audioMixer.SetFloat(audioMixerGroup+"Volume", Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 2f)) * 20); // µ¥½Ãº§ °è»ê
+        _audioMixer.SetFloat(audioMixerGroup+"Volume", Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 2f)) * 20); // ë°ì‹œë²¨ ê³„ì‚°
     }
 
 
-    // ¹Ì»ç¿ë
+    // ë¯¸ì‚¬ìš©
     //public void SoundSFX(Transform parent, AudioClip audioClip, float volume = 1f)
     //{
     //    GameObject spawnedObject = PoolManager.Instance.Get(_SFXAudioSourcePrefab.name);

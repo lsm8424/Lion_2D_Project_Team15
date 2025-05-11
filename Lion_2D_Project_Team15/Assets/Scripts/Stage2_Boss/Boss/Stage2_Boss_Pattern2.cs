@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Stage2_Boss_Pattern2 : MonoBehaviour
 {
-    [Header("Pattern 1 (웨이브 공격)")]
-    [SerializeField] private GameObject waveSkillPrefab; // 웨이브 프리팹
+    [Header("Pattern 1 (워터볼 공격)")]
+    [SerializeField] private GameObject waterBallPrefab; // 웨이브 프리팹
     [SerializeField] private float moveSpeed; // 이동속도
-    [SerializeField] private int waveCount; // 웨이브 개수
+    [SerializeField] private int waveCount; // 워터볼 개수
     [SerializeField] private float nockBackForce; // 넉백 힘
     [SerializeField] private float coolTime; // 쿨타임
     [SerializeField] private float damage; // 공격력
@@ -14,6 +14,10 @@ public class Stage2_Boss_Pattern2 : MonoBehaviour
     [SerializeField] private GameObject warningBoxPrefab;   // 경고 박스 프리팹
     [SerializeField] private float warningTime; // 경고 시간
     private bool isWarning = false; // 경고 중인지 여부
+
+    [Header("사운드 효과")]
+    public AudioClip attackSound; // 공격 사운드
+    [SerializeField] private float value;
 
     private float delta;
     GameObject player; // 플레이어 오브젝트
@@ -48,7 +52,9 @@ public class Stage2_Boss_Pattern2 : MonoBehaviour
             Vector3 dir = (player.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-            GameObject loachSkill = Instantiate(waveSkillPrefab, warning.transform.position, Quaternion.identity);
+            Stage2_Boss_Audio.Instance.PlayOneShot(attackSound, value); // 공격 사운드 재생
+
+            GameObject loachSkill = Instantiate(waterBallPrefab, warning.transform.position, Quaternion.identity);
             loachSkill.GetComponent<Stage2_Boss_WaveSkill>().SetWave(angle, moveSpeed, ranCount,
                 nockBackForce, damage, transform.position);
         });
