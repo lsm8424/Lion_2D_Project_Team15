@@ -16953,7 +16953,7 @@ MonoBehaviour:
   bulletSpeed: 10
   bulletCount: 24
   coolTime: 3
-  damage: 0
+  damage: 3
   attackSound: {fileID: 8300000, guid: e191e61942ded70469315dd27c3f7048, type: 3}
   value: 0.3
 --- !u!50 &1354935787
@@ -17000,7 +17000,7 @@ MonoBehaviour:
   waveCount: 3
   nockBackForce: 10
   coolTime: 5
-  damage: 0
+  damage: 5
   warningBoxPrefab: {fileID: 6529924126980472808, guid: f606b15f59df6c44ca775b3c69f4509f, type: 3}
   warningTime: 1
   attackSound: {fileID: 8300000, guid: 699be102a0554094d85664f6547f52c3, type: 3}
@@ -17021,7 +17021,7 @@ MonoBehaviour:
   lifeTime: 3
   coolDown: 7
   trapSize: 3
-  damage: 0
+  damage: 10
   stuckDuration: 0.7
   warningTrapPrefab: {fileID: 5644881623933223089, guid: 6386676466c97d14db021f68cad7e80c, type: 3}
   warningTime: 1
