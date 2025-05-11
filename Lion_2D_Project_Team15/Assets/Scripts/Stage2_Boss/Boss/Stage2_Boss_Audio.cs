@@ -23,7 +23,7 @@ public class Stage2_Boss_Audio : MonoBehaviour
     {
         if (clip != null && audioSource != null)
         {
-            audioSource.PlayOneShot(clip, value); // 사운드 재생
+            audioSource.PlayOneShot(clip, audioSource.volume * value); // 사운드 재생
         }
     }
 
