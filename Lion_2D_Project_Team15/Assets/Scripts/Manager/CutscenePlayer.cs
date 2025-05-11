@@ -23,6 +23,7 @@ public class CutscenePlayer : Singleton<CutscenePlayer>
         {
             Debug.LogError("Clip이 등록되지 않았습니다.");
         }
+        Debug.Log(Clip + " is Start");
         IsPlaying = true;
         Clip = clip;
         PlayableDirector.extrapolationMode = DirectorWrapMode.Hold;
