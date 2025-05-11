@@ -40,7 +40,7 @@ public class SceneController : Singleton<SceneController>
     IEnumerator AfterAwake(Scene scene, LoadSceneMode loadSceneMode)
     {
         yield return null;
-        if (scene.name == "Title")
+        if (scene.name == "TitleScene")
         {
             yield break;
         }
