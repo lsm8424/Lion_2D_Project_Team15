@@ -295,7 +295,7 @@
   },
   {
     "id": "player_Q1_start_032",
-    "text": "(그렇다고 가만히 있을 수는 없어\n생각해내, 생각해내, 생각해네!!!!)",
+    "text": "(그렇다고 가만히 있을 수는 없어\n생각해내, 생각해내, 생각해내!!!!)",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
@@ -365,7 +365,7 @@
   },
   {
     "id": "player_Q1_start_040",
-    "text": "이런, 부정적인 생각에 빠지지 않기도 다짐해 놓고 또 빠지뻔 했군.",
+    "text": "이런, 부정적인 생각에 빠지지 않기도 다짐해 놓고 또 빠질 뻔 했군.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
