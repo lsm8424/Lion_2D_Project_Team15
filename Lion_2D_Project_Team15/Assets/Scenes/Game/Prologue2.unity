@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 501092763}
   - component: {fileID: 501092762}
   m_Layer: 0
-  m_Name: BGAudioSource
+  m_Name: BGAudioSorce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -458,7 +458,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 03ff893325e86ba4d913ad4b77db919a, type: 3}
   m_Resource: {fileID: 8300000, guid: 03ff893325e86ba4d913ad4b77db919a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
