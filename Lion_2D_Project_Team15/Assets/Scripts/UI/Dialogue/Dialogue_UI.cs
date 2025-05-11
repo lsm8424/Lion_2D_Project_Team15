@@ -33,6 +33,8 @@ public class Dialogue_UI : MonoBehaviour
     {
         { "player", "플레이어" },
         { "libram", "리브람" },
+        { "narration", "나레이션" },
+        { "delos", "델로스" },
     };
 
     void Awake()

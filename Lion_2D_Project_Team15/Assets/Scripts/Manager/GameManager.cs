@@ -50,7 +50,6 @@ public class GameManager : Singleton<GameManager>
         await UniTask.WaitUntil(() => EventManager.Instance.didAwake);
         await UniTask.WaitUntil(() => QuestManager.Instance.didAwake);
         await UniTask.WaitUntil(() => DialogueManager.Instance.didAwake);
-        await UniTask.WaitUntil(() => CutscenePlayer.Instance.didAwake);
         await UniTask.WaitUntil(() => AudioManager.Instance.didAwake);
         await UniTask.WaitUntil(() => SaveManager.Instance.didAwake);
         IsManagerLoaded = true;
