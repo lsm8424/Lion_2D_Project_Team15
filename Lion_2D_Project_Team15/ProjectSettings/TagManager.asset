@@ -14,7 +14,6 @@ TagManager:
   - Potal
   - CutImage
   - Obstacle
-  - Weapon
   layers:
   - Default
   - TransparentFX
