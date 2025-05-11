@@ -6,10 +6,18 @@ using UnityEngine.UI;
 public class DialogueOptionPanel_UI : MonoBehaviour
 {
     public DialogueOption_UI[] DialogueOption_UIs;
-    [SerializeField] GameObject _option_UIPrefab;
-    [SerializeField] Dialogue_UI _dialogue_UI;
-    [SerializeField] VerticalLayoutGroup _verticalLayoutGroup;
-    [SerializeField] RectTransform _rectTransform;
+
+    [SerializeField]
+    GameObject _option_UIPrefab;
+
+    [SerializeField]
+    Dialogue_UI _dialogue_UI;
+
+    [SerializeField]
+    VerticalLayoutGroup _verticalLayoutGroup;
+
+    [SerializeField]
+    RectTransform _rectTransform;
 
     public void CreateOptions(params DialogueOption[] options)
     {
@@ -30,7 +38,9 @@ public class DialogueOptionPanel_UI : MonoBehaviour
     public void Resize(int optionNumber, float padding = 0)
     {
         Vector2 size = _rectTransform.sizeDelta;
-        size.y = optionNumber * _option_UIPrefab.GetComponent<RectTransform>().sizeDelta.y + (optionNumber - 1) * padding;
+        size.y =
+            optionNumber * _option_UIPrefab.GetComponent<RectTransform>().sizeDelta.y
+            + (optionNumber - 1) * padding;
         _rectTransform.sizeDelta = size;
     }
 
