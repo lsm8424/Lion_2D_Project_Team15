@@ -1,5 +1,383 @@
 [
   {
+    "id": "narration_pro_001",
+    "text": "어둡고 퀴퀴한 방안, 모니터와 본체의 불빛만이 방을 비추고 있다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_002",
+    "text": "복잡한 내용으로 가득한 모니터 앞\n플레이어가 혼자 중얼거리며 빠르게 손가락을 움직인다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_003",
+    "text": "이내 놀란 표정을 지으며 자리를 박차고 일어선다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_001",
+    "text": "드...드디어 해냈어. 마침내!!",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_002",
+    "text": "모두가 컴퓨터 속으로 들어간다 했을 때 허무맹랑한 이야기라며 무시했지만\n난 가능성을 보았어.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_003",
+    "text": "두 눈으로 똑똑히 보라고 해. 불가능이란 없어.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_004",
+    "text": "잔뜩 흥분한 채로 연구실을 어슬렁거리며 혼잣말을 이어가던 중 갑자기 멈춰 선다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_004",
+    "text": "진정하자. 해야 할 일이 있잖아.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_005",
+    "text": "역사적인 서사의 첫 장을 그 녀석에게 가장 먼저 보여줘야지.\n날 유일하게 믿고 응원해 주던 델로스 그 녀석한테 말이야.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_006",
+    "text": "컴퓨터 속에 미리 들어간 상태로 맞이해주면 표정이 볼만하겠는걸.\n이제 곧 그가 돌아올 시간이니 서둘러야겠어.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_005",
+    "text": "이내 긴장한 표정으로 모니터 앞 푸른 버튼을 누른다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_007",
+    "text": "헙..!",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_006",
+    "text": "버튼을 누른 순간 눈을 뜨기도 힘들 정도로 거센 섬광이 연구실을 가득 채운다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_007",
+    "text": "섬광이 멎자 이내 방안은 아무도 없이 컴퓨터 부품만이 빛을 내고 있다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_008",
+    "text": "놀라군. 컴퓨터 속 풍경은 끊없이 상상해봤지만, 전혀 예상밖이야.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_009",
+    "text": "지금 이곳은 통로처럼 보이는데 과연 그 끝에는 뭐가 있을까.\n아니. 끝이 없어도 좋을거 같아.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_008",
+    "text": "어느덧 통로가 푸른빛으로 물들더니 눈앞의 풍경이 순식간에 바뀐다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_009",
+    "text": "플레이어 앞에 몸집만한 의문의 물체들이 잔뜩 펼쳐져 있다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_010",
+    "text": "이것들은 다 뭐지?\n",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_010",
+    "text": "플레이어는 여러 문자가 가득한 커다란 물체 앞에 선다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_011",
+    "text": "이 내용들은..\n내 바탕화면 속 문서들이잖아.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_012",
+    "text": "그렇다는 것은 여기가 내 바탕화면?!\n정말이지 놀란 입을 다물 순간이 없군. 모든게 놀라움의 연속이야.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_013",
+    "text": "아 그렇지.\n여기서 기다리면 델로스 그녀석이 날 발견하겠군.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_014",
+    "text": "빨리 와서 그 놀란 표정을 보자고 델로스!",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_011",
+    "text": "다시 연구실",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_012",
+    "text": "한 남자가 연구실 문을 열며 들어선다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "delos_pro_001",
+    "text": "어라. 그녀석은 어디로 간거지?\n절대 이곳을 벗어날 녀석이 아닐텐데.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_013",
+    "text": "남자는 주변을 두리번 거리다 이내 모니터 화면을 바라보다 놀란 표정을 짓는다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "delos_pro_002",
+    "text": "!! 저건 뭐지? 파일이 혼자 걸어다니고 있어.\n저 모습 묘하게 그녀석이랑 닮았는데.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "delos_pro_003",
+    "text": "설마...!",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_014",
+    "text": "컴퓨터위 문서를 이리저리 살피던 남자는 어이없다는 표정으로 중얼거린다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "delos_pro_004",
+    "text": "설마 했는데 정말로 성공할 줄이야.\n천재는 뭐든지 해낸다 이건가.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_015",
+    "text": "가만히 서서 골똘이 모니터를 바라보던 그는 씨익 웃는다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "delos_pro_005",
+    "text": "뭔가 얻을만한 정보가 있어서 접근했는데 이런 기적같은 순간을 목격할 줄이야.\n정말이지 '목격'만 하기엔 아깝지 않을 수가 없군.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_016",
+    "text": "결심한 표정을 지은 델로스가 모니터 앞 마우스를 쥔다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "delos_pro_006",
+    "text": "사람을 너무 쉽게 믿으면 안된다는 교훈이네.\n어디 이곳은 어떤지 경험하고 한번 후기를 알려주면 고맙겠어.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_017",
+    "text": "커서를 움직여 플레이어를 클릭한 채로 휴지통으로 보내버린다.\n그리고는 휴지통 비우기 버튼을 클릭하며 외친다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "delos_pro_007",
+    "text": "후기를 들려줄 상황이 된다면 말이지. 하하.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_018",
+    "text": "컴퓨터속 플레이어는 갑자기 다가오는 커서에 깜짝 놀란다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_015",
+    "text": "저건 마우스 커서잖아. 갑자기 어디서 나타난거지?\n델로스 그녀석이 온건가,",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_016",
+    "text": "훗. 이곳에서는 놀란 표정을 못보는게 아쉬울 따름이...",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_017",
+    "text": "엇?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_019",
+    "text": "갑자기 커서에 의해 꼼짝할 수 없게 된 플레이어는 당황한다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_018",
+    "text": "그새 장난기가 발동했나보군.\n날 어디로 끌고 갈려고 그러나 자네.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_020",
+    "text": "이내 휴지통을 본 플레이어의 표정에서 웃음기가 사려져간다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_019",
+    "text": "여긴 위험하네, 델로스!\n",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_020",
+    "text": "큭..",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_021",
+    "text": "휴지통속에 플레이어가 떨어진후 해당 공간에 거대한 소용돌이가 치기 시작한다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_021",
+    "text": "무슨 상황이지? 갑자기 왠 바람이..",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_022",
+    "text": "설마 자네..!",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_022",
+    "text": "소용돌이 속에 휘말려든 플레이어의 몸이 흩어지기 시작한다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_pro_023",
+    "text": "내...몸...ㅇ ㅣ.흐..ㅌ어",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_023",
+    "text": "소용돌이가 잠잠해 질때 쯤\n소용돌이 끝에서 모습을 잃은 플레이어가 바닥으로 추락한다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_024",
+    "text": "추락한 플레이어는 몸의 형태가 소실된체 바닥에 널부진다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
     "id": "player_001",
     "text": "으윽..",
     "choices": "",
