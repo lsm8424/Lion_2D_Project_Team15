@@ -29,6 +29,8 @@ public class Entity : IdentifiableMonoBehavior
         HP -= value;
         Debug.Log($"{gameObject.name}이(가) {value} 데미지를 입었습니다. (남은 체력: {HP})");
 
+        anim.SetTrigger("Hurt");
+
         if (HP <= 0)
         {
             Death();
@@ -53,13 +55,20 @@ public class Entity : IdentifiableMonoBehavior
         // 애니메이션 재생
         if (anim != null)
         {
+            Debug.Log("Death 트리거 호출!");
+            anim.ResetTrigger("Hurt");
             anim.SetTrigger("Death");
         }
 
         // 킬 카운트 등록
         killManager?.RegisterKill();
 
-        // 오브젝트 삭제 (0.5초 후)
-        Destroy(gameObject, 0.5f);
+        // Destroy는 별도 메서드로 분리
+        ScheduleDestroy();
+    }
+
+    protected virtual void ScheduleDestroy()
+    {
+        Destroy(gameObject, 1f); // 기본: 0.7초 후 삭제
     }
 }

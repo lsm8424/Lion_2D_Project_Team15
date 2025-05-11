@@ -8,6 +8,10 @@ public class MonsterSpawner : MonoBehaviour
     public float spawnInterval = 5f;
     public int maxSpawnCount = 3;
 
+
+    [Header("스폰 구역 설정")]
+    public PatrolArea[] patrolAreas; // 각 스폰 포인트마다 구역 지정
+
     private float timer;
     private int currentSpawnCount = 0;
 
@@ -30,6 +34,7 @@ public class MonsterSpawner : MonoBehaviour
             return;
         }
 
+        int idx = Random.Range(0, spawnPoints.Length);
         Transform point = spawnPoints[Random.Range(0, spawnPoints.Length)];
         GameObject monster = Instantiate(monsterPrefab, point.position, Quaternion.identity);
         currentSpawnCount++;
@@ -42,6 +47,13 @@ public class MonsterSpawner : MonoBehaviour
         }
 
         //Debug.Log($"몬스터 스폰 완료: {monster.name}");
+
+        // 몬스터에 PatrolArea 할당
+        Monster monsterScript = monster.GetComponent<Monster>();
+        if (monsterScript != null && patrolAreas.Length > idx)
+        {
+            monsterScript.patrolArea = patrolAreas[idx];
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -51,6 +63,19 @@ public class MonsterSpawner : MonoBehaviour
         {
             if (point != null)
                 Gizmos.DrawSphere(point.position, 0.3f);
+        }
+
+        // 구역 시각화
+        Gizmos.color = Color.cyan;
+        if (patrolAreas != null)
+        {
+            foreach (var area in patrolAreas)
+            {
+                if (area.leftPoint != null && area.rightPoint != null)
+                {
+                    Gizmos.DrawLine(area.leftPoint.position, area.rightPoint.position);
+                }
+            }
         }
     }
 }

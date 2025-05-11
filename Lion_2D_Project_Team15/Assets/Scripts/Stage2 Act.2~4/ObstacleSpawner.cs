@@ -27,12 +27,14 @@ public class ObstacleSpawner : MonoBehaviour
     {
         if (other.CompareTag("Player") && !spawning)
         {
+            Debug.Log("플레이어가 트리거에 진입, spawning = " + spawning + ", 스폰 시작");
             StartCoroutine(SpawnRoutine());
         }
     }
 
     IEnumerator SpawnRoutine()
     {
+       
         spawning = true;
         timer = duration;
         StartCoroutine(SpawnY());
@@ -40,10 +42,16 @@ public class ObstacleSpawner : MonoBehaviour
 
         while (timer > 0)
         {
+            if (!spawning) // spawning이 false일 경우 루프 종료
+            {
+                yield break;
+            }
+
             timer -= Time.deltaTime;
             yield return null;
         }
 
+        // 타이머가 끝났을 때
         ClearTrigger clear = clearTrigger?.GetComponent<ClearTrigger>();
         if (clear != null && !clear.IsCleared)
         {
@@ -59,6 +67,11 @@ public class ObstacleSpawner : MonoBehaviour
     {
         while (timer > 0)
         {
+            if (!spawning) // spawning이 false일 경우 루프 종료
+            {
+                yield break;
+            }
+
             if (player == null)
                 yield break;
 
@@ -71,13 +84,15 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
-
-
-
     IEnumerator SpawnX()
     {
         while (timer > 0)
         {
+            if (!spawning) // spawning이 false일 경우 루프 종료
+            {
+                yield break;
+            }
+
             // 플레이어가 이미 사망했거나 제거된 경우 탈출
             if (player == null)
                 yield break;
@@ -90,8 +105,6 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
-
-
     void SpawnObstacle(Vector2 position, Vector2 direction)
     {
         GameObject obj = Instantiate(obstaclePrefab, position, Quaternion.identity);
@@ -102,7 +115,6 @@ public class ObstacleSpawner : MonoBehaviour
     {
         spawning = false;
         StopAllCoroutines();
-        //Debug.Log("스폰 정지됨");
+        Debug.Log("스폰 정지됨, spawning = " + spawning);
     }
-
 }
