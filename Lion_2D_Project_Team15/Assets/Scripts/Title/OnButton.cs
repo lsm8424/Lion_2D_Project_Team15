@@ -26,7 +26,7 @@ public class OnButton : MonoBehaviour
         Canvas canvas = GetComponentInParent<Canvas>();
         canvas.sortingOrder = -2;
 
-        SceneController.Instance.LoadSceneWithFadeInOut("Prologue2", 1f);
+        SceneController.Instance.LoadSceneWithFadeInOut("Prologue2", 3f);
     }
 
     public void SettingButtonClick()
@@ -38,6 +38,5 @@ public class OnButton : MonoBehaviour
     {
         Debug.Log("게임 종료");
         //Application.Quit();
-    }   
-
+    }
 }

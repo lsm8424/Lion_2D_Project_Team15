@@ -16,11 +16,14 @@ public class SceneController : Singleton<SceneController>
     AsyncOperation _currentOperation;
     string _sceneName;
     bool _hasStarted;
-    [field:SerializeField] public bool ShouldLoadData { get; private set; } = false;
+
+    [field: SerializeField]
+    public bool ShouldLoadData { get; private set; } = false;
 
     [Space]
     [Header("Debug")]
-    [SerializeField] bool DebugMode = false;
+    [SerializeField]
+    bool DebugMode = false;
 
     protected override void Awake()
     {
@@ -39,16 +42,18 @@ public class SceneController : Singleton<SceneController>
 
     void Start()
     {
-        SceneManager.sceneLoaded += (scene, loadSceneMode) => StartCoroutine(AfterAwake(scene, loadSceneMode));
+        SceneManager.sceneLoaded += (scene, loadSceneMode) =>
+            StartCoroutine(AfterAwake(scene, loadSceneMode));
     }
 
     Dictionary<string, SceneInfo> SceneLoadInfo = new Dictionary<string, SceneInfo>()
     {
-        {"TitleScene", new SceneInfo("", "", "") },
-        {"Prologue2", new SceneInfo("Prologue", "Prologue", "Prologue") },
-        {"Ep_1", new SceneInfo("Episode1", "Episode1", "Ep1_01") },
-        {"Ep_2", new SceneInfo("Episode2", "Episode2", "") },
+        { "TitleScene", new SceneInfo("", "", "") },
+        { "Prologue2", new SceneInfo("Prologue", "Prologue", "Prologue") },
+        { "Ep_1", new SceneInfo("Episode1", "Episode1", "Ep1") },
+        { "Ep_2", new SceneInfo("Episode2", "Episode2", "") },
     };
+
     readonly struct SceneInfo
     {
         public readonly string QuestPath;
@@ -62,7 +67,6 @@ public class SceneController : Singleton<SceneController>
             StartQuestName = startQuestName;
         }
     }
-
 
     IEnumerator AfterAwake(Scene scene, LoadSceneMode loadSceneMode)
     {
@@ -116,14 +120,13 @@ public class SceneController : Singleton<SceneController>
         Debug.Log($"Scene {scene.name} is Loaded.");
         GameManager.Instance.SetTimeCase(GameManager.ETimeCase.EntityMovement);
     }
-    
+
     public void LoadSaveScene(IScreenEffect startEffect, IScreenEffect endEffect)
     {
         ShouldLoadData = true;
-        
+
         LoadSceneWithEffect(SaveManager.Instance.GetSceneName(), startEffect, endEffect);
     }
-
 
     /// <summary>
     /// Fade In/Out 효과를 적용하며 Scene로드
