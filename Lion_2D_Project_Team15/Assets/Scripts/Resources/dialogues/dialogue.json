@@ -365,7 +365,7 @@
   },
   {
     "id": "narration_pro_023",
-    "text": "소용돌이가 잠잠해 질때 쯤\n소용돌이 끝에서 모습을 잃은 플레이어가 바닥으로 추락한다.",
+    "text": "소용돌이가 잠잠해 질때 쯤\n소용돌이 끝에서 모습을 잃은 플레이어가 아래로 추락한다.",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
@@ -373,6 +373,13 @@
   {
     "id": "narration_pro_024",
     "text": "추락한 플레이어는 몸의 형태가 소실된체 바닥에 널부진다.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "narration_pro_025",
+    "text": "",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
