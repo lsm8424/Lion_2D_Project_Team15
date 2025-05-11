@@ -9,13 +9,13 @@ public class OnButton : MonoBehaviour
     public void OnClick()
     {
         //텍스트 색깔 변경
-        textMeshProUGUI.color = new Color(0, 0, 0, 0.5f); // 투명도 변경
+        textMeshProUGUI.color = new Color(1, 1, 1, 0.5f); // 투명도 변경
     }
 
     public void OutClick()
     {
         //텍스트 색깔 변경
-        textMeshProUGUI.color = new Color(0, 0, 0, 1); // 투명도 변경
+        textMeshProUGUI.color = new Color(1, 1, 1, 1); // 투명도 변경
     }
 
     public void StartButtonClick()
