@@ -31,7 +31,7 @@ public class OnButton : MonoBehaviour
 
     public void SettingButtonClick()
     {
-        UIManager.Instance.ToggleSettings();
+        UIManager.Instance.OpenPanel(UIManager.Instance.VolumePanel);
     }
 
     public void ExitButtonClick()

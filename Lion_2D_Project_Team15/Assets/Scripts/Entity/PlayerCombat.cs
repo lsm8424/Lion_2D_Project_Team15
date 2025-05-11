@@ -59,7 +59,7 @@ public class PlayerCombat : MonoBehaviour
             if (sword != null)
                 sword.TriggerAttack(); // Sword에 공격 전달
 
-            Debug.Log("기본 공격!");
+            // Debug.Log("기본 공격!");
 
             // 공격 종료 처리
             Invoke(nameof(ResetAttackState), 0.7f); // 공격 애니메이션 길이만큼 대기
@@ -74,11 +74,11 @@ public class PlayerCombat : MonoBehaviour
 
             foreach (Collider2D col in hits)
             {
-                Debug.Log("충돌 감지한 오브젝트: " + col.name);
+                // Debug.Log("충돌 감지한 오브젝트: " + col.name);
 
                 if (col.CompareTag("Monster"))
                 {
-                    Debug.Log("몬스터 감지! 데미지 입힘");
+                    // Debug.Log("몬스터 감지! 데미지 입힘");
 
                     Entity monster = col.GetComponent<Entity>();
                     if (monster != null)
