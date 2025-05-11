@@ -11,6 +11,10 @@ public class Stage2_BG_Ocean : MonoBehaviour
     private float damage; // 실패 시 데미지
     private Vector3 targetScale = new Vector3(20, 20, 1); // 목표 크기
 
+    [Header("사운드 효과")]
+    public AudioClip trueSound; //성공소리
+    public AudioClip falseSound; //실패소리
+
     void Start()
     {
         Destroy(gameObject, 0.7f); // 5초 후에 오브젝트 삭제
@@ -54,6 +58,7 @@ public class Stage2_BG_Ocean : MonoBehaviour
             {
                 // 성공 시:
                 Debug.Log("키입력 성공!"); // 성공 시 처리
+                Stage2_Boss_Audio.Instance.PlayOneShot(trueSound, 0.2f); // 성공 소리 재생
                 collision.GetComponent<move>().isKeyInput = false;
                 //Player.Instance.isKeyInput = false; // 플레이어를 회오리 상태 복원
             },
@@ -61,6 +66,7 @@ public class Stage2_BG_Ocean : MonoBehaviour
              {
                  // 실패 시: 데미지 + 스턴 등
                  Debug.Log("키입력 실패! + 해류 + 스턴"); // 실패 시 처리
+                 Stage2_Boss_Audio.Instance.PlayOneShot(falseSound, 0.2f); // 실패 소리 재생
                  collision.GetComponent<move>().isKeyInput = false;
                  //Player.Instance.isKeyInput = false; // 플레이어를 회오리 상태 복원
                  //Player.Instance.TakeDamage(damage); // 플레이어에게 데미지

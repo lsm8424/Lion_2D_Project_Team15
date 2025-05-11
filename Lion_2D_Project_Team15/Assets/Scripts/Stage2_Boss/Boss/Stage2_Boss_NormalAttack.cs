@@ -14,8 +14,8 @@ public class Stage2_Boss_NormalAttack : MonoBehaviour
     [SerializeField] private float waveAmplitude; // 웨이브 진폭
 
     [Header("사운드 효과")]
-    public AudioClip attackSound; // 공격 사운드
-    public 
+    public AudioClip[] attackSound; // 공격 사운드
+    [SerializeField] private float value;
 
     float delta;
     Vector3 attackDir; // 공격 방향
@@ -41,7 +41,8 @@ public class Stage2_Boss_NormalAttack : MonoBehaviour
     {
         if(attackSound != null)
         {
-             // 공격 사운드 재생
+            // 공격 사운드 재생
+            Stage2_Boss_Audio.Instance.PlayOneShot(attackSound[Random.Range(0,attackSound.Length)], value);
         }
 
         attackDir = player.transform.position - transform.position; // 플레이어 방향 계산

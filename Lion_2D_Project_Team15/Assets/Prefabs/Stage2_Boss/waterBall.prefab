@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8071816054642524302}
   - component: {fileID: 6495492869403190239}
   m_Layer: 0
-  m_Name: wave
+  m_Name: waterBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,6 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6495492869403190239}
+  crashSound: {fileID: 8300000, guid: f065905712669214283b4ce893d53f76, type: 3}
+  value: 0.03
 --- !u!95 &6495492869403190239
 Animator:
   serializedVersion: 7
