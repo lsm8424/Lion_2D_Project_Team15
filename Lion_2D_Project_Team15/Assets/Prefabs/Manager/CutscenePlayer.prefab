@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc074f00c5b1d845b2a3c61ec1042ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectId: CutscenePlayer
   <Clip>k__BackingField: {fileID: 11400000, guid: 2a6b21fd700bb3f44b033f4829d0424c, type: 2}
   IsPlaying: 0
 --- !u!320 &465674117036739797

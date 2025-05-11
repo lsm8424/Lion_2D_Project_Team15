@@ -14836,6 +14836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc074f00c5b1d845b2a3c61ec1042ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectId: CutscenePlayer
   <Clip>k__BackingField: {fileID: 11400000, guid: 2a6b21fd700bb3f44b033f4829d0424c, type: 2}
   IsPlaying: 0
 --- !u!4 &200703206
@@ -21522,9 +21523,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763541038}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1199204647}
@@ -36052,6 +36053,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3711541427719849943, guid: b0f67687c94590a41a37f5dcbbdb83a2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4981915040598026476, guid: b0f67687c94590a41a37f5dcbbdb83a2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -36168,7 +36173,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4981915040598026476, guid: b0f67687c94590a41a37f5dcbbdb83a2, type: 3}
-      insertIndex: 0
+      insertIndex: 1
       addedObject: {fileID: 763541039}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0f67687c94590a41a37f5dcbbdb83a2, type: 3}
