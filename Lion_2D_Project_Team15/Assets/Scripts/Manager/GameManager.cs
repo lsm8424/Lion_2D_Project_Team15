@@ -6,7 +6,7 @@ public class GameManager : Singleton<GameManager>
 {
     public float EntityTimeScale { get; private set; } = 1f; // Entity, NPC TimeScale
     public float DialogueTimeScale { get; private set; } = 1f; // 대화창 관련 TimeScale
-    public ETimeCase CurrentTime { get; private set; } = ETimeCase.EntityMovement;
+    [field:SerializeField] public ETimeCase CurrentTime { get; private set; } = ETimeCase.EntityMovement;
     public Stack<ETimeCase> _prevCaseStack = new();
     public bool IsManagerLoaded { get; private set; } = false;
     /// <summary>
@@ -65,6 +65,7 @@ public class GameManager : Singleton<GameManager>
     /// <param name="timeCase"></param>
     public void SetTimeCase(ETimeCase timeCase)
     {
+        Debug.Log("Set " + timeCase.ToString());
         _prevCaseStack.Push(CurrentTime);
         CurrentTime = timeCase;
         AdjustTimeScale(timeCase);
@@ -72,6 +73,7 @@ public class GameManager : Singleton<GameManager>
 
     public void RevertTimeCase()
     {
+        Debug.Log("Revert " + CurrentTime.ToString());
         if (_prevCaseStack.Count == 0)
         {
             Debug.LogError("의도되지 않은 경우");
