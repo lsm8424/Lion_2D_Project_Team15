@@ -20,6 +20,7 @@ public class SceneController : Singleton<SceneController>
     protected override void Awake()
     {
         base.Awake();
+        Debug.Log("[SceneController] Awake 호출됨");
 
         // 만약 Prefab이 없다면 Resources/SceneCanvas를 Load하여 사용
         if (_sceneCanvasPrefab == null)
@@ -33,14 +34,14 @@ public class SceneController : Singleton<SceneController>
         // 추후작성 필요
         //SceneManager.sceneLoaded += OnSceneLoaded;
         //ep2 포탈을 위한 주석처리
-        //SceneManager.sceneLoaded += (scene, loadSceneMode) =>
-        //    StartCoroutine(AfterAwake(scene, loadSceneMode)); // 임시용 코드 이후에 위 코드와 교체
+        SceneManager.sceneLoaded += (scene, loadSceneMode) =>
+            StartCoroutine(AfterAwake(scene, loadSceneMode)); // 임시용 코드 이후에 위 코드와 교체
     }
 
     IEnumerator AfterAwake(Scene scene, LoadSceneMode loadSceneMode)
     {
         yield return null;
-        if (scene.name == "Title")
+        if (scene.name == "TitleScene")
         {
             yield break;
         }
@@ -48,12 +49,11 @@ public class SceneController : Singleton<SceneController>
         // 순서는 ID
         IDManager.Instance.SetUpIdentifiers();
 
-        QuestManager.Instance.SetUp("Prologue");
-        QuestManager.Instance.StartQuest("Prologue");
+        // QuestManager.Instance.SetUp("Prologue");
+        // QuestManager.Instance.StartQuest("Prologue");
 
-        // QuestManager.Instance.SetUp("Episode1");
-        // QuestManager.Instance.StartQuest("Ep1");
-
+        QuestManager.Instance.SetUp("Episode1");
+        QuestManager.Instance.StartQuest("Ep1");
 
         // if Load
         // SaveManger.Instance.Load();
