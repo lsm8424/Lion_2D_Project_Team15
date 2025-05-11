@@ -19,11 +19,11 @@ public class Stage2_Boss_Audio : MonoBehaviour
 
     private AudioSource audioSource; // 오디오 소스 컴포넌트
 
-   public void PlayOneShot(AudioClip clip, float value)
+    public void PlayOneShot(AudioClip clip, float value)
     {
         if (clip != null && audioSource != null)
         {
-            audioSource.PlayOneShot(clip, value); // 사운드 재생
+            audioSource.PlayOneShot(clip, audioSource.volume * value); // 사운드 재생
         }
     }
 
