@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8364640670363989659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7523324496255650525}
+  - component: {fileID: 4394023933570563094}
+  - component: {fileID: 465674117036739797}
+  - component: {fileID: 1056520853801562321}
+  m_Layer: 0
+  m_Name: CutscenePlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7523324496255650525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364640670363989659}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4394023933570563094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364640670363989659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc074f00c5b1d845b2a3c61ec1042ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Clip>k__BackingField: {fileID: 11400000, guid: 2a6b21fd700bb3f44b033f4829d0424c, type: 2}
+  IsPlaying: 0
+--- !u!320 &465674117036739797
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364640670363989659}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 2a6b21fd700bb3f44b033f4829d0424c, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 0
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -5708492739897649944, guid: 949b12520e019a4409a3fabc2272b8dd, type: 2}
+    value: {fileID: 1056520853801562321}
+  - key: {fileID: -1493953769974012879, guid: 949b12520e019a4409a3fabc2272b8dd, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8618321000253939632, guid: bd5d9dd38ec17ab4db2a68ba4f2b4af1, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 1639084407796339958, guid: bd5d9dd38ec17ab4db2a68ba4f2b4af1, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6067062885717101681, guid: 2a6b21fd700bb3f44b033f4829d0424c, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: -531393838536523773, guid: 2a6b21fd700bb3f44b033f4829d0424c, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References:
+    - 13671e35a88a07c41a6fa36ef92d0285: {fileID: 0}
+    - 6de34c8d1e43cef46925f504e3aec027: {fileID: 0}
+    - 88f2fda66a5669243a5474e0e6069167: {fileID: 0}
+    - 51ced6885cd225544be77a3031599282: {fileID: 0}
+--- !u!114 &1056520853801562321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364640670363989659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 80c8549b15cd9484ea44f1f2aa74510b, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4394023933570563094}
+          m_TargetAssemblyTypeName: CutscenePlayer, Assembly-CSharp
+          m_MethodName: TimelineEndTrigger
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
