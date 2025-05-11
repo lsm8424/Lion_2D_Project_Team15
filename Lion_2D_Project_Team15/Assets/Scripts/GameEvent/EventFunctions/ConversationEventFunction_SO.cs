@@ -26,6 +26,7 @@ public class ConversationEventFunction_SO : EventFunction_SO
 
     public override IEnumerator Execute()
     {
+        EventFunctionTracker.BeginEvent();
         foreach (var (category, dialogueID) in Conversations)
         {
             DialogueManager.Instance.PlayOneShot(category, dialogueID);
@@ -37,6 +38,7 @@ public class ConversationEventFunction_SO : EventFunction_SO
 
         if (Player.Instance)
             Player.Instance.interaction.EndDialogue();
+        EventFunctionTracker.EndEvent();
     }
 
     public override void Setup() { }

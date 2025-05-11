@@ -34,12 +34,13 @@ public class GameManager : Singleton<GameManager>
 
         if (CurrentTime <= ETimeCase.Title)
             if (Input.GetKeyDown(KeyCode.Escape))
-                UIManager.Instance.ToggleSettings();
+                UIManager.Instance.OnPressedESC();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        // 테스트용 코드
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+            StartGame();
+        if (Input.GetKeyDown(KeyCode.Minus))
             LoadGame();
-        }
     }
 
     async UniTask WaitForManagersToLoad()

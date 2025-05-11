@@ -28,3 +28,6 @@ MonoBehaviour:
   WaitBefore: 0
   WaitAfter: 0
   useCurrentAsStart: 0
+  useShake: 0
+  shakeIntensity: 0.2
+  shakeFrequency: 20

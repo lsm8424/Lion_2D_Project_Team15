@@ -15,7 +15,7 @@ public class SceneController : Singleton<SceneController>
     AsyncOperation _currentOperation;
     string _sceneName;
     bool _hasStarted;
-    public bool ShouldLoadData { get; private set; } = false;
+    [field:SerializeField] public bool ShouldLoadData { get; private set; } = false;
 
     [Space]
     [Header("Debug")]
@@ -56,6 +56,7 @@ public class SceneController : Singleton<SceneController>
         // Scene 이름은 "Ep_숫자" 로 가정
         string[] split = scene.name.Split('_');
         string episode = split[1];
+
 
         if (DebugMode)
             episode = DebugSceneName.Split('_')[1];

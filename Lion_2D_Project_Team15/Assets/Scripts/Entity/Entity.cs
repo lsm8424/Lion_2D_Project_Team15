@@ -13,6 +13,8 @@ public class Entity : IdentifiableMonoBehavior
     // 정적 참조 (MonsterKillManager)
     public static MonsterKillManager killManager;
 
+    public event Action OnDamaged;
+
     // 사망 이벤트
     public event Action OnDeath;
 
@@ -28,6 +30,7 @@ public class Entity : IdentifiableMonoBehavior
 
         HP -= value;
         Debug.Log($"{gameObject.name}이(가) {value} 데미지를 입었습니다. (남은 체력: {HP})");
+        OnDamaged?.Invoke();
 
         if (HP <= 0)
         {

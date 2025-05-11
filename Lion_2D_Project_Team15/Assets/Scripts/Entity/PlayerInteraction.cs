@@ -109,17 +109,16 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(origin, dir, interactRange, interactLayerMask);
         Debug.DrawRay(origin, dir * interactRange, Color.yellow);
 
-        // 감지 해제 조건: 감지 안 됨 or 대화 중
-        if (hit.collider == null || isTalking)
+        // 감지 해제 조건: 감지 안 됨 or 대화 중 or 이벤트 실행 중
+        if (hit.collider == null || isTalking || EventFunctionTracker.IsEventRunning)
         {
-            currentTarget = null;
-
-            if (currentIndicator != null)
+            if (currentTarget != null)
             {
-                Destroy(currentIndicator);
-                currentIndicator = null;
+                var oldHandler = currentTarget.GetComponent<InteractIndicatorHandler>();
+                oldHandler?.Hide();
             }
 
+            currentTarget = null;
             return;
         }
 
@@ -127,22 +126,17 @@ public class PlayerInteraction : MonoBehaviour
 
         if (currentTarget != hitObj)
         {
-            currentTarget = hitObj;
-            Debug.Log("상호작용할 수 있는 Object입니다: " + hit.collider.name);
-
-            if (currentIndicator != null)
+            if (currentTarget != null)
             {
-                Destroy(currentIndicator);
+                var oldHandler = currentTarget.GetComponent<InteractIndicatorHandler>();
+                oldHandler?.Hide();
             }
 
-            currentIndicator = Instantiate(interactIndicatorPrefab);
-            currentIndicator.transform.position = hitObj.transform.position + Vector3.up * 1.5f;
-            currentIndicator.transform.SetParent(hitObj.transform); // 따라다니게
-        }
-        else if (currentIndicator != null)
-        {
-            // 부모 설정되어 있으므로 위치 자동 유지됨 (이 줄은 없어도 OK)
-            currentIndicator.transform.position = hitObj.transform.position + Vector3.up * 1.5f;
+            currentTarget = hitObj;
+            Debug.Log("상호작용할 수 있는 Object입니다: " + hitObj.name);
+
+            var newHandler = currentTarget.GetComponent<InteractIndicatorHandler>();
+            newHandler?.Show();
         }
     }
 
