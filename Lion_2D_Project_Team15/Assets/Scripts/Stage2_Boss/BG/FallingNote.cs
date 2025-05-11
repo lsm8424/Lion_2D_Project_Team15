@@ -17,6 +17,7 @@ public class FallingNote : MonoBehaviour
     public GameObject EffectPrefab;
     public float groundDisappearTime;
 
+    private float damage = 5f;
     private bool alreadyHit = false;
 
     void Start()
@@ -55,7 +56,7 @@ public class FallingNote : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             // 데미지 처리
-            Debug.Log("플레이어가 음표에 맞음!");
+            Player.Instance.TakeDamage(damage);
             alreadyHit = true;
             Destroy(gameObject);
             return;
