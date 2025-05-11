@@ -20,6 +20,7 @@ public class SceneController : Singleton<SceneController>
     protected override void Awake()
     {
         base.Awake();
+        Debug.Log("[SceneController] Awake 호출됨");
 
         // 만약 Prefab이 없다면 Resources/SceneCanvas를 Load하여 사용
         if (_sceneCanvasPrefab == null)
