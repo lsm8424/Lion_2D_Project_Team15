@@ -49,8 +49,24 @@ public class Monster : Entity
         }
     }
 
+    bool IsStopped = false;
+
     private void Update()
     {
+        if (GameManager.Instance.ShouldWaitForEntity())
+        {
+            anim.speed = 0;
+            IsStopped = true;
+            rb.bodyType = RigidbodyType2D.Static;
+            return;
+        }
+        else if (IsStopped)
+        {
+            anim.speed = 1f;
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            IsStopped = false;
+        }
+
         if (isDead) return; // 죽었으면 아무 행동도 하지 않음
         if (player == null) return;
 

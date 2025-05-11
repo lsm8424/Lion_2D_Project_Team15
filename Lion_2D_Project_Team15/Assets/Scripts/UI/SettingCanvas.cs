@@ -13,11 +13,13 @@ public class SettingCanvas : MonoBehaviour
     public void SaveButton()
     {
         SaveManager.Instance.Save();
+        UIManager.Instance.PopPanel();
     }
 
     public void LoadButton()
     {
         SaveManager.Instance.Load();
+        UIManager.Instance.PopPanel();
     }
 
     public void ClosePanel()

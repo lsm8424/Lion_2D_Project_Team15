@@ -65,7 +65,6 @@ public class GameManager : Singleton<GameManager>
     /// <param name="timeCase"></param>
     public void SetTimeCase(ETimeCase timeCase)
     {
-        Debug.Log("Set " + timeCase.ToString());
         _prevCaseStack.Push(CurrentTime);
         CurrentTime = timeCase;
         AdjustTimeScale(timeCase);
@@ -73,7 +72,6 @@ public class GameManager : Singleton<GameManager>
 
     public void RevertTimeCase()
     {
-        Debug.Log("Revert " + CurrentTime.ToString());
         if (_prevCaseStack.Count == 0)
         {
             Debug.LogError("의도되지 않은 경우");
@@ -82,6 +80,13 @@ public class GameManager : Singleton<GameManager>
 
         var prevCase = _prevCaseStack.Pop();
         CurrentTime = prevCase;
+        AdjustTimeScale(CurrentTime);
+    }
+
+    public void ResetTimecase()
+    {
+        _prevCaseStack.Clear();
+        CurrentTime = ETimeCase.EntityMovement;
         AdjustTimeScale(CurrentTime);
     }
 

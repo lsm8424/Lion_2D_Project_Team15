@@ -27,7 +27,6 @@ public class CutscenePlayer : IdentifiableMonoBehavior
         IsPlaying = true;
         Clip = clip;
         PlayableDirector.playableAsset = clip;
-        PlayableDirector.RebuildGraph();
         PlayableDirector.extrapolationMode = DirectorWrapMode.Hold;
         PlayableDirector.Play(Clip);
         StartCoroutine(WhilePlaying());

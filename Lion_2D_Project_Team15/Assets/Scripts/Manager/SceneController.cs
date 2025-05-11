@@ -109,6 +109,7 @@ public class SceneController : Singleton<SceneController>
 
         EventManager.Instance.SetupEvents(sceneInfo.EventPath);
         QuestManager.Instance.SetUp(sceneInfo.QuestPath);
+        GameManager.Instance.RevertTimeCase();
 
         if (ShouldLoadData)
         {
@@ -116,7 +117,6 @@ public class SceneController : Singleton<SceneController>
             ShouldLoadData = false;
         }
         Debug.Log($"Scene {scene.name} is Loaded.");
-        GameManager.Instance.RevertTimeCase();
         if (!ShouldLoadData)
             QuestManager.Instance.StartQuest(sceneInfo.StartQuestName);
     }
