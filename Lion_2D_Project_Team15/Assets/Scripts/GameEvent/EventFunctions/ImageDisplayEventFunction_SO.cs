@@ -45,6 +45,7 @@ public class ImageDisplayEventFunction_SO : EventFunction_SO
 
     public override IEnumerator Execute()
     {
+        Debug.Log("[ImageDisplayEvent] 실행됨");
         EventFunctionTracker.BeginEvent();
         if (targetImage == null)
         {

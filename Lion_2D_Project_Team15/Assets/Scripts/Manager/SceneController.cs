@@ -47,16 +47,20 @@ public class SceneController : Singleton<SceneController>
         Debug.Log($"Scene {scene.name} is Loading...");
         GameManager.Instance.SetTimeCase(GameManager.ETimeCase.Loading);
         yield return null;
-
-        if (scene.name == "Title")
+        if (scene.name == "TitleScene")
         {
             yield break;
         }
 
+        // 순서는 ID
+        IDManager.Instance.SetUpIdentifiers();
+
+        // QuestManager.Instance.SetUp("Prologue");
+        // QuestManager.Instance.StartQuest("Prologue");
+
         // Scene 이름은 "Ep_숫자" 로 가정
         string[] split = scene.name.Split('_');
         string episode = split[1];
-
 
         if (DebugMode)
             episode = DebugSceneName.Split('_')[1];
