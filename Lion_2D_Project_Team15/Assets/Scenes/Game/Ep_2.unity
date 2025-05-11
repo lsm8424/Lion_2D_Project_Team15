@@ -60432,7 +60432,7 @@ GameObject:
   - component: {fileID: 1924222698}
   m_Layer: 0
   m_Name: Wand
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63543,12 +63543,20 @@ PrefabInstance:
       value: potal_17
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: portalType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: portalIndex
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: targetSceneName
+      value: Ep_2_Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetPortalIndex
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5658992036665296919, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: m_LocalScale.x
