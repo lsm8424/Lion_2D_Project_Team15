@@ -92,7 +92,7 @@ public class SceneController : Singleton<SceneController>
         // ID, Event, Quest 순으로 초기화
         IDManager.Instance.SetUpIdentifiers();
 
-        if (!DebugMode)
+        if (DebugMode)
         {
             if (ShouldLoadData)
             {
