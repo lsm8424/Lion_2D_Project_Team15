@@ -8,15 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Personal/NSM2.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/Personal/JYH_1.unity
-    guid: e3d095f4123227d4687f9ee4ae021da1
   - enabled: 0
     path: Assets/Scenes/JYH_2.unity
     guid: 7024bd55a204789409f84572fca2aa8a
   - enabled: 1
     path: Assets/Scenes/Game/Ep_1.unity
     guid: e1920c495b2aa454b99816ba08bf9219
+  - enabled: 1
+    path: Assets/Scenes/Game/Ep_2.unity
+    guid: 09308aa5c9cd40346b1eaf8d56a37b1c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
