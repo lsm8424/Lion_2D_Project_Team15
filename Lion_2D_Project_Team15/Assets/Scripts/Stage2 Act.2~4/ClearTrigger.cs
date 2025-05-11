@@ -4,6 +4,8 @@ public class ClearTrigger : MonoBehaviour
 {
     public bool IsCleared { get; private set; } = false;
 
+    public bool isFinalTrigger = false; // 이 트리거가 최종 트리거인지 여부
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (IsCleared) return;
@@ -11,7 +13,7 @@ public class ClearTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             IsCleared = true;
-            //Debug.Log("클리어 트리거 도착 - 장애물 스폰 중지 및 제거");
+            Debug.Log($"{gameObject.name} 클리어 트리거 도달!");
 
             // ObstacleSpawner 정지
             ObstacleSpawner spawner = Object.FindFirstObjectByType<ObstacleSpawner>();
@@ -23,6 +25,16 @@ public class ClearTrigger : MonoBehaviour
             foreach (GameObject obj in obstacles)
             {
                 Destroy(obj);
+            }
+
+            // 최종 트리거 처리
+            if (isFinalTrigger)
+            {
+                GameTimer timer = Object.FindFirstObjectByType<GameTimer>();
+                if (timer != null)
+                {
+                    timer.FinalClear();
+                }
             }
         }
     }

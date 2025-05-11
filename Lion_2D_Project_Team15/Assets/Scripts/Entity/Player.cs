@@ -157,4 +157,10 @@ public class Player : Entity
         isInvincible = false;
         Debug.Log("무적 상태 종료!");
     }
+
+    protected override void ScheduleDestroy()
+    {
+        Destroy(gameObject, 2f); // 플레이어만 2초 후 삭제
+    }
+
 }
