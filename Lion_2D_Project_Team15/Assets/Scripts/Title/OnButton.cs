@@ -39,6 +39,6 @@ public class OnButton : MonoBehaviour
         Invoke("OutClick", 0.2f); // 클릭 후 0.1초 뒤에 OutClick() 호출
 
         Debug.Log("게임 종료");
-        //Application.Quit();
+        Application.Quit();
     }
 }
