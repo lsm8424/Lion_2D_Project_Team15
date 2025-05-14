@@ -9,8 +9,6 @@ public class EP1_BGM : MonoBehaviour
     private GameObject player;
     private bool isDoing = false;
 
-    EventTrigger_SO eventTriggerSO;
-
     private void Update()
     {
 
