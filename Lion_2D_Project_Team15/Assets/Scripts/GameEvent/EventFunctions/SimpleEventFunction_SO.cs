@@ -78,6 +78,7 @@ public class SimpleEventFunction_SO : EventFunction_SO
 
     public override IEnumerator Execute()
     {
+        EventFunctionTracker.BeginEvent();
         SimpleEventStruct[] events = SimpleEvents;
 
         for (int i = 0; i < events.Length; ++i)
@@ -87,6 +88,7 @@ public class SimpleEventFunction_SO : EventFunction_SO
 
             yield return Coroutines[i];
         }
+        EventFunctionTracker.EndEvent();
     }
 
     /// <summary>

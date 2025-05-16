@@ -36,9 +36,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleMove()
     {
-        if (Player.Instance.IsStunned) return;
-        if (isAttacking && !anim.GetBool("Jump")) return;
-        if (Player.Instance.interaction.IsOnLadder()) return;
+        if (Player.Instance.IsStunned)
+            return;
+        if (isAttacking && !anim.GetBool("Jump"))
+            return;
+        if (Player.Instance.interaction.IsOnLadder())
+            return;
 
         float h = Input.GetAxisRaw("Horizontal");
         Vector3 moveDir = new Vector3(h, 0, 0).normalized;
@@ -48,27 +51,33 @@ public class PlayerMovement : MonoBehaviour
 
         bool isRunning = h != 0;
         anim.SetBool("Run", isRunning);
-        if (sword != null) sword.SetRun(isRunning);
+        if (sword != null)
+            sword.SetRun(isRunning);
     }
 
     public void HandleJump()
     {
-        if (!canJump) return;
-        if (Player.Instance.interaction.IsOnLadder()) return;
+        if (!canJump)
+            return;
+        if (Player.Instance.interaction.IsOnLadder())
+            return;
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isGrounded = false;
             anim.SetBool("Jump", true);
-            if (sword != null) sword.SetJump(true);
+            if (sword != null)
+                sword.SetJump(true);
         }
     }
 
     public void FlipByDirection(float h)
     {
-        if (h > 0 && !facingRight) Flip();
-        else if (h < 0 && facingRight) Flip();
+        if (h > 0 && !facingRight)
+            Flip();
+        else if (h < 0 && facingRight)
+            Flip();
     }
 
     private void Flip()
@@ -78,7 +87,8 @@ public class PlayerMovement : MonoBehaviour
         scale.x *= -1;
         transform.localScale = scale;
 
-        if (sword != null) sword.Flip(facingRight);
+        if (sword != null)
+            sword.Flip(facingRight);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -87,13 +97,40 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
 
         anim.SetBool("Jump", false);
-        if (sword != null) sword.SetJump(false);
+        if (sword != null)
+            sword.SetJump(false);
     }
 
     private void Update()
     {
+        // GameManager의 EntityTimeScale이 0이면 애니메이션을 Idle로 변경하고 멈춤
+        if (GameManager.Instance.EntityTimeScale == 0f)
+        {
+            // 모든 애니메이션 파라미터를 false로 설정
+            anim.SetBool("Run", false);
+            anim.SetBool("Jump", false);
+            if (sword != null)
+            {
+                sword.SetRun(false);
+                sword.SetJump(false);
+            }
+            // 애니메이션 정지
+            anim.speed = 0f;
+            return;
+        }
+
+        // 일반 상태에서는 애니메이션 속도 복구
+        anim.speed = 1f;
+
         // 벽에 붙은 상태가 아니라면 접지 여부 확인
-        isTouchingWall = Physics2D.Raycast(wallCheck.position, facingRight ? Vector2.right : Vector2.left, wallCheckDistance, wallLayer);
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) && !isTouchingWall;
+        isTouchingWall = Physics2D.Raycast(
+            wallCheck.position,
+            facingRight ? Vector2.right : Vector2.left,
+            wallCheckDistance,
+            wallLayer
+        );
+        isGrounded =
+            Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer)
+            && !isTouchingWall;
     }
 }

@@ -13,6 +13,10 @@ public class Stage2_Boss_NormalAttack : MonoBehaviour
     [SerializeField] private float waveFrequency; // 웨이브 주기
     [SerializeField] private float waveAmplitude; // 웨이브 진폭
 
+    [Header("사운드 효과")]
+    public AudioClip[] attackSound; // 공격 사운드
+    [SerializeField] private float value;
+
     float delta;
     Vector3 attackDir; // 공격 방향
     GameObject player; // 플레이어 오브젝트
@@ -35,6 +39,12 @@ public class Stage2_Boss_NormalAttack : MonoBehaviour
 
     void Shoot()
     {
+        if(attackSound != null)
+        {
+            // 공격 사운드 재생
+            Stage2_Boss_Audio.Instance.PlayOneShot(attackSound[Random.Range(0,attackSound.Length)], value);
+        }
+
         attackDir = player.transform.position - transform.position; // 플레이어 방향 계산
         Vector3 dir = attackDir.normalized; // 방향 벡터 정규화
 

@@ -31,8 +31,6 @@ public class NPC : IdentifiableMonoBehavior, IInteractable
         OnInteracted?.Invoke(InteractionType.Interaction);
         if (!string.IsNullOrWhiteSpace(EventID))
             EventManager.Instance.RunEvent(EventID);
-
-        OnInteracted?.Invoke(InteractionType.Interaction);
     }
 
     // 플레이어가 F 키를 다시 누르면 호출됨
@@ -45,5 +43,12 @@ public class NPC : IdentifiableMonoBehavior, IInteractable
     {
         Debug.Log("대화 종료");
         Player.Instance.interaction.EndDialogue();
+    }
+
+    public override void Bind()
+    {
+        base.Bind();
+
+        _binding.Assign<string>("EventID", () => EventID, v => EventID = (string)v);
     }
 }

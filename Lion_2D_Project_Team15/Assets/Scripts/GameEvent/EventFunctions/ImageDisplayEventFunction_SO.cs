@@ -45,6 +45,7 @@ public class ImageDisplayEventFunction_SO : EventFunction_SO
 
     public override IEnumerator Execute()
     {
+        EventFunctionTracker.BeginEvent();
         if (targetImage == null)
         {
             Debug.LogError("[ImageDisplayEvent] Setup되지 않은 오브젝트입니다.");
@@ -68,6 +69,7 @@ public class ImageDisplayEventFunction_SO : EventFunction_SO
         }
 
         yield return null;
+        EventFunctionTracker.EndEvent();
     }
 }
 

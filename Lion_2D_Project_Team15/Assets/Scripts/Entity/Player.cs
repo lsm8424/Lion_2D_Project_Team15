@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class Player : Entity
@@ -11,6 +12,9 @@ public class Player : Entity
     private bool isStunned = false;
     public float stunDuration = 1f;
 
+    public bool IsInvincible => isInvincible;
+    private bool isInvincible = false;
+    public float invincibleDuration = 1.5f;
     public bool IsStunned => isStunned;
 
     public static Player Instance { get; private set; }
@@ -25,6 +29,9 @@ public class Player : Entity
     // 회오리 갇힘
     public bool isStuck = false; // 회오리 갇힘 상태
 
+    [Header("무적 효과")]
+    public float blinkInterval = 0.2f; // 깜빡임 간격
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
@@ -55,6 +62,8 @@ public class Player : Entity
         movement = GetComponent<PlayerMovement>();
         combat = GetComponent<PlayerCombat>();
         interaction = GetComponent<PlayerInteraction>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        Bind();
     }
 
     private void Update()
@@ -109,7 +118,8 @@ public class Player : Entity
 
     public void ApplyKnockback(Vector2 direction, float force, float duration)
     {
-        if (isStunned || isStuck || isKeyInput) return; // 회오리 갇힘 상태이거나 키 입력 중이면 넉백 적용 안함
+        if (isStunned || isStuck || isKeyInput)
+            return; // 회오리 갇힘 상태이거나 키 입력 중이면 넉백 적용 안함
 
         GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero; // 기존 속도 초기화
         GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
@@ -117,4 +127,82 @@ public class Player : Entity
         knockbackTimer = duration;
     }
 
+    public override void Bind()
+    {
+        _binding.Assign<bool>("canJump", () => movement.canJump, v => movement.canJump = (bool)v);
+        _binding.Assign<bool>(
+            "canLadder",
+            () => interaction.canLadder,
+            v => interaction.canLadder = (bool)v
+        );
+        _binding.Assign<bool>(
+            "hasCoralStaff",
+            () => combat.hasCoralStaff,
+            v => combat.hasCoralStaff = (bool)v
+        );
+    }
+
+    public override void TakeDamage(float value)
+    {
+        if (isInvincible)
+        {
+            Debug.Log("무적 상태 중, 데미지 무시됨.");
+            return;
+        }
+
+        base.TakeDamage(value); // Entity의 체력 감소, 사망 처리 포함
+
+        StartInvincibility(); // 무적 시작
+    }
+
+    public void StartInvincibility()
+    {
+        if (!isInvincible)
+            StartCoroutine(InvincibilityCoroutine());
+    }
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+        Debug.Log("무적 상태 시작!");
+
+        // Weapon 태그를 가진 모든 무기의 SpriteRenderer 가져오기
+        SpriteRenderer[] weaponRenderers = GameObject
+            .FindGameObjectsWithTag("Weapon")
+            .Select(go => go.GetComponent<SpriteRenderer>())
+            .Where(sr => sr != null)
+            .ToArray();
+
+        float elapsedTime = 0f;
+        while (elapsedTime < invincibleDuration)
+        {
+            // 플레이어와 무기 스프라이트 토글
+            bool visibility = !spriteRenderer.enabled;
+            spriteRenderer.enabled = visibility;
+
+            // 모든 무기 스프라이트 토글
+            foreach (var weaponRenderer in weaponRenderers)
+            {
+                weaponRenderer.enabled = visibility;
+            }
+
+            yield return new WaitForSeconds(blinkInterval);
+            elapsedTime += blinkInterval;
+        }
+
+        // 무적 해제 시 스프라이트 복원
+        spriteRenderer.enabled = true;
+        foreach (var weaponRenderer in weaponRenderers)
+        {
+            weaponRenderer.enabled = true;
+        }
+
+        isInvincible = false;
+        Debug.Log("무적 상태 종료!");
+    }
+
+    protected override void ScheduleDestroy()
+    {
+        Destroy(gameObject, 2f); // 플레이어만 2초 후 삭제
+    }
 }

@@ -89,7 +89,7 @@ public class KeyInputManager : MonoBehaviour
 
     private KeyCode GetRandomKey()
     {
-        int ranindex = Random.Range(0, 12);
+        int ranindex = Random.Range(0, 6);
 
         KeyCode key = KeyCode.None;
 
@@ -98,15 +98,10 @@ public class KeyInputManager : MonoBehaviour
             case 0: key = KeyCode.Q; break;
             case 1: key = KeyCode.W; break;
             case 2: key = KeyCode.E; break;
-            case 3: key = KeyCode.R; break;
-            case 4: key = KeyCode.A; break;
-            case 5: key = KeyCode.S; break;
-            case 6: key = KeyCode.D; break;
-            case 7: key = KeyCode.F; break;
-            case 8: key = KeyCode.Z; break;
-            case 9: key = KeyCode.X; break;
-            case 10: key = KeyCode.C; break;
-            case 11: key = KeyCode.V; break;
+            case 3: key = KeyCode.A; break;
+            case 4: key = KeyCode.S; break;
+            case 5: key = KeyCode.D; break;
+
         }
 
 

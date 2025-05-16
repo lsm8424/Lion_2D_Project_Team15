@@ -17,6 +17,9 @@ public class move : MonoBehaviour
     public bool isStuck = false; // 회오리 갇힘 상태
     private Vector3 trapCenter; // 회오리 중심 위치
 
+    // 애니메이터
+    private Animator anim;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -25,6 +28,7 @@ public class move : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -33,6 +37,7 @@ public class move : MonoBehaviour
         if (isKeyInput || isStuck)
         {
             rb.linearVelocity = Vector2.zero;
+            UpdateAnimation(Vector2.zero); // 이동 멈춘 상태의 애니메이션
             return;
         }
    
@@ -42,6 +47,8 @@ public class move : MonoBehaviour
             knockbackTimer -= Time.deltaTime;
             if (knockbackTimer <= 0f)
                 isKnockBack = false;
+
+            UpdateAnimation(Vector2.zero); // 이동 멈춘 상태의 애니메이션
             return; // 이동 입력 무시
         }
 
@@ -51,6 +58,8 @@ public class move : MonoBehaviour
         Vector2 dir = new Vector2(xInput, yInput).normalized; // 방향 벡터 정규화
 
         rb.linearVelocity = dir * speed;
+
+        UpdateAnimation(dir);
 
     }
 
@@ -62,6 +71,17 @@ public class move : MonoBehaviour
         rb.AddForce(direction * force, ForceMode2D.Impulse);
         isKnockBack = true;
         knockbackTimer = duration;
+    }
+
+    private void UpdateAnimation(Vector2 direction)
+    {
+        // 방향에 따라 애니메이션 파라미터 설정
+        if (anim == null) return;
+
+        anim.SetBool("Up", direction.y > 0); // 위로 이동
+        anim.SetBool("Down", direction.y < 0); // 아래로 이동
+        anim.SetBool("Right", direction.x > 0); // 오른쪽 이동
+        anim.SetBool("Left", direction.x < 0); // 왼쪽 이동
     }
 
 }

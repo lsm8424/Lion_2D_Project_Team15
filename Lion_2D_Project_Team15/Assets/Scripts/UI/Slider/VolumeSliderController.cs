@@ -20,10 +20,17 @@ public class VolumeSliderController : SliderController
         _percentage.SetText($"{100 * _slider.value:F0}%");
     }
 
-    void Start()
+    public void LoadSetting()
     {
         float volume = PlayerPrefs.GetFloat(_audioType.ToString() + "Volume", 1f);
         _slider.value = volume;
+        SetVolume();
     }
 
+    void Awake()
+    {
+        float volume = PlayerPrefs.GetFloat(_audioType.ToString() + "Volume", 1f);
+        _slider.value = volume;
+        SetVolume();
+    }
 }

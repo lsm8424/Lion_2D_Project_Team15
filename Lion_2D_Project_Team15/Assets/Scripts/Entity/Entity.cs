@@ -13,20 +13,33 @@ public class Entity : IdentifiableMonoBehavior
     // 정적 참조 (MonsterKillManager)
     public static MonsterKillManager killManager;
 
+    public event Action OnDamaged;
+
     // 사망 이벤트
     public event Action OnDeath;
 
     // 데미지 받기
     public virtual void TakeDamage(float value)
     {
+        // 무적 상태인 경우 데미지를 무시 (자식 클래스에서 정의됨)
+        if (this is Player player && player.IsInvincible)
+        {
+            Debug.Log($"{gameObject.name}은 무적 상태입니다. 데미지를 무시합니다.");
+            return;
+        }
+
         HP -= value;
         Debug.Log($"{gameObject.name}이(가) {value} 데미지를 입었습니다. (남은 체력: {HP})");
+        OnDamaged?.Invoke();
+
+        anim.SetTrigger("Hurt");
 
         if (HP <= 0)
         {
             Death();
         }
     }
+
 
     // 이동 (자식 클래스에서 필요 시 재정의)
     public virtual void Move()
@@ -45,13 +58,20 @@ public class Entity : IdentifiableMonoBehavior
         // 애니메이션 재생
         if (anim != null)
         {
+            Debug.Log("Death 트리거 호출!");
+            anim.ResetTrigger("Hurt");
             anim.SetTrigger("Death");
         }
 
         // 킬 카운트 등록
         killManager?.RegisterKill();
 
-        // 오브젝트 삭제 (0.5초 후)
-        Destroy(gameObject, 0.5f);
+        // Destroy는 별도 메서드로 분리
+        ScheduleDestroy();
+    }
+
+    protected virtual void ScheduleDestroy()
+    {
+        Destroy(gameObject, 1f); // 기본: 0.7초 후 삭제
     }
 }

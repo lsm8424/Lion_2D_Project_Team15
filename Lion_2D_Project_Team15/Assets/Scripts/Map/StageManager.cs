@@ -6,23 +6,13 @@ using System.Collections.Generic;
 /// <summary>
 /// 씬 이동 및 포탈 위치 이동을 처리하는 싱글톤 매니저
 /// </summary>
-public class StageManager : Singleton<GameManager>
+public class StageManager : Singleton<StageManager>
 {
     #region singleton
-    public static StageManager Instance { get; private set; }
 
     private void Awake()
     {
-        // 인스턴스가 없을 경우 자기 자신을 설정
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 변경 시 유지
-        }
-        else
-        {
-            Destroy(gameObject); // 중복 제거
-        }
+        base.Awake();
 
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -66,7 +56,7 @@ public class StageManager : Singleton<GameManager>
     /// </summary>
     private IEnumerator FadeAndTeleport(int targetIndex)
     {
-        var fadeIn = new Fade(Color.clear, Color.black, 0.5f); // 💡 페이드 인
+        Fade fadeIn = new Fade(Color.clear, Color.black, 0.5f); // 💡 페이드 인
         yield return fadeIn.Execute();
 
         if (!portalDict.TryGetValue(targetIndex, out Portal targetPortal))
@@ -83,7 +73,7 @@ public class StageManager : Singleton<GameManager>
             Player.transform.position = targetPortal.targetPortal.position;
         }
 
-        var fadeOut = new Fade(Color.black, Color.clear, 0.5f); // 💡 페이드 아웃
+        Fade fadeOut = new Fade(Color.black, Color.clear, 0.5f); // 💡 페이드 아웃
         yield return fadeOut.Execute();
     }
 

@@ -14,6 +14,10 @@ public class Stage2_BG_Pattern2 : MonoBehaviour
     [SerializeField] private GameObject warningPrefab;   // 경고 박스 프리팹
     [SerializeField] private float warningTime; // 경고 시간
 
+    [Header("사운드 효과")]
+    public AudioClip oceanSound; //해류 소리
+    public float value;
+
     float delta; //쿨타임
     bool isActive = false; //키입력 상태
 
@@ -45,6 +49,8 @@ public class Stage2_BG_Pattern2 : MonoBehaviour
         GameObject warning = Instantiate(warningPrefab, transform.position, Quaternion.identity);
         warning.GetComponent<Stage2_BG_WarningSector>().Initialize(rot, warningTime, () =>
         {
+            Stage2_Boss_Audio.Instance.PlayOneShot(oceanSound, value); //해류 소리 재생
+
             GameObject ocean = Instantiate(oceanPrefab, transform.position, Quaternion.identity);
 
             ocean.GetComponent<Stage2_BG_Ocean>().SetOcean(keyInputCount, keyDuration, rot, growSpeed, damage);

@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Runtime.InteropServices;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -23,8 +21,13 @@ public class PlayerInteraction : MonoBehaviour
     private bool ladderJustEntered = false;
     public bool canLadder = true;
 
-    // [수정] 아래 방향키 입력 상태를 외부에서 확인할 수 있도록 프로퍼티 추가
     public bool IsPressingDown { get; private set; }
+
+    // [수정] 아래 방향키 입력 상태를 외부에서 확인할 수 있도록 프로퍼티 추가
+    [Header("상호작용 UI")]
+    public GameObject interactIndicatorPrefab;
+
+    private GameObject currentIndicator = null;
 
     private void Start()
     {
@@ -104,17 +107,34 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(origin, dir, interactRange, interactLayerMask);
         Debug.DrawRay(origin, dir * interactRange, Color.yellow);
 
-        if (hit.collider != null)
+        // 감지 해제 조건: 감지 안 됨 or 대화 중 or 이벤트 실행 중
+        if (hit.collider == null || isTalking || EventFunctionTracker.IsEventRunning)
         {
-            if (currentTarget != hit.collider.gameObject)
+            if (currentTarget != null)
             {
-                Debug.Log("상호작용할 수 있는 Object입니다: " + hit.collider.name);
+                var oldHandler = currentTarget.GetComponent<InteractIndicatorHandler>();
+                oldHandler?.Hide();
             }
-            currentTarget = hit.collider.gameObject;
-        }
-        else
-        {
+
             currentTarget = null;
+            return;
+        }
+
+        GameObject hitObj = hit.collider.gameObject;
+
+        if (currentTarget != hitObj)
+        {
+            if (currentTarget != null)
+            {
+                var oldHandler = currentTarget.GetComponent<InteractIndicatorHandler>();
+                oldHandler?.Hide();
+            }
+
+            currentTarget = hitObj;
+            Debug.Log("상호작용할 수 있는 Object입니다: " + hitObj.name);
+
+            var newHandler = currentTarget.GetComponent<InteractIndicatorHandler>();
+            newHandler?.Show();
         }
     }
 
@@ -143,7 +163,7 @@ public class PlayerInteraction : MonoBehaviour
                 EnterLadder();
         }
 
-        // ✅ 여기부터 추가: IInteractable 인터페이스 이벤트 처리
+        // 여기부터 추가: IInteractable 인터페이스 이벤트 처리
         var interactableComponent = target.GetComponent<MonoBehaviour>() as IInteractable;
         if (interactableComponent != null)
         {

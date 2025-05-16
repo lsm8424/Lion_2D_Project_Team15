@@ -44,6 +44,7 @@ public class ComponentChangeFunction_SO : EventFunction_SO
 
     public override IEnumerator Execute()
     {
+        EventFunctionTracker.BeginEvent();
         if (!IDManager.Instance.TryGet(ObjectID, out var targetObj))
         {
             Debug.LogError($"[ComponentChangeFunction] 유효하지 않은 ObjectID: {ObjectID}");
@@ -112,6 +113,7 @@ public class ComponentChangeFunction_SO : EventFunction_SO
         }
 
         yield return null;
+        EventFunctionTracker.EndEvent();
     }
 
     private object GetTargetValue()

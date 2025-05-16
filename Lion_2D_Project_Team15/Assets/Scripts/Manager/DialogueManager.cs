@@ -6,11 +6,29 @@ using static Unity.Cinemachine.IInputAxisOwner.AxisDescriptor;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
-    public Dialogue_UI Dialogue_UI;
+    #region Resource
+    [field:SerializeField] public Dialogue_UI Dialogue_UI { get; private set; }
+    [SerializeField] GameObject _dialogueCanvas;
+    #endregion
+
     List<DialogueLineData> _dialogueLines = new();
     int _dialogueIndex;
     public bool IsDialogueCompleted { get; private set; } = true;
     public bool IsOneShotCompleted { get; private set; } = true;
+
+    protected override void Awake()
+    {
+        // 만약 Prefab이 없다면 Resources/SceneCanvas를 Load하여 사용
+        if (_dialogueCanvas == null)
+            _dialogueCanvas = Resources.Load<GameObject>("UI/DialogueCanvas");
+
+        if (Dialogue_UI == null)
+        {
+            Dialogue_UI = Instantiate(_dialogueCanvas, transform).GetComponent<Dialogue_UI>();
+            Dialogue_UI.gameObject.SetActive(false);
+        }
+
+    }
 
     public void StartDialogue(DialogueCategory category, string dialogueID)
     {

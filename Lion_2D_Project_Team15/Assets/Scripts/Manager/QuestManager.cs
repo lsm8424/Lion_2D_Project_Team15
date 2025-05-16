@@ -77,6 +77,10 @@ public class QuestManager : Singleton<QuestManager>
         Progresses[questID] = nextProgress;
         Debug.Log($"[QuestManager] 다음 단계로: Progress[{nextProgress}]");
 
+        quest.SetTrigger(nextProgress);
+        if (questProgress[currentProgress].ShouldSave)
+            SaveManager.Instance.Save();
+
         if (nextProgress >= questProgress.Length)
         {
             Debug.Log($"[QuestManager] 퀘스트 '{questID}' 완료!");
@@ -84,7 +88,7 @@ public class QuestManager : Singleton<QuestManager>
             yield break;
         }
 
-        quest.SetTrigger(nextProgress);
+
         _activeQuests.Remove(questID);
     }
 
@@ -92,10 +96,17 @@ public class QuestManager : Singleton<QuestManager>
     {
         Quest_SO[] quests = Resources.LoadAll<Quest_SO>($"GameEvent/{path}");
 
-        for (int i = 0; i < quests.Length; ++i)
+        foreach (var quest in quests)
         {
-            string id = quests[i].QuestID;
-            Quests.Add(id, quests[i]);
+            string id = quest.QuestID;
+
+            if (Quests.ContainsKey(id))
+            {
+                Debug.LogWarning($"[QuestManager] 이미 등록된 QuestID입니다: {id}");
+                continue;
+            }
+
+            Quests.Add(id, quest);
         }
     }
 

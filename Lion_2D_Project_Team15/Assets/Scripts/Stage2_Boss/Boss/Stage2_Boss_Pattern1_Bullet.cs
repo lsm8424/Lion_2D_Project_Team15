@@ -9,7 +9,7 @@ public class Stage2_Boss_Pattern1_Bullet : MonoBehaviour
     private void Start()
     {
         // 총알이 일정 시간 후에 삭제되도록 설정
-        Destroy(gameObject, 2f); // 3초 후에 삭제
+        Destroy(gameObject, 1.9f); // 3초 후에 삭제
     }
 
     void Update()
