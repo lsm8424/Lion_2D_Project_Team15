@@ -198,8 +198,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 729.3638, y: 403.90625}
-  m_SizeDelta: {x: 410.2336, y: 228.4473}
+  m_AnchoredPosition: {x: 729.3638, y: 398.66534}
+  m_SizeDelta: {x: 410.2336, y: 238.9291}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4060718553729300214
 CanvasRenderer:
@@ -416,7 +416,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "- \uCC45 \uAF42\uAE30 0/4"
+  m_text: "- \uCC45 \uAF42\uAE30 (0/4)\n- \uB3CC\uACE0\uB798 \uB3C4\uC640\uC8FC\uAE30
+    (0/1)\n- \uBAAC\uC2A4\uD130 \uC0AC\uB0E5 (0/10)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f1662198c3cef734da4d6b226f8bd900, type: 2}
   m_sharedMaterial: {fileID: -6363052761903815731, guid: f1662198c3cef734da4d6b226f8bd900, type: 2}
@@ -481,7 +482,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -8.696655, y: 0, z: -12.390625, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
