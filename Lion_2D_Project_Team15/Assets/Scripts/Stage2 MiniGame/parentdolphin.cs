@@ -13,7 +13,7 @@ public class ParentDolphin : NPC
     private bool isAnswerPhase = false;
     private bool awaitingInput = false;
 
-    public DialogueLine[] dialogueLines; // 기존 대화 라인들
+    // public DialogueLine[] dialogueLines; // 기존 대화 라인들
 
     private void Start()
     {

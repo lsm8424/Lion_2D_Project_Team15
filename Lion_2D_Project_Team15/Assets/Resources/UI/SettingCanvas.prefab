@@ -313,7 +313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1091437162532410088
 RectTransform:
   m_ObjectHideFlags: 0
@@ -422,23 +422,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1853778402148873335, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1853778402148873335, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1853778402148873335, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3239026831496020804, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3239026831496020804, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4219280301621954863, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_SpriteState.m_HighlightedSprite
@@ -635,15 +635,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1853778402148873335, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1853778402148873335, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1853778402148873335, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3048405904066790563, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: _audioType
@@ -651,11 +651,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3239026831496020804, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3239026831496020804, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3318969588637515950, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_text
@@ -848,15 +848,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1853778402148873335, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1853778402148873335, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1853778402148873335, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3048405904066790563, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: _audioType
@@ -864,11 +864,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3239026831496020804, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3239026831496020804, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3318969588637515950, guid: d9a105470828517448c34935ba33c98d, type: 3}
       propertyPath: m_text
