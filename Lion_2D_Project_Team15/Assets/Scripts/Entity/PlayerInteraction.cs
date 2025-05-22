@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Runtime.InteropServices;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -165,7 +163,7 @@ public class PlayerInteraction : MonoBehaviour
                 EnterLadder();
         }
 
-        // ✅ 여기부터 추가: IInteractable 인터페이스 이벤트 처리
+        // 여기부터 추가: IInteractable 인터페이스 이벤트 처리
         var interactableComponent = target.GetComponent<MonoBehaviour>() as IInteractable;
         if (interactableComponent != null)
         {

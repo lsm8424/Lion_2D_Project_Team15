@@ -17,6 +17,7 @@ public class Stage2_Boss_Bullet : MonoBehaviour
 
     void Start()
     {
+
         Destroy(gameObject, 2f); // 2.3초 후 총알 삭제
     }
 

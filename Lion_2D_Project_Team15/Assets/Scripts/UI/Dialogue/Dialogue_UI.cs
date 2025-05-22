@@ -5,26 +5,42 @@ using UnityEngine;
 
 public class Dialogue_UI : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI _speaker;
-    [SerializeField] TextMeshProUGUI _content;
-    [SerializeField] DialogueOptionPanel_UI _dialogueOptionPanel;
+    [SerializeField]
+    TextMeshProUGUI _speaker;
 
-    [SerializeField] string scriptIdNumber;
-    [SerializeField] string scriptIdPrefix;
+    [SerializeField]
+    TextMeshProUGUI _content;
+
+    [SerializeField]
+    DialogueOptionPanel_UI _dialogueOptionPanel;
+
+    [SerializeField]
+    string scriptIdNumber;
+
+    [SerializeField]
+    string scriptIdPrefix;
 
     public float PrintDelay = 0.1f;
     public bool DoSkip = false;
     public bool IsPrintComplete = false;
-    [SerializeField] float _timer = 0f;
+
+    [SerializeField]
+    float _timer = 0f;
 
     DialogueManager _dialogueManager;
 
-
     Dictionary<string, string> _nicknames = new Dictionary<string, string>
     {
-        {"player", "플레이어" },
-        {"libram", "리브람" },
+        { "player", "플레이어" },
+        { "libram", "리브람" },
+        { "narration", "나레이션" },
+        { "delos", "델로스" },
     };
+
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
@@ -60,7 +76,6 @@ public class Dialogue_UI : MonoBehaviour
         scriptIdPrefix = split[0];
         scriptIdNumber = split[1];
 
-
         SetNickname(scriptIdPrefix);
         _content.SetText("");
 
@@ -84,7 +99,7 @@ public class Dialogue_UI : MonoBehaviour
                 if (DoSkip)
                 {
                     _content.SetText(script);
-                    i = script.Length;  // Outer Loop 종료조건
+                    i = script.Length; // Outer Loop 종료조건
                     break;
                 }
 
@@ -118,6 +133,6 @@ public class Dialogue_UI : MonoBehaviour
         else
             _speaker.SetText(scriptIdPrefix);
     }
-    
+
     // IEnumerator PlayScript(ITextEffect textEffect);
 }

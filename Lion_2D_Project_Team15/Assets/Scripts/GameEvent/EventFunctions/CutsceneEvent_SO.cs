@@ -26,9 +26,15 @@ public class CutsceneEvent_SO : EventFunction_SO
             yield break;
         }
 
-        CutscenePlayer cutscenePlayer = CutscenePlayer.Instance;
-        PlayableDirector playableDirector = cutscenePlayer.PlayableDirector;
+        if (!IDManager.Instance.TryGet("CutscenePlayer", out var targetObject))
+        {
+            Debug.LogError("CutscenePlayer를 찾을 수 없습니다.");
+            yield break;
+        }
 
+        CutscenePlayer cutscenePlayer = targetObject.GetComponent<CutscenePlayer>();
+        PlayableDirector playableDirector = cutscenePlayer.PlayableDirector;
+        
         // Timeline이 종료되었는지 확실하게 알 수 있는 방법이 없음
         // Timeline 끝에 Trigger로 알리는 방법 CutscenePlayer.TimelineEndTrigger();
 

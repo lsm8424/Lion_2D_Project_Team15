@@ -9,6 +9,10 @@ public class Stage2_Boss_Pattern1 : MonoBehaviour
     [SerializeField] private float coolTime; // 쿨타임
     [SerializeField] private float damage; // 공격력
 
+    [Header("사운드 효과")]
+    public AudioClip attackSound; // 공격 사운드
+    [SerializeField] private float value;
+
     private float delta;
 
     void Start()
@@ -29,6 +33,8 @@ public class Stage2_Boss_Pattern1 : MonoBehaviour
     void Shoot()
     {
         float oneangle = 360f / bulletCount; // 각도 간격
+
+        Stage2_Boss_Audio.Instance.PlayOneShot(attackSound, value); // 공격 사운드 재생
 
         for (int i = 0; i < bulletCount; i++)
         {

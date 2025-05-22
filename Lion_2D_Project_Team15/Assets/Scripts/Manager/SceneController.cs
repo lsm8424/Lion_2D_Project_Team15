@@ -1,5 +1,5 @@
 using System.Collections;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,9 +17,18 @@ public class SceneController : Singleton<SceneController>
     string _sceneName;
     bool _hasStarted;
 
+    [field: SerializeField]
+    public bool ShouldLoadData { get; private set; } = false;
+
+    [Space]
+    [Header("Debug")]
+    [SerializeField]
+    bool DebugMode = false;
+
     protected override void Awake()
     {
         base.Awake();
+        Debug.Log("[SceneController] Awake 호출됨");
 
         // 만약 Prefab이 없다면 Resources/SceneCanvas를 Load하여 사용
         if (_sceneCanvasPrefab == null)
@@ -29,37 +38,96 @@ public class SceneController : Singleton<SceneController>
             _sceneCanvas = Instantiate(_sceneCanvasPrefab, transform);
 
         FadePanel = _sceneCanvas.GetComponentInChildren<Image>();
+    }
 
-        // 추후작성 필요
-        //SceneManager.sceneLoaded += OnSceneLoaded;
-        //ep2 포탈을 위한 주석처리
-        //SceneManager.sceneLoaded += (scene, loadSceneMode) =>
-        //    StartCoroutine(AfterAwake(scene, loadSceneMode)); // 임시용 코드 이후에 위 코드와 교체
+    void Start()
+    {
+        SceneManager.sceneLoaded += (scene, loadSceneMode) =>
+            StartCoroutine(AfterAwake(scene, loadSceneMode));
+    }
+
+    Dictionary<string, SceneInfo> SceneLoadInfo = new Dictionary<string, SceneInfo>()
+    {
+        { "TitleScene", new SceneInfo("", "", "") },
+        { "Prologue2", new SceneInfo("Prologue", "Prologue", "Prologue") },
+        { "Ep_1", new SceneInfo("Episode1", "Episode1", "Ep1") },
+        { "Ep_2", new SceneInfo("Episode2", "Episode2", "") },
+        {"Ep_2_Boss", new SceneInfo("Episode2_Boss","Episode2_Boss","Ep2Boss") }
+    };
+
+    readonly struct SceneInfo
+    {
+        public readonly string QuestPath;
+        public readonly string EventPath;
+        public readonly string StartQuestName;
+
+        public SceneInfo(string questPath, string eventPath, string startQuestName)
+        {
+            QuestPath = questPath;
+            EventPath = eventPath;
+            StartQuestName = startQuestName;
+        }
     }
 
     IEnumerator AfterAwake(Scene scene, LoadSceneMode loadSceneMode)
     {
+        Debug.Log($"Scene {scene.name} is Loading...");
+        GameManager.Instance.SetTimeCase(GameManager.ETimeCase.Loading);
         yield return null;
-        if (scene.name == "Title")
+        if (scene.name == "TitleScene")
         {
+            GameManager.Instance.RevertTimeCase();
             yield break;
         }
 
         // 순서는 ID
         IDManager.Instance.SetUpIdentifiers();
 
-        QuestManager.Instance.SetUp("Prologue");
-        QuestManager.Instance.StartQuest("Prologue");
+        SceneInfo sceneInfo;
+        if (!SceneLoadInfo.TryGetValue(scene.name, out sceneInfo))
+        {
+            Debug.LogError("잘못된 Scene이름 " + scene.name);
+            yield break;
+        }
+        // QuestManager.Instance.SetUp("Prologue");
+        // QuestManager.Instance.StartQuest("Prologue");
 
-        // QuestManager.Instance.SetUp("Episode1");
-        // QuestManager.Instance.StartQuest("Ep1");
 
+        Debug.Log($"{sceneInfo.QuestPath} is Setting...");
 
-        // if Load
-        // SaveManger.Instance.Load();
+        // ID, Event, Quest 순으로 초기화
+        IDManager.Instance.SetUpIdentifiers();
+
+        if (DebugMode)
+        {
+            if (ShouldLoadData)
+            {
+                SaveManager.Instance.Load();
+                ShouldLoadData = false;
+            }
+            yield break;
+        }
+
+        EventManager.Instance.SetupEvents(sceneInfo.EventPath);
+        QuestManager.Instance.SetUp(sceneInfo.QuestPath);
+        GameManager.Instance.RevertTimeCase();
+
+        if (ShouldLoadData)
+        {
+            SaveManager.Instance.Load();
+            ShouldLoadData = false;
+        }
+        Debug.Log($"Scene {scene.name} is Loaded.");
+        if (!ShouldLoadData)
+            QuestManager.Instance.StartQuest(sceneInfo.StartQuestName);
     }
 
-    void LoadSaveData() { }
+    public void LoadSaveScene(IScreenEffect startEffect, IScreenEffect endEffect)
+    {
+        ShouldLoadData = true;
+
+        LoadSceneWithEffect(SaveManager.Instance.GetSceneName(), startEffect, endEffect);
+    }
 
     /// <summary>
     /// Fade In/Out 효과를 적용하며 Scene로드

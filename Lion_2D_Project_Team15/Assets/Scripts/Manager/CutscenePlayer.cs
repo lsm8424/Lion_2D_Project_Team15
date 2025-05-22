@@ -3,19 +3,19 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-public class CutscenePlayer : Singleton<CutscenePlayer>
+public class CutscenePlayer : IdentifiableMonoBehavior
 {
     [field: SerializeField]
     public TimelineAsset Clip { get; private set; }
     public PlayableDirector PlayableDirector { get; private set; }
     public bool IsPlaying = false;
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
-
         PlayableDirector = GetComponent<PlayableDirector>();
     }
+
+    
 
     public void Play(TimelineAsset clip)
     {
@@ -23,8 +23,10 @@ public class CutscenePlayer : Singleton<CutscenePlayer>
         {
             Debug.LogError("Clip이 등록되지 않았습니다.");
         }
+        Debug.Log(Clip + " is Start");
         IsPlaying = true;
         Clip = clip;
+        PlayableDirector.playableAsset = clip;
         PlayableDirector.extrapolationMode = DirectorWrapMode.Hold;
         PlayableDirector.Play(Clip);
         StartCoroutine(WhilePlaying());

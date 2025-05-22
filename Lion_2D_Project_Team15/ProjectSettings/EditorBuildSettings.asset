@@ -12,14 +12,20 @@ EditorBuildSettings:
     path: Assets/Scenes/JYH_2.unity
     guid: 7024bd55a204789409f84572fca2aa8a
   - enabled: 1
+    path: Assets/Scenes/Game/TitleScene.unity
+    guid: 546b8990372fa2b4a88bd1e1a89446e7
+  - enabled: 1
+    path: Assets/Scenes/Game/Prologue2.unity
+    guid: 789274b1e22883441ab2794a70fb80b8
+  - enabled: 1
     path: Assets/Scenes/Game/Ep_1.unity
     guid: e1920c495b2aa454b99816ba08bf9219
   - enabled: 1
     path: Assets/Scenes/Game/Ep_2.unity
-    guid: 09308aa5c9cd40346b1eaf8d56a37b1c
+    guid: a3eff0e85c1abb24fa1c0b1958361058
   - enabled: 1
-    path: Assets/Scenes/Game/Prologue2.unity
-    guid: 789274b1e22883441ab2794a70fb80b8
+    path: Assets/Scenes/Game/Ep_2_Boss.unity
+    guid: 780ea608af56b644190651eebd80c1b1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

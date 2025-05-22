@@ -16,6 +16,10 @@ public class Stage2_Boss_Pattern3 : MonoBehaviour
     [SerializeField] private GameObject warningTrapPrefab;   // 경고 박스 프리팹
     [SerializeField] private float warningTime; // 경고 시간
 
+    [Header("사운드 효과")]
+    public AudioClip attackSound; // 공격 사운드
+    [SerializeField] private float value;
+
     //랜덤한 위치 정하기
     private float maxX = 18;
     private float maxY = 18;
@@ -65,8 +69,9 @@ public class Stage2_Boss_Pattern3 : MonoBehaviour
         GameObject warning = Instantiate(warningTrapPrefab, spawnPos, Quaternion.identity);
         warning.GetComponent<Stage2_Boss_TrapWarning>().Initialize(trapSize, warningTime, () =>
         {
-            GameObject trap = Instantiate(trapPrefab, spawnPos, Quaternion.identity);
+            Stage2_Boss_Audio.Instance.PlayOneShot(attackSound, value); // 공격 사운드 재생
 
+            GameObject trap = Instantiate(trapPrefab, spawnPos, Quaternion.identity);
             trap.GetComponent<Stage2_Boss_TrapSkill>().SetWave(lifeTime, trapSize, damage, stuckDuration, teleportTarget);
         });
 
