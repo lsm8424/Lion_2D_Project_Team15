@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class move : MonoBehaviour
+public class move : Entity
 {
     Rigidbody2D rb;
     [SerializeField] float speed;
@@ -33,6 +33,12 @@ public class move : MonoBehaviour
 
     void Update()
     {
+        if(GameManager.Instance.EntityTimeScale == 0)
+        {
+            rb.linearVelocity = Vector2.zero; // 시간 정지 시 이동 멈춤
+            return;
+        }
+
         // 키입력 상태이거나 회오리에 갇혔으면 velocity를 0으로 설정 및 이동 무시
         if (isKeyInput || isStuck)
         {

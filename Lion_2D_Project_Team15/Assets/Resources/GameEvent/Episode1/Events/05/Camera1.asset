@@ -22,9 +22,12 @@ MonoBehaviour:
   StartScreenPosition: {x: 0, y: 0.2}
   StartOffset: {x: 2, y: 0, z: 0}
   StartZoom: 6
-  EndScreenPosition: {x: 0, y: 0.3}
-  EndOffset: {x: 7, y: 2, z: 0}
+  EndScreenPosition: {x: 0, y: 0.2}
+  EndOffset: {x: 8, y: 1.5, z: 0}
   EndZoom: 6
   WaitBefore: 0
   WaitAfter: 1
   useCurrentAsStart: 1
+  useShake: 0
+  shakeIntensity: 0.2
+  shakeFrequency: 20

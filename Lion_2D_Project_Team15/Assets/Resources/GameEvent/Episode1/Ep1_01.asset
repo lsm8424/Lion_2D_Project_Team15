@@ -56,3 +56,6 @@ MonoBehaviour:
   - Trigger: {fileID: 11400000, guid: dab74882a80c79b4a8e0849c08b66002, type: 2}
     GameEvent: {fileID: 11400000, guid: 2537d7e3456469c4988a9ed1189862de, type: 2}
     ShouldSave: 0
+  - Trigger: {fileID: 11400000, guid: df0bb01c08498e8498777fa268c29af7, type: 2}
+    GameEvent: {fileID: 11400000, guid: 7254f130d29e1cd4495ef1d7184e0183, type: 2}
+    ShouldSave: 0

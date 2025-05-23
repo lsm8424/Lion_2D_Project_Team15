@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isAttacking = false;
 
+    public bool isBossRound = false; // 보스라운드인지 여부
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -91,6 +93,16 @@ public class PlayerMovement : MonoBehaviour
             sword.Flip(facingRight);
     }
 
+    //보스라운드에 점프X 이동방식 변경 중력 0
+    public void SetBossRound()
+    {
+        if (rb != null)
+        {
+            rb.gravityScale = 0f; // 중력 비활성화
+            rb.linearVelocity = Vector2.zero; // 속도 초기화
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -133,4 +145,5 @@ public class PlayerMovement : MonoBehaviour
             Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer)
             && !isTouchingWall;
     }
+
 }

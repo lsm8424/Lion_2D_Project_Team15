@@ -31,6 +31,8 @@ public class Stage2_Boss_WarningBox : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.EntityTimeScale == 0) return;
+
         if (player == null) return;
 
         Vector3 dir = (player.position - transform.position).normalized;
