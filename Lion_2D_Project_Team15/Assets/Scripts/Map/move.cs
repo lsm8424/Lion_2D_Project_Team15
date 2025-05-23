@@ -29,6 +29,9 @@ public class move : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        //보스맵에서 체력 초기화
+        Player.Instance.HP = Player.Instance.maxHP;
     }
 
     void Update()

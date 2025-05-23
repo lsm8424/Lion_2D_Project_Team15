@@ -25,7 +25,7 @@ public class Stage2_Boss : Entity
 
         //보스라운드 true
         //Player.Instance.SetBossRound();
-        if (DamageBtn != null && GameManager.Instance.EntityTimeScale == 1)
+        if (DamageBtn != null)
             DamageBtn.onClick.AddListener(() =>
             {
                 TakeDamage(Random.Range(50, 100));
