@@ -6,6 +6,7 @@ public class UIManager : Singleton<UIManager>
     SettingCanvas _settingCanvas;
     GameObject _settingsPanel;
     [field: SerializeField] public GameObject VolumePanel { get; private set; }
+    [field: SerializeField] public GameObject GameOverCanvasPrefab { get; private set; }
 
     readonly Stack<GameObject> PanelStack = new();
 
@@ -17,31 +18,27 @@ public class UIManager : Singleton<UIManager>
         {
             GameObject canvasPrefab = Resources.Load<GameObject>("UI/SettingCanvas");
             _settingCanvas = Instantiate(canvasPrefab, transform).GetComponent<SettingCanvas>();
-            _settingCanvas.gameObject.SetActive(true);
+            _settingCanvas.gameObject.SetActive(false);
         }
+
+        if (GameOverCanvasPrefab == null)
+            GameOverCanvasPrefab = Resources.Load<GameObject>("UI/GameOverCanvas");
 
         _settingsPanel = _settingCanvas.SettingPanel;
         VolumePanel = _settingCanvas.VolumePanel;
-        _settingsPanel.gameObject.SetActive(false);
-        VolumePanel.gameObject.SetActive(false);
+        _settingsPanel.SetActive(true);
+        VolumePanel.SetActive(false);
     }
-
-    
 
     public void OnPressedESC()
     {
-        // 열려있는지 창 확인
-        // 그 후 열려있으면 창 닫고
-        // 열려있지 않다면 세팅패널 열기
-
-        // 창이 하나라도 열려있는지 확인
         if (PanelStack.Count > 0)
         {
             PopPanel();
         }
         else if (PanelStack.Count == 0 && GameManager.Instance.CurrentTime != GameManager.ETimeCase.Title)
         {
-            OpenPanel(_settingsPanel);
+            OpenPanel(_settingCanvas.gameObject);
         }
     }
 
