@@ -922,5 +922,33 @@
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
+  },
+  {
+    "id": "player_035",
+    "text": "마치 전혀 다른 사진을 이어 붙인것 마냥 배경이 갑자기 바꼈어.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_036",
+    "text": "전혀 다른 파일들로 이루어진 차원이기 때문인가?",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_037",
+    "text": "앞에 어떤 일이 벌어질지 모르니 긴장하는게 좋겠어.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "end",
+    "text": "end.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
   }
 ]

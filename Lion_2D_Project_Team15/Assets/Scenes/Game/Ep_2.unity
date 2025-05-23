@@ -23844,12 +23844,20 @@ PrefabInstance:
       value: potal_8
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: portalType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: portalIndex
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: targetSceneName
+      value: Ep_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetPortalIndex
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5658992036665296919, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: m_LocalPosition.x
