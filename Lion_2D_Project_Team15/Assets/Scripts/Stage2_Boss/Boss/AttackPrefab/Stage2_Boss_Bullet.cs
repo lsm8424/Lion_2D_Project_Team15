@@ -18,12 +18,15 @@ public class Stage2_Boss_Bullet : MonoBehaviour
     void Start()
     {
 
-        Destroy(gameObject, 2f); // 2.3초 후 총알 삭제
     }
 
     void Update()
     {
+        if (GameManager.Instance.EntityTimeScale == 0) return;
+
         time += Time.deltaTime; // 시간 증가
+
+        if(time > 1.9f) Destroy(gameObject); // 1.9초 후에 삭제
 
         Vector3 waveOffset = perpendicular * Mathf.Sin(time * waveFrequency) * waveAmplitude;
         transform.position += (direction * speed * Time.deltaTime) + (waveOffset * Time.deltaTime);

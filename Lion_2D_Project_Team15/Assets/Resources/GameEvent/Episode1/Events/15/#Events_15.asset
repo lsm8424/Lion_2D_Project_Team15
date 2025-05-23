@@ -17,7 +17,7 @@ MonoBehaviour:
   EventName: "\uBC30\uACBD\uC774 \uBC14\uB00C\uB294 \uACF3"
   RequireSave: 0
   EventFunctions:
-  - {fileID: 11400000, guid: c081b9e391df72f4f97a1b0695e411c0, type: 2}
-  - {fileID: 11400000, guid: 6a940a47cfc944e49b20000e60fc3dde, type: 2}
-  - {fileID: 11400000, guid: a5e01cff2d5e12442b26c2b5c475cc03, type: 2}
-  - {fileID: 11400000, guid: a5e01cff2d5e12442b26c2b5c475cc03, type: 2}
+  - {fileID: 11400000, guid: 23d7c8264f74b6f4cb5a752a18ce25fe, type: 2}
+  - {fileID: 11400000, guid: ca685d991b15a8d47b37108c1a2bb741, type: 2}
+  - {fileID: 11400000, guid: a21a7b550d6cf8c49ad795044cc7311f, type: 2}
+  - {fileID: 11400000, guid: 33f277881233a7845a9d843f5381624b, type: 2}

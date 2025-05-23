@@ -9,6 +9,7 @@ public class Stage2_BG_Pattern2 : MonoBehaviour
     [SerializeField] private float keyDuration; //키입력 시간
     [SerializeField] private float growSpeed;   //성장 속도
     [SerializeField] private float damage;      //실패시 데미지
+    public bool isOn;
 
     [Header("Warning")]
     [SerializeField] private GameObject warningPrefab;   // 경고 박스 프리팹
@@ -23,11 +24,14 @@ public class Stage2_BG_Pattern2 : MonoBehaviour
 
     void Start()
     {
-        delta = coolTime;
+        
     }
 
     void Update()
     {
+        if(isOn == false)
+            return;
+
         if (isActive)
             return;
 

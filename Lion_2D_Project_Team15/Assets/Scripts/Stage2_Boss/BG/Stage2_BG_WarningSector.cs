@@ -21,6 +21,8 @@ public class Stage2_BG_WarningSector : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.EntityTimeScale == 0) return;
+
         // 깜빡이기 효과
         float alpha = Mathf.PingPong(Time.time * 5f, 1f);
         sr.color = new Color(1f, 0f, 0f, alpha);

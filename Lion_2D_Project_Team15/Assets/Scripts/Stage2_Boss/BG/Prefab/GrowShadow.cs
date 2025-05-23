@@ -8,18 +8,23 @@ public class GrowShadow : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
+        if (GameManager.Instance.EntityTimeScale == 0) return;
+
         timer += Time.deltaTime;
+
+        if (timer > growDuration - 0.1f) Destroy(gameObject);
+
         float t = timer / growDuration;
 
         transform.localScale = Vector2.Lerp(Vector2.zero, targetScale, t);
     }
 
-    public void SetShadow(Vector3 pos,float duration)
+    public void SetShadow(Vector3 pos, float duration)
     {
         transform.position = pos;
         growDuration = duration;
