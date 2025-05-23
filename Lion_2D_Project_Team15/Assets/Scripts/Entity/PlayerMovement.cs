@@ -38,12 +38,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleMove()
     {
+        if (isBossRound) return;
+
         if (Player.Instance.IsStunned)
             return;
         if (isAttacking && !anim.GetBool("Jump"))
             return;
         if (Player.Instance.interaction.IsOnLadder())
             return;
+        
 
         float h = Input.GetAxisRaw("Horizontal");
         Vector3 moveDir = new Vector3(h, 0, 0).normalized;
@@ -59,11 +62,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleJump()
     {
+        if (isBossRound) return;
+
         if (!canJump)
             return;
         if (Player.Instance.interaction.IsOnLadder())
             return;
-
+       
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -91,16 +96,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (sword != null)
             sword.Flip(facingRight);
-    }
-
-    //보스라운드에 점프X 이동방식 변경 중력 0
-    public void SetBossRound()
-    {
-        if (rb != null)
-        {
-            rb.gravityScale = 0f; // 중력 비활성화
-            rb.linearVelocity = Vector2.zero; // 속도 초기화
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
