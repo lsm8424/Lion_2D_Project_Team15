@@ -9,11 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bef1b41f17438f43925fe24a7b17069, type: 3}
-  m_Name: '#Triggers_10'
+  m_Script: {fileID: 11500000, guid: 045a91e831e6cfa4d96e98716bc79f09, type: 3}
+  m_Name: Conv1
   m_EditorClassIdentifier: 
-  ObjectID: EventCollider_0
-  Type: 1
-  Conditions: []
-  QuestID: Ep1
-  ProgressLevel: 9
+  FunctionType: 0
+  Conversations:
+  - Category: 1
+    DialogueID: player_035
+  - Category: 1
+    DialogueID: player_036
+  - Category: 1
+    DialogueID: player_037

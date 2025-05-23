@@ -97,19 +97,25 @@ public class Player : Entity
 
     public void Stun()
     {
+        Stun(stunDuration); // 내부적으로 1초 기본값 사용
+    }
+
+
+    public void Stun(float duration)
+    {
         if (!isStunned)
         {
-            StartCoroutine(StunCoroutine());
+            StartCoroutine(StunCoroutine(duration));
         }
     }
 
-    private IEnumerator StunCoroutine()
+    private IEnumerator StunCoroutine(float duration)
     {
         isStunned = true;
         //Debug.Log("플레이어가 경직되었습니다!");
         movement.enabled = false;
 
-        yield return new WaitForSeconds(stunDuration);
+        yield return new WaitForSeconds(duration);
 
         movement.enabled = true;
         isStunned = false;
