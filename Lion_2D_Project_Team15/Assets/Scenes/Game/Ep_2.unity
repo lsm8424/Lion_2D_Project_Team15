@@ -4327,10 +4327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6909055435033925241, guid: 06ce94b9e6a932643beaa06dc33f346a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 967189507}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06ce94b9e6a932643beaa06dc33f346a, type: 3}
 --- !u!1 &196770288
@@ -24957,37 +24954,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4710232982895162011, guid: fb8c8c61b4271844d987dce548beb208, type: 3}
   m_PrefabInstance: {fileID: 961161395}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &967189506
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 967189507}
-  m_Layer: 10
-  m_Name: fire Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &967189507
+--- !u!4 &967189507 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8724596814866903921, guid: 06ce94b9e6a932643beaa06dc33f346a, type: 3}
+  m_PrefabInstance: {fileID: 195263495}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967189506}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.178, y: 0.369, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1763242121}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &998163491
 GameObject:
   m_ObjectHideFlags: 0
@@ -58866,11 +58837,6 @@ MonoBehaviour:
   - {x: 0.4157348, y: -0.27778515, z: 0}
   - {x: 0.46193978, y: -0.19134171, z: 0}
   - {x: 0.49039266, y: -0.09754512, z: 0}
---- !u!4 &1763242121 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6909055435033925241, guid: 06ce94b9e6a932643beaa06dc33f346a, type: 3}
-  m_PrefabInstance: {fileID: 195263495}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1768339491
 GameObject:
   m_ObjectHideFlags: 0
