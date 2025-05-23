@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FunctionType: 0
   ControlType: 0
-  targetCameraName: CinemachineCamera_2
+  targetCameraName: CinemachineCamera_4
   deactivateWhenDone: 0
   Duration: 2
-  InterpolationType: 0
+  InterpolationType: 6
   newTargetObjectID: 
   StartScreenPosition: {x: 0, y: 0.2}
-  StartOffset: {x: 2, y: 0, z: 0}
-  StartZoom: 6
-  EndScreenPosition: {x: 0, y: 0.2}
-  EndOffset: {x: 8, y: 1.5, z: 0}
-  EndZoom: 6
+  StartOffset: {x: 0, y: 0, z: 0}
+  StartZoom: 5
+  EndScreenPosition: {x: 0, y: 0.1}
+  EndOffset: {x: 5, y: 0, z: 0}
+  EndZoom: 8
   WaitBefore: 0
-  WaitAfter: 1
+  WaitAfter: 0
   useCurrentAsStart: 1
   useShake: 0
   shakeIntensity: 0.2
