@@ -14,7 +14,7 @@ public class Player : Entity
 
     public bool IsInvincible => isInvincible;
     private bool isInvincible = false;
-    public float invincibleDuration = 1.5f;
+    public float invincibleDuration = 1f;
     public bool IsStunned => isStunned;
 
     public static Player Instance { get; private set; }
@@ -181,6 +181,7 @@ public class Player : Entity
             .ToArray();
 
         float elapsedTime = 0f;
+        yield return new WaitForSeconds(0.1f); //0.1초 후 시작 넉백보여주고 투명
         while (elapsedTime < invincibleDuration)
         {
             // 플레이어와 무기 스프라이트 토글
