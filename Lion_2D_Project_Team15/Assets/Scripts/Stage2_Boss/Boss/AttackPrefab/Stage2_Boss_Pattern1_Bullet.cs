@@ -5,16 +5,22 @@ public class Stage2_Boss_Pattern1_Bullet : MonoBehaviour
     private float speed;
     private Vector3 direction;
     private float damage;
+    private float delta;
 
     private void Start()
     {
-        // 총알이 일정 시간 후에 삭제되도록 설정
-        Destroy(gameObject, 1.9f); // 3초 후에 삭제
+
     }
 
     void Update()
     {
+        if (GameManager.Instance.EntityTimeScale == 0) return;
+
+        delta += Time.deltaTime;
+        if(delta > 1.8f) Destroy(gameObject); // 1.9초 후에 삭제
+
         transform.position += direction * speed * Time.deltaTime;
+
     }
 
     public void Initialize(float speed, Vector3 direction, float damage)

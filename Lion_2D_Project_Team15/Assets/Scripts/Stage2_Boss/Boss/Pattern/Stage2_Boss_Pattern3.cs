@@ -11,6 +11,7 @@ public class Stage2_Boss_Pattern3 : MonoBehaviour
     [SerializeField] private int trapSize;    //트랩 사이즈
     [SerializeField] private float damage;      //트랩 데미지
     [SerializeField] private float stuckDuration; //트랩에 갇히는 시간
+    public bool isOn;
 
     [Header("Warning Trap")]
     [SerializeField] private GameObject warningTrapPrefab;   // 경고 박스 프리팹
@@ -29,11 +30,14 @@ public class Stage2_Boss_Pattern3 : MonoBehaviour
 
     private void Start()
     {
-        delta = coolDown;
+
     }
 
     private void Update()
     {
+        if(isOn == false)
+            return;
+
         if (!isWaveSpawn)
         {
             delta -= Time.deltaTime;

@@ -8,6 +8,7 @@ public class Stage2_Boss_Pattern1 : MonoBehaviour
     [SerializeField] private float bulletCount; // 총알 개수
     [SerializeField] private float coolTime; // 쿨타임
     [SerializeField] private float damage; // 공격력
+    public bool isOn;
 
     [Header("사운드 효과")]
     public AudioClip attackSound; // 공격 사운드
@@ -22,6 +23,9 @@ public class Stage2_Boss_Pattern1 : MonoBehaviour
 
     void Update()
     {
+        if(isOn == false)
+            return;
+
         delta -= Time.deltaTime;
         if (delta <= 0)
         {

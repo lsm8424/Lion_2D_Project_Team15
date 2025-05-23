@@ -23,6 +23,8 @@ public class Stage2_Boss_WaveSkill : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.EntityTimeScale == 0) return;
+
         if (crash)
             return;
 
