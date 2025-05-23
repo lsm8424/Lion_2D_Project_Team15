@@ -206,4 +206,10 @@ public class Player : Entity
     {
         Destroy(gameObject, 2f); // 플레이어만 2초 후 삭제
     }
+
+    protected override void Death()
+    {
+        base.Death();
+        Instantiate(UIManager.Instance.GameOverCanvasPrefab);
+    }
 }

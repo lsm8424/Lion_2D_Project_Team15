@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using GameObjectEntry = SaveManager.GameObjectEntry;
 
-public abstract class IdentifiableMonoBehavior : MonoBehaviour
+public class IdentifiableMonoBehavior : MonoBehaviour
 {
     [SerializeField] private string _objectId;
     public string ObjectID { get => _objectId; }
@@ -37,6 +37,7 @@ public abstract class IdentifiableMonoBehavior : MonoBehaviour
             _binding.Set(keys[i], values[i]);
     }
 
+    // 클로저 발생
     public class EntryBinding
     {
         readonly Dictionary<string, Property> _properties = new();
