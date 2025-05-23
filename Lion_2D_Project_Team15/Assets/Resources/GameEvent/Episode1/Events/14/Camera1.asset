@@ -21,13 +21,13 @@ MonoBehaviour:
   newTargetObjectID: 
   StartScreenPosition: {x: 0, y: 0.2}
   StartOffset: {x: 0, y: 0, z: 0}
-  StartZoom: 6
+  StartZoom: 5
   EndScreenPosition: {x: 0, y: 0.2}
   EndOffset: {x: -7, y: 0, z: 0}
-  EndZoom: 6
+  EndZoom: 5
   WaitBefore: 0
   WaitAfter: 0
-  useCurrentAsStart: 0
+  useCurrentAsStart: 1
   useShake: 0
   shakeIntensity: 0.2
   shakeFrequency: 20
