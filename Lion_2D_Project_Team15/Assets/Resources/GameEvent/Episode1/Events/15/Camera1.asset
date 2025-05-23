@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f8ebd8be7a3e0245881c677e9c91312, type: 3}
-  m_Name: Camera2
+  m_Name: Camera1
   m_EditorClassIdentifier: 
   FunctionType: 0
   ControlType: 0
-  targetCameraName: CinemachineCamera_1
+  targetCameraName: CinemachineCamera_4
   deactivateWhenDone: 0
   Duration: 2
-  InterpolationType: 7
+  InterpolationType: 6
   newTargetObjectID: 
   StartScreenPosition: {x: 0, y: 0.2}
   StartOffset: {x: 0, y: 0, z: 0}
   StartZoom: 5
-  EndScreenPosition: {x: 0, y: 0.2}
-  EndOffset: {x: 0, y: 0, z: 0}
-  EndZoom: 5
+  EndScreenPosition: {x: 0, y: 0.1}
+  EndOffset: {x: 5, y: 0, z: 0}
+  EndZoom: 8
   WaitBefore: 0
   WaitAfter: 0
   useCurrentAsStart: 1

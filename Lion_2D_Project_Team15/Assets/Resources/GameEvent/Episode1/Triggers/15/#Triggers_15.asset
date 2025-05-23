@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bef1b41f17438f43925fe24a7b17069, type: 3}
-  m_Name: '#Triggers_10'
+  m_Name: '#Triggers_15'
   m_EditorClassIdentifier: 
-  ObjectID: EventCollider_0
+  ObjectID: EventCollider_2
   Type: 1
   Conditions: []
-  QuestID: Ep1
-  ProgressLevel: 9
+  QuestID: 
+  ProgressLevel: 0
