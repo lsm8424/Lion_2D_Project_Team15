@@ -9,6 +9,7 @@ public class Stage2_Boss_Pattern2 : MonoBehaviour
     [SerializeField] private float nockBackForce; // 넉백 힘
     [SerializeField] private float coolTime; // 쿨타임
     [SerializeField] private float damage; // 공격력
+    public bool isOn; // 공격 활성화 여부
 
     [Header("Warning Box")]
     [SerializeField] private GameObject warningBoxPrefab;   // 경고 박스 프리팹
@@ -30,6 +31,9 @@ public class Stage2_Boss_Pattern2 : MonoBehaviour
 
     void Update()
     {
+        if(isOn == false)
+            return; 
+
         delta -= Time.deltaTime;
         if (delta <= 0)
         {

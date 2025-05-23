@@ -140,6 +140,7 @@ public class Player : Entity
             () => combat.hasCoralStaff,
             v => combat.hasCoralStaff = (bool)v
         );
+
     }
 
     public override void TakeDamage(float value)
@@ -205,4 +206,7 @@ public class Player : Entity
     {
         Destroy(gameObject, 2f); // 플레이어만 2초 후 삭제
     }
+
+    //보스라운드일때 bind 수정해야됨
+    public void SetBossRound() => movement.isBossRound = true;
 }

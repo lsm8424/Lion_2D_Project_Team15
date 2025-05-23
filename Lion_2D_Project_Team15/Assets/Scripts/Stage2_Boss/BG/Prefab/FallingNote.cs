@@ -26,6 +26,8 @@ public class FallingNote : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.EntityTimeScale == 0) return;
+
         timer += Time.deltaTime;
         float t = timer / fallDuration;
 

@@ -32,7 +32,8 @@ public class Entity : IdentifiableMonoBehavior
         Debug.Log($"{gameObject.name}이(가) {value} 데미지를 입었습니다. (남은 체력: {HP})");
         OnDamaged?.Invoke();
 
-        anim.SetTrigger("Hurt");
+        if(anim != null)
+            anim.SetTrigger("Hurt");
 
         if (HP <= 0)
         {
