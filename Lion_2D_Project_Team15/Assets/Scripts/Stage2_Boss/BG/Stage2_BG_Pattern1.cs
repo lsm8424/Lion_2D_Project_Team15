@@ -10,6 +10,7 @@ public class Stage2_BG_Pattern1 : MonoBehaviour
     [SerializeField] private float fallDuration;
     [SerializeField] private int maxX;
     [SerializeField] private int maxY;
+    [SerializeField] private float damage;
     public bool isOn;
 
     [Header("사운드 효과")]
@@ -65,7 +66,7 @@ public class Stage2_BG_Pattern1 : MonoBehaviour
 
         Stage2_Boss_Audio.Instance.PlayOneShot(fallNoteSound, value);
 
-        fallingNote.GetComponent<FallingNote>().Initialize(targetPosition, fallDuration);
+        fallingNote.GetComponent<FallingNote>().Initialize(targetPosition, fallDuration, damage);
         GameObject shadow = Instantiate(shadowPrefab);
         shadow.GetComponent<GrowShadow>().SetShadow(targetPosition, fallDuration);
         

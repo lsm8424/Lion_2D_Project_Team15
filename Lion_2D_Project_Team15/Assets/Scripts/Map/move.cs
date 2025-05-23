@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class move : Entity
+public class move : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] float speed;

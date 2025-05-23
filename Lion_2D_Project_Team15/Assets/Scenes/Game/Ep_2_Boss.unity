@@ -2330,6 +2330,7 @@ MonoBehaviour:
   fallDuration: 1.5
   maxX: 19
   maxY: 19
+  damage: 5
   isOn: 0
   fallNoteSound: {fileID: 8300000, guid: 839bd48e8f944074491a0da5d70462f0, type: 3}
   value: 0.1
@@ -2350,7 +2351,7 @@ MonoBehaviour:
   keyInputCount: 3
   keyDuration: 3
   growSpeed: 30
-  damage: 0
+  damage: 20
   isOn: 0
   warningPrefab: {fileID: 1328851054533475054, guid: 0a55f1919f0c36e4482dae9ed223bbb9, type: 3}
   warningTime: 2
@@ -3041,7 +3042,7 @@ MonoBehaviour:
   coolTime: 1
   bulletspeed: 10
   nockBack: 20
-  damage: 0
+  damage: 10
   isOn: 0
   waveFrequency: 5
   waveAmplitude: 5
@@ -3070,7 +3071,7 @@ MonoBehaviour:
   bulletSpeed: 10
   bulletCount: 24
   coolTime: 3
-  damage: 0
+  damage: 8
   isOn: 0
   attackSound: {fileID: 8300000, guid: e191e61942ded70469315dd27c3f7048, type: 3}
   value: 0.3
@@ -3140,7 +3141,7 @@ MonoBehaviour:
   lifeTime: 3
   coolDown: 7
   trapSize: 3
-  damage: 0
+  damage: 15
   stuckDuration: 0.7
   isOn: 0
   warningTrapPrefab: {fileID: 5644881623933223089, guid: 6386676466c97d14db021f68cad7e80c, type: 3}
@@ -17114,6 +17115,8 @@ GameObject:
   - component: {fileID: 2031523356}
   - component: {fileID: 2031523358}
   - component: {fileID: 2031523359}
+  - component: {fileID: 2031523363}
+  - component: {fileID: 2031523362}
   - component: {fileID: 2031523360}
   - component: {fileID: 2031523361}
   m_Layer: 8
@@ -17205,10 +17208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a87831d514b6b499aa0b5305f34f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectId: 
-  HP: 100
-  maxHP: 100
-  anim: {fileID: 0}
   speed: 7
   isKeyInput: 0
   isStuck: 0
@@ -17298,6 +17297,52 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2031523362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031523355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ed89b5b50c7b146bf2c7da7feb2b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectId: 
+  HP: 100
+  maxHP: 100
+  anim: {fileID: 0}
+  stunDuration: 1
+  invincibleDuration: 1.5
+  isKeyInput: 0
+  isStuck: 0
+  blinkInterval: 0.2
+  movement: {fileID: 0}
+  combat: {fileID: 0}
+  interaction: {fileID: 0}
+--- !u!114 &2031523363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031523355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e475b18513b3542bbdc94c334cfe13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coralStaffInHand: {fileID: 0}
+  coralStaffAttackPower: 15
+  attackPower: 0
+  attackCooldown: 0
+  canAttack: 1
+  skillCooldown: 0
+  coralProjectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  hasCoralStaff: 0
+  sword: {fileID: 0}
 --- !u!1 &2055307436
 GameObject:
   m_ObjectHideFlags: 0
