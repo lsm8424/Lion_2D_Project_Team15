@@ -17,13 +17,19 @@ public class Stage2_BG_Ocean : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, 0.7f); // 5초 후에 오브젝트 삭제
+        
     }
 
     void Update()
     {
+        if (GameManager.Instance.EntityTimeScale == 0) return;
 
         transform.localScale += Vector3.one * growSpeed * Time.deltaTime; // 크기 증가
+
+        if (transform.localScale.x >= targetScale.x)
+        {
+            Destroy(gameObject); // 목표 크기에 도달하면 오브젝트 삭제
+        }
     }
 
     public void SetOcean(int keyinputcount, float keyduration, float rot, float growspeed, float damage)

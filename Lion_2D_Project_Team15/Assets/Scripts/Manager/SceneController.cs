@@ -55,8 +55,8 @@ public class SceneController : Singleton<SceneController>
         { "TitleScene", new SceneInfo("", "", "") },
         { "Prologue2", new SceneInfo("Prologue", "Prologue", "Prologue") },
         { "Ep_1", new SceneInfo("Episode1", "Episode1", "Ep1") },
-        { "Ep_2", new SceneInfo("Episode2", "Episode2", "") },
-        {"Ep_2_Boss", new SceneInfo("Episode2_Boss","Episode2_Boss","Ep2Boss") }
+        { "Ep_2", new SceneInfo("Episode2", "Episode2", "Ep2") },
+        { "Ep_2_Boss", new SceneInfo("Episode2_Boss", "Episode2_Boss", "Ep2Boss") }
     };
 
     readonly struct SceneInfo

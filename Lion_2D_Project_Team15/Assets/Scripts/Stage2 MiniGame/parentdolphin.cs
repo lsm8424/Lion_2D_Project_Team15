@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class ParentDolphin : NPC
 {
@@ -13,7 +13,7 @@ public class ParentDolphin : NPC
     private bool isAnswerPhase = false;
     private bool awaitingInput = false;
 
-    public DialogueLine[] dialogueLines; // 기존 대화 라인들
+    public DialogueLine[] dialoguelines; // 기존 대화 라인들
 
     private void Start()
     {
@@ -41,7 +41,7 @@ public class ParentDolphin : NPC
 
         dialogueIndex++;
 
-        if (dialogueIndex >= dialogueLines.Length)
+        if (dialogueIndex >= dialoguelines.Length)
         {
             EndDialogue();
         }
@@ -53,7 +53,7 @@ public class ParentDolphin : NPC
 
     private void ShowDialogue()
     {
-        var line = dialogueLines[dialogueIndex];
+        var line = dialoguelines[dialogueIndex];
 
         if (line.speaker == SpeakerType.NPC)
         {
@@ -102,9 +102,21 @@ public class ParentDolphin : NPC
 
         while (!answered)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) { selected = "babydolphin1"; answered = true; }
-            else if (Input.GetKeyDown(KeyCode.Alpha2)) { selected = "babydolphin2"; answered = true; }
-            else if (Input.GetKeyDown(KeyCode.Alpha3)) { selected = "babydolphin3"; answered = true; }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                selected = "babydolphin1";
+                answered = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                selected = "babydolphin2";
+                answered = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                selected = "babydolphin3";
+                answered = true;
+            }
 
             yield return null;
         }

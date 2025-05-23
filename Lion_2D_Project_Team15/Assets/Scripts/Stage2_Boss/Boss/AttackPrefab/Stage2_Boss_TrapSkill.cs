@@ -23,6 +23,8 @@ public class Stage2_Boss_TrapSkill : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.EntityTimeScale == 0) return;
+
         //플레이어가 트랩에 들어오지 않았을 때만 시간 감소
         if (!triggerEnter)
         {

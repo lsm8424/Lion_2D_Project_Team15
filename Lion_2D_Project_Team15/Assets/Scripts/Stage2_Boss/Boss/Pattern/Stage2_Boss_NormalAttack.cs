@@ -8,6 +8,7 @@ public class Stage2_Boss_NormalAttack : MonoBehaviour
     [SerializeField] private float bulletspeed; // 공격 속도
     [SerializeField] private float nockBack; // 넉백 힘
     [SerializeField] private float damage; // 공격력
+    public bool isOn; // 공격 활성화 여부
 
     [Header("웨이브")]
     [SerializeField] private float waveFrequency; // 웨이브 주기
@@ -29,6 +30,9 @@ public class Stage2_Boss_NormalAttack : MonoBehaviour
 
     void Update()
     {
+        if(isOn == false)
+            return;
+
         delta -= Time.deltaTime;
         if (delta <= 0)
         {
