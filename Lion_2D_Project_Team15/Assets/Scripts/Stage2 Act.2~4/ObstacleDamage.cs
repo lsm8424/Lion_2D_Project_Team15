@@ -14,7 +14,7 @@ public class ObstacleDamage : MonoBehaviour
             {
                 Debug.Log($"장애물이 플레이어에게 {damage} 데미지를 입힘");
                 player.TakeDamage(damage);
-                player.Stun(); // 경직 처리 (Player 스크립트에 Stun 함수 존재해야 함)
+                player.Stun(0.5f); // 경직 처리 (Player 스크립트에 Stun 함수 존재해야 함)
             }
 
             // 필요시 자기 자신 제거

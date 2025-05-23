@@ -131,13 +131,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectId: Episode2_monster1
-  SaveData:
-    Position: {x: 0, y: 0, z: 0}
-    IsActive: 0
-    Properties: []
   HP: 80
   maxHP: 80
   anim: {fileID: 5682549746306908449}
+  monsterType: 2
   moveSpeed: 2
   attackPower: 3
   attackCooldown: 1
@@ -146,6 +143,11 @@ MonoBehaviour:
   knockbackDuration: 0.3
   patrolSpeed: 2
   playerDetectRange: 5
+  dashForce: 20
+  dashDuration: 0.3
+  dashStartDistance: 3
+  dashMinDistance: 1
+  healthBarPrefab: {fileID: 5828905614737588253, guid: 1bcb89c1682f16042855e270f5c3a1d6, type: 3}
   patrolArea:
     leftPoint: {fileID: 0}
     rightPoint: {fileID: 0}
