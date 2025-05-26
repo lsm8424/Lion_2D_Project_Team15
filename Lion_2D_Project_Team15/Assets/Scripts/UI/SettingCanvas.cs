@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class SettingCanvas : MonoBehaviour
     [field: SerializeField] public GameObject VolumePanel { get; private set; }
 
     [field: SerializeField] public Button SaveButton { get; private set; }
+    [field: SerializeField] public TextMeshProUGUI SaveButtonText { get; private set; }
 
     public void OnPanelOpen(GameObject panel)
     {
@@ -15,7 +17,16 @@ public class SettingCanvas : MonoBehaviour
 
     void OnEnable()
     {
-        SaveButton.interactable = GameManager.Instance.CurrentTime != GameManager.ETimeCase.PlayingDialogue;
+        if (!GameManager.Instance.ShouldWaitForDialogue())
+        {
+            SaveButton.interactable = true;
+            SaveButtonText.color = Color.white;
+        }
+        else
+        {
+            SaveButton.interactable = false;
+            SaveButtonText.color = Color.gray;
+        }
     }
 
     public void OnPressedSaveButton()

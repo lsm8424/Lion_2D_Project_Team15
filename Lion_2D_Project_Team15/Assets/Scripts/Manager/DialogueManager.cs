@@ -15,8 +15,29 @@ public class DialogueManager : Singleton<DialogueManager>
     public bool IsDialogueCompleted { get; private set; } = true;
     public bool IsOneShotCompleted { get; private set; } = true;
 
-    public bool IsSkip = false;
-    public bool IsAutoPlay = false;
+    bool _isSkip = false;
+    public bool IsSkip
+    {
+        get => _isSkip;
+        set
+        {
+            Dialogue_UI.SkipToggle.isOn = value;
+            _isSkip = value; 
+        }
+    }
+    float _skipTimer = 0f;
+    public float SkipDelay = 0.1f;
+
+    bool _isAuto = false;
+    public bool IsAuto
+    {
+        get => _isAuto;
+        set
+        {
+            Dialogue_UI.AutoToggle.isOn = value;
+            _isAuto = value;
+        }
+    }
     float _autoPlayTimer = 0f;
     public float AutoPlayDelay = 1f;
 
@@ -32,6 +53,8 @@ public class DialogueManager : Singleton<DialogueManager>
             Dialogue_UI.gameObject.SetActive(false);
         }
 
+        Dialogue_UI.AutoToggle.onValueChanged.AddListener(OnAutoToggleChanged);
+        Dialogue_UI.SkipToggle.onValueChanged.AddListener(OnSkipToggleChanged);
     }
 
     void Update()
@@ -43,20 +66,30 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             ProcessPlayerInput();
             IsSkip = false;
-            IsAutoPlay = false;
+            IsAuto = false;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
             IsSkip = !IsSkip;
+        }
 
         if (Input.GetKeyDown(KeyCode.A))
-            IsAutoPlay = !IsAutoPlay;
+            IsAuto = !IsAuto;
 
 
         if (IsSkip)
-            ProcessPlayerInput();
+        {
+            _skipTimer -= Time.deltaTime;
 
-        if (IsAutoPlay && Dialogue_UI.IsPrintComplete)
+            if (_skipTimer <= 0f)
+            {
+                _skipTimer = SkipDelay;
+                ProcessPlayerInput();
+            }
+        }
+
+        if (IsAuto && Dialogue_UI.IsPrintComplete)
         {
             _autoPlayTimer -= Time.deltaTime;
 
@@ -205,4 +238,11 @@ public class DialogueManager : Singleton<DialogueManager>
         Dialogue_UI.gameObject.SetActive(true);
         Dialogue_UI.ShowDialogue(line);
     }
+
+    #region Event Handlers
+    // Toggle의 onValueChanged에 연결되는 이벤트 핸들러
+    void OnAutoToggleChanged(bool auto) { _isAuto = auto; }
+
+    void OnSkipToggleChanged(bool skip) { _isSkip = skip; }
+    #endregion
 }
