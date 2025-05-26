@@ -88,8 +88,12 @@ public class Player : Entity
         }
 
         // 각 기능 모듈의 매서드 실행
-        movement.HandleMove(); // 이동
-        movement.HandleJump(); // 점프
+        if (movement != null)
+        {
+            movement.HandleMove(); // 이동
+            movement.HandleJump(); // 점프
+        }
+
         combat.HandleAttack(); // 기본 공격 (좌클릭)
         combat.HandleSkill(); // 스킬 공격 (우클릭)
         interaction.HandleInteraction(); // F 키 상호작용 (NPC, 아이템 등)

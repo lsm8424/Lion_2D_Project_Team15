@@ -22,7 +22,7 @@ public class move : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);   
     }
 
     void Start()

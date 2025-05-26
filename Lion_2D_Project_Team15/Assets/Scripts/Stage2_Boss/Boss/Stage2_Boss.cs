@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,13 +24,21 @@ public class Stage2_Boss : Entity
 
         BossPattenToHP();
 
-        //보스라운드 true
-        //Player.Instance.SetBossRound();
         if (DamageBtn != null)
             DamageBtn.onClick.AddListener(() =>
             {
                 TakeDamage(Random.Range(50, 100));
             });
+
+        StartCoroutine("SetStart");
+    }
+
+    IEnumerator SetStart()
+    {
+        yield return null;
+
+        Player.Instance.movement.isBossRound = true;
+        Player.Instance.combat.hasCoralStaff = true;
     }
 
     private void FindComponent()
@@ -68,8 +77,8 @@ public class Stage2_Boss : Entity
         if (_healthBar != null)
         {
             _healthBar.value = HP / maxHP * 100;
-        }  
-        
+        }
+
         //HP에 따른 보스패턴 변경
         BossPattenToHP();
 

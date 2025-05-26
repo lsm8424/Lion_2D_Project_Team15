@@ -135,10 +135,14 @@ public class PlayerCombat : MonoBehaviour
 
         if (rb != null)
         {
-            // 방향 결정
-            float direction = transform.localScale.x > 0 ? 1f : -1f;
-            Vector2 shootDir = new Vector2(direction, 0f); // x방향으로만 발사
-            rb.linearVelocity = shootDir * 10f;
+            // 방향 결정 마우스 클릭한 방향으로 발사
+            Vector3 mouseInput = new Vector3(Input.mousePosition.x, Input.mousePosition.y,0);
+            Vector3 shootdir = mouseInput - transform.position;
+            shootdir.z = 0f;
+            rb.linearVelocity = shootdir.normalized * 10f;
+            //float direction = transform.localScale.x > 0 ? 1f : -1f;
+            //Vector2 shootDir = new Vector2(direction, 0f); // x방향으로만 발사
+            //rb.linearVelocity = dir * 10f;
         }
     }
 
