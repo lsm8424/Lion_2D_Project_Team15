@@ -2,23 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dialogue_UI : MonoBehaviour
 {
-    [SerializeField]
-    TextMeshProUGUI _speaker;
-
-    [SerializeField]
-    TextMeshProUGUI _content;
-
-    [SerializeField]
-    DialogueOptionPanel_UI _dialogueOptionPanel;
-
-    [SerializeField]
-    string scriptIdNumber;
-
-    [SerializeField]
-    string scriptIdPrefix;
+    [SerializeField] TextMeshProUGUI _speaker;
+    [SerializeField] TextMeshProUGUI _content;
+    [SerializeField] DialogueOptionPanel_UI _dialogueOptionPanel;
+    [SerializeField] Image _completeMark;
+    [field: SerializeField] public Toggle AutoToggle { get; private set; }
+    [field: SerializeField] public Toggle SkipToggle { get; private set; }
 
     public float PrintDelay = 0.1f;
     public bool DoSkip = false;
@@ -51,7 +44,7 @@ public class Dialogue_UI : MonoBehaviour
     {
         _dialogueManager.ProcessPlayerInput();
         _dialogueManager.IsSkip = false;
-        _dialogueManager.IsAutoPlay = false;
+        _dialogueManager.IsAuto = false;
     }
 
     public void ShowDialogue(DialogueLineData lineData)
@@ -62,15 +55,15 @@ public class Dialogue_UI : MonoBehaviour
     IEnumerator PlayScript(DialogueLineData lineData)
     {
         // 초기화
+        _completeMark.gameObject.SetActive(false);
         IsPrintComplete = false;
         DoSkip = false;
 
         string[] split = lineData.id.Split('_');
 
-        scriptIdPrefix = split[0];
-        scriptIdNumber = split[1];
+        string speakerID = split[0];
 
-        SetNickname(scriptIdPrefix);
+        SetNickname(speakerID);
         _content.SetText("");
 
         GameManager gameManager = GameManager.Instance;
@@ -110,6 +103,7 @@ public class Dialogue_UI : MonoBehaviour
             yield break;
         }
 
+        _completeMark.gameObject.SetActive(true);
         IsPrintComplete = true;
     }
 
@@ -120,12 +114,12 @@ public class Dialogue_UI : MonoBehaviour
         _dialogueManager.JumpTo(dialogueID);
     }
 
-    void SetNickname(string speaker)
+    void SetNickname(string speakerID)
     {
-        if (_nicknames.TryGetValue(scriptIdPrefix, out string nickname))
+        if (_nicknames.TryGetValue(speakerID, out string nickname))
             _speaker.SetText(nickname);
         else
-            _speaker.SetText(scriptIdPrefix);
+            _speaker.SetText(speakerID);
     }
     // IEnumerator PlayScript(ITextEffect textEffect);
 }
