@@ -75,6 +75,7 @@ public class GameManager : Singleton<GameManager>
         if (_prevCaseStack.Count == 0)
         {
             Debug.LogError("의도되지 않은 경우");
+            CurrentTime = ETimeCase.EntityMovement;
             return;
         }
 

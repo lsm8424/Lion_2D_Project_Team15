@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using static Unity.Cinemachine.IInputAxisOwner.AxisDescriptor;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
@@ -16,6 +15,11 @@ public class DialogueManager : Singleton<DialogueManager>
     public bool IsDialogueCompleted { get; private set; } = true;
     public bool IsOneShotCompleted { get; private set; } = true;
 
+    public bool IsSkip = false;
+    public bool IsAutoPlay = false;
+    float _autoPlayTimer = 0f;
+    public float AutoPlayDelay = 1f;
+
     protected override void Awake()
     {
         // 만약 Prefab이 없다면 Resources/SceneCanvas를 Load하여 사용
@@ -28,6 +32,40 @@ public class DialogueManager : Singleton<DialogueManager>
             Dialogue_UI.gameObject.SetActive(false);
         }
 
+    }
+
+    void Update()
+    {
+        if (IsDialogueCompleted || GameManager.Instance.ShouldWaitForDialogue())
+            return;
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            ProcessPlayerInput();
+            IsSkip = false;
+            IsAutoPlay = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            IsSkip = !IsSkip;
+
+        if (Input.GetKeyDown(KeyCode.A))
+            IsAutoPlay = !IsAutoPlay;
+
+
+        if (IsSkip)
+            ProcessPlayerInput();
+
+        if (IsAutoPlay && Dialogue_UI.IsPrintComplete)
+        {
+            _autoPlayTimer -= Time.deltaTime;
+
+            if (_autoPlayTimer <= 0f)
+            {
+                _autoPlayTimer = AutoPlayDelay;
+                ProcessPlayerInput();
+            }
+        }
     }
 
     public void StartDialogue(DialogueCategory category, string dialogueID)
@@ -45,6 +83,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void ProcessPlayerInput()
     {
+        _autoPlayTimer = AutoPlayDelay;
+
         if (!Dialogue_UI.IsPrintComplete)
         {
             Dialogue_UI.DoSkip = true;
@@ -154,6 +194,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void PlayOneShot(DialogueCategory category, string dialogueID)
     {
+        IsDialogueCompleted = false;
         IsOneShotCompleted = false;
         var line = DialogueDatabase_JSON.Instance.GetDialogue(category, dialogueID);
         if (line == null)
