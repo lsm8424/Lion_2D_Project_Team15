@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class EP2_BGM : MonoBehaviour
 {
-    public AudioSource audioSource;
+    private AudioSource audioSource;
 
     public AudioClip[] bgmClips; // Array to hold the BGM clips
 
     private GameObject player;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
