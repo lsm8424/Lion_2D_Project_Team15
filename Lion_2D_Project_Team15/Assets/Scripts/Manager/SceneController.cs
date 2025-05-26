@@ -106,11 +106,10 @@ public class SceneController : Singleton<SceneController>
 
         if (IsLoadMode)
         {
-            SaveManager.Instance.Load();
-
-
             for (int i = 0; i < 5; ++i)     // Scene 이동 시 Cinemachine으로 인한 메인 카메라 이동의 지연을 방지하기 위한 대기
                 yield return null;
+
+            SaveManager.Instance.Load();
 
             if (_endEffect != null)
             {

@@ -47,17 +47,11 @@ public class Dialogue_UI : MonoBehaviour
         _dialogueManager = DialogueManager.Instance;
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            _dialogueManager.ProcessPlayerInput();
-        }
-    }
-
     public void OnClickTouchPanel()
     {
         _dialogueManager.ProcessPlayerInput();
+        _dialogueManager.IsSkip = false;
+        _dialogueManager.IsAutoPlay = false;
     }
 
     public void ShowDialogue(DialogueLineData lineData)
@@ -133,6 +127,5 @@ public class Dialogue_UI : MonoBehaviour
         else
             _speaker.SetText(scriptIdPrefix);
     }
-
     // IEnumerator PlayScript(ITextEffect textEffect);
 }

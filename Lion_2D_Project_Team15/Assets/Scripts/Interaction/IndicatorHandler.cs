@@ -14,6 +14,10 @@ public class InteractIndicatorHandler : MonoBehaviour
     private GameObject currentInstance;
     private Transform playerTransform;
 
+    Material _defaultMaterial;
+    [SerializeField] Material _highlightMaterial;
+    SpriteRenderer[] _renderers;
+
     private void Awake()
     {
         playerTransform = GameObject.FindWithTag("Player")?.transform;
@@ -22,6 +26,9 @@ public class InteractIndicatorHandler : MonoBehaviour
         {
             Debug.LogError("[InteractIndicatorHandler] Player 태그를 가진 오브젝트를 찾을 수 없습니다.");
         }
+
+        _renderers = GetComponentsInChildren<SpriteRenderer>();
+        _defaultMaterial = GetComponentInChildren<SpriteRenderer>().sharedMaterial;
     }
 
     private void Update()
@@ -79,14 +86,31 @@ public class InteractIndicatorHandler : MonoBehaviour
             currentInstance.transform.SetParent(targetAnchor);
             currentInstance.transform.localPosition = Vector3.zero;
         }
+
+        ApplyHighlight(true);
     }
 
     public void Hide()
     {
         if (currentInstance != null)
         {
+            ApplyHighlight(false);
             Destroy(currentInstance);
             currentInstance = null;
         }
+    }
+
+    void ApplyHighlight(bool highlight)
+    {
+        if (_highlightMaterial == null)
+        {
+            Debug.LogError("Highlight Material이 존재하지 않습니다.");
+            return;
+        }
+
+        Material applyMaterial = highlight ? _highlightMaterial : _defaultMaterial;
+
+        for (int i = 0; i < _renderers.Length; ++i)
+            _renderers[i].sharedMaterial = applyMaterial;
     }
 }
