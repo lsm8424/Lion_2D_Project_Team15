@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e492695cda42e49bef8daf95f92374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <VolumePanel>k__BackingField: {fileID: 7908379394832821013, guid: d9a105470828517448c34935ba33c98d, type: 3}
+  <GameOverPanel>k__BackingField: {fileID: 0}

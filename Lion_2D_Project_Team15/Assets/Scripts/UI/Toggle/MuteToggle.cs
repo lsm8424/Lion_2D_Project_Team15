@@ -39,5 +39,7 @@ public class MuteToggle : MonoBehaviour
         {
             _toggle.targetGraphic = _volumeOn;
         }
+
+        _toggle.onValueChanged?.Invoke(isOn);
     }
 }

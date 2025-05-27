@@ -7,6 +7,7 @@ public class FallingNote : MonoBehaviour
     private float fallDuration;     //떨어지는 시간
     private Vector3 startScale;
     private Vector3 endScale = new Vector3(0.1f, 0.1f, 0.1f);
+    private float damage;
 
     private float timer = 0f;
     private Vector3 startPosition;
@@ -41,13 +42,14 @@ public class FallingNote : MonoBehaviour
         }
     }
 
-    public void Initialize(Vector3 position, float fallduration)
+    public void Initialize(Vector3 position, float fallduration, float _damage)
     {
         targetPosition = position;
         startPosition = position + new Vector3(0f, 5f, 0f); // 높이 조절 (탑뷰 상 가상의 위)
         fallDuration = fallduration;
         transform.position = startPosition;
         transform.localScale = startScale;
+        damage = _damage;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -57,7 +59,7 @@ public class FallingNote : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             // 데미지 처리
-            Debug.Log("플레이어가 음표에 맞음!");
+            Player.Instance.TakeDamage(damage);
             alreadyHit = true;
             Destroy(gameObject);
             return;

@@ -1756,6 +1756,7 @@ MonoBehaviour:
   indicatorPrefab: {fileID: 3344248589580040540, guid: 094f6f92fca2fa2499264fdb8bc7b092, type: 3}
   indicatorAnchor: {fileID: 1658979995}
   alternativeAnchor: {fileID: 0}
+  _highlightMaterial: {fileID: 2100000, guid: 336b6b5b2b7f5384fa2e8b4b287ca4f1, type: 2}
 --- !u!1 &96196598
 GameObject:
   m_ObjectHideFlags: 0
@@ -2968,6 +2969,10 @@ PrefabInstance:
       propertyPath: _objectId
       value: spBook_1
       objectReference: {fileID: 0}
+    - target: {fileID: 8995515033627454439, guid: 142412534f4cad642867f51d7b6b7869, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3232,6 +3237,7 @@ MonoBehaviour:
   indicatorPrefab: {fileID: 3344248589580040540, guid: 094f6f92fca2fa2499264fdb8bc7b092, type: 3}
   indicatorAnchor: {fileID: 1835288295}
   alternativeAnchor: {fileID: 1014097580}
+  _highlightMaterial: {fileID: 2100000, guid: 336b6b5b2b7f5384fa2e8b4b287ca4f1, type: 2}
 --- !u!1 &169645566
 GameObject:
   m_ObjectHideFlags: 0
@@ -14511,6 +14517,7 @@ MonoBehaviour:
   indicatorPrefab: {fileID: 3344248589580040540, guid: 094f6f92fca2fa2499264fdb8bc7b092, type: 3}
   indicatorAnchor: {fileID: 1319611027}
   alternativeAnchor: {fileID: 926919130}
+  _highlightMaterial: {fileID: -876546973899608171, guid: d9d321c0df7b83240b826acf71f5acc4, type: 3}
 --- !u!1 &189746142
 GameObject:
   m_ObjectHideFlags: 0
@@ -16961,6 +16968,10 @@ PrefabInstance:
       propertyPath: _objectId
       value: spBook_2
       objectReference: {fileID: 0}
+    - target: {fileID: 8995515033627454439, guid: 142412534f4cad642867f51d7b6b7869, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -17196,6 +17207,7 @@ MonoBehaviour:
   indicatorPrefab: {fileID: 3344248589580040540, guid: 094f6f92fca2fa2499264fdb8bc7b092, type: 3}
   indicatorAnchor: {fileID: 207445801}
   alternativeAnchor: {fileID: 0}
+  _highlightMaterial: {fileID: 2100000, guid: cad0d78987c251142a4a6866c7ecdfc8, type: 2}
 --- !u!1 &394292921
 GameObject:
   m_ObjectHideFlags: 0
@@ -18861,6 +18873,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -19035,6 +19048,19 @@ MonoBehaviour:
   - {fileID: 1822792476}
   - {fileID: 1548158724}
   - {fileID: 1319058721}
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d18ac499d499a448c57d8ba0b9e201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectId: Ep1_MainCamera
 --- !u!1 &529296148
 GameObject:
   m_ObjectHideFlags: 0
@@ -23284,6 +23310,7 @@ MonoBehaviour:
   indicatorPrefab: {fileID: 3344248589580040540, guid: 094f6f92fca2fa2499264fdb8bc7b092, type: 3}
   indicatorAnchor: {fileID: 973294582}
   alternativeAnchor: {fileID: 1210436004}
+  _highlightMaterial: {fileID: 2100000, guid: 336b6b5b2b7f5384fa2e8b4b287ca4f1, type: 2}
 --- !u!1 &867505341
 GameObject:
   m_ObjectHideFlags: 0
@@ -33721,6 +33748,7 @@ GameObject:
   - component: {fileID: 1008600799}
   - component: {fileID: 1008600797}
   - component: {fileID: 1008600798}
+  - component: {fileID: 1008600800}
   m_Layer: 0
   m_Name: CinemachineCamera_1
   m_TagString: Untagged
@@ -33854,6 +33882,19 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &1008600800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008600793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23eaed31ee39a264ba5c2a7cfe90de41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectId: Ep1_Map1_CinemachineCamera
 --- !u!1 &1014097579
 GameObject:
   m_ObjectHideFlags: 0
@@ -43700,6 +43741,10 @@ PrefabInstance:
       propertyPath: _objectId
       value: spBook_4
       objectReference: {fileID: 0}
+    - target: {fileID: 8995515033627454439, guid: 142412534f4cad642867f51d7b6b7869, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -45290,6 +45335,7 @@ GameObject:
   - component: {fileID: 1319058721}
   - component: {fileID: 1319058720}
   - component: {fileID: 1319058719}
+  - component: {fileID: 1319058722}
   m_Layer: 0
   m_Name: CinemachineCamera_4
   m_TagString: Untagged
@@ -45406,6 +45452,19 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!114 &1319058722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319058717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23eaed31ee39a264ba5c2a7cfe90de41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectId: Ep1_Map4_CinemachineCamera
 --- !u!4 &1319145443 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5578139034171828155, guid: 142412534f4cad642867f51d7b6b7869, type: 3}
@@ -45426,6 +45485,7 @@ MonoBehaviour:
   indicatorPrefab: {fileID: 3344248589580040540, guid: 094f6f92fca2fa2499264fdb8bc7b092, type: 3}
   indicatorAnchor: {fileID: 2144431340}
   alternativeAnchor: {fileID: 0}
+  _highlightMaterial: {fileID: 2100000, guid: cad0d78987c251142a4a6866c7ecdfc8, type: 2}
 --- !u!1 &1319611026
 GameObject:
   m_ObjectHideFlags: 0
@@ -46657,6 +46717,7 @@ MonoBehaviour:
   indicatorPrefab: {fileID: 3344248589580040540, guid: 094f6f92fca2fa2499264fdb8bc7b092, type: 3}
   indicatorAnchor: {fileID: 675588067}
   alternativeAnchor: {fileID: 0}
+  _highlightMaterial: {fileID: 2100000, guid: cad0d78987c251142a4a6866c7ecdfc8, type: 2}
 --- !u!1001 &1447309325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46866,6 +46927,7 @@ MonoBehaviour:
   indicatorPrefab: {fileID: 3344248589580040540, guid: 094f6f92fca2fa2499264fdb8bc7b092, type: 3}
   indicatorAnchor: {fileID: 1136747201}
   alternativeAnchor: {fileID: 0}
+  _highlightMaterial: {fileID: 2100000, guid: cad0d78987c251142a4a6866c7ecdfc8, type: 2}
 --- !u!1 &1491296183
 GameObject:
   m_ObjectHideFlags: 0
@@ -48357,6 +48419,7 @@ GameObject:
   - component: {fileID: 1548158723}
   - component: {fileID: 1548158722}
   - component: {fileID: 1548158725}
+  - component: {fileID: 1548158727}
   m_Layer: 0
   m_Name: CinemachineCamera_3
   m_TagString: Untagged
@@ -48490,6 +48553,19 @@ MonoBehaviour:
   initPosition: {x: 0, y: 0.6}
   initOffset: {x: 13, y: 0, z: 0}
   initZoom: 10
+--- !u!114 &1548158727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548158720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23eaed31ee39a264ba5c2a7cfe90de41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectId: Ep1_Map3_CinemachineCamera
 --- !u!1001 &1548968668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48951,6 +49027,10 @@ PrefabInstance:
       propertyPath: _objectId
       value: spBook_3
       objectReference: {fileID: 0}
+    - target: {fileID: 8995515033627454439, guid: 142412534f4cad642867f51d7b6b7869, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -50690,6 +50770,7 @@ MonoBehaviour:
   indicatorPrefab: {fileID: 3344248589580040540, guid: 094f6f92fca2fa2499264fdb8bc7b092, type: 3}
   indicatorAnchor: {fileID: 993035109}
   alternativeAnchor: {fileID: 0}
+  _highlightMaterial: {fileID: 2100000, guid: cad0d78987c251142a4a6866c7ecdfc8, type: 2}
 --- !u!1 &1718137879
 GameObject:
   m_ObjectHideFlags: 0
@@ -52568,6 +52649,7 @@ GameObject:
   - component: {fileID: 1822792475}
   - component: {fileID: 1822792474}
   - component: {fileID: 1822792477}
+  - component: {fileID: 1822792478}
   m_Layer: 0
   m_Name: CinemachineCamera_2
   m_TagString: Untagged
@@ -52701,6 +52783,19 @@ MonoBehaviour:
   initPosition: {x: 0, y: 0.4}
   initOffset: {x: 30, y: 0, z: 0}
   initZoom: 12
+--- !u!114 &1822792478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822792472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23eaed31ee39a264ba5c2a7cfe90de41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectId: Ep1_Map2_CinemachineCamera
 --- !u!1 &1827460421
 GameObject:
   m_ObjectHideFlags: 0
@@ -66177,6 +66272,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spBook_0
       objectReference: {fileID: 0}
+    - target: {fileID: 8995515033627454439, guid: 142412534f4cad642867f51d7b6b7869, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

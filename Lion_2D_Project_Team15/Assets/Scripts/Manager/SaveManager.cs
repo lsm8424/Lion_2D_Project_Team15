@@ -136,20 +136,20 @@ public class SaveManager : Singleton<SaveManager>
 
         foreach (var objectID in objIDs)
         {
-            var targetObj = identifiers[objectID];
+            IdentifiableMonoBehavior targetObj = identifiers[objectID];
             if (save.GameObjects.TryGetValue(objectID, out var entry))
             {
                 targetObj.Load(entry);
             }
             else
             {
-                identifiers.Remove(objectID);
-                Destroy(targetObj);
+                Debug.LogError("세이브 파일에 존재하지 않는 오브젝트 ID: " + objectID);
+                //identifiers.Remove(objectID);
+                //Destroy(targetObj.gameObject);
             }
         }
 
         Debug.Log("Load is complete.");
-        // StageManager 같은 Singleton 계열 Load도 필요할듯
     }
 
     [Serializable]

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class move : Entity
+public class move : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] float speed;
@@ -22,13 +22,16 @@ public class move : Entity
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);   
     }
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        //보스맵에서 체력 초기화
+        Player.Instance.HP = Player.Instance.maxHP;
     }
 
     void Update()

@@ -52,7 +52,7 @@ public class Fade : IScreenEffect
             currentColor = Color.Lerp(_startColor, _endColor, percent);
             _image.color = currentColor;
 
-            if (GameManager.Instance.ShouldWaitForDialogue())
+            if (GameManager.Instance.CurrentTime != GameManager.ETimeCase.Loading && GameManager.Instance.ShouldWaitForDialogue())
                 yield return new WaitUntil(() => !GameManager.Instance.ShouldWaitForDialogue());
             yield return null;
         }
