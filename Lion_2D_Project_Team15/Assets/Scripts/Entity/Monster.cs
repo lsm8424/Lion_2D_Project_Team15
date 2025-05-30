@@ -47,11 +47,6 @@ public class Monster : Entity
     public float dashStartDistance = 3f;
     public float dashMinDistance = 1f;
 
-    [Header("Splitting Settings")]
-    public bool splitsOnDeath = true;         // 분열 기능 켜/끄
-    public GameObject splitPrefab;           // 분열할 몬스터 프리팹 (자기 자신 또는 작은 버전)
-    public float splitOffset = 0.5f;         // 분열된 몬스터가 스폰될 좌우 거리
-
     [Header("UI")]
     public GameObject healthBarPrefab;
     private Image healthBarFill;
@@ -75,7 +70,6 @@ public class Monster : Entity
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
     }
 
     private void Start()
@@ -242,13 +236,22 @@ public class Monster : Entity
         dashTimer = dashDuration;
         lastDashTime = Time.time;
 
+        // 플레이어 방향 계산
         Vector2 dir = (player.position - transform.position).normalized;
+
+        // 대시 방향으로 바라보기
+        Flip(dir.x > 0);
+
+        // 기존 속도 초기화
         rb.linearVelocity = Vector2.zero;
-        rb.AddForce(new Vector2(dir.x * dashForce, 0f), ForceMode2D.Impulse);
 
-        anim.SetTrigger("Dash");
+        // 로컬 스케일 기반 대시 힘 적용 (항상 바라보는 방향으로 대시)
+        Vector2 dashVector = new Vector2(transform.localScale.x * dashForce, 0f);
+        rb.AddForce(dashVector, ForceMode2D.Impulse);
+
+        if (anim != null)
+            anim.SetTrigger("Dash");
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!isDashing) return;
@@ -278,26 +281,6 @@ public class Monster : Entity
             }
         }
     }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        // 돌진 중일 때만 처리
-        if (monsterType != MonsterType.Dasher || !isDashing)
-            return;
-
-        if (collision.collider.CompareTag("Player"))
-        {
-            Player target = collision.collider.GetComponent<Player>();
-            if (target != null)
-            {
-                target.TakeDamage(attackPower);
-                // 데미지 한 번만 주고 대시 종료
-                isDashing = false;
-                rb.linearVelocity = Vector2.zero;
-            }
-        }
-    }
-
 
     public void Attack()
     {
@@ -347,35 +330,11 @@ public class Monster : Entity
 
     protected override void Death()
     {
-        // 분열 처리 (한 번만)
-        if (splitsOnDeath && splitPrefab != null)
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                float dir = (i == 0) ? -1f : 1f;
-                Vector3 spawnPos = transform.position + Vector3.right * dir * splitOffset;
-
-                GameObject clone = Instantiate(splitPrefab, spawnPos, Quaternion.identity);
-                Monster m = clone.GetComponent<Monster>();
-                if (m != null)
-                {
-                    // 체력 절반 세팅
-                    m.maxHP = this.maxHP * 0.5f;
-                    m.HP = m.maxHP;
-
-                    // 복제체는 더 이상 분열하지 않도록 꺼줌
-                    m.splitsOnDeath = false;
-                }
-            }
-        }
-
-        // 원래 사망 처리
         isDead = true;
         base.Death();
         if (healthBarInstance != null)
             Destroy(healthBarInstance);
     }
-
 
     public void Knockback(Vector2 hitDirection)
     {
