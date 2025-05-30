@@ -18,12 +18,12 @@ public class SceneController : Singleton<SceneController>
     string _sceneName;
     bool _hasStarted;
     public bool IsSceneLoaded { get; private set; }
+
     [field: SerializeField]
     public bool IsLoadMode { get; private set; } = false;
 
     IScreenEffect _startEffect;
     IScreenEffect _endEffect;
-
 
     [Space]
     [Header("Debug")]
@@ -90,27 +90,39 @@ public class SceneController : Singleton<SceneController>
             Debug.LogError("잘못된 Scene이름 " + scene.name);
             yield break;
         }
-        // QuestManager.Instance.SetUp("Prologue");
-        // QuestManager.Instance.StartQuest("Prologue");
-
 
         Debug.Log($"{sceneInfo.QuestPath} is Setting...");
 
         // ID, Event, Quest 순으로 초기화
         IDManager.Instance.SetUpIdentifiers();
 
+        // 공통 Normal 이벤트 설정
+        Normal_SO[] normalEvents = Resources.LoadAll<Normal_SO>("GameEvent/Normal");
+        if (normalEvents != null && normalEvents.Length > 0)
+        {
+            Debug.Log($"공통 Normal 이벤트 {normalEvents.Length}개 로드");
+            foreach (var normalEvent in normalEvents)
+            {
+                normalEvent.SetTrigger();
+            }
+        }
+
+        // 씬별 이벤트 설정
         EventManager.Instance.SetupEvents(sceneInfo.EventPath);
         QuestManager.Instance.SetUp(sceneInfo.QuestPath);
 
-
-
         if (IsLoadMode)
         {
+<<<<<<< Updated upstream
+            for (int i = 0; i < 5; ++i)     // Scene 이동 시 Cinemachine으로 인한 메인 카메라 이동의 지연을 방지하기 위한 대기
+=======
             SaveManager.Instance.Load();
 
-
-            for (int i = 0; i < 5; ++i)     // Scene 이동 시 Cinemachine으로 인한 메인 카메라 이동의 지연을 방지하기 위한 대기
+            for (int i = 0; i < 5; ++i) // Scene 이동 시 Cinemachine으로 인한 메인 카메라 이동의 지연을 방지하기 위한 대기
+>>>>>>> Stashed changes
                 yield return null;
+
+            SaveManager.Instance.Load();
 
             if (_endEffect != null)
             {
@@ -178,7 +190,6 @@ public class SceneController : Singleton<SceneController>
 
         _hasStarted = true;
         _sceneName = sceneName;
-
 
         StartCoroutine(StartLoadCoroutine());
     }

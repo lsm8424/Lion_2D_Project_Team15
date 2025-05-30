@@ -139,14 +139,17 @@ MonoBehaviour:
   attackPower: 5
   attackCooldown: 1
   attackRange: 1.5
+  inkPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
   knockbackForce: 15
   knockbackDuration: 0.3
   patrolSpeed: 2
   playerDetectRange: 5
-  dashForce: 20
-  dashDuration: 0.3
-  dashStartDistance: 3
-  dashMinDistance: 1
+  dashForce: 10
+  dashDuration: 0.5
+  dashCooldown: 2
+  dashStartDistance: 7
+  dashMinDistance: 2
   healthBarPrefab: {fileID: 5828905614737588253, guid: 1bcb89c1682f16042855e270f5c3a1d6, type: 3}
   patrolArea:
     leftPoint: {fileID: 0}

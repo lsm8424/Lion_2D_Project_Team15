@@ -22,13 +22,16 @@ public class move : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);   
     }
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        //보스맵에서 체력 초기화
+        Player.Instance.HP = Player.Instance.maxHP;
     }
 
     void Update()

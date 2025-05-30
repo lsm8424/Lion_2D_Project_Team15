@@ -134,14 +134,25 @@ MonoBehaviour:
   HP: 80
   maxHP: 80
   anim: {fileID: -8907134447904107089}
+  monsterType: 0
   moveSpeed: 2.5
   attackPower: 7
   attackCooldown: 1
   attackRange: 1.5
+  inkPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
   knockbackForce: 15
   knockbackDuration: 0.3
   patrolSpeed: 2
   playerDetectRange: 5
+  dashForce: 20
+  dashDuration: 0.3
+  dashCooldown: 2
+  dashStartDistance: 3
+  dashMinDistance: 1
+  splitsOnDeath: 1
+  splitPrefab: {fileID: 7287331166525946380, guid: 9f8fb2e96742cda438570abf3b804cce, type: 3}
+  splitOffset: 0.5
   healthBarPrefab: {fileID: 5828905614737588253, guid: 1bcb89c1682f16042855e270f5c3a1d6, type: 3}
   patrolArea:
     leftPoint: {fileID: 0}

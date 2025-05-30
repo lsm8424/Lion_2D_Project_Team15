@@ -110,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+
         // GameManager의 EntityTimeScale이 0이면 애니메이션을 Idle로 변경하고 멈춤
         if (GameManager.Instance.EntityTimeScale == 0f)
         {

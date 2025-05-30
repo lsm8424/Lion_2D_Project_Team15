@@ -1,7 +1,7 @@
 [
   {
-    "id": "player_001",
-    "text": "리브람과의 대화가 먼저야",
+    "id": "libram_normal",
+    "text": "이곳은 언제나 신비로 가득하지",
     "choices": "",
     "condition": "",
     "isEndOfDialogue": false
