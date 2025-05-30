@@ -6,6 +6,7 @@ using UnityEngine;
 public class EventTrigger_SO : ScriptableObject
 {
     public string ObjectID;
+    public string EventID;
     public InteractionType Type;
     public TriggerCondition_SO[] Conditions;
 
