@@ -15,7 +15,19 @@ public class CutscenePlayer : IdentifiableMonoBehavior
         PlayableDirector = GetComponent<PlayableDirector>();
     }
 
-    
+    void Update()
+    {
+        if (!IsPlaying || GameManager.Instance.ShouldWaitForDialogue())
+            return;
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            StopCoroutine(WhilePlaying());
+            IsPlaying = false;
+            PlayableDirector.time = PlayableDirector.duration;
+            PlayableDirector.Evaluate();
+        }
+    }
 
     public void Play(TimelineAsset clip)
     {

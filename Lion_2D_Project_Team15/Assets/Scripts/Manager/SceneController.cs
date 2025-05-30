@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,9 +17,13 @@ public class SceneController : Singleton<SceneController>
     AsyncOperation _currentOperation;
     string _sceneName;
     bool _hasStarted;
-
+    public bool IsSceneLoaded { get; private set; }
     [field: SerializeField]
-    public bool ShouldLoadData { get; private set; } = false;
+    public bool IsLoadMode { get; private set; } = false;
+
+    IScreenEffect _startEffect;
+    IScreenEffect _endEffect;
+
 
     [Space]
     [Header("Debug")]
@@ -28,7 +33,6 @@ public class SceneController : Singleton<SceneController>
     protected override void Awake()
     {
         base.Awake();
-        Debug.Log("[SceneController] Awake 호출됨");
 
         // 만약 Prefab이 없다면 Resources/SceneCanvas를 Load하여 사용
         if (_sceneCanvasPrefab == null)
@@ -80,9 +84,6 @@ public class SceneController : Singleton<SceneController>
             yield break;
         }
 
-        // 순서는 ID
-        IDManager.Instance.SetUpIdentifiers();
-
         SceneInfo sceneInfo;
         if (!SceneLoadInfo.TryGetValue(scene.name, out sceneInfo))
         {
@@ -98,33 +99,47 @@ public class SceneController : Singleton<SceneController>
         // ID, Event, Quest 순으로 초기화
         IDManager.Instance.SetUpIdentifiers();
 
-        if (DebugMode)
-        {
-            if (ShouldLoadData)
-            {
-                SaveManager.Instance.Load();
-                ShouldLoadData = false;
-            }
-            yield break;
-        }
-
         EventManager.Instance.SetupEvents(sceneInfo.EventPath);
         QuestManager.Instance.SetUp(sceneInfo.QuestPath);
-        GameManager.Instance.RevertTimeCase();
 
-        if (ShouldLoadData)
+
+
+        if (IsLoadMode)
         {
+            for (int i = 0; i < 5; ++i)     // Scene 이동 시 Cinemachine으로 인한 메인 카메라 이동의 지연을 방지하기 위한 대기
+                yield return null;
+
             SaveManager.Instance.Load();
-            ShouldLoadData = false;
+
+            if (_endEffect != null)
+            {
+                yield return _endEffect.Execute();
+                _endEffect = null;
+            }
+            GameManager.Instance.RevertTimeCase();
+            IsLoadMode = false;
         }
-        Debug.Log($"Scene {scene.name} is Loaded.");
-        if (!ShouldLoadData)
+        else
+        {
+            if (_endEffect != null)
+            {
+                yield return _endEffect.Execute();
+                _endEffect = null;
+            }
+            GameManager.Instance.RevertTimeCase();
             QuestManager.Instance.StartQuest(sceneInfo.StartQuestName);
+        }
+
+        IsSceneLoaded = true;
+        Debug.Log($"Scene {scene.name} is Loaded.");
     }
 
     public void LoadSaveScene(IScreenEffect startEffect, IScreenEffect endEffect)
     {
-        ShouldLoadData = true;
+        if (IsLoadMode)
+            return;
+
+        IsLoadMode = true;
 
         LoadSceneWithEffect(SaveManager.Instance.GetSceneName(), startEffect, endEffect);
     }
@@ -157,42 +172,37 @@ public class SceneController : Singleton<SceneController>
         if (_hasStarted)
             return;
 
+        _startEffect = startEffect;
+        _endEffect = endEffect;
+
         _hasStarted = true;
         _sceneName = sceneName;
 
-        StartCoroutine(
-            ScreenEffectController.InOutEffect(
-                startEffect,
-                endEffect,
-                LoadSceneAsync,
-                () => GetProgress() >= 1f,
-                SwitchScene
-            )
-        );
+
+        StartCoroutine(StartLoadCoroutine());
     }
 
-    /// <summary>
-    /// Scene 준비
-    /// </summary>
-    public void LoadSceneAsync()
+    IEnumerator StartLoadCoroutine()
     {
         _currentOperation = SceneManager.LoadSceneAsync(_sceneName);
         _currentOperation.allowSceneActivation = false;
         _hasStarted = true;
-    }
+        IsSceneLoaded = false;
 
-    /// <summary>
-    /// 0.9f - 다음 씬이 준비된 상태
-    /// 1f - 로드가 완료된 상태
-    /// </summary>
-    /// <returns></returns>
-    public float GetProgress() => Mathf.Clamp01(_currentOperation.progress / 0.9f);
+        if (_startEffect != null)
+        {
+            yield return _startEffect.Execute();
+            _startEffect = null;
+        }
+        yield return new WaitUntil(() => _currentOperation.progress == 0.9f);
 
-    /// <summary>
-    /// Scene 전환
-    /// </summary>
-    public void SwitchScene()
-    {
+        // OnSceneLoaded 이벤트에서 실행
+        //if (_endEffect != null)
+        //{
+        //    yield return _endEffect.Execute();
+        //    _endEffect = null;
+        //}
+
         _currentOperation.allowSceneActivation = true;
         _hasStarted = false;
     }

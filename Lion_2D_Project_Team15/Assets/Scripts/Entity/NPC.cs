@@ -28,6 +28,7 @@ public class NPC : IdentifiableMonoBehavior, IInteractable
     {
         // 수정 필요
         // DialogueManager.Instance.StartDialogue(DialogueCategory.Dialogue, DialogueID);
+        Debug.Log("상호작용 시도");
         OnInteracted?.Invoke(InteractionType.Interaction);
         if (!string.IsNullOrWhiteSpace(EventID))
             EventManager.Instance.RunEvent(EventID);

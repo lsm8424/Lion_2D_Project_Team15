@@ -14,7 +14,7 @@ public class Player : Entity
 
     public bool IsInvincible => isInvincible;
     private bool isInvincible = false;
-    public float invincibleDuration = 1.5f;
+    public float invincibleDuration = 1f;
     public bool IsStunned => isStunned;
 
     public static Player Instance { get; private set; }
@@ -88,8 +88,12 @@ public class Player : Entity
         }
 
         // 각 기능 모듈의 매서드 실행
-        movement.HandleMove(); // 이동
-        movement.HandleJump(); // 점프
+        if (movement != null)
+        {
+            movement.HandleMove(); // 이동
+            movement.HandleJump(); // 점프
+        }
+
         combat.HandleAttack(); // 기본 공격 (좌클릭)
         combat.HandleSkill(); // 스킬 공격 (우클릭)
         interaction.HandleInteraction(); // F 키 상호작용 (NPC, 아이템 등)
@@ -181,6 +185,7 @@ public class Player : Entity
             .ToArray();
 
         float elapsedTime = 0f;
+        yield return new WaitForSeconds(0.1f); //0.1초 후 시작 넉백보여주고 투명
         while (elapsedTime < invincibleDuration)
         {
             // 플레이어와 무기 스프라이트 토글
@@ -211,6 +216,12 @@ public class Player : Entity
     protected override void ScheduleDestroy()
     {
         Destroy(gameObject, 2f); // 플레이어만 2초 후 삭제
+    }
+
+    protected override void Death()
+    {
+        base.Death();
+        Instantiate(UIManager.Instance.GameOverCanvasPrefab);
     }
 
     //보스라운드일때 bind 수정해야됨

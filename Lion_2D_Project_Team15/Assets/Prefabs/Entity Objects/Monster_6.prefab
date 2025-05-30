@@ -134,14 +134,22 @@ MonoBehaviour:
   HP: 120
   maxHP: 120
   anim: {fileID: 8727512997942784272}
+  monsterType: 1
   moveSpeed: 2.7
   attackPower: 10
   attackCooldown: 1
   attackRange: 1.5
+  inkPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
   knockbackForce: 15
   knockbackDuration: 0.3
   patrolSpeed: 2
   playerDetectRange: 5
+  dashForce: 20
+  dashDuration: 0.3
+  dashCooldown: 2
+  dashStartDistance: 3
+  dashMinDistance: 1
   healthBarPrefab: {fileID: 5828905614737588253, guid: 1bcb89c1682f16042855e270f5c3a1d6, type: 3}
   patrolArea:
     leftPoint: {fileID: 0}

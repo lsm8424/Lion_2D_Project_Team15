@@ -38,12 +38,19 @@ public class Monster : Entity
     [Header("돌진 공격 설정")]
     public float dashForce = 20f;
     public float dashDuration = 0.3f;
+    public float dashCooldown = 2f;
     private bool isDashing = false;
     private float dashTimer = 0f;
+    private float lastDashTime = -999f;
 
     [Header("돌진 조건")]
     public float dashStartDistance = 3f;
     public float dashMinDistance = 1f;
+
+    [Header("Splitting Settings")]
+    public bool splitsOnDeath = true;         // 분열 기능 켜/끄
+    public GameObject splitPrefab;           // 분열할 몬스터 프리팹 (자기 자신 또는 작은 버전)
+    public float splitOffset = 0.5f;         // 분열된 몬스터가 스폰될 좌우 거리
 
     [Header("UI")]
     public GameObject healthBarPrefab;
@@ -55,17 +62,20 @@ public class Monster : Entity
 
     private Transform player;
     private Rigidbody2D rb;
+    private Animator anim;
 
     private bool isKnockback = false;
     private float knockbackTimer = 0f;
 
     private bool movingRight = true;
     private bool isDead = false;
-    bool IsStopped = false;
+    private bool IsStopped = false;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+
     }
 
     private void Start()
@@ -94,17 +104,9 @@ public class Monster : Entity
         }
     }
 
-    private void UpdateHealthBar()
-    {
-        if (healthBarFill != null)
-        {
-            float ratio = HP / maxHP;
-            healthBarFill.fillAmount = ratio;
-        }
-    }
-
     private void Update()
     {
+        // 상태 정지 처리
         if (GameManager.Instance.ShouldWaitForEntity())
         {
             anim.speed = 0;
@@ -119,8 +121,10 @@ public class Monster : Entity
             IsStopped = false;
         }
 
-        if (isDead || player == null) return;
+        if (isDead || player == null)
+            return;
 
+        // 넉백 처리
         if (isKnockback)
         {
             knockbackTimer -= Time.deltaTime;
@@ -129,6 +133,7 @@ public class Monster : Entity
             return;
         }
 
+        // 돌진 중 처리
         if (isDashing)
         {
             dashTimer -= Time.deltaTime;
@@ -142,22 +147,32 @@ public class Monster : Entity
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
+        // 원거리 몬스터 처리
         if (monsterType == MonsterType.Ranged)
         {
             if (distanceToPlayer <= attackRange)
-            {
-                Attack(); // 가까우면 발사
-            }
+                Attack();
             else
-            {
-                MoveTowardsPlayer(); // 멀면 추적
-            }
+                MoveTowardsPlayer();
             return;
         }
 
-
+        // 일반, 돌진 몬스터 행동
         if (distanceToPlayer <= playerDetectRange)
         {
+            // 돌진 몬스터 우선 처리
+            if (monsterType == MonsterType.Dasher)
+            {
+                if (Time.time >= lastDashTime + dashCooldown
+                    && distanceToPlayer <= dashStartDistance
+                    && distanceToPlayer >= dashMinDistance)
+                {
+                    DashAttack();
+                    return;
+                }
+            }
+
+            // 추격 vs 근접 공격
             if (distanceToPlayer > attackRange)
             {
                 MoveTowardsPlayer();
@@ -165,15 +180,7 @@ public class Monster : Entity
             else
             {
                 rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-
-                if (monsterType == MonsterType.Dasher && Time.time >= lastAttackTime + attackCooldown)
-                {
-                    DashAttack();
-                }
-                else
-                {
-                    Attack();
-                }
+                Attack();
             }
         }
         else
@@ -233,14 +240,13 @@ public class Monster : Entity
     {
         isDashing = true;
         dashTimer = dashDuration;
-        lastAttackTime = Time.time;
+        lastDashTime = Time.time;
 
         Vector2 dir = (player.position - transform.position).normalized;
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(new Vector2(dir.x * dashForce, 0f), ForceMode2D.Impulse);
 
-        if (anim != null)
-            anim.SetTrigger("Dash");
+        anim.SetTrigger("Dash");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -252,7 +258,6 @@ public class Monster : Entity
             if (target != null)
             {
                 target.TakeDamage(attackPower);
-                Debug.Log("돌진으로 플레이어 타격!");
                 isDashing = false;
                 rb.linearVelocity = Vector2.zero;
             }
@@ -261,10 +266,24 @@ public class Monster : Entity
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("충돌 감지됨: " + collision.collider.name);
+        if (monsterType != MonsterType.Dasher || !isDashing) return;
+        if (collision.collider.CompareTag("Player"))
+        {
+            Player target = collision.collider.GetComponent<Player>();
+            if (target != null)
+            {
+                target.TakeDamage(attackPower);
+                isDashing = false;
+                rb.linearVelocity = Vector2.zero;
+            }
+        }
+    }
 
-        if (monsterType != MonsterType.Dasher) return;
-        if (!isDashing) return;
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // 돌진 중일 때만 처리
+        if (monsterType != MonsterType.Dasher || !isDashing)
+            return;
 
         if (collision.collider.CompareTag("Player"))
         {
@@ -272,12 +291,13 @@ public class Monster : Entity
             if (target != null)
             {
                 target.TakeDamage(attackPower);
-                Debug.Log("돌진 중 플레이어 충돌로 데미지 입힘");
+                // 데미지 한 번만 주고 대시 종료
                 isDashing = false;
                 rb.linearVelocity = Vector2.zero;
             }
         }
     }
+
 
     public void Attack()
     {
@@ -286,9 +306,7 @@ public class Monster : Entity
         if (Time.time >= lastAttackTime + attackCooldown)
         {
             lastAttackTime = Time.time;
-
-            if (anim != null)
-                anim.SetTrigger("Attack");
+            anim.SetTrigger("Attack");
 
             if (monsterType == MonsterType.Ranged && inkPrefab != null && firePoint != null)
             {
@@ -296,25 +314,19 @@ public class Monster : Entity
                 GameObject ink = Instantiate(inkPrefab, firePoint.position, Quaternion.identity);
                 InkProjectile proj = ink.GetComponent<InkProjectile>();
                 if (proj != null)
-                {
                     proj.Initialize(dir);
-                }
                 return;
             }
 
             float dist = Vector2.Distance(transform.position, player.position);
-
             if (dist <= attackRange)
             {
                 Player target = player.GetComponent<Player>();
                 if (target != null)
                 {
                     target.TakeDamage(attackPower);
-
                     if (monsterType == MonsterType.Stunner)
-                    {
                         target.Stun(0.5f);
-                    }
                 }
             }
         }
@@ -335,12 +347,35 @@ public class Monster : Entity
 
     protected override void Death()
     {
+        // 분열 처리 (한 번만)
+        if (splitsOnDeath && splitPrefab != null)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                float dir = (i == 0) ? -1f : 1f;
+                Vector3 spawnPos = transform.position + Vector3.right * dir * splitOffset;
+
+                GameObject clone = Instantiate(splitPrefab, spawnPos, Quaternion.identity);
+                Monster m = clone.GetComponent<Monster>();
+                if (m != null)
+                {
+                    // 체력 절반 세팅
+                    m.maxHP = this.maxHP * 0.5f;
+                    m.HP = m.maxHP;
+
+                    // 복제체는 더 이상 분열하지 않도록 꺼줌
+                    m.splitsOnDeath = false;
+                }
+            }
+        }
+
+        // 원래 사망 처리
         isDead = true;
         base.Death();
-
         if (healthBarInstance != null)
             Destroy(healthBarInstance);
     }
+
 
     public void Knockback(Vector2 hitDirection)
     {
@@ -360,6 +395,15 @@ public class Monster : Entity
         {
             Gizmos.color = Color.cyan;
             Gizmos.DrawLine(patrolArea.leftPoint.position, patrolArea.rightPoint.position);
+        }
+    }
+
+    private void UpdateHealthBar()
+    {
+        if (healthBarFill != null)
+        {
+            float ratio = HP / maxHP;
+            healthBarFill.fillAmount = ratio;
         }
     }
 }

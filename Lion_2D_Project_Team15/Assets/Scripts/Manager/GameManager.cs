@@ -75,6 +75,7 @@ public class GameManager : Singleton<GameManager>
         if (_prevCaseStack.Count == 0)
         {
             Debug.LogError("의도되지 않은 경우");
+            CurrentTime = ETimeCase.EntityMovement;
             return;
         }
 
@@ -137,10 +138,5 @@ public class GameManager : Singleton<GameManager>
     public void LoadGame()
     {
         SceneController.Instance.LoadSaveScene(new Fade(Color.clear, Color.black, 1f), new Fade(Color.black, Color.clear, 1f));
-
-        // Scene Load 후
-        // EventManager, QuestManager, IdManager SetUp.
-        // SaveManager.Load()
-        // 이후 fadeout 되면서 시작
     }
 }
