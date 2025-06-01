@@ -14,6 +14,11 @@ public class Monster : Entity
     [Header("Monster 타입")]
     public MonsterType monsterType = MonsterType.Normal;
 
+    [Header("Splitting Settings")]
+    public bool splitsOnDeath = true;         // 분열 기능 켜/끄
+    public GameObject splitPrefab;           // 분열할 몬스터 프리팹 (자기 자신 또는 작은 버전)
+    public float splitOffset = 0.5f;         // 분열된 몬스터가 스폰될 좌우 거리
+
     [Header("Monster Stats")]
     public float moveSpeed;
     public float attackPower;
@@ -330,11 +335,35 @@ public class Monster : Entity
 
     protected override void Death()
     {
+        // 분열 처리 (한 번만)
+        if (splitsOnDeath && splitPrefab != null)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                float dir = (i == 0) ? -1f : 1f;
+                Vector3 spawnPos = transform.position + Vector3.right * dir * splitOffset;
+
+                GameObject clone = Instantiate(splitPrefab, spawnPos, Quaternion.identity);
+                Monster m = clone.GetComponent<Monster>();
+                if (m != null)
+                {
+                    // 체력 절반 세팅
+                    m.maxHP = this.maxHP * 0.5f;
+                    m.HP = m.maxHP;
+
+                    // 복제체는 더 이상 분열하지 않도록 꺼줌
+                    m.splitsOnDeath = false;
+                }
+            }
+        }
+
+        // 원래 사망 처리
         isDead = true;
         base.Death();
         if (healthBarInstance != null)
             Destroy(healthBarInstance);
     }
+
 
     public void Knockback(Vector2 hitDirection)
     {

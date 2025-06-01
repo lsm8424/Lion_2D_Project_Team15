@@ -28,6 +28,20 @@ public class PlayerCombat : MonoBehaviour
     [Header("무기 연결")]
     public Sword sword; // Sword 참조 추가
 
+    [Header("사운드")]
+    public AudioClip punchClip;     // 주먹 소리 AudioClip
+    private AudioSource audioSrc;   // 사운드 재생용 AudioSource
+
+    private void Awake()
+    {
+        // AudioSource 준비
+        audioSrc = GetComponent<AudioSource>();
+        if (audioSrc == null)
+            audioSrc = gameObject.AddComponent<AudioSource>();
+
+        audioSrc.playOnAwake = false;  // 자동 재생 방지
+    }
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -42,9 +56,11 @@ public class PlayerCombat : MonoBehaviour
     {
         if (!canAttack)
             return; // 공격 불가 상태면 리턴
+
         float h = Input.GetAxisRaw("Horizontal");
         playerMovement.FlipByDirection(h);
 
+        // 마우스 왼쪽 버튼 클릭 + 쿨다운 체크
         if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime + attackCooldown)
         {
             lastAttackTime = Time.time;
@@ -53,33 +69,38 @@ public class PlayerCombat : MonoBehaviour
             if (playerMovement != null)
                 playerMovement.isAttacking = true;
 
+            // 애니메이션 트리거
             if (anim != null)
-                anim.SetTrigger("Attack"); // 널 체크 나중에 에니메이션 추가되면 변경
+                anim.SetTrigger("Attack");
 
+            // 칼 혹은 손(주먹) 공격 로직
             if (sword != null)
-                sword.TriggerAttack(); // Sword에 공격 전달
+                sword.TriggerAttack();
 
-            // Debug.Log("기본 공격!");
+            // ★주먹 소리 재생 추가★
+            if (punchClip != null)
+            {
+                audioSrc.PlayOneShot(punchClip);
+            }
+            else
+            {
+                Debug.LogWarning("[PlayerCombat] punchClip이 할당되지 않았습니다.");
+            }
 
-            // 공격 종료 처리
-            Invoke(nameof(ResetAttackState), 0.7f); // 공격 애니메이션 길이만큼 대기
+            // 공격 종료 처리 (애니메이션 길이만큼 대기 후 상태 리셋)
+            Invoke(nameof(ResetAttackState), 0.7f);
 
-            // === 공격 범위 중심과 반경 계산 ===
+            // === 공격 범위 계산 & 몬스터 데미지 처리 ===
             float direction = transform.localScale.x > 0 ? 1f : -1f;
-            Vector2 attackCenter = (Vector2)transform.position + Vector2.right * direction * 1.0f; // 오프셋(앞쪽)
-            float attackRadius = 1.5f; // 반경
+            Vector2 attackCenter = (Vector2)transform.position + Vector2.right * direction * 1.0f;
+            float attackRadius = 1.5f;
 
-            // 공격 범위 내 몬스터 찾기
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 2.5f); // 1.5f: 공격 범위
-
+            // 실제로 충돌 범위를 이용해 몬스터 찾기
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 2.5f);
             foreach (Collider2D col in hits)
             {
-                // Debug.Log("충돌 감지한 오브젝트: " + col.name);
-
                 if (col.CompareTag("Monster"))
                 {
-                    // Debug.Log("몬스터 감지! 데미지 입힘");
-
                     Entity monster = col.GetComponent<Entity>();
                     if (monster != null)
                     {
@@ -106,10 +127,9 @@ public class PlayerCombat : MonoBehaviour
             lastSkillTime = Time.time;
 
             if (anim != null)
-                anim.SetTrigger("Skill"); // 널 체크 나중에 에니메이션 추가되면 변경
+                anim.SetTrigger("Skill");
 
             Debug.Log("CoralStaff 스킬 발사!");
-
             ShootProjectile();
         }
     }
@@ -135,14 +155,11 @@ public class PlayerCombat : MonoBehaviour
 
         if (rb != null)
         {
-            // 방향 결정 마우스 클릭한 방향으로 발사
-            Vector3 mouseInput = new Vector3(Input.mousePosition.x, Input.mousePosition.y,0);
+            // 마우스 방향으로 발사
+            Vector3 mouseInput = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
             Vector3 shootdir = mouseInput - transform.position;
             shootdir.z = 0f;
             rb.linearVelocity = shootdir.normalized * 10f;
-            //float direction = transform.localScale.x > 0 ? 1f : -1f;
-            //Vector2 shootDir = new Vector2(direction, 0f); // x방향으로만 발사
-            //rb.linearVelocity = dir * 10f;
         }
     }
 
@@ -153,5 +170,4 @@ public class PlayerCombat : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(attackCenter, 1.5f);
     }
-
 }
