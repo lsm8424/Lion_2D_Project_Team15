@@ -1,18 +1,28 @@
 using System.Collections;
 using TMPro;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameOver_UI : MonoBehaviour
 {
-    [SerializeField] Image _panelImage;
-    [SerializeField] float _panelFadeTime = 1f;
+    [SerializeField]
+    Image _panelImage;
 
-    [SerializeField] Button _restartButton;
-    [SerializeField] Image _restartButtonImage;
-    [SerializeField] TextMeshProUGUI _restartButtonText;
-    [SerializeField] float _buttonFadeTime = 0.5f;
+    [SerializeField]
+    float _panelFadeTime = 1f;
+
+    [SerializeField]
+    Button _restartButton;
+
+    [SerializeField]
+    Image _restartButtonImage;
+
+    [SerializeField]
+    TextMeshProUGUI _restartButtonText;
+
+    [SerializeField]
+    float _buttonFadeTime = 0.5f;
+
     void Start()
     {
         StartCoroutine(Fade());
