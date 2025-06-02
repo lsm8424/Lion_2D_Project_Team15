@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Game/TitleScene.unity
     guid: 546b8990372fa2b4a88bd1e1a89446e7
   - enabled: 1
+    path: Assets/Scenes/Game/Prologue.unity
+    guid: cd155841653a40a41980f019f0f799c8
+  - enabled: 1
     path: Assets/Scenes/Game/Prologue2.unity
     guid: 789274b1e22883441ab2794a70fb80b8
   - enabled: 1
