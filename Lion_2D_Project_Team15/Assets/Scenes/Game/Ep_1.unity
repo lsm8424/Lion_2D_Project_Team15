@@ -16235,6 +16235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5675134433042144037, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8166816343229775612, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -16318,8 +16322,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5287110817816038261, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 300067983}
   m_SourcePrefab: {fileID: 100100000, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+--- !u!1 &300067981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5287110817816038261, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+  m_PrefabInstance: {fileID: 300067980}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &300067982 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6800870898697739895, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+  m_PrefabInstance: {fileID: 300067980}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &300067983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300067981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e76c7880f269ae428af3a4e05aa0b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questUIObject: {fileID: 825556755}
+  tmp: {fileID: 300067982}
 --- !u!1 &303726840
 GameObject:
   m_ObjectHideFlags: 0
@@ -22405,6 +22442,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &825556755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5675134433042144037, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+  m_PrefabInstance: {fileID: 300067980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &829959407
 GameObject:
   m_ObjectHideFlags: 0
