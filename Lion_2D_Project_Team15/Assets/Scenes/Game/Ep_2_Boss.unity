@@ -16979,7 +16979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ed89b5b50c7b146bf2c7da7feb2b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectId: Player
+  _objectId: 
   HP: 100
   maxHP: 100
   anim: {fileID: 0}
