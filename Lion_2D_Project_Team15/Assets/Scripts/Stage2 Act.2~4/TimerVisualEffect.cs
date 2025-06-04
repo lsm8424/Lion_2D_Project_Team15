@@ -51,7 +51,7 @@ public class TimerVisualEffect : MonoBehaviour
 
         timerText.text = remainingTime.ToString("F2");
 
-        if (remainingTime > 20f)
+        if (remainingTime > 30f)
         {
             timerText.color = green;
             timerText.rectTransform.localScale = Vector3.one;
@@ -66,7 +66,7 @@ public class TimerVisualEffect : MonoBehaviour
             timerText.color = orange;
 
             //텍스트 커졌다 작아짐 (심장박동)
-            float pulse = 1f + Mathf.PingPong(Time.time * 1.02f, 0.5f);
+            float pulse = 1f + Mathf.PingPong(Time.time * 1.01f, 0.5f);
             timerText.rectTransform.localScale = new Vector3(pulse, pulse, 1f);
 
             // 오버레이 깜빡임

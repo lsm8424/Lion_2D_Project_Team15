@@ -59049,7 +59049,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.28125, y: 2.890625}
+    oldSize: {x: 5.421875, y: 2.890625}
     newSize: {x: 3.38, y: 1.85}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -67540,7 +67540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ccff9996f045ab45a7ee9f617e0f967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 30
+  duration: 50
   timerText: {fileID: 1875209632}
   overlayEffect: {fileID: 1510626987}
   urgentSound: {fileID: 1583851342}
