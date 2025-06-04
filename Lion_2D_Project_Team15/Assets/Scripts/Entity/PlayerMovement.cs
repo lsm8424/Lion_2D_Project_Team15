@@ -54,8 +54,11 @@ public class PlayerMovement : MonoBehaviour
 
         FlipByDirection(h);
 
+        Debug.Log($"Player Move: {h}");
+
         bool isRunning = h != 0;
-        anim.SetBool("Run", isRunning);
+        if(anim != null)
+            anim.SetBool("Run", isRunning);
         if (sword != null)
             sword.SetRun(isRunning);
     }
