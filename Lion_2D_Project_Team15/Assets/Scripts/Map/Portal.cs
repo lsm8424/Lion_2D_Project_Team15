@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public enum PortalType
 {
-    SceneChange, // 다른 씬으로 이동
+    SceneChange,   // 다른 씬으로 이동
     PositionChange // 같은 씬 내 포탈 위치로 이동
 }
 
@@ -22,22 +22,33 @@ public class Portal : IdentifiableMonoBehavior, IInteractable
     public PortalType portalType; // 포탈 동작 타입 선택
 
     [Header("포탈 인덱스 정보")]
-    public int MapIndex; // 현재 포탈이 속한 씬의 인덱스 (씬 이동 시 사용)
-    public int portalIndex; // 현재 포탈의 고유 인덱스
+    public int MapIndex;     // 현재 포탈이 속한 씬의 인덱스 (씬 이동 시 사용)
+    public int portalIndex;  // 현재 포탈의 고유 인덱스
 
     [Header("위치 이동용")]
-    public int targetPortalIndex; // 이동할 포탈 인덱스
+    public int targetPortalIndex;  // 이동할 포탈 인덱스
 
     [Header("씬 이동용")]
-    public string targetSceneName; // 이동할 씬 이름
+    public string targetSceneName;  // 이동할 씬 이름
 
     [Header("공통")]
     public Transform targetPortal; // 도착할 포탈 Transform (오프셋 조정용)
-    public Sprite closeSprite; // 포탈 닫힘 상태 스프라이트
-    public Sprite openSprite; // 포탈 열림 상태 스프라이트
+    public Sprite closeSprite;     // 포탈 닫힘 상태 스프라이트
+    public Sprite openSprite;      // 포탈 열림 상태 스프라이트
+
+    [Header("효과음")]
+    [Tooltip("포탈 사용 시 재생할 효과음")]
+    public AudioClip teleportClip;
+    private AudioSource audioSrc;
 
     private void Start()
     {
+        // AudioSource 준비
+        audioSrc = GetComponent<AudioSource>();
+        if (audioSrc == null)
+            audioSrc = gameObject.AddComponent<AudioSource>();
+        audioSrc.playOnAwake = false;
+
         if (StageManager.Instance != null)
         {
             StageManager.Instance.RegisterPortal(this);
@@ -49,6 +60,12 @@ public class Portal : IdentifiableMonoBehavior, IInteractable
     {
         if (!collision.CompareTag("Player"))
             return;
+
+        // 포탈 사용 효과음 재생
+        if (teleportClip != null)
+        {
+            audioSrc.PlayOneShot(teleportClip);
+        }
 
         switch (portalType)
         {
@@ -68,22 +85,24 @@ public class Portal : IdentifiableMonoBehavior, IInteractable
                 break;
         }
 
-        OpenDoor(); // 포탈 열기
-        Invoke("ClosePortal", 1f); // 1초 후 포탈 닫기
+        OpenDoor();                // 포탈 열기
+        Invoke(nameof(ClosePortal), 1f); // 1초 후 포탈 닫기
     }
 
     void OpenDoor()
     {
         // 포탈을 여는 로직 (예: 스프라이트 변경)
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = openSprite; // 포탈 열림 상태로 변경
+        if (spriteRenderer != null)
+            spriteRenderer.sprite = openSprite;
     }
 
     void ClosePortal()
     {
         // 포탈을 닫는 로직 (예: 스프라이트 변경)
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = closeSprite; // 포탈 열림 상태로 변경
+        if (spriteRenderer != null)
+            spriteRenderer.sprite = closeSprite;
     }
 
     void AnimatorFalse()
