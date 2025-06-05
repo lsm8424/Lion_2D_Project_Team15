@@ -18,8 +18,8 @@ public class GameTimer : MonoBehaviour
         timer = totalTime;
 
         // 초기 UI 비활성화
-        if (timerText != null)
-            timerText.gameObject.SetActive(false);
+        //if (timerText != null)
+        //    timerText.gameObject.SetActive(false);
     }
 
     void Update()

@@ -20,7 +20,6 @@ public class StageManager : Singleton<StageManager>
 
     // Player 캐싱용 프로퍼티
     private GameObject player;
-    private GameObject Player => player ??= GameObject.FindGameObjectWithTag("Player");
 
     // 포탈 인덱스 → 포탈 객체 매핑 딕셔너리
     private Dictionary<int, Portal> portalDict = new();
@@ -44,19 +43,19 @@ public class StageManager : Singleton<StageManager>
     }
 
     /// <summary>
-    /// 같은 씬 내 포탈 위치로 이동 (페이드 포함) 🔧
+    /// 같은 씬 내 포탈 위치로 이동 (페이드 포함)
     /// </summary>
     public void TeleportToPortal(int targetIndex)
     {
-        StartCoroutine(FadeAndTeleport(targetIndex)); // 🔧 페이드 포함 이동 처리
+        StartCoroutine(FadeAndTeleport(targetIndex)); // 페이드 포함 이동 처리
     }
 
     /// <summary>
-    /// 위치 이동 전후로 페이드 인/아웃 적용 💡
+    /// 위치 이동 전후로 페이드 인/아웃 적용
     /// </summary>
     private IEnumerator FadeAndTeleport(int targetIndex)
     {
-        Fade fadeIn = new Fade(Color.clear, Color.black, 0.5f); // 💡 페이드 인
+        Fade fadeIn = new Fade(Color.clear, Color.black, 0.5f); // 페이드 인
         yield return fadeIn.Execute();
 
         if (!portalDict.TryGetValue(targetIndex, out Portal targetPortal))
@@ -65,20 +64,20 @@ public class StageManager : Singleton<StageManager>
             yield break;
         }
 
-        if (Player != null)
+        if (player != null)
         {
             //카메라 임시 설정
             Camera.main.GetComponent<followcam>().transCam(targetPortal.MapIndex);
 
-            Player.transform.position = targetPortal.targetPortal.position;
+            player.transform.position = targetPortal.targetPortal.position;
         }
 
-        Fade fadeOut = new Fade(Color.black, Color.clear, 0.5f); // 💡 페이드 아웃
+        Fade fadeOut = new Fade(Color.black, Color.clear, 0.5f); //페이드 아웃
         yield return fadeOut.Execute();
     }
 
     /// <summary>
-    /// 포탈을 통해 다른 씬으로 이동 요청 (SceneController 이용, 수정 없음) 🔧
+    /// 포탈을 통해 다른 씬으로 이동 요청 (SceneController 이용, 수정 없음)
     /// </summary>
     public void TeleportScene(string sceneName, int spawnPortalIndex)
     {
@@ -88,18 +87,18 @@ public class StageManager : Singleton<StageManager>
             return;
         }
 
-        // 🔥 기존 SceneController의 LoadSceneWithFadeInOut만 호출
+        // 기존 SceneController의 LoadSceneWithFadeInOut만 호출
         SceneController.Instance.LoadSceneWithFadeInOut(sceneName, 0.5f);
 
         //씬 전환전 포탈 초기화
         portalDict.Clear();
 
-        // 🔥 별도로 코루틴 돌려서 포탈 이동까지 관리
+        // 별도로 코루틴 돌려서 포탈 이동까지 관리
         StartCoroutine(HandleAfterSceneLoad(spawnPortalIndex, sceneName));
     }
 
     /// <summary>
-    /// 씬 로딩 완료 후 포탈 이동 처리 (SceneController는 수정 안함) 🔧
+    /// 씬 로딩 완료 후 포탈 이동 처리 (SceneController는 수정 안함)
     /// </summary>
     private IEnumerator HandleAfterSceneLoad(int spawnPortalIndex, string sceneName)
     {
@@ -111,15 +110,21 @@ public class StageManager : Singleton<StageManager>
 
         player = GameObject.FindGameObjectWithTag("Player");    //한번 더 호출
 
+        if(sceneName == "EP_2_Boss")
+        {
+            Player.Instance.movement.isBossRound = true;
+            Player.Instance.combat.hasCoralStaff = true;
+        }
+
         if (!portalDict.TryGetValue(spawnPortalIndex, out Portal spawnPortal))
         {
             Debug.LogWarning($"[StageManager] 도착 포탈 인덱스 {spawnPortalIndex}를 찾을 수 없습니다.");
             yield break;
         }
 
-        if (Player != null)
+        if (player != null)
         {
-            Player.transform.position = spawnPortal.targetPortal.position;
+            player.transform.position = spawnPortal.targetPortal.position;
             //카메라 임시 설정
             Camera.main.GetComponent<followcam>().transCam(spawnPortal.MapIndex);
         }

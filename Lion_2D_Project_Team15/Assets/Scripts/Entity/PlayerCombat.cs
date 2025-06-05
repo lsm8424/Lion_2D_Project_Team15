@@ -3,45 +3,66 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [Header("장비 관련")]
-    public GameObject coralStaffInHand; // 손에 들려줄 Coral Staff 오브젝트
-    public float coralStaffAttackPower = 15f; // Coral Staff 고유 공격력
+    public GameObject coralStaffInHand;
+    public float coralStaffAttackPower = 15f;
 
     [Header("공격 설정")]
     public float attackPower;
     public float attackCooldown;
     private float lastAttackTime = -999f;
-    public bool canAttack = true; // 공격 가능 여부
+    public bool canAttack = true;
 
     [Header("스킬 설정")]
     public float skillCooldown;
     private float lastSkillTime = -999f;
 
     [Header("발사체 설정")]
-    public GameObject coralProjectilePrefab; // 생성할 발사체 프리팹
-    public Transform firePoint; // 발사 위치 (플레이어 위치나 손 위치)
+    public GameObject coralProjectilePrefab;
+    public Transform firePoint;
 
     private Animator anim;
     public bool hasCoralStaff = false;
+    public bool hasStick = false; // 막대기 보유 여부를 여기에 세팅
 
     private PlayerMovement playerMovement;
 
     [Header("무기 연결")]
-    public Sword sword; // Sword 참조 추가
+    public Sword sword;      // 검
+    public GameObject stick; // 막대기 오브젝트
+
+    [Header("사운드")]
+    public AudioClip punchClip;       // 주먹 소리
+    public AudioClip stickSwingClip;  // 막대기 휘두르는 소리
+    private AudioSource audioSrc;
+
+    private void Awake()
+    {
+        // AudioSource 준비
+        audioSrc = GetComponent<AudioSource>();
+        if (audioSrc == null)
+            audioSrc = gameObject.AddComponent<AudioSource>();
+        audioSrc.playOnAwake = false;
+    }
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
 
-        // 게임 시작 시 Coral Staff는 비활성화 (획득 전까지 숨김)
+        // Coral Staff 초기 비활성화
         if (coralStaffInHand != null)
             coralStaffInHand.SetActive(false);
+
+        // stick도 없으면 비활성화
+        if (stick != null)
+            stick.SetActive(false);
     }
 
     public void HandleAttack()
     {
         if (!canAttack)
-            return; // 공격 불가 상태면 리턴
+            return;
+
         float h = Input.GetAxisRaw("Horizontal");
         playerMovement.FlipByDirection(h);
 
@@ -49,37 +70,53 @@ public class PlayerCombat : MonoBehaviour
         {
             lastAttackTime = Time.time;
 
-            // 공격 상태 활성화
             if (playerMovement != null)
                 playerMovement.isAttacking = true;
 
             if (anim != null)
-                anim.SetTrigger("Attack"); // 널 체크 나중에 에니메이션 추가되면 변경
+                anim.SetTrigger("Attack");
 
-            if (sword != null)
-                sword.TriggerAttack(); // Sword에 공격 전달
+            // ─────────────────────────────────────
+            // 1) 검을 가지고 있으면 검 공격 처리
+            if (hasCoralStaff && sword != null)
+            {
+                sword.TriggerAttack();
+                
+            }
+            // 2) 막대기를 가지고 있으면 막대기 휘두르기
+            else if (hasStick)
+            {
+                // 막대기 애니메이션 트리거(예: "StickAttack" 파라미터)
+                if (anim != null)
+                    anim.SetTrigger("StickAttack");
 
-            // Debug.Log("기본 공격!");
+                // 막대기 사운드 재생
+                if (stickSwingClip != null)
+                {
+                    audioSrc.PlayOneShot(stickSwingClip);
+                }
+                else
+                {
+                    Debug.LogWarning("[PlayerCombat] stickSwingClip이 할당되지 않았습니다.");
+                }
+            }
+            // 3) 둘 다 없으면 기본 주먹 공격
+            else
+            {
+                // 주먹 공격 사운드
+                if (punchClip != null)
+                    audioSrc.PlayOneShot(punchClip);
+                else
+                    Debug.LogWarning("[PlayerCombat] punchClip이 할당되지 않았습니다.");
+            }
+            // ─────────────────────────────────────
 
-            // 공격 종료 처리
-            Invoke(nameof(ResetAttackState), 0.7f); // 공격 애니메이션 길이만큼 대기
-
-            // === 공격 범위 중심과 반경 계산 ===
-            float direction = transform.localScale.x > 0 ? 1f : -1f;
-            Vector2 attackCenter = (Vector2)transform.position + Vector2.right * direction * 1.0f; // 오프셋(앞쪽)
-            float attackRadius = 1.5f; // 반경
-
-            // 공격 범위 내 몬스터 찾기
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 2.5f); // 1.5f: 공격 범위
-
+            // 타격 판정 (예시는 범위를 모두 동일하게 처리)
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 2.5f);
             foreach (Collider2D col in hits)
             {
-                // Debug.Log("충돌 감지한 오브젝트: " + col.name);
-
                 if (col.CompareTag("Monster"))
                 {
-                    // Debug.Log("몬스터 감지! 데미지 입힘");
-
                     Entity monster = col.GetComponent<Entity>();
                     if (monster != null)
                     {
@@ -87,6 +124,8 @@ public class PlayerCombat : MonoBehaviour
                     }
                 }
             }
+
+            Invoke(nameof(ResetAttackState), 0.7f);
         }
     }
 
@@ -99,17 +138,16 @@ public class PlayerCombat : MonoBehaviour
     public void HandleSkill()
     {
         if (!hasCoralStaff)
-            return; // CoralStaff 없으면 스킬 못씀
+            return;
 
         if (Input.GetMouseButtonDown(1) && Time.time >= lastSkillTime + skillCooldown)
         {
             lastSkillTime = Time.time;
 
             if (anim != null)
-                anim.SetTrigger("Skill"); // 널 체크 나중에 에니메이션 추가되면 변경
+                anim.SetTrigger("Skill");
 
             Debug.Log("CoralStaff 스킬 발사!");
-
             ShootProjectile();
         }
     }
@@ -125,24 +163,15 @@ public class PlayerCombat : MonoBehaviour
             Quaternion.identity
         );
 
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb2 = projectile.GetComponent<Rigidbody2D>();
         CoralProjectile cp = projectile.GetComponent<CoralProjectile>();
-
-        if (cp != null)
+        if (cp != null) cp.damage = coralStaffAttackPower;
+        if (rb2 != null)
         {
-            cp.damage = coralStaffAttackPower;
-        }
-
-        if (rb != null)
-        {
-            // 방향 결정 마우스 클릭한 방향으로 발사
-            Vector3 mouseInput = new Vector3(Input.mousePosition.x, Input.mousePosition.y,0);
+            Vector3 mouseInput = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
             Vector3 shootdir = mouseInput - transform.position;
             shootdir.z = 0f;
-            rb.linearVelocity = shootdir.normalized * 10f;
-            //float direction = transform.localScale.x > 0 ? 1f : -1f;
-            //Vector2 shootDir = new Vector2(direction, 0f); // x방향으로만 발사
-            //rb.linearVelocity = dir * 10f;
+            rb2.linearVelocity = shootdir.normalized * 10f;
         }
     }
 
@@ -153,5 +182,4 @@ public class PlayerCombat : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(attackCenter, 1.5f);
     }
-
 }

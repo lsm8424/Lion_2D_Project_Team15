@@ -6,12 +6,8 @@ using UnityEngine;
 public class Player : Entity
 {
     // ────────────── Singleton ──────────────
-
-    // Player 인스턴스를 전역에서 접근 가능하도록 static으로 선언
-
     private bool isStunned = false;
     public float stunDuration = 1f;
-
     public bool IsInvincible => isInvincible;
     private bool isInvincible = false;
     public float invincibleDuration = 1f;
@@ -19,46 +15,67 @@ public class Player : Entity
 
     public static Player Instance { get; private set; }
 
-    //넉백중
-    private bool isKnockBack = false; // 넉백 상태
-    private float knockbackTimer = 0f; // 넉백 지속 시간
+    // 넉백
+    private bool isKnockBack = false;
+    private float knockbackTimer = 0f;
 
-    // 키입력 중
-    public bool isKeyInput = false; // 키 입력 상태
+    // 키 입력 중
+    public bool isKeyInput = false;
 
     // 회오리 갇힘
-    public bool isStuck = false; // 회오리 갇힘 상태
+    public bool isStuck = false;
 
     [Header("무적 효과")]
-    public float blinkInterval = 0.2f; // 깜빡임 간격
+    public float blinkInterval = 0.2f;
     private SpriteRenderer spriteRenderer;
+
+    [Header("발걸음 사운드")]
+    [Tooltip("모래 위 발걸음 효과음")]
+    public AudioClip sandStepClip;
+    [Tooltip("일반 지면(흙/바닥) 위에서 재생할 효과음")]
+    public AudioClip groundStepClip;
+
+    // ────────────── Footstep Detection ──────────────
+    [Header("발걸음 감지 설정")]
+    [Tooltip("발소리를 재생할 때 땅을 감지할 Transform (발 위치 근처)")]
+    public Transform groundCheck;
+    [Tooltip("지면 감지를 위한 반경")]
+    public float checkRadius = 0.2f;
+    [Tooltip("발소리를 재생할 지면 레이어 (예: “Ground”에 해당)")]
+    public LayerMask groundLayer;
+    [Tooltip("한 걸음당 재생 간격 (초)")]
+    public float stepInterval = 0.5f;
+
+    private float stepTimer = 0f;
+    private AudioSource audioSrc;
+
+    // ────────────── 기능별 모듈 스크립트 참조 ──────────────
+    [HideInInspector] public PlayerMovement movement;
+    [HideInInspector] public PlayerCombat combat;
+    [HideInInspector] public PlayerInteraction interaction;
 
     private void Awake()
     {
-        // 씬에 Player가 이미 존재한다면 현재 오브젝트를 제거
+        // 싱글톤 등록
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            Instance = this; // 인스턴스 등록
+            Instance = this;
         }
+
+        // AudioSource 준비
+        audioSrc = GetComponent<AudioSource>();
+        if (audioSrc == null)
+            audioSrc = gameObject.AddComponent<AudioSource>();
+        audioSrc.playOnAwake = false;
     }
-
-    // 기능별 모듈 스크립트 참조 (외부에서 Player.Instance.movement 처럼 사용 가능)
-    [HideInInspector]
-    public PlayerMovement movement;
-
-    [HideInInspector]
-    public PlayerCombat combat;
-
-    [HideInInspector]
-    public PlayerInteraction interaction;
 
     private void Start()
     {
-        // Player에 붙어있는 기능별 스크립트를 가져옴
+        // 기능별 모듈 스크립트 가져오기
         movement = GetComponent<PlayerMovement>();
         combat = GetComponent<PlayerCombat>();
         interaction = GetComponent<PlayerInteraction>();
@@ -71,39 +88,119 @@ public class Player : Entity
         if (GameManager.Instance.ShouldWaitForEntity())
             return;
 
-        // 키입력 상태이거나 회오리에 갇혔으면 velocity를 0으로 설정 및 이동 무시
+        // 키 입력 중이거나 회오리에 갇혔으면 이동 무시
         if (isKeyInput || isStuck)
         {
             GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             return;
         }
 
-        // 넉백 지속 시간을 줄여주고, 끝나면 이동 잠금 해제
+        // 넉백 처리
         if (isKnockBack)
         {
             knockbackTimer -= Time.deltaTime;
             if (knockbackTimer <= 0f)
                 isKnockBack = false;
-            return; // 이동 입력 무시
+            return;
         }
 
-        // 각 기능 모듈의 매서드 실행
+        // 이동 및 점프
         if (movement != null)
         {
-            movement.HandleMove(); // 이동
-            movement.HandleJump(); // 점프
+            movement.HandleMove();
+            movement.HandleJump();
         }
 
-        combat.HandleAttack(); // 기본 공격 (좌클릭)
-        combat.HandleSkill(); // 스킬 공격 (우클릭)
-        interaction.HandleInteraction(); // F 키 상호작용 (NPC, 아이템 등)
+        // 공격 및 상호작용
+        combat.HandleAttack();
+        combat.HandleSkill();
+        interaction.HandleInteraction();
+
+        // 발걸음 소리 재생
+        HandleFootsteps();
+    }
+
+    private void HandleFootsteps()
+    {
+        // 1) “Ground” 레이어에 속한 Collider를 찾아서 땅에 있는지 체크
+        Collider2D hit = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+        bool isGrounded = (hit != null);
+
+        // 디버그: hit 결과 출력 (필요 시 주석 처리 가능)
+        //if (isGrounded)
+        //{
+        //    Debug.Log($"[Footstep] Hit Ground Collider: {hit.name}, Tag: {hit.tag}");
+        //}
+        //else
+        //{
+        //    Debug.Log($"[Footstep] No ground detected at {groundCheck.position}");
+        //}
+
+        // 2) 실제 수평 이동 속도를 통해 이동 중인지 확인
+        float horizVel = Mathf.Abs(GetComponent<Rigidbody2D>().linearVelocity.x);
+        bool isMovingHorizontally = horizVel > 0.1f;
+
+        if (isGrounded && isMovingHorizontally)
+        {
+            stepTimer += Time.deltaTime;
+            if (stepTimer >= stepInterval)
+            {
+                stepTimer = 0f;
+
+                // 모래 지형일 때
+                if (hit.CompareTag("Sand"))
+                {
+                    if (sandStepClip != null)
+                    {
+                        Debug.Log("[Footstep] Playing sandStepClip!");
+                        audioSrc.PlayOneShot(sandStepClip);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[Footstep] sandStepClip이 할당되지 않았습니다.");
+                    }
+                }
+                // 일반 지면(“Ground”)일 때
+                else if (hit.CompareTag("Ground"))
+                {
+                    if (groundStepClip != null)
+                    {
+                        Debug.Log("[Footstep] Playing groundStepClip!");
+                        audioSrc.PlayOneShot(groundStepClip);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[Footstep] groundStepClip이 할당되지 않았습니다.");
+                    }
+                }
+                // Tag가 “Sand”나 “Ground”가 아닐 때 (추가 지면 종류가 있다면 여기에 분기 추가)
+                else
+                {
+                    Debug.Log($"[Footstep] Detected ground but Tag != Sand/ Ground (Tag: {hit.tag})");
+                }
+            }
+        }
+        else
+        {
+            // 이동이 멈추거나 공중에 있으면 타이머 리셋
+            stepTimer = stepInterval;
+        }
+    }
+
+    // 디버그용: Scene 뷰에서 지면 감지 영역 시각화
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+        }
     }
 
     public void Stun()
     {
-        Stun(stunDuration); // 내부적으로 1초 기본값 사용
+        Stun(stunDuration);
     }
-
 
     public void Stun(float duration)
     {
@@ -116,22 +213,20 @@ public class Player : Entity
     private IEnumerator StunCoroutine(float duration)
     {
         isStunned = true;
-        //Debug.Log("플레이어가 경직되었습니다!");
         movement.enabled = false;
 
         yield return new WaitForSeconds(duration);
 
         movement.enabled = true;
         isStunned = false;
-        //Debug.Log("플레이어가 경직에서 회복되었습니다!");
     }
 
     public void ApplyKnockback(Vector2 direction, float force, float duration)
     {
         if (isStunned || isStuck || isKeyInput)
-            return; // 회오리 갇힘 상태이거나 키 입력 중이면 넉백 적용 안함
+            return;
 
-        GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero; // 기존 속도 초기화
+        GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
         isKnockBack = true;
         knockbackTimer = duration;
@@ -140,17 +235,8 @@ public class Player : Entity
     public override void Bind()
     {
         _binding.Assign<bool>("canJump", () => movement.canJump, v => movement.canJump = (bool)v);
-        _binding.Assign<bool>(
-            "canLadder",
-            () => interaction.canLadder,
-            v => interaction.canLadder = (bool)v
-        );
-        _binding.Assign<bool>(
-            "hasCoralStaff",
-            () => combat.hasCoralStaff,
-            v => combat.hasCoralStaff = (bool)v
-        );
-
+        _binding.Assign<bool>("canLadder", () => interaction.canLadder, v => interaction.canLadder = (bool)v);
+        _binding.Assign<bool>("hasCoralStaff", () => combat.hasCoralStaff, v => combat.hasCoralStaff = (bool)v);
     }
 
     public override void TakeDamage(float value)
@@ -161,9 +247,8 @@ public class Player : Entity
             return;
         }
 
-        base.TakeDamage(value); // Entity의 체력 감소, 사망 처리 포함
-
-        StartInvincibility(); // 무적 시작
+        base.TakeDamage(value);
+        StartInvincibility();
     }
 
     public void StartInvincibility()
@@ -177,7 +262,6 @@ public class Player : Entity
         isInvincible = true;
         Debug.Log("무적 상태 시작!");
 
-        // Weapon 태그를 가진 모든 무기의 SpriteRenderer 가져오기
         SpriteRenderer[] weaponRenderers = GameObject
             .FindGameObjectsWithTag("Weapon")
             .Select(go => go.GetComponent<SpriteRenderer>())
@@ -185,14 +269,12 @@ public class Player : Entity
             .ToArray();
 
         float elapsedTime = 0f;
-        yield return new WaitForSeconds(0.1f); //0.1초 후 시작 넉백보여주고 투명
+        yield return new WaitForSeconds(0.1f);
         while (elapsedTime < invincibleDuration)
         {
-            // 플레이어와 무기 스프라이트 토글
             bool visibility = !spriteRenderer.enabled;
             spriteRenderer.enabled = visibility;
 
-            // 모든 무기 스프라이트 토글
             foreach (var weaponRenderer in weaponRenderers)
             {
                 weaponRenderer.enabled = visibility;
@@ -202,7 +284,6 @@ public class Player : Entity
             elapsedTime += blinkInterval;
         }
 
-        // 무적 해제 시 스프라이트 복원
         spriteRenderer.enabled = true;
         foreach (var weaponRenderer in weaponRenderers)
         {
@@ -215,7 +296,7 @@ public class Player : Entity
 
     protected override void ScheduleDestroy()
     {
-        Destroy(gameObject, 2f); // 플레이어만 2초 후 삭제
+        Destroy(gameObject, 2f);
     }
 
     protected override void Death()
@@ -224,6 +305,5 @@ public class Player : Entity
         Instantiate(UIManager.Instance.GameOverCanvasPrefab);
     }
 
-    //보스라운드일때 bind 수정해야됨
     public void SetBossRound() => movement.isBossRound = true;
 }
