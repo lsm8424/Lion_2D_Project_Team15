@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventType: 0
   EventID: Ep1_03_05
-  EventName: "\uC138\uBC88\uC9F8 \uCC45 \uC0C1\uD638\uC791\uC6A9"
+  EventName: "\uB124\uBC88\uC9F8 \uCC45 \uC0C1\uD638\uC791\uC6A9"
   RequireSave: 0
   EventFunctions:
   - {fileID: 11400000, guid: 60e02b35b47898c47b7b332d1d03bc25, type: 2}
@@ -23,4 +23,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d7cf40c286e87047841e8e5edb05741, type: 2}
   - {fileID: 11400000, guid: 89af8e2e8934cd340aa3461caf30fcaa, type: 2}
   - {fileID: 11400000, guid: 39c5bd260aa60d645a1f517ec952d9a4, type: 2}
+  - {fileID: 11400000, guid: e088126893196724ca5cf93ffd55c483, type: 2}
   - {fileID: 11400000, guid: 99dab8caae83a444dabf495c17f7aeec, type: 2}

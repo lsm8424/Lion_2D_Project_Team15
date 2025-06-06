@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: QuestUI_SO
   m_EditorClassIdentifier: 
   FunctionType: 0
-  functionType: 0
-  questID: 
+  functionType: 1
+  questID: Book
   objective: 
-  questType: 0
-  currentProgress: 0
+  questType: 1
+  currentProgress: 1
   maxProgress: 0

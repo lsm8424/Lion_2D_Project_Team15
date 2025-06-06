@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 씬 이동 및 포탈 위치 이동을 처리하는 싱글톤 매니저
@@ -23,6 +23,7 @@ public class StageManager : Singleton<StageManager>
 
     // 포탈 인덱스 → 포탈 객체 매핑 딕셔너리
     private Dictionary<int, Portal> portalDict = new();
+
     // 씬 전환 시 포탈 등록을 위한 딕셔너리 초기화
 
 
@@ -64,13 +65,27 @@ public class StageManager : Singleton<StageManager>
             yield break;
         }
 
-        if (player != null)
+        if (player == null)
         {
-            //카메라 임시 설정
-            Camera.main.GetComponent<followcam>().transCam(targetPortal.MapIndex);
-
-            player.transform.position = targetPortal.targetPortal.position;
+            Debug.LogError("[StageManager] Player가 없습니다.");
+            yield break;
         }
+
+        // 플레이어 위치 이동
+        player.transform.position = targetPortal.targetPortal.position;
+        Debug.Log(
+            $"[StageManager] 포탈 {targetIndex}로 이동 완료. 위치: {targetPortal.targetPortal.position}"
+        );
+
+        // 카메라 설정
+        var followCam = Camera.main.GetComponent<followcam>();
+        if (followCam != null)
+        {
+            followCam.transCam(targetPortal.MapIndex);
+        }
+
+        // 약간의 지연 후 페이드 아웃
+        yield return new WaitForSeconds(0.1f);
 
         Fade fadeOut = new Fade(Color.black, Color.clear, 0.5f); //페이드 아웃
         yield return fadeOut.Execute();
@@ -108,9 +123,9 @@ public class StageManager : Singleton<StageManager>
 
         yield return new WaitForSeconds(0.3f); // 포탈 등록 대기
 
-        player = GameObject.FindGameObjectWithTag("Player");    //한번 더 호출
+        player = GameObject.FindGameObjectWithTag("Player"); //한번 더 호출
 
-        if(sceneName == "EP_2_Boss")
+        if (sceneName == "EP_2_Boss")
         {
             Player.Instance.movement.isBossRound = true;
             Player.Instance.combat.hasCoralStaff = true;
@@ -129,5 +144,4 @@ public class StageManager : Singleton<StageManager>
             Camera.main.GetComponent<followcam>().transCam(spawnPortal.MapIndex);
         }
     }
-
 }
