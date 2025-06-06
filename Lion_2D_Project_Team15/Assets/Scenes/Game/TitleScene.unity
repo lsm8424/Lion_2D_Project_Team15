@@ -1183,6 +1183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneName: Ep_1
+  SceneName2: Ep_2
 --- !u!4 &1493127775
 Transform:
   m_ObjectHideFlags: 0
