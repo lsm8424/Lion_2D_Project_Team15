@@ -22,6 +22,11 @@ public class SceneLoadEventFunction_SO : EventFunction_SO
         }
 
         SceneController.Instance.LoadSceneWithFadeInOut(sceneName, fadeDuration);
-        yield return null; // 로딩 자체는 SceneController에서 처리되므로 즉시 리턴
+
+        // Wait for scene to be loaded and initialized
+        while (!SceneController.Instance.IsSceneLoaded)
+        {
+            yield return null;
+        }
     }
 }

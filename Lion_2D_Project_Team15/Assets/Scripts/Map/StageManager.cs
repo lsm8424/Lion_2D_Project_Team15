@@ -10,16 +10,56 @@ public class StageManager : Singleton<StageManager>
 {
     #region singleton
 
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
+        StartCoroutine(FindPlayerWithRetry());
+    }
 
-        player = GameObject.FindGameObjectWithTag("Player");
+    private IEnumerator FindPlayerWithRetry()
+    {
+        float timeout = 5f; // Maximum time to wait
+        float elapsed = 0f;
+
+        while (elapsed < timeout)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                Debug.Log("[StageManager] Player 오브젝트를 찾았습니다.");
+                break;
+            }
+
+            elapsed += 0.1f;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        if (player == null)
+        {
+            Debug.LogError("[StageManager] Player 오브젝트 등록에 실패하였습니다. (timeout: " + timeout + "초)");
+        }
     }
     #endregion
 
+    /// <summary>
+    /// Player 태그를 가진 오브젝트를 찾아서 player 변수에 할당
+    /// </summary>
+    /// <returns>player 오브젝트를 찾았으면 true, 못찾았으면 false 반환</returns>
+    public bool AssignPlayer()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogError("[StageManager] Player 태그를 가진 오브젝트를 찾을 수 없습니다.");
+            return false;
+        }
+
+        Debug.Log("[StageManager] Player 오브젝트를 찾아서 할당했습니다: " + player.name);
+        return true;
+    }
+
     // Player 캐싱용 프로퍼티
-    private GameObject player;
+    public GameObject player;
 
     // 포탈 인덱스 → 포탈 객체 매핑 딕셔너리
     private Dictionary<int, Portal> portalDict = new();
@@ -123,7 +163,11 @@ public class StageManager : Singleton<StageManager>
 
         yield return new WaitForSeconds(0.3f); // 포탈 등록 대기
 
-        player = GameObject.FindGameObjectWithTag("Player"); //한번 더 호출
+        if (!AssignPlayer()) // 새로운 함수 사용
+        {
+            Debug.LogError("[StageManager] 씬 로드 후 Player를 찾을 수 없어서 포탈 이동을 취소합니다.");
+            yield break;
+        }
 
         if (sceneName == "EP_2_Boss")
         {
