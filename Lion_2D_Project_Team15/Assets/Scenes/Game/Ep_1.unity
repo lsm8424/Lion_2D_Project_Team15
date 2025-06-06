@@ -16224,6 +16224,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 375399359591967025, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 375399359591967025, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 375399359591967025, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
       objectReference: {fileID: 0}
@@ -16241,11 +16249,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 375399359591967025, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50
+      value: -910
       objectReference: {fileID: 0}
     - target: {fileID: 375399359591967025, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: -490
       objectReference: {fileID: 0}
     - target: {fileID: 802569590672450397, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -18798,6 +18806,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &490539787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 490539789}
+  - component: {fileID: 490539788}
+  m_Layer: 0
+  m_Name: JumpScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &490539788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490539787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885402340b8e8dd44bbeb2e79e23f203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneName: Ep_2
+--- !u!4 &490539789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490539787}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.7154548, y: 3.6606293, z: -4.227941}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &490840132
 GameObject:
   m_ObjectHideFlags: 0
@@ -52136,6 +52189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f567ecf367804494b80381929bfa0c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1140504443}
 --- !u!4 &1768339493
 Transform:
   m_ObjectHideFlags: 0
@@ -66765,6 +66819,7 @@ SceneRoots:
   - {fileID: 200703206}
   - {fileID: 1674425548}
   - {fileID: 413300740}
+  - {fileID: 490539789}
   - {fileID: 235391434}
   - {fileID: 2037186051}
   - {fileID: 1038345692}

@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a75b65feb1353e479fcd91db1106898, type: 3}
-  m_Name: Ep2_01
+  m_Script: {fileID: 11500000, guid: d83af9993e05ce34ba27e541234ed564, type: 3}
+  m_Name: MethodInvokeEventFunction_SO
   m_EditorClassIdentifier: 
-  QuestID: Ep2
-  Progress:
-  - Trigger: {fileID: 0}
-    GameEvent: {fileID: 0}
-    ShouldSave: 0
+  FunctionType: 0
+  targetObjectName: StageManager
+  componentTypeName: StageManager
+  methodName: AssignPlayer
