@@ -44678,8 +44678,46 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5287110817816038261, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1299546150}
   m_SourcePrefab: {fileID: 100100000, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+--- !u!1 &1299546147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5287110817816038261, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+  m_PrefabInstance: {fileID: 1299546146}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1299546148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6800870898697739895, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+  m_PrefabInstance: {fileID: 1299546146}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1299546149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5675134433042144037, guid: 9455fcf9003238b4aa3a4586adf28bb9, type: 3}
+  m_PrefabInstance: {fileID: 1299546146}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1299546150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299546147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e76c7880f269ae428af3a4e05aa0b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questUIObject: {fileID: 1299546149}
+  tmp: {fileID: 1299546148}
 --- !u!4 &1300580786 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4710232982895162011, guid: fb8c8c61b4271844d987dce548beb208, type: 3}
@@ -71489,6 +71527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f567ecf367804494b80381929bfa0c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!4 &1768339493
 Transform:
   m_ObjectHideFlags: 0

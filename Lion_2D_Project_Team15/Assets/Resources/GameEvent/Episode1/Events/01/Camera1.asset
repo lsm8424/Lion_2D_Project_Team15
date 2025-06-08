@@ -27,7 +27,7 @@ MonoBehaviour:
   EndZoom: 6
   WaitBefore: 0
   WaitAfter: 0
-  useCurrentAsStart: 0
+  useCurrentAsStart: 1
   useShake: 0
   shakeIntensity: 0.2
   shakeFrequency: 20

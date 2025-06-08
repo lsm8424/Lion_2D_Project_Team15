@@ -945,6 +945,27 @@
     "isEndOfDialogue": false
   },
   {
+    "id": "player_038",
+    "text": "어느덧 온 사방이 모래와 바다뿐이로군.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_039",
+    "text": "그나저나 길이 두갈래로 나뉘었어.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
+    "id": "player_040",
+    "text": "왼쪽은 바다 같으니 우선 오른쪽부터 가보자.",
+    "choices": "",
+    "condition": "",
+    "isEndOfDialogue": false
+  },
+  {
     "id": "end",
     "text": "end.",
     "choices": "",
