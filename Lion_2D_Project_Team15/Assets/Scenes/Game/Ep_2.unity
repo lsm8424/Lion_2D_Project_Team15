@@ -152,6 +152,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: teleportClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetPortalIndex
       value: 8
       objectReference: {fileID: 0}
@@ -2832,6 +2836,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: teleportClip
+      value: 
+      objectReference: {fileID: 8300000, guid: dedb1a52d3552e74f98dbf9bf4bb7ed7, type: 3}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetPortalIndex
       value: 4
       objectReference: {fileID: 0}
@@ -5422,6 +5430,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: teleportClip
+      value: 
+      objectReference: {fileID: 8300000, guid: dedb1a52d3552e74f98dbf9bf4bb7ed7, type: 3}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetSceneName
       value: 
       objectReference: {fileID: 0}
@@ -5660,9 +5672,10 @@ GameObject:
   - component: {fileID: 198882654}
   - component: {fileID: 198882653}
   - component: {fileID: 198882652}
+  - component: {fileID: 198882655}
   m_Layer: 3
   m_Name: Plaform
-  m_TagString: Ground
+  m_TagString: Sand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16112,6 +16125,19 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &198882655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198882648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe8132f6fd04a94395bf258d5d12105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepClip: {fileID: 8300000, guid: edea19a8bc6390746ae4f7e88b49ff0d, type: 3}
 --- !u!1 &203811343
 GameObject:
   m_ObjectHideFlags: 0
@@ -18340,6 +18366,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: teleportClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetPortalIndex
       value: 6
       objectReference: {fileID: 0}
@@ -18432,6 +18462,10 @@ PrefabInstance:
       propertyPath: portalIndex
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: teleportClip
+      value: 
+      objectReference: {fileID: 8300000, guid: dedb1a52d3552e74f98dbf9bf4bb7ed7, type: 3}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetPortalIndex
       value: 10
@@ -20967,9 +21001,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 590581288}
-  m_Layer: 0
+  - component: {fileID: 590581289}
+  m_Layer: 3
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Sand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20992,6 +21027,19 @@ Transform:
   - {fileID: 1060852424}
   m_Father: {fileID: 1102241744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &590581289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590581287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe8132f6fd04a94395bf258d5d12105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepClip: {fileID: 8300000, guid: edea19a8bc6390746ae4f7e88b49ff0d, type: 3}
 --- !u!1 &598864286
 GameObject:
   m_ObjectHideFlags: 0
@@ -25019,6 +25067,10 @@ PrefabInstance:
       propertyPath: portalIndex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: teleportClip
+      value: 
+      objectReference: {fileID: 8300000, guid: dedb1a52d3552e74f98dbf9bf4bb7ed7, type: 3}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetSceneName
       value: Ep_1
@@ -38807,9 +38859,10 @@ GameObject:
   - component: {fileID: 1121073141}
   - component: {fileID: 1121073140}
   - component: {fileID: 1121073139}
+  - component: {fileID: 1121073142}
   m_Layer: 3
   m_Name: Plaform
-  m_TagString: Ground
+  m_TagString: Sand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41929,6 +41982,19 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &1121073142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121073135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe8132f6fd04a94395bf258d5d12105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepClip: {fileID: 8300000, guid: edea19a8bc6390746ae4f7e88b49ff0d, type: 3}
 --- !u!1 &1121177727
 GameObject:
   m_ObjectHideFlags: 0
@@ -44432,6 +44498,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: teleportClip
+      value: 
+      objectReference: {fileID: 8300000, guid: dedb1a52d3552e74f98dbf9bf4bb7ed7, type: 3}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetPortalIndex
       value: 9
       objectReference: {fileID: 0}
@@ -44775,6 +44845,10 @@ PrefabInstance:
       propertyPath: portalIndex
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: teleportClip
+      value: 
+      objectReference: {fileID: 8300000, guid: dedb1a52d3552e74f98dbf9bf4bb7ed7, type: 3}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetPortalIndex
       value: 5
@@ -45280,9 +45354,10 @@ GameObject:
   - component: {fileID: 1389131019}
   - component: {fileID: 1389131018}
   - component: {fileID: 1389131017}
+  - component: {fileID: 1389131022}
   m_Layer: 3
   m_Name: Plaform
-  m_TagString: Ground
+  m_TagString: Sand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58816,6 +58891,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1389131022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389131015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe8132f6fd04a94395bf258d5d12105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepClip: {fileID: 8300000, guid: edea19a8bc6390746ae4f7e88b49ff0d, type: 3}
 --- !u!1 &1408317535
 GameObject:
   m_ObjectHideFlags: 0
@@ -60263,6 +60351,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: teleportClip
+      value: 
+      objectReference: {fileID: 8300000, guid: dedb1a52d3552e74f98dbf9bf4bb7ed7, type: 3}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetPortalIndex
       value: 1
       objectReference: {fileID: 0}
@@ -60377,9 +60469,10 @@ GameObject:
   - component: {fileID: 1566213600}
   - component: {fileID: 1566213599}
   - component: {fileID: 1566213598}
+  - component: {fileID: 1566213603}
   m_Layer: 3
   m_Name: Plaform
-  m_TagString: Ground
+  m_TagString: Sand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67227,6 +67320,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1566213603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566213596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe8132f6fd04a94395bf258d5d12105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepClip: {fileID: 8300000, guid: edea19a8bc6390746ae4f7e88b49ff0d, type: 3}
 --- !u!1001 &1566669051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72990,6 +73096,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: teleportClip
+      value: 
+      objectReference: {fileID: 8300000, guid: dedb1a52d3552e74f98dbf9bf4bb7ed7, type: 3}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetPortalIndex
       value: 7
       objectReference: {fileID: 0}
@@ -76174,6 +76284,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
+      propertyPath: teleportClip
+      value: 
+      objectReference: {fileID: 8300000, guid: dedb1a52d3552e74f98dbf9bf4bb7ed7, type: 3}
+    - target: {fileID: 3228215545940631653, guid: 5f808527403b22b4ca69a78eb2cc2d15, type: 3}
       propertyPath: targetSceneName
       value: Ep_2_Boss
       objectReference: {fileID: 0}
@@ -76858,13 +76972,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3363412551389235749, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
+      propertyPath: stick
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3363412551389235749, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
       propertyPath: sword
       value: 
       objectReference: {fileID: 1924222698}
     - target: {fileID: 3363412551389235749, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
+      propertyPath: hasStick
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3363412551389235749, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
       propertyPath: attackPower
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3363412551389235749, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
+      propertyPath: stickSwingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a0d7272848bc33a49b2c0c5a9f6e3f87, type: 3}
     - target: {fileID: 3888047460808392904, guid: 2605d53ad06072f4b9eb3711adc243b5, type: 3}
       propertyPath: m_SortingOrder
       value: 1
