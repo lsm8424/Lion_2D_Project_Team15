@@ -122,6 +122,9 @@ public class Player : Entity
 
     private void HandleFootsteps()
     {
+        //대화중이나 점프 중에는 발소리 재생 안함
+
+
         // 1) “Ground” 레이어에 속한 Collider를 찾아서 땅에 있는지 체크
         Collider2D hit = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
         bool isGrounded = (hit != null);
